@@ -27,3 +27,9 @@
     -fx-background-color:-fx-fullScreenButtonColor;
 }
 
+.circleRotatedInside{
+    -fx-fill:#2D3440;
+}
+.circleRotatedOutside{
+    -fx-fill:#647DD7;
+}

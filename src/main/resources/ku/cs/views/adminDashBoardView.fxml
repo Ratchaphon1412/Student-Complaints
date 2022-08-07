@@ -122,14 +122,27 @@
                                           <String fx:value="circleRed" />
                                        </styleClass>
                                     </Button>
-                                    <Button layoutX="20.0" layoutY="17.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="12.0" styleClass="clipboardOutsideSVG">
+                                    <Button layoutX="20.0" layoutY="17.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="12.0">
                                        <font>
                                           <Font size="1.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="clipboardOutsideSVG" />
+                                          <String fx:value="colorIcon" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="22.0" layoutY="19.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="8.0">
+                                       <font>
+                                          <Font size="1.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="clipboardInsideSVG" />
+                                          <String fx:value="colorIcon" />
+                                       </styleClass>
                                     </Button>
                                     <Label layoutX="10.0" layoutY="39.0" text="Report" textFill="#ff605c" />
-                                    <Circle fill="DODGERBLUE" layoutX="147.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                                    <Circle fill="#1f93ff00" layoutX="147.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                                    <Circle fill="DODGERBLUE" layoutX="147.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
+                                    <Circle fill="#1f93ff00" layoutX="147.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
                                     <Label layoutX="133.0" layoutY="30.0" text="20" textFill="WHITE">
                                        <font>
                                           <Font size="18.0" />
@@ -145,11 +158,6 @@
                                           <Font size="10.0" />
                                        </font>
                                     </Label>
-                                    <Button layoutX="22.0" layoutY="19.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="8.0" styleClass="clipboardInsideSVG">
-                                       <font>
-                                          <Font size="1.0" />
-                                       </font>
-                                    </Button>
                                  </children>
                                  <styleClass>
                                     <String fx:value="cardBackground" />
@@ -173,13 +181,17 @@
                                  </styleClass>
                               </Button>
                               <Label layoutX="8.0" layoutY="39.0" text="Agency" textFill="#ffbd44" />
-                              <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="17.0" styleClass="agencySVG">
+                              <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="17.0">
                                  <font>
                                     <Font size="1.0" />
                                  </font>
+                                 <styleClass>
+                                    <String fx:value="agencySVG" />
+                                    <String fx:value="colorIcon" />
+                                 </styleClass>
                               </Button>
-                              <Circle fill="DODGERBLUE" layoutX="151.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                              <Circle fill="#1f93ff00" layoutX="151.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="151.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
+                              <Circle fill="#1f93ff00" layoutX="151.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
                               <Label layoutX="137.0" layoutY="29.0" text="20" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
@@ -216,16 +228,20 @@
                                  </styleClass>
                               </Button>
                               <Label layoutX="6.0" layoutY="39.0" text="User Total" textFill="#00ca4e" />
-                              <Button layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="22.0" styleClass="userSVG">
+                              <Button layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="22.0">
                                  <font>
                                     <Font size="1.0" />
                                  </font>
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="userSVG" />
+                                    <String fx:value="colorIcon" />
+                                 </styleClass>
                               </Button>
-                              <Circle fill="DODGERBLUE" layoutX="154.0" layoutY="40.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                              <Circle fill="#1f93ff00" layoutX="154.0" layoutY="40.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="154.0" layoutY="40.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
+                              <Circle fill="#1f93ff00" layoutX="154.0" layoutY="40.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
                               <Label layoutX="139.0" layoutY="27.0" text="20" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
@@ -306,57 +322,78 @@
          </rowConstraints>
          <children>
             <HBox alignment="CENTER" prefHeight="36.0" prefWidth="45.0" GridPane.rowIndex="10">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="12.0" styleClass="loginButtonOutsideSVG" textFill="WHITE">
-                     <graphic>
-                        <Button mnemonicParsing="false" prefHeight="6.0" prefWidth="8.0" styleClass="loginButtonInsideSVG" textFill="WHITE">
-                           <font>
-                              <Font size="1.0" />
-                           </font>
-                        </Button>
-                     </graphic>
-                     <font>
-                        <Font size="5.0" />
-                     </font>
-                  </Button>
-               </children>
                <padding>
                   <Insets left="5.0" />
                </padding>
-            </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" styleClass="gearSVG">
+                  <Pane prefHeight="52.0" prefWidth="53.0">
+                     <children>
+                        <Button alignment="CENTER" layoutX="15.0" layoutY="23.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="8.0">
+                           <font>
+                              <Font size="7.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="loginButtonOutsideSVG" />
+                              <String fx:value="colorIcon" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="10.0" layoutY="24.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="4.0">
+                           <font>
+                              <Font size="6.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="loginButtonInsideSVG" />
+                              <String fx:value="colorIcon" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0">
                      <font>
                         <Font size="5.0" />
                      </font>
                      <HBox.margin>
                         <Insets top="9.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="gearSVG" />
+                        <String fx:value="colorIcon" />
+                     </styleClass>
                   </Button>
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="17.0" prefWidth="16.0" styleClass="buildingInsideSVG">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="9.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <Button mnemonicParsing="false" prefHeight="14.0" prefWidth="16.0" styleClass="buildingOutsideSVG">
-                           <font>
-                              <Font size="1.0" />
-                           </font>
-                        </Button>
-                     </graphic>
-                  </Button>
-               </children>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="17.0" layoutY="17.0" mnemonicParsing="false">
+                           <styleClass>
+                              <String fx:value="buildingOutsideSVG" />
+                              <String fx:value="colorIcon" />
+                           </styleClass>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="17.0" layoutY="16.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="9.0">
+                           <styleClass>
+                              <String fx:value="buildingInsideSVG" />
+                              <String fx:value="colorIcon" />
+                           </styleClass>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="26.0" prefWidth="47.0" GridPane.rowIndex="2">
                <children>
@@ -384,26 +421,33 @@
                </GridPane.margin>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="47.0" GridPane.rowIndex="5">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="14.0" prefWidth="14.0" styleClass="clipboardOutsideSVG">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <Button mnemonicParsing="false" prefHeight="11.0" prefWidth="10.0" styleClass="clipboardInsideSVG">
-                           <font>
-                              <Font size="1.0" />
-                           </font>
-                        </Button>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets top="9.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="16.0" layoutY="18.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="14.0">
+                           <styleClass>
+                              <String fx:value="colorIcon" />
+                              <String fx:value="clipboardOutsideSVG" />
+                           </styleClass>
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="18.0" layoutY="19.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="8.0">
+                           <styleClass>
+                              <String fx:value="clipboardInsideSVG" />
+                              <String fx:value="colorIcon" />
+                           </styleClass>
+                           <font>
+                              <Font size="7.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="18.0" prefWidth="50.0">
                <children>
@@ -412,7 +456,7 @@
                         <Font size="1.0" />
                      </font>
                      <graphic>
-                        <SVGPath stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="8.0" styleClass="svgButton" />
+                        <SVGPath content="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="2.0" />
                      </graphic>
                      <HBox.margin>
                         <Insets right="2.0" />
@@ -427,7 +471,7 @@
                         <Font size="1.0" />
                      </font>
                      <graphic>
-                        <SVGPath stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0" styleClass="svgButton" />
+                        <SVGPath content="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zM4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zM4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zM4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0" styleClass="svgButton" />
                      </graphic>
                      <HBox.margin>
                         <Insets right="2.0" />
@@ -442,7 +486,7 @@
                         <Font size="1.0" />
                      </font>
                      <graphic>
-                        <SVGPath strokeLineJoin="ROUND" strokeWidth="8.0" styleClass="svgButton" />
+                        <SVGPath content="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4zM8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4zM8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4zM8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" strokeLineJoin="ROUND" strokeWidth="8.0" styleClass="svgButton" />
                      </graphic>
                      <styleClass>
                         <String fx:value="circleGreen" />
