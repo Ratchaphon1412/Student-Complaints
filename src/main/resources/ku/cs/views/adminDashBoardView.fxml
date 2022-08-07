@@ -112,10 +112,14 @@
                                     <Insets />
                                  </opaqueInsets>
                                  <children>
-                                    <Button layoutX="11.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" styleClass="windowReport" stylesheets="@../style/admin.css">
+                                    <Button layoutX="11.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" stylesheets="@../style/style.css">
                                        <font>
                                           <Font size="8.0" />
                                        </font>
+                                       <styleClass>
+                                          <String fx:value="roundedCorner" />
+                                          <String fx:value="closeButton" />
+                                       </styleClass>
                                     </Button>
                                     <Button layoutX="20.0" layoutY="17.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="12.0" styleClass="clipboard1" stylesheets="@../style/admin.css">
                                        <font>
@@ -149,13 +153,17 @@
                               <Insets left="2.0" right="2.0" />
                            </GridPane.margin>
                            <children>
-                              <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" styleClass="windowAgency" stylesheets="@../style/admin.css">
+                              <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" stylesheets="@../style/style.css">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
+                                 <styleClass>
+                                    <String fx:value="roundedCorner" />
+                                    <String fx:value="minimizeButton" />
+                                 </styleClass>
                               </Button>
                               <Label layoutX="8.0" layoutY="39.0" text="Agency" textFill="#ffbd44" />
-                              <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="18.0" styleClass="Agency2" stylesheets="@../style/admin.css">
+                              <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="17.0" styleClass="Agency2" stylesheets="@../style/admin.css">
                                  <font>
                                     <Font size="1.0" />
                                  </font>
@@ -184,16 +192,23 @@
                               <Insets left="2.0" right="2.0" />
                            </GridPane.margin>
                            <children>
-                              <Button layoutX="11.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" styleClass="windowUser" stylesheets="@../style/admin.css">
+                              <Button layoutX="11.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" stylesheets="@../style/style.css">
                                  <font>
                                     <Font size="1.0" />
                                  </font>
+                                 <styleClass>
+                                    <String fx:value="fullScreenButton" />
+                                    <String fx:value="roundedCorner" />
+                                 </styleClass>
                               </Button>
                               <Label layoutX="6.0" layoutY="39.0" text="User Total" textFill="#00ca4e" />
-                              <Button layoutX="18.0" layoutY="11.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="20.0" styleClass="User" stylesheets="@../style/admin.css">
+                              <Button layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="22.0" styleClass="User" stylesheets="@../style/admin.css">
                                  <font>
                                     <Font size="1.0" />
                                  </font>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
                               </Button>
                               <Circle fill="DODGERBLUE" layoutX="154.0" layoutY="40.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: #647DD7;" />
                               <Circle fill="#1f93ff00" layoutX="154.0" layoutY="40.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: #2D3440 #2D3440;" />
@@ -366,11 +381,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="18.0" prefWidth="50.0">
                <children>
-                  <Button fx:id="close" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="9.0" prefWidth="11.0" stylesheets="@../style/login.css" textAlignment="CENTER">
-                     <styleClass>
-                        <String fx:value="windowsControl" />
-                        <String fx:value="closeButton" />
-                     </styleClass>
+                  <Button fx:id="close" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="9.0" prefWidth="11.0" stylesheets="@../style/style.css" textAlignment="CENTER">
                      <font>
                         <Font size="1.0" />
                      </font>
@@ -380,14 +391,18 @@
                      <HBox.margin>
                         <Insets right="2.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="roundedCorner" />
+                        <String fx:value="closeButton" />
+                     </styleClass>
                   </Button>
-                  <Button fx:id="min" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="9.0" prefWidth="11.0" stylesheets="@../style/login.css" textAlignment="CENTER">
+                  <Button fx:id="min" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="9.0" prefWidth="11.0" stylesheets="@../style/style.css" textAlignment="CENTER">
                      <font>
                         <Font size="1.0" />
                      </font>
                      <styleClass>
-                        <String fx:value="windowsControl" />
-                        <String fx:value="minButton" />
+                        <String fx:value="minimizeButton" />
+                        <String fx:value="roundedCorner" />
                      </styleClass>
                      <graphic>
                         <SVGPath content="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zM4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0" styleClass="svgButton" />
@@ -396,7 +411,7 @@
                         <Insets right="2.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="full" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="8.0" prefWidth="11.0" stylesheets="@../style/login.css" textAlignment="CENTER">
+                  <Button fx:id="full" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="8.0" prefWidth="11.0" stylesheets="@../style/style.css" textAlignment="CENTER">
                      <font>
                         <Font size="1.0" />
                      </font>
@@ -404,8 +419,8 @@
                         <SVGPath content="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4zM8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" strokeLineJoin="ROUND" strokeWidth="8.0" styleClass="svgButton" />
                      </graphic>
                      <styleClass>
-                        <String fx:value="windowsControl" />
-                        <String fx:value="fullButton" />
+                        <String fx:value="fullScreenButton" />
+                        <String fx:value="roundedCorner" />
                      </styleClass>
                   </Button>
                </children>
