@@ -7,7 +7,7 @@
 .background{
    -fx-background-color:#1A202C;
 }
-backgroundNavbar{
+.backgroundNavbar{
     -fx-background-color:#000000;
 }
 .backgroundNavbar.logout{
