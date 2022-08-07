@@ -1,0 +1,45 @@
+
+
+
+.rightSide{
+-fx-background-image: url("../assets/images/PictureLogin.png");
+-fx-background-size:contain;
+-fx-background-position:center;
+-fx-background-repeat:no-repeat;
+
+}
+.leftSide.textInput{
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius:20px;
+}
+.leftSide.loginButton{
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius:20px;
+}
+.windowsControl.closeButton{
+   -fx-border-radius:30px;
+   -fx-background-radius:30px;
+   -fx-background-color:#FF605C;
+}
+
+.svgButton{
+    -fx-opacity:0.4;
+}
+.svgButton:hover{
+    -fx-opacity:1;
+
+}
+
+.windowsControl.minButton{
+ -fx-border-radius:30px;
+   -fx-background-radius:30px;
+   -fx-background-color:#FFBD44;
+}
+
+.windowsControl.fullButton{
+    -fx-border-radius:30px;
+       -fx-background-radius:30px;
+       -fx-background-color:#00CA4E;
+}
+
+
