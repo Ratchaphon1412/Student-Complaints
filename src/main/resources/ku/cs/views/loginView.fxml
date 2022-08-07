@@ -196,7 +196,7 @@
                            </font>
                         </Label>
                         <Label layoutX="29.0" layoutY="72.0" text="Don’t have the account ?" textFill="WHITE" />
-                        <Hyperlink layoutX="181.0" layoutY="41.0" onAction="#handleChangePassword" text="Reset password" textFill="#fcfcfc" underline="true">
+                        <Hyperlink layoutX="181.0" layoutY="41.0" text="Reset password" textFill="#fcfcfc" underline="true">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
