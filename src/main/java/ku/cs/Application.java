@@ -25,6 +25,7 @@ public class Application extends javafx.application.Application {
     private static void configRoute() {
         String pathResource = "ku/cs/views/";
         ApplicationController.when("Login", pathResource+"loginView.fxml",1000,580);
+        ApplicationController.when("Admin",pathResource+"adminDashBoard.fxml",1000,580);
 
     }
 
