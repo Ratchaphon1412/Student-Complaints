@@ -17,7 +17,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.bind(this, stage);
 //        ApplicationController.setAnimationType("fade", 800);
         configRoute();
-        ApplicationController.goTo("Login");
+        ApplicationController.goTo("Register");
 
     }
 
@@ -25,7 +25,7 @@ public class Application extends javafx.application.Application {
     private static void configRoute() {
         String pathResource = "ku/cs/views/";
         ApplicationController.when("Login", pathResource+"loginView.fxml",1000,580);
-
+        ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
     }
 
 
