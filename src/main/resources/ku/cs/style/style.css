@@ -1,0 +1,22 @@
+
+.roundedCorner{
+    -fx-border-radius:30px;
+    -fx-background-radius:30px;
+}
+
+.backgroundImage{
+    -fx-background-position:center;
+    -fx-background-repeat:no-repeat;
+    -fx-background-size: cover;
+}
+
+.closeButton{
+   -fx-background-color:#FF605C;
+}
+.minimizeButton{
+   -fx-background-color:#FFBD44;
+}
+
+.fullScreenButton{
+    -fx-background-color:#00CA4E;
+}
