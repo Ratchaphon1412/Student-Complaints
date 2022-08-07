@@ -38,6 +38,14 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.saacsos</groupId>
+            <artifactId>FXRouter</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/FXRouter.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
     <build>
