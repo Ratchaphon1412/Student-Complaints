@@ -2,6 +2,7 @@
    -fx-closeButtonColor: #FF605C;
    -fx-minimizeButtonColor:#FFBD44;
    -fx-fullScreenButtonColor:#00CA4E;
+   -fx-colorPrimary:#D9D9D9;
 }
 
 .leftPageRoundedCorner{
@@ -35,3 +36,6 @@
     -fx-background-color:-fx-fullScreenButtonColor;
 }
 
+.primaryColor{
+    -fx-background-color:#D9D9D9;
+}
