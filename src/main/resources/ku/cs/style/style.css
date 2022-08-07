@@ -1,3 +1,17 @@
+* {
+   -fx-closeButtonColor: #FF605C;
+   -fx-minimizeButtonColor:#FFBD44;
+   -fx-fullScreenButtonColor:#00CA4E;
+}
+
+.leftPageRoundedCorner{
+    -fx-border-radius:20 0 0 20;
+    -fx-background-radius:20 0 0 20;
+}
+.rightPageRoundedCorner{
+    -fx-background-radius:0 20 20 0;
+    -fx-border-radius:0 20 20 0;
+}
 
 .roundedCorner{
     -fx-border-radius:30px;
@@ -11,12 +25,13 @@
 }
 
 .closeButton{
-   -fx-background-color:#FF605C;
+   -fx-background-color:-fx-closeButtonColor;
 }
 .minimizeButton{
-   -fx-background-color:#FFBD44;
+   -fx-background-color:-fx-minimizeButtonColor;
 }
 
 .fullScreenButton{
-    -fx-background-color:#00CA4E;
+    -fx-background-color:-fx-fullScreenButtonColor;
 }
+

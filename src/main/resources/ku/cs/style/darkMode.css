@@ -1,0 +1,29 @@
+
+
+.colorIcon{
+   -fx-background-color: #FFFFFF;
+}
+
+.background{
+   -fx-background-color:#1A202C;
+}
+backgroundNavbar{
+    -fx-background-color:#000000;
+}
+.backgroundNavbar.logout{
+    -fx-background-color:#171433;
+}
+
+.cardBackground{
+    -fx-background-color:#2D3440;
+}
+.circleRed{
+    -fx-background-color:-fx-closeButtonColor;
+}
+.circleYellow{
+    -fx-background-color:-fx-minimizeButtonColor;
+}
+.circleGreen{
+    -fx-background-color:-fx-fullScreenButtonColor;
+}
+
