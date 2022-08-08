@@ -17,7 +17,9 @@ public class Application extends javafx.application.Application {
         ApplicationController.bind(this, stage);
 //        ApplicationController.setAnimationType("fade", 800);
         configRoute();
-        ApplicationController.goTo("Register");
+
+        ApplicationController.goTo("Login");
+
 
     }
 
