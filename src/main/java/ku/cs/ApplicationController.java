@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -23,15 +24,12 @@ public class ApplicationController extends FXRouter {
     public static void goTo(String routeLabel) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
         loadNewRoute(route);
-
-
     }
 
     public static void goTo(String routeLabel, Object data) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.data = data;
         loadNewRoute(route);
-
     }
 
     public static void loadNewRoute(RouteScene route) throws IOException {
@@ -39,16 +37,12 @@ public class ApplicationController extends FXRouter {
         String scenePath = "/" + route.scenePath;
         Parent resource = (Parent) FXMLLoader.load((new Object() {
         }).getClass().getResource(scenePath));
-
-
         window.setTitle(route.windowTitle);
         Scene scene = new Scene(resource,route.sceneWidth, route.sceneHeight);
         scene.setFill(Color.TRANSPARENT);
         window.setScene(scene);
         window.show();
         routeAnimation(resource);
-
-
         dragWindow(resource,window);
     }
 
@@ -69,8 +63,33 @@ public class ApplicationController extends FXRouter {
             //Ensures the stage is not dragged past top of screen
             if (stage.getY()<0.0) stage.setY(0.0);
         });
+    }
+
+
+    public static void goToNew(String routeLabel) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        createDialog(route);
 
     }
+
+    public static void createDialog(RouteScene route) throws IOException {
+
+
+        currentRoute = route;
+        String scenePath = "/" + route.scenePath;
+        Parent resource = (Parent) FXMLLoader.load((new Object() {
+        }).getClass().getResource(scenePath));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(resource,route.sceneWidth, route.sceneHeight);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);//hidding titlebar
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+        dragWindow(resource,stage);
+    }
+
 
 
 }
