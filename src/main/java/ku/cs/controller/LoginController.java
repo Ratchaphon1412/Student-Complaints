@@ -4,7 +4,7 @@ package ku.cs.controller;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import javafx.event.ActionEvent;
 
@@ -24,8 +24,6 @@ public class LoginController {
     private void initialize(){
         String logoKUPic = getClass().getResource("/ku/cs/assets/images/LogoKU.png").toExternalForm();
         logoKU.setImage(new Image(logoKUPic));
-
-
     }
 
 
@@ -38,7 +36,6 @@ public class LoginController {
             ApplicationController.goToNew("changePassword");
         } catch (IOException e) {
             System.err.println(e);
-
 
         }
 
