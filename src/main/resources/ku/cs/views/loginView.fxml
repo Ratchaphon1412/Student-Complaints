@@ -197,7 +197,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Hyperlink>
-                        <Hyperlink layoutX="181.0" layoutY="68.0" onAction="#handleRegisterButton" text="Sigh Up!" textFill="WHITE" underline="true">
+                        <Hyperlink fx:id="signUoButton" layoutX="181.0" layoutY="68.0" text="Sigh Up!" textFill="WHITE" underline="true">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -208,7 +208,7 @@
             </GridPane>
          </children>
       </GridPane>
-      <GridPane styleClass="background" GridPane.columnIndex="6" GridPane.columnSpan="7">
+      <GridPane alignment="CENTER" GridPane.columnIndex="6" GridPane.columnSpan="7">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -216,13 +216,18 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox fx:id="pictureLoginBackground" alignment="CENTER" styleClass="backgroundImage" />
+            <VBox fx:id="pictureLoginBackground" alignment="CENTER" />
          </children>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="loginPictureBackground" />
+         </styleClass>
       </GridPane>
    </children>
    <stylesheets>
       <URL value="@../style/style.css" />
       <URL value="@../style/icon.css" />
       <URL value="@../style/darkMode.css" />
+      <URL value="@../style/picture.css" />
    </stylesheets>
 </GridPane>

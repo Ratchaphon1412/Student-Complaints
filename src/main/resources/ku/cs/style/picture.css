@@ -1,3 +1,9 @@
 .registerPictureBackground{
  -fx-background-image:url("../assets/images/RegisterPicture.png");
 }
+.loginPictureBackground{
+   -fx-background-image:url("../assets/images/PictureLogin.png");
+   -fx-background-size:contain;
+   -fx-background-position:center;
+   -fx-background-repeat:no-repeat;
+}
