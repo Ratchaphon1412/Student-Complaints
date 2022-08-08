@@ -41,7 +41,16 @@ public class LoginController {
 
     }
 
+    @FXML
+    public void handleRegisterButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goTo("Register");
+        } catch (IOException e) {
+            System.err.println(e);
 
+
+        }
+    }
 
 
 }
