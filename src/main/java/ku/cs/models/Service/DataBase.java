@@ -8,11 +8,13 @@ import java.util.ArrayList;
 
 public class DataBase {
 
-    private boolean readFile(String name, String password, String file){
+    private String readFile(String name, String password){
+        String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
         String line = "";
         ArrayList<String[]> bigListAdmin = new ArrayList();
         String[] listAdmin;
         BufferedReader adminDataBase = null;
+        String stage = null;
         boolean loginStage = false;
         try {
             adminDataBase = new BufferedReader(new FileReader(file));
@@ -30,18 +32,16 @@ public class DataBase {
         for(int i = 0 ; i < bigListAdmin.size(); i++){
             if(bigListAdmin.get(i)[0].equals(name) && bigListAdmin.get(i)[1].equals(password)){
                 loginStage = true;
+                stage = bigListAdmin.get(i)[2];
                 break;
             }
         }
-        if(loginStage){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return stage;
 
 
     }
+
+
 
 
 }
