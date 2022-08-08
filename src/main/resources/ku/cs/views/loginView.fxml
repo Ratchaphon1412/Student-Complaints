@@ -197,7 +197,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Hyperlink>
-                        <Hyperlink fx:id="signUoButton" layoutX="181.0" layoutY="68.0" text="Sigh Up!" textFill="WHITE" underline="true">
+                        <Hyperlink layoutX="181.0" layoutY="68.0" onAction="#handleRegisterButton" text="Sigh Up!" textFill="WHITE" underline="true">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
