@@ -1,9 +1,17 @@
 package ku.cs.controller;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
+import javafx.event.ActionEvent;
+
+import ku.cs.ApplicationController;
+
+import java.io.IOException;
+
 
 public class LoginController {
 
@@ -19,6 +27,23 @@ public class LoginController {
 
 
     }
+
+
+
+
+
+    @FXML
+    public void  handleChangePasswordButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goToNew("changePassword");
+        } catch (IOException e) {
+            System.err.println(e);
+
+
+        }
+
+    }
+
 
 
 
