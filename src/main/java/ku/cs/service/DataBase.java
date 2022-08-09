@@ -1,4 +1,4 @@
-package ku.cs.models.Service;
+package ku.cs.service;
 
 import java.io.*;
 import java.util.ArrayList;
