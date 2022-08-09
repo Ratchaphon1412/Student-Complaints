@@ -35,7 +35,7 @@ public class DataBase {
         }
         return stage;
     }
-    public void signUpUser(String name,String password,String role){
+    public void signUp(String name,String password,String role){
         BufferedWriter bw = null;
         String content = name+','+password+role+"\n";
         //String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
