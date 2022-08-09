@@ -82,11 +82,12 @@ public class LoginController {
         String[] role = {"admin","user","stuff"};
         if(role[0].equals(dataBase.readFile(userNameString,passWordString))){
             ApplicationController.goTo("Admin");
-
+            dataBase.log(userNameString,"admin");
         }else if(role[1].equals(dataBase.readFile(userNameString,passWordString))){
             ApplicationController.goTo("Admin");
+            dataBase.log(userNameString,"user");
         }else if (role[2].equals(dataBase.readFile(userNameString,passWordString))){
-
+            dataBase.log(userNameString,"stuff");
         }
 
     }

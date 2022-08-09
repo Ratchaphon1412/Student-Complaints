@@ -1,6 +1,7 @@
 package ku.cs.service;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DataBase {
@@ -126,6 +127,25 @@ public class DataBase {
         return status;
 
     }
+
+    public void log(String username,String role){
+        BufferedWriter database = null;
+        try{
+            String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/log.csv";
+//            String f = getClass().getResource("/ku/cs/database/log.csv").getPath();
+            System.out.println(f);
+            String log = username +","+ role +","+ LocalDate.now() +","+System.currentTimeMillis()+"\n";
+            database = new BufferedWriter(new FileWriter(f,true));
+            database.write(log);
+            if(database!=null){
+                database.close();
+            }
+
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 
