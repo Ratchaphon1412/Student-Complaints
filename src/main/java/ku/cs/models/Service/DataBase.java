@@ -38,7 +38,6 @@ public class DataBase {
     }
     public boolean signUp(String name,String password,String role){
         BufferedWriter bw = null;
-        String content = name+','+password+','+role+"\n";
         //String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
         //String f ใช้สำหรับwindow เท่านั้น
         String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/account.csv";
@@ -65,9 +64,13 @@ public class DataBase {
                    status = true;
                 }
             }
-            if(status){
-                line = name+','+password+','+role;
+            if(status==false){
+                line = '\n'+name+','+password+','+role;
                 bw.write(line);
+                status=true;
+            }
+            else{
+                status = false;
             }
 
         }

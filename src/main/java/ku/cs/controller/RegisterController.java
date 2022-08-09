@@ -7,8 +7,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import ku.cs.ApplicationController;
+import ku.cs.models.Service.DataBase;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class RegisterController {
     private PasswordField confirmPassword;
     @FXML
     private Label singleFile;
+    private DataBase dataBase = new DataBase();
 
     List<String> listfile;
     @FXML
@@ -28,9 +32,19 @@ public class RegisterController {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        System.out.println(user);
-        System.out.println(password);
-        System.out.println(confirmpassword);
+        if(dataBase.signUp(user,password,"user")){
+            System.out.println("finish");
+            try {
+                ApplicationController.goTo("Login");
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+        }
+        else{
+            System.out.println("ชื่อซ้ำโว้ย");
+            System.out.println("รหัสไม่เหมือนกัน");
+        }
+
     }
 
     @FXML
