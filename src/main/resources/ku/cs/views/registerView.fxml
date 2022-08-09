@@ -168,7 +168,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="115.0" prefWidth="396.0" GridPane.rowIndex="7">
                <children>
-                  <ImageView fitHeight="115.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userImage" fitHeight="115.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>

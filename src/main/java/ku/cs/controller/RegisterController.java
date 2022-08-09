@@ -5,14 +5,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
 import ku.cs.service.DataBase;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class RegisterController {
     @FXML
@@ -23,6 +31,8 @@ public class RegisterController {
     private PasswordField confirmPassword;
     @FXML
     private Label singleFile;
+    @FXML
+    private ImageView userImage;
     private DataBase dataBase = new DataBase();
 
     List<String> listfile;
@@ -59,6 +69,22 @@ public class RegisterController {
 
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
+            try {
+                File profilePictureDir = new File("image");
+                if (!profilePictureDir.exists())
+                    profilePictureDir.mkdirs();
+                String[] fileSplit = file.getName().split("\\.");
+                String filename = (String) (LocalDate.now() + "-" + fileSplit[fileSplit.length - 2] + "." + fileSplit[fileSplit.length - 1]);
+                Path target = FileSystems.getDefault().getPath(
+                        profilePictureDir.getAbsolutePath()+System.getProperty("file.separator")+filename
+                );
+                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING );
+                userImage.setImage(new Image(target.toUri().toString()));
+                System.out.println(target);
+                System.out.println(filename);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
