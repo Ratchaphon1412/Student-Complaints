@@ -3,6 +3,8 @@ package ku.cs.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -11,8 +13,10 @@ import javafx.event.ActionEvent;
 
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
+import ku.cs.service.DataBase;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class LoginController {
@@ -23,26 +27,24 @@ public class LoginController {
     @FXML
     private VBox pictureLoginBackground;
 
-//    @FXML
-//    private GridPane gridLeftSideOnTop;
     @FXML
     private AnchorPane anchorPaneOnTop;
+
+    @FXML
+    private TextField userName;
+
+    @FXML
+    private PasswordField passWord;
+
+    private DataBase dataBase = new DataBase();
+
     @FXML
     private void initialize() throws IOException {
         String logoKUPic = getClass().getResource("/ku/cs/assets/images/LogoKU.png").toExternalForm();
         logoKU.setImage(new Image(logoKUPic));
         FXMLLoader fxmlLoader = new FXMLLoader();
-        ButtonWindowsController buttonWindowsController = (ButtonWindowsController) fxmlLoader.getController();
-
         HBox buttonWindows = (HBox)fxmlLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
         anchorPaneOnTop.getChildren().add(buttonWindows);
-//
-//        Stage stageParent = (Stage) anchorPaneOnTop.getScene().getWindow();
-//        buttonWindowsController.setStageParent(stageParent);
-
-
-
-
     }
 
 
@@ -73,6 +75,20 @@ public class LoginController {
 
         }
     }
+    @FXML
+    public void handleLoginAuthentication() throws IOException {
+        String userNameString = userName.getText();
+        String passWordString = passWord.getText();
+        String[] role = {"admin","user","stuff"};
+        if(role[0].equals(dataBase.readFile(userNameString,passWordString))){
+            ApplicationController.goTo("Admin");
 
+        }else if(role[1].equals(dataBase.readFile(userNameString,passWordString))){
+            ApplicationController.goTo("Admin");
+        }else if (role[2].equals(dataBase.readFile(userNameString,passWordString))){
+
+        }
+
+    }
 
 }

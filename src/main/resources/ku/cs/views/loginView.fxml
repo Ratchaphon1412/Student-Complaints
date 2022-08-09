@@ -111,7 +111,7 @@
                               <String fx:value="primaryColor" />
                            </styleClass>
                         </PasswordField>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Login" textAlignment="CENTER">
+                        <Button mnemonicParsing="false" onAction="#handleLoginAuthentication" prefHeight="30.0" prefWidth="72.0" text="Login" textAlignment="CENTER">
                            <styleClass>
                               <String fx:value="roundedCorner" />
                               <String fx:value="primaryColor" />

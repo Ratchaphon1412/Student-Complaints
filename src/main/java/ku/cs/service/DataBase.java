@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class DataBase {
 
     public void DataBase(){}
-    private String readFile(String name, String password){
+    public String readFile(String name, String password){
         String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
         String line = "";
         ArrayList<String[]> bigListAdmin = new ArrayList();
@@ -59,6 +59,7 @@ public class DataBase {
         try {
             FileWriter fw = new FileWriter(f,true);
             bw = new BufferedWriter(fw);
+            //check if it has account in database it will return true
             for(int i = 0 ;i < bigList.size() ; i++){
                 if((bigList.get(i)[0]).equals(name)){
                    status = true;
@@ -90,9 +91,9 @@ public class DataBase {
 
     }
 
-    public boolean changePassword(String name, String password,String role){
+    public boolean changePassword(String name, String password){
         String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/account.csv";
-        String content = name+','+password+','+role;
+        String content = name+','+password;
         String line = "";
         boolean status = false;
         ArrayList<String> listdata = new ArrayList<>();
