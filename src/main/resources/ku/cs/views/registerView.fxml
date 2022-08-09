@@ -147,7 +147,7 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#sighUpButton" prefHeight="25.0" prefWidth="62.0" text="Submit">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#signUpButton" prefHeight="25.0" prefWidth="62.0" text="Submit">
                            <styleClass>
                               <String fx:value="roundedCorner" />
                               <String fx:value="primaryColor" />

@@ -28,7 +28,7 @@ public class RegisterController {
 
     List<String> listfile;
     @FXML
-    public void sighUpButton(ActionEvent actionEvent) {
+    public void signUpButton(ActionEvent actionEvent) {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
