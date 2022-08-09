@@ -1,9 +1,6 @@
 package ku.cs.models.Service;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class DataBase {
@@ -37,7 +34,33 @@ public class DataBase {
             }
         }
         return stage;
-
+    }
+    public void signUpUser(String name,String password,String role){
+        BufferedWriter bw = null;
+        String content = name+','+password+role+"\n";
+        //String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
+        //String f ใช้สำหรับwindow เท่านั้น
+        String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database";
+        try {
+            FileWriter fw = new FileWriter(f,true);
+            bw = new BufferedWriter(fw);
+            bw.write(content);
+            System.out.println("File written Successfully");
+//        System.out.println("C:/project2/JAVA/LoginJavaFX/LoginJavafx/src/main/resources/ku/hardcodeexecutable/loginjavafx/Database/userDataBase.csv");
+//        System.out.println(f);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try{
+                if(bw!=null)
+                    bw.close();
+            }catch(Exception ex){
+                System.out.println("Error in closing the BufferedWriter"+ex);
+            }
+        }
 
     }
 
