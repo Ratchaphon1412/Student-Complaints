@@ -20,4 +20,6 @@ public class ChangePasswordController {
         Logo.setImage(new Image(logoKU));
     }
 
+
+
 }

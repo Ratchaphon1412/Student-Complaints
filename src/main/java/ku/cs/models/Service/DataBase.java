@@ -90,16 +90,26 @@ public class DataBase {
 
     }
 
-    public boolean changePassword(String name, String password,String role){
+    public boolean changePassword(String name, String password,String role,String newpassword){
         String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/account.csv";
         String content = name+','+password+','+role;
         String line = "";
         boolean status = false;
         ArrayList<String> listdata = new ArrayList<>();
+        BufferedWriter bw = null;
         try {
             BufferedReader database = new BufferedReader(new FileReader(f));
             while ((line = database.readLine()) != null) {
-                listdata.add(content);
+                listdata.add(line);
+            }
+            FileWriter fw = new FileWriter(f);
+            bw = new BufferedWriter(fw);
+            for(int i = 0 ; i < listdata.size(); i++){
+                if (readFile(name, password).equals(role)) {
+                    bw.write(name+","+newpassword+","+role);
+                    status = true;
+                }
+                bw.write(listdata.get(i));
             }
 
         } catch (FileNotFoundException e) {
@@ -107,20 +117,14 @@ public class DataBase {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter(f);
-            BufferedWriter bw = new BufferedWriter(fw);
-            for(int i = 0 ; i < listdata.size(); i++){
-                bw.write(listdata.get(i));
-                if ((listdata.get(i)).equals(content)) {
-                    bw.write(content);
-                    status = true;
-                }
+        finally
+        {
+            try{
+                if(bw!=null)
+                    bw.close();
+            }catch(Exception ex){
+                System.out.println("Error in closing the BufferedWriter"+ex);
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
         return status;
 
