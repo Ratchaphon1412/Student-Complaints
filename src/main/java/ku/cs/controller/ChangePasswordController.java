@@ -21,18 +21,19 @@ public class ChangePasswordController {
     @FXML TextField NewPassword;
     private DataBase dataBase = new DataBase();
 
-@FXML public  void handleAcceptButton (ActionEvent actionEvent){
+    @FXML public  void handleAcceptButton (ActionEvent actionEvent){
     String userChange = UserChange.getText();
     String oldPassword = OldPassword.getText();
     String newPassword = NewPassword.getText();
 
-    if (dataBase.changePassword(userChange, oldPassword, newPassword, "user")){
+    if (dataBase.changePassword(userChange,oldPassword,newPassword)){
         System.out.println("Password has Changed");
         closeWindows();
     }else{
         System.out.println("Username or Password Incorrect");
+        }
     }
-}
+
     @FXML public void initialize(){
         String changePasswordPicture = getClass().getResource("/ku/cs/assets/images/ChangePasswordPic.png").toExternalForm();
         changePasswordPic.setImage(new Image(changePasswordPicture));
@@ -46,4 +47,7 @@ public class ChangePasswordController {
         stage.close();
     }
 
+
+
 }
+
