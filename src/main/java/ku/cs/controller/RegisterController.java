@@ -73,7 +73,8 @@ public class RegisterController {
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
             path = file.getAbsolutePath();
-            userImage.setImage(new Image(path));
+            System.out.println(path);
+            userImage.setImage(new Image(new File(path).toURI().toString()));
         }
 
     }
