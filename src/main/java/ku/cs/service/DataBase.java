@@ -53,7 +53,7 @@ public class DataBase {
 
         String fs = File.separator;
         String file = System.getProperty("user.dir")+fs+"database"+fs+"account.csv";
-        boolean status = false;
+        boolean status = true;
 
         String line = "";
         ArrayList<String[]> bigList = new ArrayList();
@@ -84,7 +84,7 @@ public class DataBase {
             throw new RuntimeException(e);
         }
         try {
-            FileWriter fw = new FileWriter(pathOldPicture,true);
+            FileWriter fw = new FileWriter(file,true);
             bw = new BufferedWriter(fw);
             //check if it has account in database it will return true
             for(int i = 0 ;i < bigList.size() ; i++){
@@ -139,7 +139,9 @@ public class DataBase {
             FileWriter fw = new FileWriter(file);
             bw = new BufferedWriter(fw);
             for(int i = 0 ; i < listdata.size(); i++){
+
                 if (listdata.get(i).equals(content)) {
+
                     bw.write(newcontent + "\n");
                     status = true;
                 }else{
