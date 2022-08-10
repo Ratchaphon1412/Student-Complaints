@@ -5,15 +5,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
-import ku.cs.models.Service.DataBase;
+import ku.cs.service.DataBase;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class RegisterController {
     @FXML
@@ -24,7 +31,11 @@ public class RegisterController {
     private PasswordField confirmPassword;
     @FXML
     private Label singleFile;
+    @FXML
+    private ImageView userImage;
     private DataBase dataBase = new DataBase();
+    private String path;
+    private File file;
 
     List<String> listfile;
     @FXML
@@ -32,7 +43,7 @@ public class RegisterController {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        if(dataBase.signUp(user,password,"user")){
+        if(dataBase.signUp(user,password,"user",path,file)){
             System.out.println("finish");
             try {
                 ApplicationController.goTo("Login");
@@ -56,11 +67,15 @@ public class RegisterController {
         choosefile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Picture", listfile));
 
 
-        File file = choosefile.showOpenDialog(null);
+        file = choosefile.showOpenDialog(null);
+
 
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
+            path = file.getAbsolutePath();
+            userImage.setImage(new Image(path));
         }
+
     }
 
 

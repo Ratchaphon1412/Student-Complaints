@@ -46,6 +46,7 @@
             <systemPath>${project.basedir}/src/main/resources/FXRouter.jar</systemPath>
         </dependency>
 
+
     </dependencies>
 
     <build>
@@ -96,6 +97,8 @@
                                     <mainClass>ku.cs.Main</mainClass>
                                 </transformer>
                             </transformers>
+
+
                         </configuration>
                     </execution>
                 </executions>
