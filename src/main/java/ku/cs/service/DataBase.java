@@ -110,16 +110,18 @@ public class DataBase {
 
     }
 
-    public boolean changePassword(String name, String password){
+    public boolean changePassword(String name, String password, String newpassword, String role){
         String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/account.csv";
-        String content = name+','+password;
+        String content = name + ',' + password + ',' + role;
+        String newcontent = name + ','+newpassword + ',' +role;
         String line = "";
         boolean status = false;
+        BufferedWriter bw = null;
         ArrayList<String> listdata = new ArrayList<>();
         try {
             BufferedReader database = new BufferedReader(new FileReader(f));
             while ((line = database.readLine()) != null) {
-                listdata.add(content);
+                listdata.add(line);
             }
 
         } catch (FileNotFoundException e) {
@@ -127,24 +129,53 @@ public class DataBase {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        FileWriter fw = null;
         try {
-            fw = new FileWriter(f);
-            BufferedWriter bw = new BufferedWriter(fw);
+            FileWriter fw = new FileWriter(f);
+            bw = new BufferedWriter(fw);
             for(int i = 0 ; i < listdata.size(); i++){
-                bw.write(listdata.get(i));
-                if ((listdata.get(i)).equals(content)) {
-                    bw.write(content);
+                if (listdata.get(i).equals(content)) {
+                    bw.write(newcontent + "\n");
                     status = true;
+                }else{
+                    bw.write(listdata.get(i) + "\n");
                 }
-            }
 
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        finally
+        {
+            try{
+                if(bw!=null)
+                    bw.close();
+            }catch(Exception ex){
+                System.out.println("Error in closing the BufferedWriter"+ex);
+            }
+        }
         return status;
 
+
     }
+
+    public void log(String username,String role){
+        BufferedWriter database = null;
+        try{
+            String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/log.csv";
+//            String f = getClass().getResource("/ku/cs/database/log.csv").getPath();
+            System.out.println(f);
+            String log = username +","+ role +","+ LocalDate.now() +","+System.currentTimeMillis()+"\n";
+            database = new BufferedWriter(new FileWriter(f,true));
+            database.write(log);
+            if(database!=null){
+                database.close();
+            }
+
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 
