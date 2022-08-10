@@ -34,6 +34,8 @@ public class RegisterController {
     @FXML
     private ImageView userImage;
     private DataBase dataBase = new DataBase();
+    private String path;
+    private File file;
 
     List<String> listfile;
     @FXML
@@ -41,7 +43,7 @@ public class RegisterController {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        if(dataBase.signUp(user,password,"user")){
+        if(dataBase.signUp(user,password,"user",path,file)){
             System.out.println("finish");
             try {
                 ApplicationController.goTo("Login");
@@ -65,27 +67,15 @@ public class RegisterController {
         choosefile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Picture", listfile));
 
 
-        File file = choosefile.showOpenDialog(null);
+        file = choosefile.showOpenDialog(null);
+
 
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
-            try {
-                File profilePictureDir = new File("image");
-                if (!profilePictureDir.exists())
-                    profilePictureDir.mkdirs();
-                String[] fileSplit = file.getName().split("\\.");
-                String filename = (String) (LocalDate.now() + "-" + fileSplit[fileSplit.length - 2] + "." + fileSplit[fileSplit.length - 1]);
-                Path target = FileSystems.getDefault().getPath(
-                        profilePictureDir.getAbsolutePath()+System.getProperty("file.separator")+filename
-                );
-                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING );
-                userImage.setImage(new Image(target.toUri().toString()));
-                System.out.println(target);
-                System.out.println(filename);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            path = file.getAbsolutePath();
+            userImage.setImage(new Image(path));
         }
+
     }
 
 

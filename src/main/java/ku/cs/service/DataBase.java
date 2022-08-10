@@ -1,6 +1,12 @@
 package ku.cs.service;
 
+import javafx.scene.image.Image;
+
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -39,43 +45,57 @@ public class DataBase {
         }
         return stage;
     }
-    public boolean signUp(String name,String password,String role){
+    public boolean signUp(String name,String password,String role, String path, File pathOldPicture){
+        Path target;
         BufferedWriter bw = null;
         //String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
         //String f ใช้สำหรับwindow เท่านั้น
+
         String fs = File.separator;
         String file = System.getProperty("user.dir")+fs+"database"+fs+"account.csv";
         boolean status = false;
+
         String line = "";
         ArrayList<String[]> bigList = new ArrayList();
         String[] listData;
         try {
-            BufferedReader dataBase = new BufferedReader(new FileReader(file));
+            BufferedReader dataBase = new BufferedReader(new FileReader(pathOldPicture));
             while ((line = dataBase.readLine()) != null) {
                 listData = line.split(",");
                 bigList.add(listData);
             }
+            File profilePictureDir = new File("image");
+            if (!profilePictureDir.exists()){
+                profilePictureDir.mkdirs();
+            }
+
+            String[] fileSplit = pathOldPicture.getName().split("\\.");
+            String filename = (String) (LocalDate.now() + "-" + fileSplit[fileSplit.length - 2] + "." +
+                    fileSplit[fileSplit.length - 1]);
+            target = FileSystems.getDefault().getPath(
+                    profilePictureDir.getAbsolutePath()+System.getProperty("file.separator")+ filename);
+            Files.copy(pathOldPicture.toPath(), target, StandardCopyOption.REPLACE_EXISTING );
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         try {
-            FileWriter fw = new FileWriter(file,true);
+            FileWriter fw = new FileWriter(pathOldPicture,true);
             bw = new BufferedWriter(fw);
             //check if it has account in database it will return true
             for(int i = 0 ;i < bigList.size() ; i++){
                 if((bigList.get(i)[0]).equals(name)){
-                   status = true;
+                   status = false;
                 }
             }
-            if(status==false){
-                line = '\n'+name+','+password+','+role;
+            if(status==true){
+                line = '\n'+name+','+password+','+role+','+target.toString();
                 bw.write(line);
-                status=true;
-            }
-            else{
-                status = false;
+                System.out.println(line);
             }
 
         }
