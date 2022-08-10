@@ -8,7 +8,9 @@ public class DataBase {
 
     public void DataBase(){}
     public String readFile(String name, String password){
-        String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
+//        String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
+        String fs = File.separator;
+        String file = System.getProperty("user.dir")+fs+"database"+fs+"account.csv";
         String line = "";
         ArrayList<String[]> bigListAdmin = new ArrayList();
         String[] listAdmin;
@@ -41,13 +43,14 @@ public class DataBase {
         BufferedWriter bw = null;
         //String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
         //String f ใช้สำหรับwindow เท่านั้น
-        String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/account.csv";
+        String fs = File.separator;
+        String file = System.getProperty("user.dir")+fs+"database"+fs+"account.csv";
         boolean status = false;
         String line = "";
         ArrayList<String[]> bigList = new ArrayList();
         String[] listData;
         try {
-            BufferedReader dataBase = new BufferedReader(new FileReader(f));
+            BufferedReader dataBase = new BufferedReader(new FileReader(file));
             while ((line = dataBase.readLine()) != null) {
                 listData = line.split(",");
                 bigList.add(listData);
@@ -58,7 +61,7 @@ public class DataBase {
             throw new RuntimeException(e);
         }
         try {
-            FileWriter fw = new FileWriter(f,true);
+            FileWriter fw = new FileWriter(file,true);
             bw = new BufferedWriter(fw);
             //check if it has account in database it will return true
             for(int i = 0 ;i < bigList.size() ; i++){
@@ -93,7 +96,8 @@ public class DataBase {
     }
 
     public boolean changePassword(String name, String password, String newpassword, String role){
-        String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/account.csv";
+        String fs = File.separator;
+        String file = System.getProperty("user.dir")+fs+"database"+fs+"account.csv";
         String content = name + ',' + password + ',' + role;
         String newcontent = name + ','+newpassword + ',' +role;
         String line = "";
@@ -101,7 +105,7 @@ public class DataBase {
         BufferedWriter bw = null;
         ArrayList<String> listdata = new ArrayList<>();
         try {
-            BufferedReader database = new BufferedReader(new FileReader(f));
+            BufferedReader database = new BufferedReader(new FileReader(file));
             while ((line = database.readLine()) != null) {
                 listdata.add(line);
             }
@@ -112,7 +116,7 @@ public class DataBase {
             throw new RuntimeException(e);
         }
         try {
-            FileWriter fw = new FileWriter(f);
+            FileWriter fw = new FileWriter(file);
             bw = new BufferedWriter(fw);
             for(int i = 0 ; i < listdata.size(); i++){
                 if (listdata.get(i).equals(content)) {
@@ -143,11 +147,12 @@ public class DataBase {
     public void log(String username,String role){
         BufferedWriter database = null;
         try{
-            String f = System.getProperty("user.dir")+File.separator+"/src/main/resources/ku/cs/database/log.csv";
+            String fs = File.separator;
+            String file = System.getProperty("user.dir")+fs+"database"+fs+"log.csv";
 //            String f = getClass().getResource("/ku/cs/database/log.csv").getPath();
-            System.out.println(f);
+            System.out.println(file);
             String log = username +","+ role +","+ LocalDate.now() +","+System.currentTimeMillis()+"\n";
-            database = new BufferedWriter(new FileWriter(f,true));
+            database = new BufferedWriter(new FileWriter(file,true));
             database.write(log);
             if(database!=null){
                 database.close();

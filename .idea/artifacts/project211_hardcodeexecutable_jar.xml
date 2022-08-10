@@ -1,17 +1,19 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="project211-hardcodeexecutable:jar">
+  <artifact name="project211-hardcodeexecutable:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/project211_hardcodeexecutable_jar</output-path>
-    <root id="archive" name="project211-hardcodeexecutable.jar">
-      <element id="module-output" name="project211-hardcodeexecutable" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1-mac.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1-mac.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1-mac.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1-mac.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/resources/FXRouter.jar" path-in-jar="/" />
+    <root id="root">
+      <element id="archive" name="project211-hardcodeexecutable.jar">
+        <element id="module-output" name="project211-hardcodeexecutable" />
+      </element>
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:17.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:mac:17.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:17.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:mac:17.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:mac:17.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:17.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:mac:17.0.1" />
+      <element id="library" level="module" name="Maven: com.github.saacsos:FXRouter:1.0.0" module-name="project211-hardcodeexecutable" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:17.0.1" />
     </root>
   </artifact>
 </component>
