@@ -60,7 +60,7 @@ public class DataBase {
         ArrayList<String[]> bigList = new ArrayList();
         String[] listData;
         try {
-            BufferedReader dataBase = new BufferedReader(new FileReader(pathOldPicture));
+            BufferedReader dataBase = new BufferedReader(new FileReader(file));
             while ((line = dataBase.readLine()) != null) {
                 listData = line.split(",");
                 bigList.add(listData);
