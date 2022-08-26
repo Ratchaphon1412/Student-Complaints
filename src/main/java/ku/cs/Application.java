@@ -14,10 +14,11 @@ public class Application extends javafx.application.Application {
         stage.setResizable(true);
         stage.setMinHeight(580);
         stage.setMinWidth(1000);
+
         ApplicationController.bind(this, stage);
 //        ApplicationController.setAnimationType("fade", 800);
         configRoute();
-        ApplicationController.goTo("Login");
+        ApplicationController.goTo("Loading");
 
 
     }
@@ -31,6 +32,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
         ApplicationController.when("Stuff",pathResource+"stuffDashBoardView.fxml",1000,580);
+        ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
     }
 
 

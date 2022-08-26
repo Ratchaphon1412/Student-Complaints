@@ -14,6 +14,11 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class ApplicationController extends FXRouter {
+    private String preloads;
+
+    ApplicationController(String preloads){
+        this.preloads = preloads;
+    }
 
     private static double[]  offset_XY,pref_WH;
     private static Rectangle2D SCREEN_BOUNDS = Screen.getPrimary().getVisualBounds();

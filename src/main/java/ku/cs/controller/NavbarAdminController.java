@@ -21,6 +21,6 @@ public class NavbarAdminController {
         buttonWindows.setPrefHeight(18);
         buttonWindows.setAlignment(Pos.CENTER);
         navBar.add(buttonWindows,0,0);
-      navBar.setMargin(buttonWindows,new Insets(55, 70, 70, 0));
+        navBar.setMargin(buttonWindows,new Insets(55, 70, 70, 0));
     }
 }
