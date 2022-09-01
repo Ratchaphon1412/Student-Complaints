@@ -96,6 +96,11 @@ public class ApplicationController extends FXRouter {
         dragWindow(resource,stage);
     }
 
+    public static void preloadToLogin(String routeLabel) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        loadNewRoute(route);
+
+    }
 
 
 }

@@ -2,7 +2,6 @@ package ku.cs;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 
 public class Application extends javafx.application.Application {
@@ -14,7 +13,6 @@ public class Application extends javafx.application.Application {
         stage.setResizable(true);
         stage.setMinHeight(580);
         stage.setMinWidth(1000);
-
         ApplicationController.bind(this, stage);
 //        ApplicationController.setAnimationType("fade", 800);
         configRoute();
