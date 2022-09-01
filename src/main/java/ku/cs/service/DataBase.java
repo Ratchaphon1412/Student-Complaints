@@ -1,9 +1,22 @@
 package ku.cs.service;
+import java.util.LinkedHashMap;
+import ku.cs.models.Admin.Admin;
+public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
-import java.util.HashMap;
 
-public class DataBase<DataObject,Key,Value> extends HashMap<Key,Value> implements DynamicDatabase<DataObject> {
+
+//    public DataObject login(){
+//
+//
+//    }
+    private void readFile(){
+
+    }
+    private void writeFile(){
+
+    }
+
 
 
     @Override

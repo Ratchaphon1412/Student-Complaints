@@ -43,18 +43,18 @@ public class RegisterController {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        if(dataBase.signUp(user,password,"user",path,file)){
-            System.out.println("finish");
-            try {
-                ApplicationController.goTo("Login");
-            } catch (IOException e) {
-                System.err.println(e);
-            }
-        }
-        else{
-            System.out.println("ชื่อซ้ำโว้ย");
-            System.out.println("รหัสไม่เหมือนกัน");
-        }
+//        if(dataBase.signUp(user,password,"user",path,file)){
+//            System.out.println("finish");
+//            try {
+//                ApplicationController.goTo("Login");
+//            } catch (IOException e) {
+//                System.err.println(e);
+//            }
+//        }
+//        else{
+//            System.out.println("ชื่อซ้ำโว้ย");
+//            System.out.println("รหัสไม่เหมือนกัน");
+//        }
 
     }
 
