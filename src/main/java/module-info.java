@@ -6,11 +6,12 @@ module cs.ku {
     requires org.testng;
 
 
+
     opens ku.cs to javafx.fxml;
     exports ku.cs;
     opens ku.cs.controller to javafx.fxml;
     exports ku.cs.controller;
+    opens com.github.saacsos to javafx.fxml;
 
 
-   
 }
