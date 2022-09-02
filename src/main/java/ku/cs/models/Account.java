@@ -1,6 +1,6 @@
 package ku.cs.models;
 
-abstract class Account {
+public abstract class Account {
     protected String userName;
     protected  String passWord;
     protected  String pathPicture;
