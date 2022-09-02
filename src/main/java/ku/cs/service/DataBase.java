@@ -5,12 +5,12 @@ import ku.cs.models.stuff.Stuff;
 import java.io.*;
 import java.util.LinkedHashMap;
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
-    private LinkedHashMap<String, LinkedHashMap<String,String>> accountList;
+    private LinkedHashMap<String, LinkedHashMap<String,String>> accountList = null;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> stuffList;
 
     public DataBase(){
-        readFile();
+        readFile(accountList);
     }
 
 
@@ -18,7 +18,8 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 //
 //
 //    }
-    private void readFile(){
+    private void readFile(LinkedHashMap<String, LinkedHashMap<String,String>> target){
+        LinkedHashMap<String,String> linkedHashMap = null;
         String filePath = "database" + File.separator + "account.csv";
         File file = new File(filePath);
         BufferedReader buffer = null;
@@ -28,10 +29,14 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
             while ((line = buffer.readLine()) != null) {
-                System.out.println(line);
-                String[] data = line.split(",");
-                MemberCard card = new MemberCard(data[0].trim() , data[1].trim() , Integer.parseInt(data[2].trim()));
-                list.addCard(card);
+                String[] data = line.split("|");
+                String[] value = data[1].split(",");
+                for(int i = 0 ; i < value.length;i++){
+                    String[] invalue = value[i].split("=");
+                    linkedHashMap.put(invalue[0], invalue[1]);
+                }
+                System.out.println(data[0] + " " + linkedHashMap);
+                target.put(data[0] , linkedHashMap);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
