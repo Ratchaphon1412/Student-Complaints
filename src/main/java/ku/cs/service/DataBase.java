@@ -5,6 +5,9 @@ import ku.cs.models.stuff.Stuff;
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
+    public DataBase(){
+
+    }
 
 
 //    public DataObject login(String userName ,String passWord){
