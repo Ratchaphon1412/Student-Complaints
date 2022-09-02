@@ -1,4 +1,4 @@
-package ku.cs.models.Admin;
+package ku.cs.models.admin;
 
 import ku.cs.models.Account;
 

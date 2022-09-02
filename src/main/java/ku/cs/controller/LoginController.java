@@ -75,22 +75,22 @@ public class LoginController {
 
         }
     }
-    @FXML
-    public void handleLoginAuthentication() throws IOException {
-        String userNameString = userName.getText();
-        String passWordString = passWord.getText();
-        String[] role = {"admin","user","stuff"};
-        if(role[0].equals(dataBase.readFile(userNameString,passWordString))){
-            ApplicationController.goTo("Admin");
-            dataBase.log(userNameString,"admin");
-        }else if(role[1].equals(dataBase.readFile(userNameString,passWordString))){
-            ApplicationController.goTo("User");
-            dataBase.log(userNameString,"user");
-        }else if (role[2].equals(dataBase.readFile(userNameString,passWordString))){
-            ApplicationController.goTo("Stuff");
-            dataBase.log(userNameString,"stuff");
-        }
-
-    }
+//    @FXML
+//    public void handleLoginAuthentication() throws IOException {
+//        String userNameString = userName.getText();
+//        String passWordString = passWord.getText();
+//        String[] role = {"admin","user","stuff"};
+//        if(role[0].equals(dataBase.readFile(userNameString,passWordString))){
+//            ApplicationController.goTo("Admin");
+//            dataBase.log(userNameString,"admin");
+//        }else if(role[1].equals(dataBase.readFile(userNameString,passWordString))){
+//            ApplicationController.goTo("User");
+//            dataBase.log(userNameString,"user");
+//        }else if (role[2].equals(dataBase.readFile(userNameString,passWordString))){
+//            ApplicationController.goTo("Stuff");
+//            dataBase.log(userNameString,"stuff");
+//        }
+//
+//    }
 
 }
