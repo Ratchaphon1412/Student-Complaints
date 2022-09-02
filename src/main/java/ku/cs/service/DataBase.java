@@ -1,12 +1,14 @@
 package ku.cs.service;
 import ku.cs.models.user.User;
 import ku.cs.models.stuff.Stuff;
-
+import java.util.LinkedHashMap;
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
-
+    private LinkedHashMap<String,String> accountList;
+    private LinkedHashMap<String,String> reportList;
+    private LinkedHashMap<String,String> stuffList;
 
     public DataBase(){
-
+        readFile();
     }
 
 
