@@ -45,6 +45,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/FXRouter.jar</systemPath>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+
 
 
     </dependencies>
