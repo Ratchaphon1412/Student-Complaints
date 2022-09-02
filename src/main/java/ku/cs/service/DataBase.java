@@ -1,6 +1,6 @@
 package ku.cs.service;
-import java.util.LinkedHashMap;
-import ku.cs.models.Admin.Admin;
+import ku.cs.models.user.User;
+import ku.cs.models.stuff.Stuff;
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
