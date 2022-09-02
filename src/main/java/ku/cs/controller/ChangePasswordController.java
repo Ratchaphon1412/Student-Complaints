@@ -25,13 +25,13 @@ public class ChangePasswordController {
     String userChange = UserChange.getText();
     String oldPassword = OldPassword.getText();
     String newPassword = NewPassword.getText();
-
-    if (dataBase.changePassword(userChange,oldPassword,newPassword)){
-        System.out.println("Password has Changed");
-        closeWindows();
-    }else{
-        System.out.println("Username or Password Incorrect");
-        }
+//
+//    if (dataBase.changePassword(userChange,oldPassword,newPassword)){
+//        System.out.println("Password has Changed");
+//        closeWindows();
+//    }else{
+//        System.out.println("Username or Password Incorrect");
+//        }
     }
 
     @FXML public void initialize(){
