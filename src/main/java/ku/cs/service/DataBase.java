@@ -6,12 +6,9 @@ import ku.cs.models.stuff.Stuff;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-
-
 import java.io.*;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
+import ku.cs.models.user.User;
 
 
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
@@ -84,6 +81,8 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
         return accountList;
     }
+
+
 
     @Override
     public boolean registerAccount(DataObject object) {
