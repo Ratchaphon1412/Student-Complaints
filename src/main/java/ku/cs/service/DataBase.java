@@ -1,50 +1,53 @@
 package ku.cs.service;
+
 import ku.cs.models.admin.Admin;
 import ku.cs.models.user.User;
 import ku.cs.models.stuff.Stuff;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
+
+
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
-    private LinkedHashMap<String, LinkedHashMap<String,String>> accountList;
+
+    private final String endpointPath = "database";
+    private LinkedHashMap<String,LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
-    private LinkedHashMap<String, LinkedHashMap<String,String>> stuffList;
+
 
     public DataBase(){
-        readFile(accountList,"account.csv");
+
     }
 
 
-//    public DataObject login(String userName ,String passWord){
-//
-//
-//    }
-    private void readFile(LinkedHashMap<String, LinkedHashMap<String,String>> target, String filepath){
-        String filePath = "database" + File.separator + filepath;
-        File file = new File(filePath);
+
+
+
+    private void readFile(String fileTaget){
+        String path = endpointPath + File.separator + fileTaget;
+        File file = new File(path);
         BufferedReader buffer = null;
         FileReader reader = null;
+        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
         try {
-            String line = "";
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
-            while ((line = buffer.readLine()) != null) {
-                LinkedHashMap<String,String> linkedHashMap = null;
-                String[] data = line.split("|");
-                String[] value = data[1].split(",");
-                for(int i = 0 ; i < value.length;i++){
-                    String[] invalue = value[i].split("=");
-                    linkedHashMap.put(invalue[0], invalue[1]);
-                }
-                System.out.println(data[0] + " " + linkedHashMap);
-                target.put(data[0] , linkedHashMap);
+            CsvMapper mapper = new CsvMapper();
+            CsvSchema schema =CsvSchema.emptySchema().withHeader();
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+            while(iterator.hasNext()){
+                LinkedHashMap<String,String> temp = iterator.next();
+                accountList.put(temp.get("userName"),temp);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             try {
                 buffer.close();
                 reader.close();
@@ -53,8 +56,25 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             }
         }
     }
-    private void writeFile(){
 
+
+    private void writeFile(){
+        BufferedWriter database = null;
+        try {
+            String fs = File.separator;
+            String file = System.getProperty("user.dir") + fs + "database" + fs + "log.csv";
+//            String f = getClass().getResource("/ku/cs/database/log.csv").getPath();
+            System.out.println(file);
+            //String log = username + "," + role + "," + LocalDate.now() + "," + System.currentTimeMillis() + "\n";
+            database = new BufferedWriter(new FileWriter(file, true));
+            //database.write(log);
+            if (database != null) {
+                database.close();
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Object login(String name, String pass){
@@ -74,4 +94,5 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     public boolean changeData(DataObject object) {
         return false;
     }
+
 }
