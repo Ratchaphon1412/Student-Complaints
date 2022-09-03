@@ -3,7 +3,7 @@ module cs.ku {
     requires javafx.fxml;
     requires com.fasterxml.jackson.dataformat.csv;
     requires com.fasterxml.jackson.databind;
-    requires org.testng;
+
 
 
 
@@ -11,7 +11,7 @@ module cs.ku {
     exports ku.cs;
     opens ku.cs.controller to javafx.fxml;
     exports ku.cs.controller;
-    opens com.github.saacsos to javafx.fxml;
+
 
 
 }
