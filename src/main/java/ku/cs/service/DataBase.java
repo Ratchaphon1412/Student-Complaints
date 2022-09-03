@@ -51,7 +51,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private void writeFile(){
 
     }
+    public void log (String userName){
 
+    }
 
 
 
