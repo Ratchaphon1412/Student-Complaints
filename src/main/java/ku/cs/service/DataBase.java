@@ -26,8 +26,8 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
     public void lordFile(){
-        readFile("account.csv",accountList);
-//        readFile("log.csv",);
+        this.accountList = readFileHash("account.csv");
+        this.logList = readFileArray("log.csv");
 //        readFile("pattern.csv");
 //        readFile("report.csv");
 //        readFile("reportcategory.csv");
@@ -37,12 +37,12 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
 
-    private void readFile(String fileTaget,LinkedHashMap<String,LinkedHashMap<String,String>> target){
+    private LinkedHashMap<String,LinkedHashMap<String,String>> readFileHash(String fileTaget){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
         BufferedReader buffer = null;
         FileReader reader = null;
-        target = new LinkedHashMap<String,LinkedHashMap<String,String>>();
+        LinkedHashMap<String,LinkedHashMap<String,String>> target = new LinkedHashMap<String,LinkedHashMap<String,String>>();
         try {
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
@@ -63,6 +63,35 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                 throw new RuntimeException(e);
             }
         }
+        return target;
+    }
+    private ArrayList<LinkedHashMap<String,String>> readFileArray(String fileTaget){
+        String path = endpointPath + File.separator + fileTaget;
+        File file = new File(path);
+        BufferedReader buffer = null;
+        FileReader reader = null;
+        ArrayList<LinkedHashMap<String,String>> target = new ArrayList<LinkedHashMap<String,String>>();
+        try {
+            reader = new FileReader(file);
+            buffer = new BufferedReader(reader);
+            CsvMapper mapper = new CsvMapper();
+            CsvSchema schema =CsvSchema.emptySchema().withHeader();
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+            while(iterator.hasNext()){
+                LinkedHashMap<String,String> temp = iterator.next();
+                target.add(temp);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                buffer.close();
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return target;
     }
 
 

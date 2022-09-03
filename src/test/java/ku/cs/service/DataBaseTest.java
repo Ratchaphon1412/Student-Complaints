@@ -11,10 +11,9 @@ class DataBaseTest {
 
     @Test
     void testReadfile(){
-         DataBase database = new DataBase<>();
+        DataBase database = new DataBase();
         System.out.println(database.getAccountList());
-        LinkedHashMap<String,String> test = (LinkedHashMap<String, String>) database.getAccountList().get("poomffi");
-        System.out.println(test);
+        System.out.println(database.getAccountList().get("poomffi"));
     }
 
     @Test
@@ -24,8 +23,9 @@ class DataBaseTest {
     @Test
     void log(){
         DataBase dataBase = new DataBase();
-        dataBase.log("Nueng","test","/xxx/xxx/xxx/");
+        //dataBase.log("Nueng","test","/xxx/xxx/xxx/");
         System.out.println(dataBase.getLogList());
+        System.out.println(dataBase.getLogList().get(dataBase.getLogList().size()-1));
     }
 
 }
