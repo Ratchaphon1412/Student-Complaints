@@ -1,16 +1,17 @@
 package ku.cs.service;
+import ku.cs.models.admin.Admin;
 import ku.cs.models.user.User;
 import ku.cs.models.stuff.Stuff;
 
 import java.io.*;
 import java.util.LinkedHashMap;
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
-    private LinkedHashMap<String, LinkedHashMap<String,String>> accountList = null;
+    private LinkedHashMap<String, LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> stuffList;
 
     public DataBase(){
-        readFile(accountList);
+        readFile(accountList,"account.csv");
     }
 
 
@@ -18,9 +19,8 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 //
 //
 //    }
-    private void readFile(LinkedHashMap<String, LinkedHashMap<String,String>> target){
-        LinkedHashMap<String,String> linkedHashMap = null;
-        String filePath = "database" + File.separator + "account.csv";
+    private void readFile(LinkedHashMap<String, LinkedHashMap<String,String>> target, String filepath){
+        String filePath = "database" + File.separator + filepath;
         File file = new File(filePath);
         BufferedReader buffer = null;
         FileReader reader = null;
@@ -29,6 +29,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
             while ((line = buffer.readLine()) != null) {
+                LinkedHashMap<String,String> linkedHashMap = null;
                 String[] data = line.split("|");
                 String[] value = data[1].split(",");
                 for(int i = 0 ; i < value.length;i++){
@@ -56,7 +57,13 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
     }
 
+    public Object login(String name, String pass){
+        return null;
+    }
 
+    public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
+        return accountList;
+    }
 
     @Override
     public boolean registerAccount(DataObject object) {

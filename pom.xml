@@ -45,6 +45,12 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/FXRouter.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
 
 
     </dependencies>
