@@ -4,23 +4,25 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import ku.cs.models.user.User;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
+
     private final String endpointPath = "database";
     private LinkedHashMap<String,LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
-
+    private ArrayList<LinkedHashMap<String,String>> logList;
 
     public DataBase(){
-        readFile();
+
     }
 
-
-    private void readFile(){
-        String path = endpointPath + File.separator + "account.csv";
+    private void readFile(String fileTaget){
+        String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
         BufferedReader buffer = null;
         FileReader reader = null;
@@ -48,15 +50,37 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
 
-    private void writeFile(){
-
-    }
-    public void log (String userName){
-
+    private void writeFile() {
+        BufferedWriter database = null;
     }
 
+    public void log(String userName,String agency,String path){
+        Date currentDate = new Date();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        LinkedHashMap<String,String> logTemp = new LinkedHashMap<>();
+        logTemp.put("userName",userName);
+        logTemp.put("agency",agency);
+        logTemp.put("pathPicture",path);
+        logTemp.put("date",dateFormat.format(currentDate));
+        logTemp.put("time",timeFormat.format(currentDate));
+        if(logList == null){
+            logList = new ArrayList<LinkedHashMap<String,String>>();
+            this.logList.add(logTemp);
+            this.writeFile();
+        }else{
+            this.logList.add(logTemp);
+            this.writeFile();
+        }
+    }
 
+    public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
+        return accountList;
+    }
 
+    public ArrayList<LinkedHashMap<String, String>> getLogList() {
+        return logList;
+    }
 
     @Override
     public boolean registerAccount(DataObject object) {
@@ -68,7 +92,4 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         return false;
     }
 
-    public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
-        return accountList;
-    }
 }
