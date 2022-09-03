@@ -75,11 +75,11 @@ public class LoginController {
 
         }
     }
-//    @FXML
-//    public void handleLoginAuthentication() throws IOException {
-//        String userNameString = userName.getText();
-//        String passWordString = passWord.getText();
-//        String[] role = {"admin","user","stuff"};
+    @FXML
+    public void handleLoginAuthentication() throws IOException {
+        String userNameString = userName.getText();
+        String passWordString = passWord.getText();
+        String[] role = {"admin","user","stuff"};
 //        if(role[0].equals(dataBase.readFile(userNameString,passWordString))){
 //            ApplicationController.goTo("Admin");
 //            dataBase.log(userNameString,"admin");
@@ -90,7 +90,7 @@ public class LoginController {
 //            ApplicationController.goTo("Stuff");
 //            dataBase.log(userNameString,"stuff");
 //        }
-//
-//    }
+
+    }
 
 }
