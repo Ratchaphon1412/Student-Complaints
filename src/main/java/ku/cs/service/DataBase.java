@@ -3,6 +3,10 @@ package ku.cs.service;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import ku.cs.models.admin.Admin;
+import ku.cs.models.stuff.Stuff;
+import ku.cs.models.user.User;
+
 import java.io.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
@@ -30,6 +34,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
     private void readFile(String fileTaget){
+
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
         BufferedReader buffer = null;
@@ -56,6 +61,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                         break;
                 }
 
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -67,6 +73,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                 throw new RuntimeException(e);
             }
         }
+
     }
 
 
@@ -124,6 +131,22 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             }
         }
 
+    }
+
+    public Object login(String name, String pass){
+        Object acount = null;
+        LinkedHashMap<String,String> user = accountList.get(name);
+        if(user.get("passWord").equals(pass)){
+            if (user.get("role").equals("admin")) {
+                acount = new Admin(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
+                //userName,passWord,role,pathPicture
+            } else if (user.get("role").equals("staff")) {
+                acount = new Stuff();
+            } else if (user.get("role").equals("user")) {
+                acount = new User(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
+            }
+        }
+        return acount;
     }
 
     public void log(String userName,String agency,String path){
