@@ -1,0 +1,19 @@
+{
+  "name": "project211-hardcodeexecutable",
+  "version": "0.0.1",
+  "description": "students conplain application desktop with JavaFX",
+  "main": "index.js",
+  "authors": {
+    "name": "KU",
+    "email": "ratchaphon.h11@gmail.com"
+  },
+  "repository": "/project211-hardcodeexecutable",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}

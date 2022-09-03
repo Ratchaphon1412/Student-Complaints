@@ -39,3 +39,5 @@ build/
 
 ## extentiondiscord
 .idea/discord.xml
+
+/docs/node_modules
