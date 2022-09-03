@@ -4,6 +4,7 @@ package ku.cs.service;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.crypto.Data;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 
@@ -20,9 +21,9 @@ class DataBaseTest {
     }
 
     @Test
-    void testseveToFile(){
+    void testseveToFile() throws IOException {
         DataBase database = new DataBase<>();
-
+        database.saveToDatabase();
 
     }
 
@@ -31,11 +32,13 @@ class DataBaseTest {
 
     }
     @Test
-    void log(){
+    void log() throws IOException {
         DataBase dataBase = new DataBase();
         //dataBase.log("Nueng","test","/xxx/xxx/xxx/");
         System.out.println(dataBase.getLogList());
-        System.out.println(dataBase.getLogList().get(dataBase.getLogList().size()-1));
+        dataBase.log("test","stuff","/xxx/xxx/xx");
+        System.out.println(dataBase.getLogList());
+
     }
 
 }

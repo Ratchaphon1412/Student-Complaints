@@ -32,9 +32,27 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         readFile("log.csv");
     }
 
+    public void saveToDatabase() throws IOException {
+        String[] database = {"account.csv","report.csv","log.csv"};
+        List<String> databaseList = Arrays.asList(database);
+
+        for(String databaseName : databaseList){
+            String path = endpointPath + File.separator + databaseName;
+            File file = new File(path);
+            Writer writer = new FileWriter(file);
+            if(databaseName.equals("account.csv")){
+                this.writeFile(accountList,writer);
+            }else if(databaseName.equals("report.csv")){
+                this.writeFile(reportList,writer);
+            }else if(databaseName.equals("log.csv")){
+                this.writeFile(logList,writer);
+            }
+        }
+    }
+
+
 
     private void readFile(String fileTaget){
-
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
         BufferedReader buffer = null;
@@ -84,15 +102,17 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         List<LinkedHashMap<String,String>> temp = new ArrayList<>();
         if(listOfMap !=null && !listOfMap.isEmpty()){
             for(String mainKey : listOfMap.keySet()){
+                schemaBuilder.clearColumns();
                 temp.add(listOfMap.get(mainKey));
                 for(String subKey:  listOfMap.get(mainKey).keySet()){
                     schemaBuilder.addColumn(subKey);
                 }
             }
             schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
+            System.out.println(schema.toString());
         }
         CsvMapper mapper = new CsvMapper();
-        mapper.writer(schema).writeValues(writer).writeAll(temp);
+        mapper.writer(schema).writeValues(writer).write(temp);
         writer.flush();
     }
 
@@ -102,36 +122,21 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         List<LinkedHashMap<String,String>> temp = new ArrayList<>();
         if(listOfMap !=null && !listOfMap.isEmpty()){
             for(int i = 0 ; i < listOfMap.size();i++){
-                for(String key : listOfMap.get(i).keySet()){
+                schemaBuilder.clearColumns();
+                temp.add(listOfMap.get(i));
+                for(String key : listOfMap.get(0).keySet()){
                     schemaBuilder.addColumn(key);
                 }
             }
+
             schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
+            System.out.println(schema.toString());
         }
         CsvMapper mapper = new CsvMapper();
-        mapper.writer(schema).writeValues(writer).writeAll(temp);
+        mapper.writer(schema).writeValues(writer).write(temp);
         writer.flush();
     }
 
-
-    private void saveToDatabase() throws IOException {
-       String[] database = {"account.csv","report.csv","log.csv"};
-        List<String> databaseList = Arrays.asList(database);
-
-        for(String databaseName : databaseList){
-            String path = endpointPath + File.separator + databaseName;
-            File file = new File(path);
-            FileWriter writer = new FileWriter(file);
-            if(databaseName.equals("account.csv")){
-                this.writeFile(accountList,writer);
-            }else if(databaseName.equals("report.csv")){
-                this.writeFile(reportList,writer);
-            }else if(databaseName.equals("log.csv")){
-                this.writeFile(logList,writer);
-            }
-        }
-
-    }
 
     public Object login(String name, String pass){
         Object acount = null;
@@ -149,31 +154,24 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         return acount;
     }
 
-    public void log(String userName,String agency,String path){
+    public void log(String userName,String role,String path) throws IOException {
         Date currentDate = new Date();
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         LinkedHashMap<String,String> logTemp = new LinkedHashMap<>();
         logTemp.put("userName",userName);
-        logTemp.put("agency",agency);
+        logTemp.put("role" ,role);
         logTemp.put("pathPicture",path);
         logTemp.put("date",dateFormat.format(currentDate));
         logTemp.put("time",timeFormat.format(currentDate));
         if(logList == null){
             logList = new ArrayList<LinkedHashMap<String,String>>();
             this.logList.add(logTemp);
+            this.saveToDatabase();
         }else{
             this.logList.add(logTemp);
+            this.saveToDatabase();
         }
-    }
-
-
-    public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
-        return accountList;
-    }
-
-    public ArrayList<LinkedHashMap<String, String>> getLogList() {
-        return logList;
     }
 
     @Override
@@ -185,5 +183,15 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     public boolean changeData(DataObject object) {
         return false;
     }
+    public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
+        return accountList;
+    }
+
+    public ArrayList<LinkedHashMap<String, String>> getLogList() {
+        return logList;
+    }
+
+
+
 
 }
