@@ -16,15 +16,25 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private ArrayList<LinkedHashMap<String,String>> logList;
 
     public DataBase(){
-
+        initializeData();
     }
+
+
+    public void initializeData(){
+        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
+        reportList = new LinkedHashMap<String,LinkedHashMap<String, String>>();
+        logList = new ArrayList<LinkedHashMap<String,String>>();
+        readFile("account.csv");
+        readFile("log.csv");
+    }
+
 
     private void readFile(String fileTaget){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
         BufferedReader buffer = null;
         FileReader reader = null;
-        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
+
         try {
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
@@ -34,7 +44,18 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
             while(iterator.hasNext()){
                 LinkedHashMap<String,String> temp = iterator.next();
-                accountList.put(temp.get("userName"),temp);
+                switch (fileTaget){
+                    case "account.csv":
+                        accountList.put(temp.get("userName"),temp);
+                        break;
+                    case "report.csv":
+                        reportList.put(temp.get("title"),temp);
+                        break;
+                    case "log.csv":
+                        logList.add(temp);
+                        break;
+                }
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -47,6 +68,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             }
         }
     }
+
 
 
     private void writeFile(LinkedHashMap<String,LinkedHashMap<String,String>> listOfMap, Writer writer) throws IOException {
@@ -121,6 +143,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             this.logList.add(logTemp);
         }
     }
+
 
     public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
         return accountList;

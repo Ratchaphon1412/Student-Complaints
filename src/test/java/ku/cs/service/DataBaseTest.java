@@ -15,8 +15,14 @@ class DataBaseTest {
         System.out.println(database.getAccountList());
         LinkedHashMap<String,String> test = (LinkedHashMap<String, String>) database.getAccountList().get("poomffi");
         System.out.println(test);
+        System.out.println(database.getLogList());
     }
 
+    @Test
+    void testseveToFile(){
+        DataBase database = new DataBase<>();
+
+    }
 
     @Test
     void login(){
