@@ -1,14 +1,17 @@
 package ku.cs.service;
 
-import ku.cs.models.admin.Admin;
-import ku.cs.models.user.User;
-import ku.cs.models.stuff.Stuff;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import java.io.*;
-import java.util.LinkedHashMap;
+import ku.cs.models.admin.Admin;
+import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
@@ -16,7 +19,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private final String endpointPath = "database";
     private LinkedHashMap<String,LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
-
+    private ArrayList<LinkedHashMap<String,String>> logList;
 
     public DataBase(){
         lordFile();
@@ -63,23 +66,8 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
 
-    private void writeFile(){
+    private void writeFile() {
         BufferedWriter database = null;
-        try {
-            String fs = File.separator;
-            String file = System.getProperty("user.dir") + fs + "database" + fs + "log.csv";
-//            String f = getClass().getResource("/ku/cs/database/log.csv").getPath();
-            System.out.println(file);
-            //String log = username + "," + role + "," + LocalDate.now() + "," + System.currentTimeMillis() + "\n";
-            database = new BufferedWriter(new FileWriter(file, true));
-            //database.write(log);
-            if (database != null) {
-                database.close();
-            }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public Object login(String name, String pass){
@@ -98,11 +86,33 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         return acount;
     }
 
+    public void log(String userName,String agency,String path){
+        Date currentDate = new Date();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        LinkedHashMap<String,String> logTemp = new LinkedHashMap<>();
+        logTemp.put("userName",userName);
+        logTemp.put("agency",agency);
+        logTemp.put("pathPicture",path);
+        logTemp.put("date",dateFormat.format(currentDate));
+        logTemp.put("time",timeFormat.format(currentDate));
+        if(logList == null){
+            logList = new ArrayList<LinkedHashMap<String,String>>();
+            this.logList.add(logTemp);
+            this.writeFile();
+        }else{
+            this.logList.add(logTemp);
+            this.writeFile();
+        }
+    }
+
     public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
         return accountList;
     }
 
-
+    public ArrayList<LinkedHashMap<String, String>> getLogList() {
+        return logList;
+    }
 
     @Override
     public boolean registerAccount(DataObject object) {

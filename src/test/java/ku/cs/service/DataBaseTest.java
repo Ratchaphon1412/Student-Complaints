@@ -3,6 +3,7 @@ package ku.cs.service;
 
 import org.junit.jupiter.api.Test;
 
+import javax.xml.crypto.Data;
 import java.util.LinkedHashMap;
 
 
@@ -19,6 +20,12 @@ class DataBaseTest {
     @Test
     void login(){
 
+    }
+    @Test
+    void log(){
+        DataBase dataBase = new DataBase();
+        dataBase.log("Nueng","test","/xxx/xxx/xxx/");
+        System.out.println(dataBase.getLogList());
     }
 
 }
