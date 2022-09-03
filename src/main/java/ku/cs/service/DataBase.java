@@ -11,63 +11,32 @@ import java.util.Map;
 
 
 public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
-
     private final String endpointPath = "database";
-    private ArrayList<LinkedHashMap<String,String>> accountList;
-//
-//    private LinkedHashMap<String, LinkedHashMap<String,String>> accountList = null;
-
+    private LinkedHashMap<String,LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
 
 
     public DataBase(){
-//        readFile(accountList);
         readFile();
     }
 
 
-    public void readFile(){
-
+    private void readFile(){
         String path = endpointPath + File.separator + "account.csv";
         File file = new File(path);
-
-//    public DataObject login(String userName ,String passWord){
-//
-//
-//    }
-//    private void readFile(LinkedHashMap<String, LinkedHashMap<String,String>> target){
-//        LinkedHashMap<String,String> linkedHashMap = null;
-//        String filePath = "database" + File.separator + "account.csv";
-//        File file = new File(filePath);
-
         BufferedReader buffer = null;
         FileReader reader = null;
-        accountList = new ArrayList<>();
-
+        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
         try {
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
-
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
-            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.reader(Map.class).with(schema).readValues(file);
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
             while(iterator.hasNext()){
-                accountList.add(iterator.next());
-
-//            while ((line = buffer.readLine()) != null) {
-//                String[] data = line.split("|");
-//                String[] value = data[1].split(",");
-//                for(int i = 0 ; i < value.length;i++){
-//                    String[] invalue = value[i].split("=");
-//                    linkedHashMap.put(invalue[0], invalue[1]);
-//                }
-//                System.out.println(data[0] + " " + linkedHashMap);
-//                target.put(data[0] , linkedHashMap);
-
+                LinkedHashMap<String,String> temp = iterator.next();
+                accountList.put(temp.get("userName"),temp);
             }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -78,8 +47,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                 throw new RuntimeException(e);
             }
         }
-
     }
+
+
     private void writeFile(){
 
     }
@@ -96,7 +66,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         return false;
     }
 
-    public ArrayList<LinkedHashMap<String, String>> getAccountList() {
+    public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
         return accountList;
     }
 }
