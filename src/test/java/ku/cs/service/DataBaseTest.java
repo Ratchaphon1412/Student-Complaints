@@ -13,7 +13,7 @@ class DataBaseTest {
     void testReadfile(){
         DataBase database = new DataBase();
         System.out.println(database.getAccountList());
-        System.out.println(database.getAccountList().get("poomffi"));
+        //System.out.println(database.getAccountList().get("poomffi"));
     }
 
     @Test

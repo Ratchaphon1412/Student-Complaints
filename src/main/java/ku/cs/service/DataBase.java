@@ -23,6 +23,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         lordFile();
     }
 
+
+
+
     public void lordFile(){
         this.accountList = readFileHash("account.csv");
         this.logList = readFileArray("log.csv");
@@ -63,6 +66,12 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         }
         return target;
     }
+
+    public void test(String name){
+        this.
+    }
+
+
     private ArrayList<LinkedHashMap<String,String>> readFileArray(String fileTaget){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
