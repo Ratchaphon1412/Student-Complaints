@@ -8,9 +8,7 @@ import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Date;
+import java.util.*;
 import java.text.SimpleDateFormat;
 
 
@@ -77,6 +75,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
             MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+
             while(iterator.hasNext()){
                 LinkedHashMap<String,String> temp = iterator.next();
                 target.add(temp);
@@ -95,8 +94,59 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
 
-    private void writeFile() {
-        BufferedWriter database = null;
+    private void writeFile(LinkedHashMap<String,LinkedHashMap<String,String>> listOfMap, Writer writer) throws IOException {
+        CsvSchema schema = null;
+        CsvSchema.Builder schemaBuilder = CsvSchema.builder();
+        List<LinkedHashMap<String,String>> temp = new ArrayList<>();
+        if(listOfMap !=null && !listOfMap.isEmpty()){
+            for(String mainKey : listOfMap.keySet()){
+                temp.add(listOfMap.get(mainKey));
+                for(String subKey:  listOfMap.get(mainKey).keySet()){
+                    schemaBuilder.addColumn(subKey);
+                }
+            }
+            schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
+        }
+        CsvMapper mapper = new CsvMapper();
+        mapper.writer(schema).writeValues(writer).writeAll(temp);
+        writer.flush();
+    }
+
+    private void writeFile(ArrayList<LinkedHashMap<String,String>> listOfMap, Writer writer) throws IOException {
+        CsvSchema schema = null;
+        CsvSchema.Builder schemaBuilder = CsvSchema.builder();
+        List<LinkedHashMap<String,String>> temp = new ArrayList<>();
+        if(listOfMap !=null && !listOfMap.isEmpty()){
+            for(int i = 0 ; i < listOfMap.size();i++){
+                for(String key : listOfMap.get(i).keySet()){
+                    schemaBuilder.addColumn(key);
+                }
+            }
+            schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
+        }
+        CsvMapper mapper = new CsvMapper();
+        mapper.writer(schema).writeValues(writer).writeAll(temp);
+        writer.flush();
+    }
+
+
+    private void saveToDatabase() throws IOException {
+       String[] database = {"account.csv","report.csv","log.csv"};
+        List<String> databaseList = Arrays.asList(database);
+
+        for(String databaseName : databaseList){
+            String path = endpointPath + File.separator + databaseName;
+            File file = new File(path);
+            FileWriter writer = new FileWriter(file);
+            if(databaseName.equals("account.csv")){
+                this.writeFile(accountList,writer);
+            }else if(databaseName.equals("report.csv")){
+                this.writeFile(reportList,writer);
+            }else if(databaseName.equals("log.csv")){
+                this.writeFile(logList,writer);
+            }
+        }
+
     }
 
     public Object login(String name, String pass){
@@ -128,10 +178,8 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         if(logList == null){
             logList = new ArrayList<LinkedHashMap<String,String>>();
             this.logList.add(logTemp);
-            this.writeFile();
         }else{
             this.logList.add(logTemp);
-            this.writeFile();
         }
     }
 
