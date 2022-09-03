@@ -19,19 +19,27 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
     public DataBase(){
+        lordFile();
+    }
 
+    public void lordFile(){
+        readFile("account.csv",accountList);
+//        readFile("log.csv",);
+//        readFile("pattern.csv");
+//        readFile("report.csv");
+//        readFile("reportcategory.csv");
+//        readFile("requestunban.csv");
+//        readFile("stuffagencylist.csv");
     }
 
 
 
-
-
-    private void readFile(String fileTaget){
+    private void readFile(String fileTaget,LinkedHashMap<String,LinkedHashMap<String,String>> target){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
         BufferedReader buffer = null;
         FileReader reader = null;
-        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
+        target = new LinkedHashMap<String,LinkedHashMap<String,String>>();
         try {
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
@@ -40,7 +48,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
             while(iterator.hasNext()){
                 LinkedHashMap<String,String> temp = iterator.next();
-                accountList.put(temp.get("userName"),temp);
+                target.put(temp.get("userName"),temp);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -75,7 +83,19 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
     public Object login(String name, String pass){
-        return null;
+        Object acount = null;
+        LinkedHashMap<String,String> user = accountList.get(name);
+        if(user.get("passWord").equals(pass)){
+            if (user.get("role").equals("admin")) {
+                acount = new Admin(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
+                //userName,passWord,role,pathPicture
+            } else if (user.get("role").equals("staff")) {
+                acount = new Stuff();
+            } else if (user.get("role").equals("user")) {
+                acount = new User(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
+            }
+        }
+        return acount;
     }
 
     public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
