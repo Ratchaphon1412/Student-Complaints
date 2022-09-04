@@ -8,15 +8,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-
 import javafx.event.ActionEvent;
-
-import javafx.stage.Stage;
 import ku.cs.ApplicationController;
+import ku.cs.models.admin.Admin;
+import ku.cs.models.stuff.Stuff;
+import ku.cs.models.user.User;
 import ku.cs.service.DataBase;
-
 import java.io.IOException;
-import java.util.Arrays;
+import ku.cs.service.DynamicDatabase;
 
 
 public class LoginController {
@@ -36,7 +35,7 @@ public class LoginController {
     @FXML
     private PasswordField passWord;
 
-    private DataBase dataBase = new DataBase();
+    private DataBase dataBase;
 
     @FXML
     private void initialize() throws IOException {
@@ -75,22 +74,36 @@ public class LoginController {
 
         }
     }
-//    @FXML
-//    public void handleLoginAuthentication() throws IOException {
-//        String userNameString = userName.getText();
-//        String passWordString = passWord.getText();
-//        String[] role = {"admin","user","stuff"};
-//        if(role[0].equals(dataBase.readFile(userNameString,passWordString))){
-//            ApplicationController.goTo("Admin");
-//            dataBase.log(userNameString,"admin");
-//        }else if(role[1].equals(dataBase.readFile(userNameString,passWordString))){
-//            ApplicationController.goTo("User");
-//            dataBase.log(userNameString,"user");
-//        }else if (role[2].equals(dataBase.readFile(userNameString,passWordString))){
-//            ApplicationController.goTo("Stuff");
-//            dataBase.log(userNameString,"stuff");
-//        }
-//
-//    }
+    @FXML
+    public void handleLoginAuthentication() throws IOException {
+        String userNameString = userName.getText();
+        String passWordString = passWord.getText();
+        String[] role = {"admin","user","stuff"};
+        dataBase = new DataBase();
+
+        //check has account
+        if(dataBase.checkAccount(userNameString)){
+            if(!dataBase.checkBan(userNameString)){
+             switch (dataBase.checkRole(userNameString)){
+                 case "admin":
+                     DynamicDatabase<Admin> dynamicDatabaseAdmin = new DataBase<>();
+                     Admin admin = dynamicDatabaseAdmin.login(userNameString,passWordString);
+                     ApplicationController.goTo("Admin",admin);
+                     break;
+                  case "user":
+                     DynamicDatabase<User> dynamicDatabaseUser = new DataBase<>();
+                     User user = dynamicDatabaseUser.login(userNameString,passWordString);
+                      ApplicationController.goTo("User",user);
+                     break;
+                 case "stuff":
+                     DynamicDatabase<Stuff> dynamicDatabaseStuff = new DataBase<>();
+                     Stuff stuff = dynamicDatabaseStuff.login(userNameString,passWordString);
+                     ApplicationController.goTo("Stuff",stuff);
+                     break;
+             }
+            }
+        }
+
+    }
 
 }
