@@ -10,11 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
 import ku.cs.ApplicationController;
+
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
 import ku.cs.service.DataBase;
 import java.io.IOException;
+import ku.cs.models.Account;
 import ku.cs.service.DynamicDatabase;
 
 
@@ -50,8 +52,6 @@ public class LoginController {
 
 
 
-
-
     @FXML
     public void  handleChangePasswordButton(ActionEvent actionEvent) {
         try {
@@ -77,31 +77,51 @@ public class LoginController {
     public void handleLoginAuthentication() throws IOException {
         String userNameString = userName.getText();
         String passWordString = passWord.getText();
-        String[] role = {"admin","user","stuff"};
-
         dataBase = new DataBase();
 
         //check has account
         if(dataBase.checkAccount(userNameString)){
-            if(!dataBase.checkBan(userNameString)){
-                switch (dataBase.checkRole(userNameString)) {
-                    case "admin" -> {
-                        DynamicDatabase<Admin> dynamicDatabaseAdmin = new DataBase<>();
-                        Admin admin = dynamicDatabaseAdmin.login(userNameString, passWordString);
-                        ApplicationController.goTo("Admin", admin);
+            //check ban
+            if(dataBase.checkBan(userNameString)){
+                //check role
+                switch(dataBase.checkRole(userNameString)){
+                    case "admin"->{
+                        DynamicDatabase<Admin> database = new DataBase<>();
+                        Admin admin = database.login(userNameString,passWordString);
+                        if(admin != null){
+                            ApplicationController.goTo("Admin",admin);
+                        }else{
+                            System.out.println("wrong password");
+                        }
+                        break;
                     }
-                    case "user" -> {
-                        DynamicDatabase<User> dynamicDatabaseUser = new DataBase<>();
-                        User user = dynamicDatabaseUser.login(userNameString, passWordString);
-                        ApplicationController.goTo("User", user);
+                    case "user"->{
+                        DynamicDatabase<User> database = new DataBase<>();
+                        User user = database.login(userNameString,passWordString);
+                        if(user != null){
+                            ApplicationController.goTo("User",user);
+                        }else{
+                            System.out.println("wrong password");
+                        }
+                        break;
                     }
-                    case "stuff" -> {
-                        DynamicDatabase<Stuff> dynamicDatabaseStuff = new DataBase<>();
-                        Stuff stuff = dynamicDatabaseStuff.login(userNameString, passWordString);
-                        ApplicationController.goTo("Stuff", stuff);
+                    case "stuff"->{
+                        DynamicDatabase<Stuff> database = new DataBase<>();
+                        Stuff stuff = database.login(userNameString,passWordString);
+                        if(stuff != null){
+                            ApplicationController.goTo("Stuff",stuff);
+                        }else{
+                            System.out.println("wrong password");
+                        }
+                        break;
                     }
                 }
+
+            }else{
+                System.out.println("banned");
             }
+        }else{
+            System.out.println("no account in system");
         }
 
     }
