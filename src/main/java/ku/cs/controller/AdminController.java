@@ -17,6 +17,7 @@ import ku.cs.service.DataBase;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class AdminController {
     @FXML
@@ -39,7 +40,7 @@ public class AdminController {
     private ScrollPane scroll;
     @FXML
     private GridPane grid;
-    private ArrayList<LinkedHashMap<String,String>> logList;
+    private List<LinkedHashMap<String,String>> logList;
 
 
 
