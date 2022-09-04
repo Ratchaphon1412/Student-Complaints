@@ -1,4 +1,21 @@
 package ku.cs.models.stuff;
 
-public class Stuff {
+import ku.cs.models.Account;
+
+import java.util.jar.Attributes;
+
+public class Stuff extends Account {
+
+    private String agency;
+
+    public Stuff(String userName, String passWord, String pathPicture, String role, String agency) {
+        super(userName, passWord, pathPicture, role);
+        this.agency = agency;
+    }
+
+    public boolean setAgency(String agency){
+        this.agency = agency;
+
+
+    }
 }
