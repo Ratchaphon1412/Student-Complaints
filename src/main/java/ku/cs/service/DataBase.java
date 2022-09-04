@@ -46,7 +46,6 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
         // initial UserList stuffList adminList
         for(LinkedHashMap<String,String> data : accountList){
-            System.out.println(data.get("role"));
             if(data.get("role")!=null) {
                 switch (data.get("role")) {
                     case "admin" -> {
