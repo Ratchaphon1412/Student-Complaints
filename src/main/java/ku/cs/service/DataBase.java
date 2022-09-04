@@ -3,6 +3,7 @@ package ku.cs.service;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import ku.cs.models.Account;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
@@ -18,41 +19,49 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private LinkedHashMap<String,LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
     private ArrayList<LinkedHashMap<String,String>> logList;
+    private DataObject account = null;
 
     public DataBase(){
-        lordFile();
+        initializeData();
     }
 
 
 
-
-    public void lordFile(){
-        this.accountList = readFileHash("account.csv");
-        this.logList = readFileArray("log.csv");
-//        readFile("pattern.csv");
-//        readFile("report.csv");
-//        readFile("reportcategory.csv");
-//        readFile("requestunban.csv");
-//        readFile("stuffagencylist.csv");
+    public void initializeData(){
+        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
+        reportList = new LinkedHashMap<String,LinkedHashMap<String, String>>();
+        logList = new ArrayList<LinkedHashMap<String,String>>();
+        readFile("account.csv");
+        readFile("log.csv");
     }
 
 
-
-    private LinkedHashMap<String,LinkedHashMap<String,String>> readFileHash(String fileTaget){
+    private void readFile(String fileTaget){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
         BufferedReader buffer = null;
         FileReader reader = null;
-        LinkedHashMap<String,LinkedHashMap<String,String>> target = new LinkedHashMap<String,LinkedHashMap<String,String>>();
+
         try {
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
             MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+
             while(iterator.hasNext()){
                 LinkedHashMap<String,String> temp = iterator.next();
-                target.put(temp.get("userName"),temp);
+                switch (fileTaget){
+                    case "account.csv":
+                        accountList.put(temp.get("userName"),temp);
+                        break;
+                    case "report.csv":
+                        reportList.put(temp.get("title"),temp);
+                        break;
+                    case "log.csv":
+                        logList.add(temp);
+                        break;
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -64,43 +73,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                 throw new RuntimeException(e);
             }
         }
-        return target;
+
     }
 
-    public void test(String name){
-        this.
-    }
-
-
-    private ArrayList<LinkedHashMap<String,String>> readFileArray(String fileTaget){
-        String path = endpointPath + File.separator + fileTaget;
-        File file = new File(path);
-        BufferedReader buffer = null;
-        FileReader reader = null;
-        ArrayList<LinkedHashMap<String,String>> target = new ArrayList<LinkedHashMap<String,String>>();
-        try {
-            reader = new FileReader(file);
-            buffer = new BufferedReader(reader);
-            CsvMapper mapper = new CsvMapper();
-            CsvSchema schema =CsvSchema.emptySchema().withHeader();
-            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
-
-            while(iterator.hasNext()){
-                LinkedHashMap<String,String> temp = iterator.next();
-                target.add(temp);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                buffer.close();
-                reader.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return target;
-    }
 
 
     private void writeFile(LinkedHashMap<String,LinkedHashMap<String,String>> listOfMap, Writer writer) throws IOException {
@@ -157,21 +132,29 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         }
 
     }
+    public String getRole(String name){
+        LinkedHashMap<String,String> user = accountList.get(name);
+        return user.get("role");
+    }
 
-    public Object login(String name, String pass){
-        Object acount = null;
+    public Account login(String name, String pass){
+        Account account = null;
         LinkedHashMap<String,String> user = accountList.get(name);
         if(user.get("passWord").equals(pass)){
             if (user.get("role").equals("admin")) {
-                acount = new Admin(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
-                //userName,passWord,role,pathPicture
+                return new Admin(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
             } else if (user.get("role").equals("staff")) {
-                acount = new Stuff();
+                return new Stuff(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
             } else if (user.get("role").equals("user")) {
-                acount = new User(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
+                return new User(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
+            }
+            else{
+                return null;
             }
         }
-        return acount;
+        else{
+            return null;
+        }
     }
 
     public void log(String userName,String agency,String path){
@@ -191,6 +174,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             this.logList.add(logTemp);
         }
     }
+
 
     public LinkedHashMap<String, LinkedHashMap<String, String>> getAccountList() {
         return accountList;
