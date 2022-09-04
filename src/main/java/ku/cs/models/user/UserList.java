@@ -9,7 +9,7 @@ public class UserList {
     public  UserList(){
         userList = new ArrayList<>();
     }
-    public void toList(User user){
+    public void addNewUser(User user){
         userList.add(user);
     }
     public ArrayList<User> getAllUser(){
