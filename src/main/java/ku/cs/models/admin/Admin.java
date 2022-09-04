@@ -1,6 +1,7 @@
 package ku.cs.models.admin;
 
 import ku.cs.models.Account;
+import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
 
 public class Admin extends Account {
@@ -12,8 +13,8 @@ public class Admin extends Account {
     public void banUser(User user){
         user.setBan();
     }
-    public Object changeStuffAgency(Object name, Object newName){
-        return null;
+    public void changeStuffAgency(Stuff stuff, String newAgency){
+        stuff.setAgency(newAgency);
     }
 
 
