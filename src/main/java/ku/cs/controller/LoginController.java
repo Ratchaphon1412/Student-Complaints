@@ -41,8 +41,7 @@ public class LoginController {
     private void initialize() throws IOException {
         String logoKUPic = getClass().getResource("/ku/cs/assets/images/LogoKU.png").toExternalForm();
         logoKU.setImage(new Image(logoKUPic));
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        HBox buttonWindows = (HBox)fxmlLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
+        HBox buttonWindows = (HBox) FXMLLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
         anchorPaneOnTop.getChildren().add(buttonWindows);
     }
 
@@ -84,23 +83,23 @@ public class LoginController {
         //check has account
         if(dataBase.checkAccount(userNameString)){
             if(!dataBase.checkBan(userNameString)){
-             switch (dataBase.checkRole(userNameString)){
-                 case "admin":
-                     DynamicDatabase<Admin> dynamicDatabaseAdmin = new DataBase<>();
-                     Admin admin = dynamicDatabaseAdmin.login(userNameString,passWordString);
-                     ApplicationController.goTo("Admin",admin);
-                     break;
-                  case "user":
-                     DynamicDatabase<User> dynamicDatabaseUser = new DataBase<>();
-                     User user = dynamicDatabaseUser.login(userNameString,passWordString);
-                      ApplicationController.goTo("User",user);
-                     break;
-                 case "stuff":
-                     DynamicDatabase<Stuff> dynamicDatabaseStuff = new DataBase<>();
-                     Stuff stuff = dynamicDatabaseStuff.login(userNameString,passWordString);
-                     ApplicationController.goTo("Stuff",stuff);
-                     break;
-             }
+                switch (dataBase.checkRole(userNameString)) {
+                    case "admin" -> {
+                        DynamicDatabase<Admin> dynamicDatabaseAdmin = new DataBase<>();
+                        Admin admin = dynamicDatabaseAdmin.login(userNameString, passWordString);
+                        ApplicationController.goTo("Admin", admin);
+                    }
+                    case "user" -> {
+                        DynamicDatabase<User> dynamicDatabaseUser = new DataBase<>();
+                        User user = dynamicDatabaseUser.login(userNameString, passWordString);
+                        ApplicationController.goTo("User", user);
+                    }
+                    case "stuff" -> {
+                        DynamicDatabase<Stuff> dynamicDatabaseStuff = new DataBase<>();
+                        Stuff stuff = dynamicDatabaseStuff.login(userNameString, passWordString);
+                        ApplicationController.goTo("Stuff", stuff);
+                    }
+                }
             }
         }
 
