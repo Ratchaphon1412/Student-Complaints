@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="125.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.LogAccontController">
+   <children>
+      <VBox alignment="CENTER" layoutX="42.0" prefHeight="125.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="63.0" prefWidth="598.0" styleClass="roundedCorner">
+               <children>
+                  <ImageView fx:id="img" fitHeight="50.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Users/poomf/OneDrive/รูปภาพ/meme/main.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="nameLabel" contentDisplay="CENTER" prefHeight="50.0" prefWidth="176.0" text="name" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="roleLabel" prefHeight="50.0" prefWidth="77.0" text="role" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timeLabel" prefHeight="50.0" prefWidth="89.0" text="xx:xx:xx" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateLabel" prefHeight="50.0" prefWidth="95.0" text="xx/xx/xxxx" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="roundedCorner" />
+         </styleClass>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../style/darkMode.css" />
+      <URL value="@../style/style.css" />
+   </stylesheets>
+</AnchorPane>
