@@ -1,25 +1,22 @@
 package ku.cs.controller;
 
 import com.github.saacsos.FXRouter;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.ResourceBundle;
 
 public class AdminController {
     @FXML
@@ -42,6 +39,7 @@ public class AdminController {
     private ScrollPane scroll;
     @FXML
     private GridPane grid;
+    private ArrayList<LinkedHashMap<String,String>> logList;
 
 
 
@@ -53,11 +51,22 @@ public class AdminController {
         adminpage.add(navbar,0,0);
         account = (Admin) FXRouter.getData();
         dataBase = new DataBase<>();
-        showListView();
-        for(int i = 0 ; i < logListView.hashCode() ; i++){
-            fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("ku/cs/views/logAccount.fxml"));
 
+
+        this.logList = dataBase.getLogList();
+        int colum = 0;
+
+        for(int i = 0 ; i < logList.size() ; i++){
+            FXMLLoader fxmlLoader1 = new FXMLLoader();
+            fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
+
+            AnchorPane anchorPane = (AnchorPane) fxmlLoader1.load();
+            anchorPane.setPadding(new Insets(10,0,0,10));
+
+            LogAccontController logAccontController = fxmlLoader1.getController();
+            logAccontController.setData(logList.get(i));
+            grid.add(anchorPane,colum,i+1);
+            GridPane.setMargin(anchorPane, new Insets(10));
 
         }
 
@@ -72,10 +81,10 @@ public class AdminController {
         System.out.println(account.getUserName() + " " + account.getRole());
     }
 
-    private void showListView() {
-        logListView.getItems().addAll(dataBase.getLogList());
-        logListView.refresh();
-    }
+//    private void showListView() {
+//        logListView.getItems().addAll(dataBase.getLogList());
+//        logListView.refresh();
+//    }
 //
 //    private void handleSelectedListView() {
 //        logListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LinkedHashMap<String,String>>() {
