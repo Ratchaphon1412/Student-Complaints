@@ -11,6 +11,8 @@ public class Stuff extends Account {
         this.agency = agency;
     }
 
-
+    public String getAgency() {
+        return agency;
+    }
 
 }
