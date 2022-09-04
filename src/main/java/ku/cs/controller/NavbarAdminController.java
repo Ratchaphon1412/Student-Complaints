@@ -15,10 +15,8 @@ public class NavbarAdminController {
 
     @FXML
     private GridPane navBar;
-    private Admin account;
     @FXML
     public void initialize() throws IOException {
-        account = (Admin) FXRouter.getData();
         FXMLLoader fxmlLoader = new FXMLLoader();
         HBox buttonWindows = (HBox)fxmlLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
         buttonWindows.setPrefWidth(50);
