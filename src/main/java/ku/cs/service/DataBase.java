@@ -3,9 +3,11 @@ package ku.cs.service;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import ku.cs.models.Account;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
+
 
 import java.io.*;
 import java.util.*;
@@ -18,38 +20,39 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private LinkedHashMap<String,LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
     private ArrayList<LinkedHashMap<String,String>> logList;
+    private DataObject account = null;
+
+    private Admin admin;
+    private Stuff stuff;
+    private User user;
 
     public DataBase(){
         initializeData();
     }
 
 
+
     public void initializeData(){
-        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
-        reportList = new LinkedHashMap<String,LinkedHashMap<String, String>>();
-        logList = new ArrayList<LinkedHashMap<String,String>>();
+        accountList = new LinkedHashMap<>();
+        reportList = new LinkedHashMap<>();
+        logList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
     }
 
     public void saveToDatabase() throws IOException {
         String[] database = {"account.csv","report.csv","log.csv"};
-        List<String> databaseList = Arrays.asList(database);
-
-        for(String databaseName : databaseList){
+        for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
             Writer writer = new FileWriter(file);
-            if(databaseName.equals("account.csv")){
-                this.writeFile(accountList,writer);
-            }else if(databaseName.equals("report.csv")){
-                this.writeFile(reportList,writer);
-            }else if(databaseName.equals("log.csv")){
-                this.writeFile(logList,writer);
+            switch (databaseName) {
+                case "account.csv" -> this.writeFile(accountList, writer);
+                case "report.csv" -> this.writeFile(reportList, writer);
+                case "log.csv" -> this.writeFile(logList, writer);
             }
         }
     }
-
 
 
     private void readFile(String fileTaget){
@@ -67,19 +70,11 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
             while(iterator.hasNext()){
                 LinkedHashMap<String,String> temp = iterator.next();
-                switch (fileTaget){
-                    case "account.csv":
-                        accountList.put(temp.get("userName"),temp);
-                        break;
-                    case "report.csv":
-                        reportList.put(temp.get("title"),temp);
-                        break;
-                    case "log.csv":
-                        logList.add(temp);
-                        break;
+                switch (fileTaget) {
+                    case "account.csv" -> accountList.put(temp.get("userName"), temp);
+                    case "report.csv" -> reportList.put(temp.get("title"), temp);
+                    case "log.csv" -> logList.add(temp);
                 }
-
-
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -121,10 +116,10 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         CsvSchema.Builder schemaBuilder = CsvSchema.builder();
         List<LinkedHashMap<String,String>> temp = new ArrayList<>();
         if(listOfMap !=null && !listOfMap.isEmpty()){
-            for(int i = 0 ; i < listOfMap.size();i++){
+            for (LinkedHashMap<String, String> stringStringLinkedHashMap : listOfMap) {
                 schemaBuilder.clearColumns();
-                temp.add(listOfMap.get(i));
-                for(String key : listOfMap.get(0).keySet()){
+                temp.add(stringStringLinkedHashMap);
+                for (String key : listOfMap.get(0).keySet()) {
                     schemaBuilder.addColumn(key);
                 }
             }
@@ -138,23 +133,34 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
 
-    public Object login(String name, String pass){
-        Object acount = null;
+    public String getRole(String name){
         LinkedHashMap<String,String> user = accountList.get(name);
-        if(user.get("passWord").equals(pass)){
-            if (user.get("role").equals("admin")) {
-                acount = new Admin(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
-                //userName,passWord,role,pathPicture
-            } else if (user.get("role").equals("staff")) {
-                acount = new Stuff();
-            } else if (user.get("role").equals("user")) {
-                acount = new User(user.get("userName"), user.get("passWord"), user.get("pathPicture"), user.get("role"));
-            }
-        }
-        return acount;
+        return user.get("role");
     }
 
-    public void log(String userName,String role,String path) throws IOException {
+
+    public DataObject login(String userName, String passWord) {
+            LinkedHashMap<String,String> data =accountList.get(userName);
+            switch (data.get("role")){
+                case "admin" -> {
+                    admin = new Admin(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    return (DataObject) admin;
+                }
+                case "stuff" ->{
+                    stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    return (DataObject) stuff;
+                }
+                case "user" ->{
+                    user = new User(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    return (DataObject) user;
+                }
+                default -> {
+                    return null;
+                }
+            }
+    }
+
+    public void log(String userName, String role, String path) throws IOException {
         Date currentDate = new Date();
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -165,13 +171,29 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         logTemp.put("date",dateFormat.format(currentDate));
         logTemp.put("time",timeFormat.format(currentDate));
         if(logList == null){
-            logList = new ArrayList<LinkedHashMap<String,String>>();
+            logList = new ArrayList<>();
             this.logList.add(logTemp);
             this.saveToDatabase();
         }else{
             this.logList.add(logTemp);
             this.saveToDatabase();
         }
+    }
+
+    public boolean checkAccount(String userName){
+        if(accountList.get(userName) != null){
+            return true;
+        }
+        return false;
+    }
+    public String checkRole(String userName){
+        return accountList.get(userName).get("role");
+    }
+    public boolean checkBan(String userName){
+        if(accountList.get(userName).get("ban").equals("false")){
+            return false;
+        }
+        return true;
     }
 
     @Override

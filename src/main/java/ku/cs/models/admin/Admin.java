@@ -4,7 +4,7 @@ import ku.cs.models.Account;
 
 public class Admin extends Account {
 
-    public Admin(String userName, String passWord, String role , String pathPicture) {
+    public Admin(String userName, String passWord, String pathPicture, String role ) {
         super(userName, passWord, pathPicture, role);
     }
 
