@@ -84,7 +84,7 @@ public class LoginController {
         //check has account
         if(dataBase.checkAccount(userNameString)){
             //check ban
-            if(!dataBase.checkBan(userNameString)){
+            if(dataBase.checkBan(userNameString)){
                 //check role
                 switch(dataBase.checkRole(userNameString)){
                     case "admin"->{

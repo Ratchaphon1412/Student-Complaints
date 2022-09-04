@@ -46,21 +46,24 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
         // initial UserList stuffList adminList
         for(LinkedHashMap<String,String> data : accountList){
-            switch (data.get("role")){
-                case "admin"->{
-                    admin = new Admin(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
-                    adminList.put(data.get("userName"),admin);
-                    break;
-                }
-                case "user"->{
-                    user = new User(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
-                    userList.put(data.get("userName"),user);
-                    break;
-                }
-                case "stuff"->{
-                    stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"),data.get("agency"));
-                    stuffList.put(data.get("userName"),stuff);
-                    break;
+            System.out.println(data.get("role"));
+            if(data.get("role")!=null) {
+                switch (data.get("role")) {
+                    case "admin" -> {
+                        admin = new Admin(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
+                        adminList.put(data.get("userName"), admin);
+                        break;
+                    }
+                    case "user" -> {
+                        user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
+                        userList.put(data.get("userName"), user);
+                        break;
+                    }
+                    case "stuff" -> {
+                        stuff = new Stuff(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), data.get("agency"));
+                        stuffList.put(data.get("userName"), stuff);
+                        break;
+                    }
                 }
             }
         }

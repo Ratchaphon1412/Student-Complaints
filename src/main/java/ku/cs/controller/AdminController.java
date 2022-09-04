@@ -19,6 +19,7 @@ public class AdminController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         GridPane navbar =(GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         adminpage.add(navbar,0,0);
+        System.out.println(account.getUserName());
     }
 
 
