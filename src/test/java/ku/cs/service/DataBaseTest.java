@@ -2,11 +2,9 @@ package ku.cs.service;
 
 
 import ku.cs.models.admin.Admin;
-import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
 import org.junit.jupiter.api.Test;
-
-import javax.xml.crypto.Data;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 
@@ -23,35 +21,30 @@ class DataBaseTest {
     }
 
     @Test
-    void testseveToFile(){
+    void testseveToFile() throws IOException {
         DataBase database = new DataBase<>();
+        database.saveToDatabase();
 
     }
 
     @Test
     void login(){
-        DataBase<Stuff> database = new DataBase<>();
-        if(database.getRole("poomffi").equals("admin")){
-            DataBase<Admin> databasebase = new DataBase<>();
-            databasebase.login("poomffi","123456");
-        }
-        else if(database.getRole("poomffi").equals("user")){
-            DataBase<User> databasebase = new DataBase<>();
-            databasebase.login("poomffi","123456");
-        }
-        else if(database.getRole("poomffi").equals("stuff")){
-            DataBase<Stuff> databasebase = new DataBase<>();
-            databasebase.login("poomffi","123456");
-        }
 
-
+        DynamicDatabase<Admin> database = new DataBase<>();
+        Admin admin = database.login("poomffi","123456");
+        System.out.println(admin.getUserName()+" "+admin.getRole());
+        DynamicDatabase<User> database1 = new DataBase<>();
+        User user = database1.login("j1kid1412","gug1234");
+        System.out.println(user.getUserName()+" "+ user.getRole());
     }
     @Test
-    void log(){
+    void log() throws IOException {
         DataBase dataBase = new DataBase();
         //dataBase.log("Nueng","test","/xxx/xxx/xxx/");
         System.out.println(dataBase.getLogList());
-        System.out.println(dataBase.getLogList().get(dataBase.getLogList().size()-1));
+        dataBase.log("test","stuff","/xxx/xxx/xx");
+        System.out.println(dataBase.getLogList());
+
     }
 
     @Test
