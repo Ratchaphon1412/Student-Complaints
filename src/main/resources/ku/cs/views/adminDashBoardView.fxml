@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="adminpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AdminController">
+<GridPane fx:id="adminpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AdminController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,7 +43,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <GridPane styleClass="background" GridPane.columnIndex="1" GridPane.columnSpan="20">
+      <GridPane GridPane.columnIndex="1" GridPane.columnSpan="20">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -86,7 +86,7 @@
                   </HBox>
                </children>
             </GridPane>
-            <GridPane GridPane.columnSpan="7">
+            <GridPane styleClass="rightPageRoundedCorner" GridPane.columnSpan="7">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -295,27 +295,20 @@
                         <Label layoutX="68.0" layoutY="5.0" text="Username" textFill="WHITE" />
                         <Label layoutX="285.0" layoutY="6.0" text="Date" textFill="WHITE" />
                         <Label layoutX="478.0" layoutY="5.0" text="Message" textFill="WHITE" />
-                        <ScrollPane fx:id="scroll" layoutX="10.0" layoutY="36.0" prefHeight="269.0" prefWidth="580.0">
+                        <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="10.0" layoutY="36.0" prefHeight="262.0" prefWidth="575.0" style="-fx-background-color: transparent;">
                            <content>
-                              <GridPane fx:id="grid" alignment="CENTER" prefHeight="22.0" prefWidth="558.0">
+                              <GridPane fx:id="grid" alignment="CENTER" prefHeight="22.0" prefWidth="574.0" styleClass="cardBackground">
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
-                                 <styleClass>
-                                    <String fx:value="roundedCorner" />
-                                    <String fx:value="cardBackground" />
-                                 </styleClass>
                               </GridPane>
                            </content>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
                            <opaqueInsets>
-                              <Insets top="10.0" />
+                              <Insets />
                            </opaqueInsets>
                            <styleClass>
                               <String fx:value="roundedCorner" />
-                              <String fx:value="background" />
+                              <String fx:value="cardBackground" />
                            </styleClass>
                         </ScrollPane>
                      </children>
@@ -336,6 +329,13 @@
                </children>
             </GridPane>
          </children>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="rightPageRoundedCorner" />
+         </styleClass>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </GridPane>
    </children>
    <stylesheets>

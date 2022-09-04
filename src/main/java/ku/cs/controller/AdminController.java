@@ -57,17 +57,17 @@ public class AdminController {
         this.logList = dataBase.getLogList();
         int colum = 0;
 
-        for(int i = 0 ; i < logList.size() ; i++){
+        for(int i = 0 ; i < logList.size()-1 ; i++){
             FXMLLoader fxmlLoader1 = new FXMLLoader();
             fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
 
             AnchorPane anchorPane = (AnchorPane) fxmlLoader1.load();
-            anchorPane.setPadding(new Insets(10,0,0,10));
+//            anchorPane.setPadding(new Insets(10,0,0,0));
 
             LogAccontController logAccontController = fxmlLoader1.getController();
             logAccontController.setData(logList.get(i));
             grid.add(anchorPane,colum,i+1);
-            GridPane.setMargin(anchorPane, new Insets(10));
+            GridPane.setMargin(anchorPane, new Insets(0,0,5,0));
 
         }
 

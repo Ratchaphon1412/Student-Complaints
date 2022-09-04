@@ -18,7 +18,10 @@
     -fx-border-radius:30px;
     -fx-background-radius:30px;
 }
-
+.roundedCornerCard{
+    -fx-border-radius:10px;
+    -fx-background-radius:10px;
+}
 .backgroundImage{
     -fx-background-position:center;
     -fx-background-repeat:no-repeat;
