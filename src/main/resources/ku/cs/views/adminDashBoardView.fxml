@@ -85,9 +85,9 @@
                         <Insets bottom="9.0" right="6.0" />
                      </GridPane.margin>
                      <children>
-                        <ScrollPane prefHeight="325.0" prefWidth="342.0">
+                        <ScrollPane fx:id="scroll" prefHeight="325.0" prefWidth="342.0">
                            <content>
-                              <GridPane prefHeight="22.0" prefWidth="19.0">
+                              <GridPane fx:id="grid" prefHeight="22.0" prefWidth="19.0">
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
