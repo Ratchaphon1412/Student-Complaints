@@ -139,7 +139,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
 
-    public DataObject login(String userName, String passWord) {
+    public DataObject login(String userName, String passWord) throws IOException {
             LinkedHashMap<String,String> data =accountList.get(userName);
             switch (data.get("role")){
                 case "admin" -> {
@@ -212,6 +212,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     public ArrayList<LinkedHashMap<String, String>> getLogList() {
         return logList;
     }
+
 
 
 

@@ -28,7 +28,7 @@ class DataBaseTest {
     }
 
     @Test
-    void login(){
+    void login() throws IOException {
 
         DynamicDatabase<Admin> database = new DataBase<>();
         Admin admin = database.login("poomffi","123456");
@@ -44,6 +44,9 @@ class DataBaseTest {
         System.out.println(dataBase.getLogList());
         dataBase.log("test","stuff","/xxx/xxx/xx");
         System.out.println(dataBase.getLogList());
+        for(int i = 0; i < dataBase.getLogList().size();i++){
+            System.out.println(dataBase.getLogList().get(i));
+        }
 
     }
 
