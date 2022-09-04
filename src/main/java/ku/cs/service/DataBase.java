@@ -55,7 +55,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     userList.add(user);
                     break;
                 case "stuff":
-                    stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+//                    stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
                     stuffList.add(stuff);
                     break;
             }
@@ -173,7 +173,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     return (DataObject) admin;
                 }
                 case "stuff" ->{
-                    stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+//                    stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
                     log(data.get("userName"),data.get("role"),data.get("pathPicture"));
                     return (DataObject) stuff;
                 }
