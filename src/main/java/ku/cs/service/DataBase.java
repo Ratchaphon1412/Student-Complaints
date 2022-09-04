@@ -3,7 +3,6 @@ package ku.cs.service;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import ku.cs.models.Account;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
@@ -20,7 +19,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private LinkedHashMap<String,LinkedHashMap<String,String>> accountList;
     private LinkedHashMap<String, LinkedHashMap<String,String>> reportList;
     private ArrayList<LinkedHashMap<String,String>> logList;
-    private DataObject account = null;
+    private ArrayList<User> userList;
+    private ArrayList<Stuff> stuffList;
+    private ArrayList<Admin> adminList;
 
     private Admin admin;
     private Stuff stuff;
@@ -36,8 +37,29 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         accountList = new LinkedHashMap<>();
         reportList = new LinkedHashMap<>();
         logList = new ArrayList<>();
+        userList = new ArrayList<>();
+        stuffList = new ArrayList<>();
+        adminList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
+        // initial UserList stuffList adminList
+         for(String key: accountList.keySet()){
+            LinkedHashMap<String,String> data = accountList.get(key);
+            switch (data.get("role")){
+                case "admin":
+                    admin = new Admin(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    adminList.add(admin);
+                    break;
+                case "user":
+                    user = new User(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    userList.add(user);
+                    break;
+                case "stuff":
+                    stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    stuffList.add(stuff);
+                    break;
+            }
+        }
     }
 
     public void saveToDatabase() throws IOException {
@@ -138,20 +160,26 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         return user.get("role");
     }
 
+    public ArrayList<Admin> getAdminList() {
+        return adminList;
+    }
 
-    public DataObject login(String userName, String passWord) {
+    public DataObject login(String userName, String passWord) throws IOException {
             LinkedHashMap<String,String> data =accountList.get(userName);
             switch (data.get("role")){
                 case "admin" -> {
                     admin = new Admin(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    log(data.get("userName"),data.get("role"),data.get("pathPicture"));
                     return (DataObject) admin;
                 }
                 case "stuff" ->{
                     stuff = new Stuff(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    log(data.get("userName"),data.get("role"),data.get("pathPicture"));
                     return (DataObject) stuff;
                 }
                 case "user" ->{
                     user = new User(data.get("userName"),data.get("passWord"),data.get("pathPicture"),data.get("role"));
+                    log(data.get("userName"),data.get("role"),data.get("pathPicture"));
                     return (DataObject) user;
                 }
                 default -> {
@@ -178,6 +206,14 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
             this.logList.add(logTemp);
             this.saveToDatabase();
         }
+    }
+
+    public ArrayList<User> getUserList() {
+        return userList;
+    }
+
+    public ArrayList<Stuff> getStuffList() {
+        return stuffList;
     }
 
     public boolean checkAccount(String userName){
