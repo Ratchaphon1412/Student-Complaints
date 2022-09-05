@@ -6,6 +6,8 @@ public class User extends Account {
     private boolean ban;
     private int countAccess;
     private String requestUnban;
+    private UserList userList;
+
 
 
     public User(String userName, String passWord, String pathPicture, String role){
@@ -16,6 +18,7 @@ public class User extends Account {
         this.ban = false;
         this.countAccess = 0;
         this.requestUnban = requestUnban;
+
     }
 
     public boolean isBan() {

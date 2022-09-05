@@ -2,14 +2,18 @@ package ku.cs.models.user;
 
 import java.util.ArrayList;
 
-public class UserList extends User {
-    private ArrayList<String[]> userList;
+public class UserList {
+    private ArrayList<User> userList;
     private User user;
 
-    public UserList(String userName, String passWord, String pathPicture, String role, String requestUnban, ArrayList<String[]> userList, User user) {
-        super(userName, passWord, pathPicture, role, requestUnban);
-        this.userList = userList;
-        this.user = user;
+    public  UserList(){
+        userList = new ArrayList<>();
+    }
+    public void addNewUser(User user){
+        userList.add(user);
+    }
+    public ArrayList<User> getAllUser(){
+        return userList;
     }
 
 }

@@ -1,9 +1,9 @@
 package ku.cs.service;
 
 
+import ku.cs.models.admin.Admin;
+import ku.cs.models.user.User;
 import org.junit.jupiter.api.Test;
-
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
@@ -30,6 +30,12 @@ class DataBaseTest {
     @Test
     void login(){
 
+        DynamicDatabase<Admin> database = new DataBase<>();
+        Admin admin = database.login("poomffi","123456");
+        System.out.println(admin.getUserName()+" "+admin.getRole());
+        DynamicDatabase<User> database1 = new DataBase<>();
+        User user = database1.login("j1kid1412","gug1234");
+        System.out.println(user.getUserName()+" "+ user.getRole());
     }
     @Test
     void log() throws IOException {
@@ -41,4 +47,10 @@ class DataBaseTest {
 
     }
 
+    @Test
+    void getRole() {
+        DataBase user = new DataBase<>();
+        System.out.println(user.getRole("poomffi"));
+
+    }
 }
