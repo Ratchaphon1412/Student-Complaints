@@ -8,9 +8,12 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
@@ -24,9 +27,10 @@ public class AdminController {
     @FXML
     private GridPane adminpage;
     @FXML
-    private ImageView accountImage;
-    @FXML
     private ListView<LinkedHashMap<String,String>> logListView;
+
+    @FXML
+    private Circle imageAccountCircle;
     private Admin account;
     private DataBase<Admin> dataBase;
 
@@ -54,9 +58,12 @@ public class AdminController {
         GridPane navbar =(GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         adminpage.add(navbar,0,0);
         account = (Admin) FXRouter.getData();
-        accountImage = new ImageView(getClass().getResource("/ku/cs/assets/images/LogoKU.png").toString());
-        final Circle clip = new Circle(300, 200, 200);
-        accountImage.setClip(clip);
+//        accountImage.setImage(new Image(getClass().getResource("/ku/cs/assets/images/download.png").toExternalForm()));
+        Image imageAccount = new Image(getClass().getResource("/ku/cs/assets/images/114617.jpg").toExternalForm());
+        imageAccountCircle.setFill(new ImagePattern(imageAccount));
+        imageAccountCircle.setStroke(Color.TRANSPARENT);
+
+
         dataBase = new DataBase<>();
 
 
@@ -68,7 +75,6 @@ public class AdminController {
             fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
 
             AnchorPane anchorPane = (AnchorPane) fxmlLoader1.load();
-//            anchorPane.setPadding(new Insets(10,0,0,0));
 
             LogAccontController logAccontController = fxmlLoader1.getController();
             logAccontController.setData(logList.get(i));
@@ -76,11 +82,6 @@ public class AdminController {
             GridPane.setMargin(anchorPane, new Insets(0,0,5,0));
 
         }
-
-
-
-
-//        handleSelectedListView();
     }
 
     @FXML

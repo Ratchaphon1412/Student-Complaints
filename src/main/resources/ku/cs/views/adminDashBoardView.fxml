@@ -119,7 +119,7 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <ImageView fx:id="accountImage" fitHeight="40.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Circle fx:id="imageAccountCircle" fill="#1f93ff00" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                                        </children>
                                     </HBox>
                                  </children>
