@@ -6,6 +6,8 @@ public class User extends Account {
     private boolean ban;
     private int countAccess;
     private String requestUnban;
+    private String dateBan;
+
     private UserList userList;
 
 
@@ -13,12 +15,13 @@ public class User extends Account {
     public User(String userName, String passWord, String pathPicture, String role){
         super(userName, passWord, pathPicture, role);
     }
-    public User(String userName, String passWord, String pathPicture, String role, String requestUnban) {
+    public User(String userName, String passWord, String pathPicture, String role, String ban ,
+                String requestUnban , String dateBan ,String countAccess) {
         super(userName, passWord, pathPicture, role);
-        this.ban = false;
-        this.countAccess = 0;
+        this.ban = Boolean.parseBoolean(ban);
+        this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
-
+        this.dateBan = dateBan;
     }
 
     public boolean isBan() {
@@ -43,6 +46,11 @@ public class User extends Account {
         }else{
             this.countAccess += 0;
         }
+    }
+
+    @Override
+    public String toString() {
+        return userName + ',' +passWord + ',' + pathPicture + ',' + role;
     }
 }
 

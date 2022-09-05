@@ -6,14 +6,24 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import ku.cs.models.user.User;
+import ku.cs.models.user.UserList;
+import ku.cs.service.DataBase;
 
 import java.io.IOException;
 
 
 public class AdminUserBanedListController {
     public GridPane gridPaneList;
+    private DataBase<User> dataBase;
+    private UserList userList;
     @FXML
     public void initialize() throws IOException {
+
+        dataBase = new DataBase<>();
+        userList = new UserList(dataBase.getUserList(),dataBase.getUserBanList());
+
+
 
 
         for(int i = 0; i < 10;i++){
@@ -24,4 +34,7 @@ public class AdminUserBanedListController {
             GridPane.setMargin(listUser, new Insets(0,0,5,0));
         }
     }
+
+
+
 }

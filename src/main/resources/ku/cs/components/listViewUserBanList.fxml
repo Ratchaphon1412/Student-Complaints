@@ -78,7 +78,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="54.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="212.0">
                      <children>
-                        <Label fx:id="nameLabel1" text="Text" textFill="WHITE">
+                        <Label fx:id="textLabel" text="Text" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>
@@ -98,7 +98,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="28.0" />
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="37.0">
                      <children>
-                        <Label fx:id="dateLabel1" text="X">
+                        <Label fx:id="countBanLabel" text="X">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

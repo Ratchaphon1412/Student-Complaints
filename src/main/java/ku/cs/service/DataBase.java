@@ -19,6 +19,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private List<LinkedHashMap<String,String>> accountList;
     private List<LinkedHashMap<String,String>> reportList;
     private List<LinkedHashMap<String,String>> logList;
+    private List<LinkedHashMap<String,String>> userBanList;
 
     private LinkedHashMap<String,User> userList;
     private LinkedHashMap<String,Stuff> stuffList;
@@ -38,11 +39,13 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         accountList = new ArrayList<>();
         reportList =  new ArrayList<>();
         logList = new ArrayList<>();
+        userBanList = new ArrayList<>();
         userList = new LinkedHashMap<>();
         stuffList = new LinkedHashMap<>();
         adminList = new LinkedHashMap<>();
         readFile("account.csv");
         readFile("log.csv");
+        readFile("requestunban.csv");
 
         // initial UserList stuffList adminList
         for(LinkedHashMap<String,String> data : accountList){
@@ -73,7 +76,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -82,6 +85,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                 case "account.csv" -> this.writeFile(accountList, writer);
                 case "report.csv" -> this.writeFile(reportList, writer);
                 case "log.csv" -> this.writeFile(logList, writer);
+                case "requestunban.csv" -> this.writeFile(userBanList,writer);
             }
         }
     }
@@ -106,6 +110,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     case "account.csv" -> accountList.add(temp);
                     case "report.csv" -> reportList.add(temp);
                     case "log.csv" -> logList.add(temp);
+                    case "requestunban.csv" -> userBanList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -258,5 +263,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         return adminList;
     }
 
-
+    public List<LinkedHashMap<String, String>> getUserBanList() {
+        return userBanList;
+    }
 }
