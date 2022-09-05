@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.components;
 
 import com.github.saacsos.FXRouter;
 import javafx.fxml.FXML;

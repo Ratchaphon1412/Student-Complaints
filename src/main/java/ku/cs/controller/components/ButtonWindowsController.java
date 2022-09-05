@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.components;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -31,8 +31,8 @@ public class ButtonWindowsController {
     Stage stage = (Stage)full.getScene().getWindow();
         if(!toggle){
 
-            stage.setWidth(1100);
-            stage.setHeight(680);
+            stage.setWidth(1040);
+            stage.setHeight(620);
         }else{
 
             stage.setHeight(580);
