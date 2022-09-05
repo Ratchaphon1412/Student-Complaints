@@ -29,7 +29,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
         ApplicationController.when("Stuff",pathResource+"stuffDashBoardView.fxml",1000,580);
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
-        ApplicationController.when("AdminUserBanList",pathResource+"listUserReportView.fxml",1000,580);
+        ApplicationController.when("AdminUserBanList",pathResource+"adminUserBanedList.fxml",1000,580);
     }
 
 

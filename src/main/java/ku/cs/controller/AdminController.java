@@ -82,23 +82,6 @@ public class AdminController {
         System.out.println(account.getUserName() + " " + account.getRole());
     }
 
-//    private void showListView() {
-//        logListView.getItems().addAll(dataBase.getLogList());
-//        logListView.refresh();
-//    }
-//
-//    private void handleSelectedListView() {
-//        logListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LinkedHashMap<String,String>>() {
-//            @Override
-//            public void changed(ObservableValue<? extends LinkedHashMap<String, String>> observableValue, LinkedHashMap<String, String> oldValue, LinkedHashMap<String, String> newValue)
-//            {
-//                System.out.println(newValue + " is selected");showSelectedLog(newValue);
-//            }});
-//    }
-//
-//    private void showSelectedLog(LinkedHashMap<String,String> log){
-//        //nameLabel.setText(log.get("userName"));
-//    }
 
 
 
