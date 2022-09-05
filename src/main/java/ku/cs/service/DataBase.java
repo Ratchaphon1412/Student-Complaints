@@ -25,9 +25,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
     public void initializeData(){
-        accountList = new LinkedHashMap<String,LinkedHashMap<String,String>>();
-        reportList = new LinkedHashMap<String,LinkedHashMap<String, String>>();
-        logList = new ArrayList<LinkedHashMap<String,String>>();
+        accountList = new LinkedHashMap<>();
+        reportList = new LinkedHashMap<>();
+        logList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
     }
