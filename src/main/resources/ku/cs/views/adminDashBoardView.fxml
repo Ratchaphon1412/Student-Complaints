@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -84,6 +86,40 @@
                         <Insets bottom="9.0" right="6.0" />
                      </GridPane.margin>
                   </HBox>
+                  <GridPane prefHeight="42.0" prefWidth="337.0" GridPane.rowSpan="3">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="110.95933532714844" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="79.11583709716797" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="208.67508697509766" minHeight="10.0" prefHeight="104.38416290283203" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="208.67508697509766" minHeight="10.0" prefHeight="72.37328338623047" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane GridPane.columnSpan="3" GridPane.rowSpan="2">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="122.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/LogoKU.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
             <GridPane styleClass="rightPageRoundedCorner" GridPane.columnSpan="7">
@@ -295,7 +331,7 @@
                         <Label layoutX="68.0" layoutY="5.0" text="Username" textFill="WHITE" />
                         <Label layoutX="285.0" layoutY="6.0" text="Date" textFill="WHITE" />
                         <Label layoutX="478.0" layoutY="5.0" text="Message" textFill="WHITE" />
-                        <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="10.0" layoutY="36.0" prefHeight="262.0" prefWidth="575.0" style="-fx-background-color: transparent;">
+                        <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="10.0" layoutY="36.0" prefHeight="262.0" prefWidth="575.0">
                            <content>
                               <GridPane fx:id="grid" alignment="CENTER" prefHeight="22.0" prefWidth="574.0" styleClass="cardBackground">
                                 <rowConstraints>
