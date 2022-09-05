@@ -225,8 +225,20 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
     @Override
     public boolean registerAccount(DataObject object) {
+        User newUser = (User) object;
+        String data = newUser.getUserName()+","+newUser.getPassWord()+","+newUser.getRole();
+        newUser.setPathPicture(saveImage(newUser.getPathPicture()));
+
         return false;
     }
+
+    public String saveImage(String path){
+            if(path != null){
+
+            }
+        return null;
+    }
+
 
     @Override
     public boolean changeData(DataObject object) {

@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="50.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.ButtonWindowsController">
+<HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="50.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.ButtonWindowsController">
     <children>
         <Button fx:id="close" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeWindows" prefHeight="15.0" prefWidth="17.0" textAlignment="CENTER">
             <font>
