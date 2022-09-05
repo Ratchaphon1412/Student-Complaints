@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +12,7 @@
 
 <AnchorPane prefHeight="125.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.LogAccontController">
    <children>
-      <VBox alignment="CENTER" layoutX="42.0" prefHeight="125.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="42.0" prefHeight="125.0" prefWidth="580.0" style="-fx-background-color: #232A36;" styleClass="roundedCornerCard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="63.0" prefWidth="598.0" styleClass="roundedCorner">
                <children>
@@ -54,10 +53,6 @@
                </VBox.margin>
             </HBox>
          </children>
-         <styleClass>
-            <String fx:value="background" />
-            <String fx:value="roundedCorner" />
-         </styleClass>
       </VBox>
    </children>
    <stylesheets>

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="adminpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AdminController">
+<GridPane fx:id="adminpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AdminController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,7 +45,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <GridPane styleClass="background" GridPane.columnIndex="1" GridPane.columnSpan="20">
+      <GridPane GridPane.columnIndex="1" GridPane.columnSpan="20">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -84,9 +86,60 @@
                         <Insets bottom="9.0" right="6.0" />
                      </GridPane.margin>
                   </HBox>
+                  <GridPane prefHeight="42.0" prefWidth="337.0" GridPane.rowSpan="3">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="110.95933532714844" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="79.11583709716797" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="208.67508697509766" minHeight="10.0" prefHeight="104.38416290283203" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="208.67508697509766" minHeight="10.0" prefHeight="72.37328338623047" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane GridPane.columnSpan="3" GridPane.rowSpan="2">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <GridPane GridPane.columnIndex="2">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Circle fx:id="imageAccountCircle" fill="#1f93ff00" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="122.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/LogoKU.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
-            <GridPane GridPane.columnSpan="7">
+            <GridPane styleClass="rightPageRoundedCorner" GridPane.columnSpan="7">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -295,27 +348,20 @@
                         <Label layoutX="68.0" layoutY="5.0" text="Username" textFill="WHITE" />
                         <Label layoutX="285.0" layoutY="6.0" text="Date" textFill="WHITE" />
                         <Label layoutX="478.0" layoutY="5.0" text="Message" textFill="WHITE" />
-                        <ScrollPane fx:id="scroll" layoutX="10.0" layoutY="36.0" prefHeight="269.0" prefWidth="580.0">
+                        <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="10.0" layoutY="36.0" prefHeight="262.0" prefWidth="575.0">
                            <content>
-                              <GridPane fx:id="grid" alignment="CENTER" prefHeight="22.0" prefWidth="558.0">
+                              <GridPane fx:id="grid" alignment="CENTER" prefHeight="22.0" prefWidth="574.0" styleClass="cardBackground">
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
-                                 <styleClass>
-                                    <String fx:value="roundedCorner" />
-                                    <String fx:value="cardBackground" />
-                                 </styleClass>
                               </GridPane>
                            </content>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
                            <opaqueInsets>
-                              <Insets top="10.0" />
+                              <Insets />
                            </opaqueInsets>
                            <styleClass>
                               <String fx:value="roundedCorner" />
-                              <String fx:value="background" />
+                              <String fx:value="cardBackground" />
                            </styleClass>
                         </ScrollPane>
                      </children>
@@ -336,6 +382,13 @@
                </children>
             </GridPane>
          </children>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="rightPageRoundedCorner" />
+         </styleClass>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </GridPane>
    </children>
    <stylesheets>
