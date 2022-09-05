@@ -83,9 +83,9 @@
                </rowConstraints>
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" />
-                  <ScrollPane prefHeight="200.0" prefWidth="510.0" GridPane.rowIndex="1">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="500.0" GridPane.rowIndex="1">
                      <content>
-                        <GridPane fx:id="gridPaneList">
+                        <GridPane fx:id="gridPaneList" prefHeight="22.0" prefWidth="932.0" styleClass="background">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
