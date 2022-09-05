@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
 
@@ -22,6 +23,8 @@ import java.util.List;
 public class AdminController {
     @FXML
     private GridPane adminpage;
+    @FXML
+    private ImageView accountImage;
     @FXML
     private ListView<LinkedHashMap<String,String>> logListView;
     private Admin account;
@@ -51,6 +54,9 @@ public class AdminController {
         GridPane navbar =(GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         adminpage.add(navbar,0,0);
         account = (Admin) FXRouter.getData();
+        accountImage = new ImageView(getClass().getResource("/ku/cs/assets/images/LogoKU.png").toString());
+        final Circle clip = new Circle(300, 200, 200);
+        accountImage.setClip(clip);
         dataBase = new DataBase<>();
 
 
