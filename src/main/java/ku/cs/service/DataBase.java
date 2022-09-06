@@ -56,17 +56,14 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     case "admin" -> {
                         admin = new Admin(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
                         adminList.put(data.get("userName"), admin);
-                        break;
                     }
                     case "user" -> {
                         user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
                         userList.put(data.get("userName"), user);
-                        break;
                     }
                     case "stuff" -> {
                         stuff = new Stuff(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), data.get("agency"));
                         stuffList.put(data.get("userName"), stuff);
-                        break;
                     }
                 }
             }
@@ -265,7 +262,7 @@ public boolean  checkAccountDuplicate(String userName){
     }
 
     private String saveImage(String path,String name,File file){
-        File desDir = new File("image");
+        File desDir = new File("image/accounts");
          try {
              if(path != null && file  != null){
                  // CREATE FOLDER IF NOT EXIST
