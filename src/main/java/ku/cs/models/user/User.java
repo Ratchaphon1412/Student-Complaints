@@ -16,13 +16,21 @@ public class User extends Account {
         super(userName, passWord, pathPicture, role);
         this.ban = false;
     }
-    public User(String userName, String passWord, String pathPicture, String role, String ban ,
+    public User(String userName, String passWord, String pathPicture, String role, Boolean ban ,
                 String requestUnban , String dateBan ,String countAccess) {
         super(userName, passWord, pathPicture, role);
-        this.ban = Boolean.parseBoolean(ban);
+        this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
+    }
+
+    public String getRequestUnban() {
+        return requestUnban;
+    }
+
+    public String getDateBan() {
+        return dateBan;
     }
 
     public boolean isBan() {

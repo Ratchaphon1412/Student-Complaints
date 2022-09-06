@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import ku.cs.ApplicationController;
 import ku.cs.controller.components.LogAccontController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
@@ -105,6 +106,15 @@ public class AdminController {
     @FXML
     public void testButton(ActionEvent actionEvent) {
         System.out.println(account.getUserName() + " " + account.getRole());
+    }
+
+    @FXML
+    public void handleAdminUserBanListButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goTo("AdminUserBanList");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
 
 
