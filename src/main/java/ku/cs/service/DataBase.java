@@ -22,7 +22,6 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private List<LinkedHashMap<String,String>> reportList;
     private List<LinkedHashMap<String,String>> logList;
     private List<LinkedHashMap<String,String>> userBanList;
-
     private LinkedHashMap<String,User> userList;
     private LinkedHashMap<String,Stuff> stuffList;
     private LinkedHashMap<String,Admin> adminList;
@@ -60,6 +59,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     case "user" -> {
                         user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
                         userList.put(data.get("userName"), user);
+
                     }
                     case "stuff" -> {
                         stuff = new Stuff(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), data.get("agency"));
