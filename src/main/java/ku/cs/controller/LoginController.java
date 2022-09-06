@@ -82,13 +82,14 @@ public class LoginController {
         //check has account
         if(dataBase.checkAccount(userNameString)){
             //check ban
-            if(dataBase.checkBan(userNameString)){
+            if(!dataBase.checkBan(userNameString)){
                 //check role
                 switch(dataBase.checkRole(userNameString)){
                     case "admin"->{
                         DynamicDatabase<Admin> database = new DataBase<>();
                         Admin admin = database.login(userNameString,passWordString);
                         if(admin != null){
+                            System.out.println("test");
                             ApplicationController.goTo("Admin",admin);
                         }else{
                             System.out.println("wrong password");

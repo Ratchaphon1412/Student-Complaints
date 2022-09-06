@@ -9,6 +9,8 @@ import ku.cs.models.user.User;
 
 
 import java.io.*;
+import java.nio.file.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
@@ -199,6 +201,17 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
 
+public boolean  checkAccountDuplicate(String userName){
+        for (LinkedHashMap<String,String> account : accountList){
+            for (String key : account.keySet()){
+                if (key.equals(userName)){
+                    return  true;
+                }
+            }
+        }
+        return false;
+}
+
 
     public boolean checkAccount(String userName){
       for(LinkedHashMap<String,String>account :accountList){
@@ -210,9 +223,11 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
     public boolean checkBan(String userName){
-        for(LinkedHashMap<String,String>account :accountList){
-            if(account.get("ban").equals("false")){
-                return true;
+        for (LinkedHashMap<String,String> accountBan:userBanList){
+            for (String key:accountBan.keySet()){
+                if(key.equals(userName)){
+                    return true;
+                }
             }
         }
         return false;
@@ -228,19 +243,45 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
 
-    @Override
-    public boolean registerAccount(DataObject object) {
-        User newUser = (User) object;
-        String data = newUser.getUserName()+","+newUser.getPassWord()+","+newUser.getRole();
-        newUser.setPathPicture(saveImage(newUser.getPathPicture()));
 
-        return false;
+    @Override
+    public boolean registerAccount(DataObject object, File file) throws IOException {
+        try
+        {
+            User newUser = (User) object;
+            newUser.setPathPicture(saveImage(newUser.getPathPicture(), newUser.getUserName(),file));
+            LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
+            createAccount.put("userName",newUser.getUserName());
+            createAccount.put("passWord",newUser.getPassWord());
+            createAccount.put("role",newUser.getRole());
+            createAccount.put("pathPicture",newUser.getPathPicture());
+            accountList.add(createAccount);
+            saveToDatabase();
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 
-    public String saveImage(String path){
-            if(path != null){
+    private String saveImage(String path,String name,File file){
+        File desDir = new File("image");
+         try {
+             if(path != null && file  != null){
+                 // CREATE FOLDER IF NOT EXIST
+                 if(!desDir.exists()){
+                     desDir.mkdirs();
+                 }
+                 String[] extension = path.split("\\.");
+                 String filename = name+"_"+ LocalDate.now()+"_"+System.currentTimeMillis() + "."+extension[1];
+                 Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+filename);
+                 Files.copy(file.toPath(),target, StandardCopyOption.REPLACE_EXISTING );
+                return filename;
 
-            }
+             }
+         }catch (IOException e){
+             e.printStackTrace();
+         }
         return null;
     }
 

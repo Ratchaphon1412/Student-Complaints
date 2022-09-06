@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import ku.cs.models.user.User;
@@ -33,16 +34,22 @@ public class RegisterController {
 
     List<String> listfile;
     @FXML
-    public void signUpButton(ActionEvent actionEvent) {
+    public void signUpButton(ActionEvent actionEvent) throws IOException {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        if(dataBase.checkAccount(user)){
+        dataBase = new DataBase<>();
+        if(!dataBase.checkAccountDuplicate(user)){
             if(password.equals(confirmpassword)){
                 if(path != null){
-                    User newUser = new User(user,password,path,"user","");
+                    User newUser = new User(user,password,path,"user");
                     DynamicDatabase<User> database = new DataBase<>();
-                    database.registerAccount(newUser);
+                   boolean checkregister = database.registerAccount(newUser,file);
+                   if(checkregister){
+
+                   }else{
+
+                   }
                 }else{
                     System.out.println("no select picture");
                 }
@@ -69,7 +76,6 @@ public class RegisterController {
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
             path = file.getAbsolutePath();
-            System.out.println(path);
             userImage.setImage(new Image(new File(path).toURI().toString()));
         }
 

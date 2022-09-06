@@ -14,6 +14,7 @@ public class User extends Account {
 
     public User(String userName, String passWord, String pathPicture, String role){
         super(userName, passWord, pathPicture, role);
+        this.ban = false;
     }
     public User(String userName, String passWord, String pathPicture, String role, String ban ,
                 String requestUnban , String dateBan ,String countAccess) {
