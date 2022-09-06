@@ -282,6 +282,21 @@ public boolean  checkAccountDuplicate(String userName){
         return null;
     }
 
+    public boolean changePasswordUser(String username, String oldPassword, String newPassword) throws IOException {
+        for (LinkedHashMap<String, String> dataLine : accountList){
+            if(dataLine.get("userName").equals(username)){
+                if(dataLine.get("passWord").equals(oldPassword)){
+                    dataLine.replace("passWord", newPassword);
+                    saveToDatabase();
+                    return true;
+                }
+            }
+        }
+        System.out.println("pp");
+        return false;
+
+    }
+
 
     @Override
     public boolean changeData(DataObject object) {
