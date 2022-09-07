@@ -47,20 +47,20 @@ public class RegisterController {
                     DynamicDatabase<User> database = new DataBase<>();
                    boolean checkregister = database.registerAccount(newUser,file);
                    if(checkregister){
-
+                        ApplicationController.goTo("Login");
                    }else{
-
+                        ApplicationController.goToNew("Alert","Failed to register");
                    }
                 }else{
-                    ApplicationController.goToNew("Alert");
+                    ApplicationController.goToNew("Alert", "no select picture");
                     System.out.println("no select picture");
                 }
             }else{
-                ApplicationController.goToNew("Alert");
+                ApplicationController.goToNew("Alert", "password not correct");
                 System.out.println("passWord not correct");
             }
         }else{
-            ApplicationController.goToNew("Alert");
+            ApplicationController.goToNew("Alert", "Have Account in Database");
             System.out.println("Have Account in Database");
         }
     }
@@ -71,6 +71,7 @@ public class RegisterController {
         listfile = new ArrayList<>();
         listfile.add("*.jpg");
         listfile.add("*.png");
+        listfile.add("*jpeg");
         choosefile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Picture", listfile));
 
 

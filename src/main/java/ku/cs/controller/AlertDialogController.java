@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import ku.cs.ApplicationController;
 
 import java.io.IOException;
 
@@ -18,13 +19,13 @@ public class AlertDialogController {
 
     @FXML
     private void initialize() throws IOException{
-        if (true){
-            String status = getClass().getResource("/ku/cs/assets/images/check-mark-icon-png-12.jpg").toExternalForm();
-            textStatus.setText("Success fully");
-        }
-        else {
-            textStatus.setText("Failue");
-        }
+        String text = ApplicationController.getDataText();
+
+            String pathPicture = getClass().getResource("/ku/cs/assets/images/error-icon-4.png").toExternalForm();
+            status.setImage(new Image(pathPicture));
+            textStatus.setText(text);
+
+
     }
 
     @FXML

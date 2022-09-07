@@ -130,7 +130,7 @@ public class LoginController {
                 System.out.println("banned");
             }
         }else{
-            ApplicationController.goToNew("Alert");
+            ApplicationController.goToNew("Alert", "You don't have account");
             System.out.println("no account in system");
         }
 
