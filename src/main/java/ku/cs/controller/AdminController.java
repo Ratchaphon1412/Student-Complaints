@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -54,6 +56,8 @@ public class AdminController {
     private Label roleLabel;
     @FXML
     private ScrollPane scroll;
+    @FXML
+    private BarChart<?,?> chart;
 
     private List<LinkedHashMap<String,String>> logList;
 
@@ -116,6 +120,13 @@ public class AdminController {
                listLog.setMargin(anchorPane, new Insets(0,0,5,0));
 
            }
+
+            XYChart.Series series = new XYChart.Series<>();
+           series.setName("User Login");
+            series.getData().add(new XYChart.Data("Jan",10));
+            series.getData().add(new XYChart.Data("Feb",20));
+            chart.getData().add(series);
+
 
 
         }
