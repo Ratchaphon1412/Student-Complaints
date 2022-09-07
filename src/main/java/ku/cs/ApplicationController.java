@@ -77,6 +77,12 @@ public class ApplicationController extends FXRouter {
         createDialog(route);
 
     }
+    public static void goToNew(String routeLabel,String text) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.text =text ;
+        createDialog(route);
+
+    }
 
     public static void createDialog(RouteScene route) throws IOException {
 

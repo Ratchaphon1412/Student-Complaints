@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -47,17 +49,17 @@ public class AdminController {
     private Circle imageAccountCircle;
 
     @FXML
-    private ImageView img;
+    private  NumberAxis yLogin = new NumberAxis();
 
     @FXML
-    private Label nameLabel;
+    private CategoryAxis xMonth = new CategoryAxis();
 
     @FXML
     private Label roleLabel;
     @FXML
     private ScrollPane scroll;
     @FXML
-    private BarChart<String ,Double> chart;
+    private BarChart<String,Double> chart;
 
     private List<LinkedHashMap<String,String>> logList;
 
@@ -121,13 +123,12 @@ public class AdminController {
 
            }
 
-
         }
         XYChart.Series<String,Double> series = new XYChart.Series<>();
         series.setName("Past work 3 months");
-        series.getData().add(new XYChart.Data("Jan",10));
-        series.getData().add(new XYChart.Data("Feb",20));
-        series.getData().add(new XYChart.Data("Mar",10));
+        series.getData().add(new XYChart.Data("Jan",10.0));
+        series.getData().add(new XYChart.Data("Feb",20.0));
+        series.getData().add(new XYChart.Data("Mar",10.0));
         chart.getData().add(series);
 
     }
