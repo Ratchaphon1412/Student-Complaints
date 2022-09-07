@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -72,13 +74,18 @@ public class AdminController {
         displatName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
-      Image imageAccount = new Image(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
+       File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
+//        Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+account.getPathPicture());
+//        System.out.println(target.toString());
+        System.out.println(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
+//        String path = System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture();
+        Image imageAccount = new Image(desDir.toURI().toString());
         //test
 //        Image imageAccount = new Image();
         //add picture to circle
 
 
-
+//
        imageAccountCircle.setFill(new ImagePattern(imageAccount));
         imageAccountCircle.setStroke(Color.TRANSPARENT);
         //connect to Database
@@ -96,16 +103,19 @@ public class AdminController {
         //loop log (get log from database) and show
         for(int row = 0 ; row < logList.size()-1 ; row++){
             //load components
-            FXMLLoader fxmlLoader1 = new FXMLLoader();
-            fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
-            //get AnchorPane form component and send data to another controller
-            AnchorPane anchorPane = (AnchorPane) fxmlLoader1.load();
-            LogAccontController logAccontController = fxmlLoader1.getController();
-            logAccontController.setData(logList.get(row));
 
-            listLog.add(anchorPane,0,row+1);
-            listLog.setMargin(anchorPane, new Insets(0,0,5,0));
 
+           if(logList.get(row) != null){
+               FXMLLoader fxmlLoader1 = new FXMLLoader();
+               fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
+               //get AnchorPane form component and send data to another controller
+               AnchorPane anchorPane = (AnchorPane) fxmlLoader1.load();
+               LogAccontController logAccontController = fxmlLoader1.getController();
+               logAccontController.setData(logList.get(row));
+               listLog.add(anchorPane,0,row+1);
+               listLog.setMargin(anchorPane, new Insets(0,0,5,0));
+
+           }
 
 
         }
