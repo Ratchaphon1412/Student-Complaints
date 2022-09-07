@@ -3,7 +3,6 @@ module cs.ku {
     requires javafx.fxml;
     requires com.fasterxml.jackson.dataformat.csv;
     requires com.fasterxml.jackson.databind;
-    requires fontawesomefx;
     opens ku.cs to javafx.fxml;
     exports ku.cs;
     opens ku.cs.controller to javafx.fxml;
