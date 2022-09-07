@@ -57,7 +57,7 @@ public class AdminController {
     @FXML
     private ScrollPane scroll;
     @FXML
-    private BarChart<?,?> chart;
+    private BarChart<String ,Double> chart;
 
     private List<LinkedHashMap<String,String>> logList;
 
@@ -121,15 +121,15 @@ public class AdminController {
 
            }
 
-            XYChart.Series series = new XYChart.Series<>();
-           series.setName("User Login");
-            series.getData().add(new XYChart.Data("Jan",10));
-            series.getData().add(new XYChart.Data("Feb",20));
-            chart.getData().add(series);
-
-
 
         }
+        XYChart.Series<String,Double> series = new XYChart.Series<>();
+        series.setName("Past work 3 months");
+        series.getData().add(new XYChart.Data("Jan",10));
+        series.getData().add(new XYChart.Data("Feb",20));
+        series.getData().add(new XYChart.Data("Mar",10));
+        chart.getData().add(series);
+
     }
 
     @FXML

@@ -81,18 +81,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <HBox alignment="CENTER" prefHeight="96.0" prefWidth="342.0" GridPane.rowIndex="3" GridPane.rowSpan="4">
-                     <styleClass>
-                        <String fx:value="roundedCorner" />
-                        <String fx:value="cardBackground" />
-                     </styleClass>
+                  <HBox alignment="CENTER" prefHeight="96.0" prefWidth="342.0" styleClass="roundedCorner" GridPane.rowIndex="3" GridPane.rowSpan="4">
                      <GridPane.margin>
                         <Insets bottom="9.0" right="6.0" />
                      </GridPane.margin>
                      <children>
                         <VBox alignment="CENTER" prefHeight="317.0" prefWidth="343.0">
                            <children>
-                              <BarChart fx:id="chart" prefHeight="270.0" prefWidth="342.0" style="-fx-background-color: transparent;">
+                              <BarChart fx:id="chart" prefHeight="270.0" prefWidth="342.0" styleClass="chart-bar">
                                 <xAxis>
                                   <CategoryAxis side="BOTTOM" />
                                 </xAxis>
@@ -101,6 +97,10 @@
                                 </yAxis>
                               </BarChart>
                            </children>
+                           <styleClass>
+                              <String fx:value="cardBackground" />
+                              <String fx:value="roundedCorner" />
+                           </styleClass>
                         </VBox>
                      </children>
                   </HBox>
