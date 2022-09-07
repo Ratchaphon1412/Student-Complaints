@@ -68,7 +68,7 @@ public class AdminController {
         //get picture from objectAdmin
 //        Image imageAccount = new Image(account.getPathPicture().toExternalForm());
         //test
-        Image imageAccount = new Image(getClass().getResource("/ku/cs/assets/images/114617.jpg").toExternalForm());
+        Image imageAccount = new Image(account.getPathPicture());
         //add picture to circle
         imageAccountCircle.setFill(new ImagePattern(imageAccount));
         imageAccountCircle.setStroke(Color.TRANSPARENT);
