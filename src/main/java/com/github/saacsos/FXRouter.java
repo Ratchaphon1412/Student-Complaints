@@ -151,9 +151,14 @@ public class FXRouter {
     public static Object getData() {
         return currentRoute.data;
     }
+    public static String getDataText(){
+        return currentRoute.text;
+    }
 
     protected static class RouteScene {
         public Object data;
+
+        public String text;
         public String scenePath;
         public String windowTitle;
         public double sceneWidth;
