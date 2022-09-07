@@ -21,7 +21,7 @@ public class AdminUserBanedListController {
     public void initialize() throws IOException {
 
         dataBase = new DataBase<>();
-        userList = new UserList(dataBase.getUserList(),dataBase.getUserBanList());
+        userList = dataBase.getListUserBaned();
 
 
 

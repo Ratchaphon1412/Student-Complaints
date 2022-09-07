@@ -100,7 +100,14 @@ public class LoginController {
                         DynamicDatabase<User> database = new DataBase<>();
                         User user = database.login(userNameString,passWordString);
                         if(user != null){
-                            ApplicationController.goTo("User",user);
+                            if(user.isBan()){
+                                user.setCountAccess();
+                                userName.clear();
+                                passWord.clear();
+                            }
+                            else {
+                                ApplicationController.goTo("User", user);
+                            }
                         }else{
                             System.out.println("wrong password");
                         }

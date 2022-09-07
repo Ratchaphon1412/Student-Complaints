@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
+import ku.cs.models.user.UserList;
 
 
 import java.io.*;
@@ -25,6 +26,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private LinkedHashMap<String,User> userList;
     private LinkedHashMap<String,Stuff> stuffList;
     private LinkedHashMap<String,Admin> adminList;
+    private UserList listUserBaned;
 
     private Admin admin;
     private Stuff stuff;
@@ -44,6 +46,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         userList = new LinkedHashMap<>();
         stuffList = new LinkedHashMap<>();
         adminList = new LinkedHashMap<>();
+        listUserBaned = new UserList();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
@@ -58,8 +61,13 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     }
                     case "user" -> {
                         user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
+                        for(int i = 0; i < userBanList.size();i++){
+                            if(data.get("userName").equals(userBanList.get(i).get("userName"))) {
+                                user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), true, userBanList.get(i).get("details"),
+                                        userBanList.get(i).get("date"), userBanList.get(i).get("count"));
+                                listUserBaned.addNewUser(user);
+                            }}
                         userList.put(data.get("userName"), user);
-
                     }
                     case "stuff" -> {
                         stuff = new Stuff(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), data.get("agency"));
@@ -187,6 +195,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         logTemp.put("pathPicture",path);
         logTemp.put("date",dateFormat.format(currentDate));
         logTemp.put("time",timeFormat.format(currentDate));
+        if(role.equals("admin")){
+            return ;
+        }
         if(logList == null){
             logList = new ArrayList<>();
             this.logList.add(logTemp);
@@ -330,5 +341,8 @@ public boolean  checkAccountDuplicate(String userName){
 
     public List<LinkedHashMap<String, String>> getUserBanList() {
         return userBanList;
+    }
+    public UserList getListUserBaned(){
+        return listUserBaned;
     }
 }

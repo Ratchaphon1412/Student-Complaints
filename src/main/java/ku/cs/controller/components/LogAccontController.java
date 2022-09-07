@@ -14,8 +14,8 @@ import java.util.LinkedHashMap;
 
 public class LogAccontController {
 
-   @FXML
-   private Circle picture;
+    @FXML
+    private Circle picture;
 
     @FXML
     private Label nameLabel;
