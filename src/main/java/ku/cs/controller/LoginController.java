@@ -126,9 +126,11 @@ public class LoginController {
                 }
 
             }else{
+                ApplicationController.goToNew("Alert");
                 System.out.println("banned");
             }
         }else{
+            ApplicationController.goToNew("Alert");
             System.out.println("no account in system");
         }
 

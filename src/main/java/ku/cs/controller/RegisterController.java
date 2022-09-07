@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import ku.cs.ApplicationController;
 import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
 import java.io.File;
@@ -51,12 +52,15 @@ public class RegisterController {
 
                    }
                 }else{
+                    ApplicationController.goToNew("Alert");
                     System.out.println("no select picture");
                 }
             }else{
+                ApplicationController.goToNew("Alert");
                 System.out.println("passWord not correct");
             }
         }else{
+            ApplicationController.goToNew("Alert");
             System.out.println("Have Account in Database");
         }
     }

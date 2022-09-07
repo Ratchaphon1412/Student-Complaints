@@ -36,6 +36,7 @@ public class ChangePasswordController {
             System.out.printf("Changepassword");
             closeWindows();
         }else {
+            ApplicationController.goToNew("Alert");
             System.out.println("cant Change");
         }
 
