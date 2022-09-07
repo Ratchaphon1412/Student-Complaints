@@ -88,13 +88,17 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="317.0" prefWidth="343.0">
                            <children>
-                              <BarChart fx:id="chart" prefHeight="270.0" prefWidth="342.0" styleClass="chart-bar">
+                              <BarChart fx:id="chart" prefHeight="270.0" prefWidth="342.0">
                                 <xAxis>
                                   <CategoryAxis fx:id="xMonth" />
                                 </xAxis>
                                 <yAxis>
                                   <NumberAxis fx:id="yLogin" side="LEFT" />
                                 </yAxis>
+                                 <styleClass>
+                                    <String fx:value="chart-plot-background" />
+                                    <String fx:value="chart-bar" />
+                                 </styleClass>
                               </BarChart>
                            </children>
                            <styleClass>
