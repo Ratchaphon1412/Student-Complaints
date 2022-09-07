@@ -187,6 +187,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         logTemp.put("pathPicture",path);
         logTemp.put("date",dateFormat.format(currentDate));
         logTemp.put("time",timeFormat.format(currentDate));
+        if(role.equals("admin")){
+            return ;
+        }
         if(logList == null){
             logList = new ArrayList<>();
             this.logList.add(logTemp);
