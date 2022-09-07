@@ -15,13 +15,15 @@ public class UserList {
     }
     public UserList(LinkedHashMap<String,User> accountList , List<LinkedHashMap<String,String>> accountBan){
         userList = new ArrayList<>();
+        userBanList = new ArrayList<>();
         for(String key : accountList.keySet()){
             addNewUser(accountList.get(key));
-            for(int i = 0; i <accountBan.size();i++){
+            for(int i = 0; i < accountBan.size();i++){
                 if(key.equals(accountBan.get(i).get("userName"))){
                     String[] str = accountList.get(key).toString().split(",");
-                    userBanList.add(new User(str[0],str[1],str[2],str[3],"true",accountBan.get(i).get("details"),
-                                        accountBan.get(i).get("date"),accountBan.get(i).get("count")));
+                    User userBan = new User(str[0],str[1],str[2],str[3],true,accountBan.get(i).get("details"),
+                            accountBan.get(i).get("date"),accountBan.get(i).get("count"));
+                    userBanList.add(userBan);
                 }
             }
         }
