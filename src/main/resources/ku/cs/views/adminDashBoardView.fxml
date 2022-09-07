@@ -94,10 +94,10 @@
                            <children>
                               <BarChart fx:id="chart" prefHeight="270.0" prefWidth="342.0" style="-fx-background-color: transparent;">
                                 <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
+                                  <CategoryAxis fx:id="xMonth" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis side="LEFT" />
+                                  <NumberAxis fx:id="yLogin" side="LEFT" />
                                 </yAxis>
                               </BarChart>
                            </children>
