@@ -15,11 +15,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import ku.cs.ApplicationController;
 import ku.cs.controller.components.LogAccontController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -55,7 +61,7 @@ public class AdminController {
 
 
     @FXML
-    public void initialize() throws IOException{
+    public void initialize() throws IOException, URISyntaxException {
         //load NavBar
         FXMLLoader fxmlLoader = new FXMLLoader();
         GridPane navbar = (GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
@@ -66,11 +72,14 @@ public class AdminController {
         displatName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
-//        Image imageAccount = new Image(account.getPathPicture().toExternalForm());
+      Image imageAccount = new Image(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
         //test
-        Image imageAccount = new Image(getClass().getResource("/ku/cs/assets/images/114617.jpg").toExternalForm());
+//        Image imageAccount = new Image();
         //add picture to circle
-        imageAccountCircle.setFill(new ImagePattern(imageAccount));
+
+
+
+       imageAccountCircle.setFill(new ImagePattern(imageAccount));
         imageAccountCircle.setStroke(Color.TRANSPARENT);
         //connect to Database
         dataBase = new DataBase<>();
@@ -105,6 +114,15 @@ public class AdminController {
     @FXML
     public void testButton(ActionEvent actionEvent) {
         System.out.println(account.getUserName() + " " + account.getRole());
+    }
+
+    @FXML
+    public void handleAdminUserBanListButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goTo("AdminUserBanList");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
 
 

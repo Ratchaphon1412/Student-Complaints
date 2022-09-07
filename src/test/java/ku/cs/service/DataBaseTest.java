@@ -3,6 +3,7 @@ package ku.cs.service;
 
 import ku.cs.models.admin.Admin;
 import ku.cs.models.user.User;
+import ku.cs.models.user.UserList;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -15,8 +16,8 @@ class DataBaseTest {
         DataBase database = new DataBase();
         System.out.println(database.getAccountList());
 
-        LinkedHashMap<String,String> test = (LinkedHashMap<String, String>) database.getAccountList().get("poomffi");
-        System.out.println(test);
+        //LinkedHashMap<String,String> test = (LinkedHashMap<String, String>) database.getAccountList().get("poomffi");
+        //System.out.println(test);
         System.out.println(database.getLogList());
     }
 
@@ -53,7 +54,16 @@ class DataBaseTest {
     @Test
     void getRole() {
         DataBase user = new DataBase<>();
-        System.out.println(user.getRole("poomffi"));
+        //System.out.println(user.getRole("poomffi"));
+
+    }
+
+    @Test
+    void getUserBanList() {
+        DataBase database = new DataBase<>();
+        System.out.println(database.getUserBanList());
+        UserList userList = new UserList(database.getUserList(),database.getUserBanList());
+        System.out.println(userList.getUserBanList());
 
     }
 }
