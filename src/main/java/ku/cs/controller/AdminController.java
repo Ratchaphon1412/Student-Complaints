@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -15,11 +17,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import ku.cs.ApplicationController;
+import ku.cs.controller.components.LogAccontController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -46,6 +56,8 @@ public class AdminController {
     private Label roleLabel;
     @FXML
     private ScrollPane scroll;
+    @FXML
+    private BarChart<?,?> chart;
 
     private List<LinkedHashMap<String,String>> logList;
 
@@ -55,7 +67,7 @@ public class AdminController {
 
 
     @FXML
-    public void initialize() throws IOException{
+    public void initialize() throws IOException, URISyntaxException {
         //load NavBar
         FXMLLoader fxmlLoader = new FXMLLoader();
         GridPane navbar = (GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
@@ -66,11 +78,19 @@ public class AdminController {
         displatName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
-//        Image imageAccount = new Image(account.getPathPicture().toExternalForm());
+       File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
+//        Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+account.getPathPicture());
+//        System.out.println(target.toString());
+        System.out.println(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
+//        String path = System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture();
+        Image imageAccount = new Image(desDir.toURI().toString());
         //test
-        Image imageAccount = new Image(getClass().getResource("/ku/cs/assets/images/114617.jpg").toExternalForm());
+//        Image imageAccount = new Image();
         //add picture to circle
-        imageAccountCircle.setFill(new ImagePattern(imageAccount));
+
+
+//
+       imageAccountCircle.setFill(new ImagePattern(imageAccount));
         imageAccountCircle.setStroke(Color.TRANSPARENT);
         //connect to Database
         dataBase = new DataBase<>();
@@ -87,15 +107,25 @@ public class AdminController {
         //loop log (get log from database) and show
         for(int row = 0 ; row < logList.size()-1 ; row++){
             //load components
-            FXMLLoader fxmlLoader1 = new FXMLLoader();
-            fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
-            //get AnchorPane form component and send data to another controller
-            AnchorPane anchorPane = (AnchorPane) fxmlLoader1.load();
-            LogAccontController logAccontController = fxmlLoader1.getController();
-            logAccontController.setData(logList.get(row));
 
-            listLog.add(anchorPane,0,row+1);
-            listLog.setMargin(anchorPane, new Insets(0,0,5,0));
+
+           if(logList.get(row) != null){
+               FXMLLoader fxmlLoader1 = new FXMLLoader();
+               fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
+               //get AnchorPane form component and send data to another controller
+               AnchorPane anchorPane = (AnchorPane) fxmlLoader1.load();
+               LogAccontController logAccontController = fxmlLoader1.getController();
+               logAccontController.setData(logList.get(row));
+               listLog.add(anchorPane,0,row+1);
+               listLog.setMargin(anchorPane, new Insets(0,0,5,0));
+
+           }
+
+            XYChart.Series series = new XYChart.Series<>();
+           series.setName("User Login");
+            series.getData().add(new XYChart.Data("Jan",10));
+            series.getData().add(new XYChart.Data("Feb",20));
+            chart.getData().add(series);
 
 
 
@@ -105,6 +135,15 @@ public class AdminController {
     @FXML
     public void testButton(ActionEvent actionEvent) {
         System.out.println(account.getUserName() + " " + account.getRole());
+    }
+
+    @FXML
+    public void handleAdminUserBanListButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goTo("AdminUserBanList");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
 
 

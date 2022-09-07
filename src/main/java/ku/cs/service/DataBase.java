@@ -6,9 +6,12 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
+import ku.cs.models.user.UserList;
 
 
 import java.io.*;
+import java.nio.file.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
@@ -19,10 +22,11 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     private List<LinkedHashMap<String,String>> accountList;
     private List<LinkedHashMap<String,String>> reportList;
     private List<LinkedHashMap<String,String>> logList;
-
+    private List<LinkedHashMap<String,String>> userBanList;
     private LinkedHashMap<String,User> userList;
     private LinkedHashMap<String,Stuff> stuffList;
     private LinkedHashMap<String,Admin> adminList;
+    private UserList listUserBaned;
 
     private Admin admin;
     private Stuff stuff;
@@ -38,11 +42,14 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         accountList = new ArrayList<>();
         reportList =  new ArrayList<>();
         logList = new ArrayList<>();
+        userBanList = new ArrayList<>();
         userList = new LinkedHashMap<>();
         stuffList = new LinkedHashMap<>();
         adminList = new LinkedHashMap<>();
+        listUserBaned = new UserList();
         readFile("account.csv");
         readFile("log.csv");
+        readFile("requestunban.csv");
 
         // initial UserList stuffList adminList
         for(LinkedHashMap<String,String> data : accountList){
@@ -51,17 +58,20 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     case "admin" -> {
                         admin = new Admin(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
                         adminList.put(data.get("userName"), admin);
-                        break;
                     }
                     case "user" -> {
                         user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
+                        for(int i = 0; i < userBanList.size();i++){
+                            if(data.get("userName").equals(userBanList.get(i).get("userName"))) {
+                                user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), true, userBanList.get(i).get("details"),
+                                        userBanList.get(i).get("date"), userBanList.get(i).get("count"));
+                                listUserBaned.addNewUser(user);
+                            }}
                         userList.put(data.get("userName"), user);
-                        break;
                     }
                     case "stuff" -> {
                         stuff = new Stuff(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), data.get("agency"));
                         stuffList.put(data.get("userName"), stuff);
-                        break;
                     }
                 }
             }
@@ -73,7 +83,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -82,6 +92,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                 case "account.csv" -> this.writeFile(accountList, writer);
                 case "report.csv" -> this.writeFile(reportList, writer);
                 case "log.csv" -> this.writeFile(logList, writer);
+                case "requestunban.csv" -> this.writeFile(userBanList,writer);
             }
         }
     }
@@ -106,6 +117,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     case "account.csv" -> accountList.add(temp);
                     case "report.csv" -> reportList.add(temp);
                     case "log.csv" -> logList.add(temp);
+                    case "requestunban.csv" -> userBanList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -183,6 +195,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         logTemp.put("pathPicture",path);
         logTemp.put("date",dateFormat.format(currentDate));
         logTemp.put("time",timeFormat.format(currentDate));
+        if(role.equals("admin")){
+            return ;
+        }
         if(logList == null){
             logList = new ArrayList<>();
             this.logList.add(logTemp);
@@ -193,6 +208,17 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         }
     }
 
+
+public boolean  checkAccountDuplicate(String userName){
+        for (LinkedHashMap<String,String> account : accountList){
+            for (String key : account.keySet()){
+                if (key.equals(userName)){
+                    return  true;
+                }
+            }
+        }
+        return false;
+}
 
 
     public boolean checkAccount(String userName){
@@ -205,9 +231,11 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
     public boolean checkBan(String userName){
-        for(LinkedHashMap<String,String>account :accountList){
-            if(account.get("ban").equals("false")){
-                return true;
+        for (LinkedHashMap<String,String> accountBan:userBanList){
+            for (String key:accountBan.keySet()){
+                if(key.equals(userName)){
+                    return true;
+                }
             }
         }
         return false;
@@ -223,10 +251,63 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
 
+
     @Override
-    public boolean registerAccount(DataObject object) {
-        return false;
+    public boolean registerAccount(DataObject object, File file) throws IOException {
+        try
+        {
+            User newUser = (User) object;
+            newUser.setPathPicture(saveImage(newUser.getPathPicture(), newUser.getUserName(),file));
+            LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
+            createAccount.put("userName",newUser.getUserName());
+            createAccount.put("passWord",newUser.getPassWord());
+            createAccount.put("role",newUser.getRole());
+            createAccount.put("pathPicture",newUser.getPathPicture());
+            accountList.add(createAccount);
+            saveToDatabase();
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
+
+    private String saveImage(String path,String name,File file){
+        File desDir = new File("image"+System.getProperty("file.separator")+"accounts");
+         try {
+             if(path != null && file  != null){
+                 // CREATE FOLDER IF NOT EXIST
+                 if(!desDir.exists()){
+                     desDir.mkdirs();
+                 }
+                 String[] extension = path.split("\\.");
+                 String filename = name+"_"+ LocalDate.now()+"_"+System.currentTimeMillis() + "."+extension[1];
+                 Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+filename);
+                 Files.copy(file.toPath(),target, StandardCopyOption.REPLACE_EXISTING );
+                return filename;
+
+             }
+         }catch (IOException e){
+             e.printStackTrace();
+         }
+        return null;
+    }
+
+    public boolean changePasswordUser(String username, String oldPassword, String newPassword) throws IOException {
+        for (LinkedHashMap<String, String> dataLine : accountList){
+            if(dataLine.get("userName").equals(username)){
+                if(dataLine.get("passWord").equals(oldPassword)){
+                    dataLine.replace("passWord", newPassword);
+                    saveToDatabase();
+                    return true;
+                }
+            }
+        }
+        System.out.println("pp");
+        return false;
+
+    }
+
 
     @Override
     public boolean changeData(DataObject object) {
@@ -258,5 +339,10 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         return adminList;
     }
 
-
+    public List<LinkedHashMap<String, String>> getUserBanList() {
+        return userBanList;
+    }
+    public UserList getListUserBaned(){
+        return listUserBaned;
+    }
 }

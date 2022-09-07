@@ -8,18 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import ku.cs.ApplicationController;
 import ku.cs.service.DataBase;
-
+import ku.cs.service.DynamicDatabase;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import ku.cs.models.user.User;
 
 
 public class RegisterController {
@@ -33,29 +28,37 @@ public class RegisterController {
     private Label singleFile;
     @FXML
     private ImageView userImage;
-    private DataBase dataBase = new DataBase();
+    private DataBase dataBase;
     private String path;
     private File file;
 
     List<String> listfile;
     @FXML
-    public void signUpButton(ActionEvent actionEvent) {
+    public void signUpButton(ActionEvent actionEvent) throws IOException {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-//        if(dataBase.signUp(user,password,"user",path,file)){
-//            System.out.println("finish");
-//            try {
-//                ApplicationController.goTo("Login");
-//            } catch (IOException e) {
-//                System.err.println(e);
-//            }
-//        }
-//        else{
-//            System.out.println("ชื่อซ้ำโว้ย");
-//            System.out.println("รหัสไม่เหมือนกัน");
-//        }
+        dataBase = new DataBase<>();
+        if(!dataBase.checkAccountDuplicate(user)){
+            if(password.equals(confirmpassword)){
+                if(path != null){
+                    User newUser = new User(user,password,path,"user");
+                    DynamicDatabase<User> database = new DataBase<>();
+                   boolean checkregister = database.registerAccount(newUser,file);
+                   if(checkregister){
 
+                   }else{
+
+                   }
+                }else{
+                    System.out.println("no select picture");
+                }
+            }else{
+                System.out.println("passWord not correct");
+            }
+        }else{
+            System.out.println("Have Account in Database");
+        }
     }
 
     @FXML
@@ -73,7 +76,6 @@ public class RegisterController {
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
             path = file.getAbsolutePath();
-            System.out.println(path);
             userImage.setImage(new Image(new File(path).toURI().toString()));
         }
 
