@@ -34,9 +34,9 @@ public class AdminUserBanListController {
         dateLabel.setText(user.getDateBan());
         textLabel.setText(user.getRequestUnban());
         countBanLabel.setText(String.valueOf(user.getCountAccess()));
-//        String fs = File.separator;
-//        Image image = new Image(System.getProperty("user.dir") +fs+ "image" + fs +  "accounts" + fs+ user.getPathPicture());
-//        Img.setImage(image);
+        String fs = File.separator;
+        Image image = new Image(System.getProperty("user.dir") +fs+ "image" + fs +  "accounts" + fs+ user.getPathPicture());
+        Img.setImage(image);
 
 
     }
