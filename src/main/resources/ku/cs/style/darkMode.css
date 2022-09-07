@@ -33,3 +33,23 @@
 .circleRotatedOutside{
     -fx-fill:#647DD7;
 }
+
+.bar-chart {
+
+    -fx-horizontal-grid-lines-visible: false;
+    -fx-vertical-grid-lines-visible:false;
+    -fx-background-radius: 3px 3px 0px 0px;
+     -fx-background-position: left center;
+
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.data0.chart-bar {
+    -fx-bar-fill:#ffffff;
+}
+.data1.chart-bar {
+    -fx-bar-fill:#ffffff;
+}

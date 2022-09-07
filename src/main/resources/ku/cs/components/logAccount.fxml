@@ -9,13 +9,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="125.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.LogAccontController">
+<AnchorPane prefHeight="100.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.LogAccontController">
    <children>
       <VBox alignment="CENTER" layoutX="42.0" prefHeight="125.0" prefWidth="580.0" style="-fx-background-color: #232A36;" styleClass="roundedCornerCard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="63.0" prefWidth="598.0" styleClass="roundedCorner">
                <children>
-                  <Circle fx:id="picture" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="picture" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label fx:id="nameLabel" contentDisplay="CENTER" prefHeight="50.0" prefWidth="176.0" text="name" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
