@@ -24,7 +24,9 @@ public class AdminUserBanedListController {
         userList = new UserList(dataBase.getUserList(),dataBase.getUserBanList());
 
 
+
         for(int i = 0; i < userList.getUserBanList().size();i++){
+
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/listViewUserBanList.fxml"));
             AnchorPane listUser = (AnchorPane) fxmlLoader.load();
