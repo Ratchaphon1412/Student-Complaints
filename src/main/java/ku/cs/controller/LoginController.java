@@ -99,6 +99,7 @@ public class LoginController {
                     case "user"->{
                         DynamicDatabase<User> database = new DataBase<>();
                         User user = database.login(userNameString,passWordString);
+
                         if(user != null){
                             if(user.isBan()){
                                 user.setCountAccess();

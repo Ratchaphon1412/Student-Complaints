@@ -3,6 +3,7 @@ package ku.cs.service;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import ku.cs.controller.ListViewUserBanList;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
@@ -310,7 +311,33 @@ public boolean  checkAccountDuplicate(String userName){
 
 
     @Override
-    public boolean changeData(DataObject object) {
+    public boolean changeData(DataObject object,String key) throws IOException {
+        switch(key){
+            case "banUser"->{
+                user = (User) object;
+                if(user.isBan()){
+                    //true แสดงว่าพึ่งโดน แบน
+                  LinkedHashMap<String,String> temp = new LinkedHashMap<>();
+                  Date currentDate = new Date();
+                  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                  temp.put("userName",user.getUserName());
+                  temp.put("date",dateFormat.format(currentDate));
+                  temp.put("details","");
+                  temp.put("count","0");
+                  userBanList.add(temp);
+                  saveToDatabase();
+                }else{
+                    // ลบ ban
+                    for(LinkedHashMap<String,String> data : userBanList){
+                        if(data.get("userName").equals(user.getUserName())){
+                            data.clear();
+                        }
+                    }
+                    saveToDatabase();
+                }
+            }
+
+        }
         return false;
     }
 

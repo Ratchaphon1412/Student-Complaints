@@ -83,7 +83,7 @@ public class AdminController {
        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
 //        Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+account.getPathPicture());
 //        System.out.println(target.toString());
-        System.out.println(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
+//        System.out.println(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
 //        String path = System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture();
         Image imageAccount = new Image(desDir.toURI().toString());
         //test
@@ -100,7 +100,7 @@ public class AdminController {
         //Log zone
         //Create Gridpane and add to scrollpane
         GridPane listLog = new GridPane();
-         listLog.setStyle("-fx-background-color:#2D3440;");
+//         listLog.setStyle("-fx-background-color:#2D3440;");
         listLog.setMaxHeight(30);
         listLog.setHgap(1000);
         scroll.setFitToWidth(true);
