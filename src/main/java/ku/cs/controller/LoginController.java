@@ -18,6 +18,7 @@ import ku.cs.service.DataBase;
 import java.io.IOException;
 import ku.cs.models.Account;
 import ku.cs.service.DynamicDatabase;
+import ku.cs.service.ProcessData;
 
 
 public class LoginController {
@@ -37,7 +38,7 @@ public class LoginController {
     @FXML
     private PasswordField passWord;
 
-    private DataBase dataBase;
+    private ProcessData processData;
 
     @FXML
     private void initialize() throws IOException {
@@ -77,16 +78,16 @@ public class LoginController {
     public void handleLoginAuthentication() throws IOException {
         String userNameString = userName.getText();
         String passWordString = passWord.getText();
-        dataBase = new DataBase();
+        processData = new ProcessData();
 
         //check has account
-        if(dataBase.checkAccount(userNameString)){
+        if(processData.checkAccount(userNameString)){
             //check ban
-            if(!dataBase.checkBan(userNameString)){
+            if(!processData.checkBan(userNameString)){
                 //check role
-                switch(dataBase.checkRole(userNameString)){
+                switch(processData.checkRole(userNameString)){
                     case "admin"->{
-                        DynamicDatabase<Admin> database = new DataBase<>();
+                        DynamicDatabase<Admin> database = new ProcessData<>();
                         Admin admin = database.login(userNameString,passWordString);
                         if(admin != null){
                             System.out.println("test");
@@ -97,7 +98,7 @@ public class LoginController {
                         break;
                     }
                     case "user"->{
-                        DynamicDatabase<User> database = new DataBase<>();
+                        DynamicDatabase<User> database = new ProcessData<>();
                         User user = database.login(userNameString,passWordString);
 
                         if(user != null){
@@ -115,7 +116,7 @@ public class LoginController {
                         break;
                     }
                     case "stuff"->{
-                        DynamicDatabase<Stuff> database = new DataBase<>();
+                        DynamicDatabase<Stuff> database = new ProcessData<>();
                         Stuff stuff = database.login(userNameString,passWordString);
                         if(stuff != null){
                             ApplicationController.goTo("Stuff",stuff);

@@ -9,32 +9,34 @@ import ku.cs.controller.components.AdminUserBanListController;
 import ku.cs.models.user.User;
 import ku.cs.models.user.UserList;
 import ku.cs.service.DataBase;
+import ku.cs.service.ProcessData;
 
 import java.io.IOException;
 
 
 public class AdminUserBanedListController {
     public GridPane gridPaneList;
-    private DataBase<User> dataBase;
+    private ProcessData processData;
     private UserList userList;
     @FXML
     public void initialize() throws IOException {
 
-        dataBase = new DataBase<>();
-        userList = dataBase.getListUserBaned();
+        processData = new ProcessData<>();
+        userList = new UserList(processData.getDataBase().getAccountList(),processData.getDataBase().getUserBanList());
 
 
-
-        for(int i = 0; i < userList.getAllUser().size();i++){
+        int count = 0;
+        for(User userBan : userList.getUserBanList()){
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/listViewUserBanList.fxml"));
             AnchorPane listUser = (AnchorPane) fxmlLoader.load();
             AdminUserBanListController adminUserBanListController = fxmlLoader.getController();
-            adminUserBanListController.setData(userList.getAllUser().get(i));
+            adminUserBanListController.setData(userBan);
 
-            gridPaneList.add(listUser,0,i+1);
+            gridPaneList.add(listUser,0,count+1);
             GridPane.setMargin(listUser, new Insets(0,0,5,0));
+            count++;
         }
     }
 

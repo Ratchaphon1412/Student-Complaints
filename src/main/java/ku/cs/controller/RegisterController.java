@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import ku.cs.models.user.User;
+import ku.cs.service.ProcessData;
 
 
 public class RegisterController {
@@ -29,7 +30,7 @@ public class RegisterController {
     private Label singleFile;
     @FXML
     private ImageView userImage;
-    private DataBase dataBase;
+    private ProcessData dataBase;
     private String path;
     private File file;
 
@@ -39,12 +40,12 @@ public class RegisterController {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        dataBase = new DataBase<>();
+        dataBase = new ProcessData();
         if(!dataBase.checkAccountDuplicate(user)){
             if(password.equals(confirmpassword)){
                 if(path != null){
                     User newUser = new User(user,password,path,"user");
-                    DynamicDatabase<User> database = new DataBase<>();
+                    DynamicDatabase<User> database = new ProcessData<>();
                    boolean checkregister = database.registerAccount(newUser,file);
                    if(checkregister){
                         ApplicationController.goTo("Login");

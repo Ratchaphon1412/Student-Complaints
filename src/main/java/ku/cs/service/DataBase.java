@@ -3,7 +3,6 @@ package ku.cs.service;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import ku.cs.controller.ListViewUserBanList;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
@@ -17,21 +16,14 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 
-public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
+public class DataBase {
 
     private final String endpointPath = "database";
     private List<LinkedHashMap<String,String>> accountList;
     private List<LinkedHashMap<String,String>> reportList;
     private List<LinkedHashMap<String,String>> logList;
     private List<LinkedHashMap<String,String>> userBanList;
-    private LinkedHashMap<String,User> userList;
-    private LinkedHashMap<String,Stuff> stuffList;
-    private LinkedHashMap<String,Admin> adminList;
-    private UserList listUserBaned;
 
-    private Admin admin;
-    private Stuff stuff;
-    private User user;
 
     public DataBase(){
         initializeData();
@@ -44,48 +36,9 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
         reportList =  new ArrayList<>();
         logList = new ArrayList<>();
         userBanList = new ArrayList<>();
-        userList = new LinkedHashMap<>();
-        stuffList = new LinkedHashMap<>();
-        adminList = new LinkedHashMap<>();
-        listUserBaned = new UserList();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
-
-        // initial UserList stuffList adminList
-        for(LinkedHashMap<String,String> data : accountList){
-            if(data.get("role")!=null) {
-                switch (data.get("role")) {
-                    case "admin" -> {
-                        admin = new Admin(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
-                        adminList.put(data.get("userName"), admin);
-                    }
-                    case "user" -> {
-                        user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
-                        userList.put(data.get("userName"), user);
-                    }
-                    case "stuff" -> {
-                        stuff = new Stuff(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), data.get("agency"));
-                        stuffList.put(data.get("userName"), stuff);
-                    }
-                }
-            }
-        }
-        for(int i = 0 ; i  < userBanList.size() ; i++){
-            if(userList.get(userBanList.get(i).get("userName")) != null){
-                userList.get(userBanList.get(i).get("userName")).addUserBaned(true,userBanList.get(i).get("details"),
-                                                                                userBanList.get(i).get("date"),userBanList.get(i).get("count"));
-                listUserBaned.addNewUser(userList.get(userBanList.get(i).get("userName")));
-
-            }
-
-        }
-
-
-
-
-
-
     }
 
     public void saveToDatabase() throws IOException {
@@ -164,32 +117,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
 
 
 
-    public DataObject login(String userName, String passWord) throws IOException {
-            switch (checkRole(userName)){
-                case "admin"->{
-                    if(adminList.get(userName).getPassWord().equals(passWord)){
-                        admin = adminList.get(userName);
-                        log(admin.getUserName(),admin.getRole(),admin.getPathPicture());
-                        return (DataObject) admin;
-                    }
-                    break;
-                }case "user"->{
-                    if(userList.get(userName).getPassWord().equals(passWord)){
-                        user = userList.get(userName);
-                        log(user.getUserName(),user.getRole(),user.getPathPicture());
-                        return (DataObject) user;
-                    }
-                    break;
-                }case "stuff"->{
-                    if(stuffList.get(userName).getPassWord().equals(passWord)){
-                        stuff = stuffList.get(userName);
-                        log(stuff.getUserName(),stuff.getRole(),stuff.getPathPicture());
-                        return (DataObject) stuff;
-                    }
-                }
-            }
-            return null;
-    }
+
 
     public void log(String userName, String role, String path) throws IOException {
         Date currentDate = new Date();
@@ -215,70 +143,7 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
     }
 
 
-public boolean  checkAccountDuplicate(String userName){
-        for (LinkedHashMap<String,String> account : accountList){
-            for (String key : account.keySet()){
-                if (key.equals(userName)){
-                    return  true;
-                }
-            }
-        }
-        return false;
-}
-
-
-    public boolean checkAccount(String userName){
-      for(LinkedHashMap<String,String>account :accountList){
-          if(account.get("userName").equals(userName)){
-              return true;
-          }
-      }
-        return false;
-    }
-
-    public boolean checkBan(String userName){
-        for (LinkedHashMap<String,String> accountBan:userBanList){
-            for (String key:accountBan.keySet()){
-                if(key.equals(userName)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    public String checkRole(String userName){
-        for(LinkedHashMap<String,String>account :accountList){
-            if(account.get("userName").equals(userName)){
-                return account.get("role");
-            }
-        }
-        return "null";
-    }
-
-
-
-
-    @Override
-    public boolean registerAccount(DataObject object, File file) throws IOException {
-        try
-        {
-            User newUser = (User) object;
-            newUser.setPathPicture(saveImage(newUser.getPathPicture(), newUser.getUserName(),file));
-            LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
-            createAccount.put("userName",newUser.getUserName());
-            createAccount.put("passWord",newUser.getPassWord());
-            createAccount.put("role",newUser.getRole());
-            createAccount.put("pathPicture",newUser.getPathPicture());
-            accountList.add(createAccount);
-            saveToDatabase();
-            return true;
-        }catch (Exception e){
-            System.out.println(e);
-            return false;
-        }
-    }
-
-    private String saveImage(String path,String name,File file){
+    String saveImage(String path, String name, File file){
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts");
          try {
              if(path != null && file  != null){
@@ -315,37 +180,11 @@ public boolean  checkAccountDuplicate(String userName){
     }
 
 
-    @Override
-    public boolean changeData(DataObject object,String key) throws IOException {
-        switch(key){
-            case "banUser"->{
-                user = (User) object;
-                if(user.isBan()){
-                    //true แสดงว่าพึ่งโดน แบน
-                  LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-                  Date currentDate = new Date();
-                  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                  temp.put("userName",user.getUserName());
-                  temp.put("date",dateFormat.format(currentDate));
-                  temp.put("details","");
-                  temp.put("count","0");
-                  userBanList.add(temp);
-                  saveToDatabase();
-                }else{
-                    // ลบ ban
-                    for(LinkedHashMap<String,String> data : userBanList){
-                        if(data.get("userName").equals(user.getUserName())){
-                            data.clear();
-                        }
-                    }
-                    saveToDatabase();
-                }
-            }
 
-        }
-        return false;
+
+    public void setUserBanList(List<LinkedHashMap<String, String>> userBanList) {
+        this.userBanList = userBanList;
     }
-
 
     public List<LinkedHashMap<String, String>> getAccountList() {
         return accountList;
@@ -359,22 +198,13 @@ public boolean  checkAccountDuplicate(String userName){
         return logList;
     }
 
-    public LinkedHashMap<String, User> getUserList() {
-        return userList;
-    }
-
-    public LinkedHashMap<String, Stuff> getStuffList() {
-        return stuffList;
-    }
-
-    public LinkedHashMap<String, Admin> getAdminList() {
-        return adminList;
-    }
 
     public List<LinkedHashMap<String, String>> getUserBanList() {
         return userBanList;
     }
-    public UserList getListUserBaned(){
-        return listUserBaned;
+
+
+    public void setAccountList(List<LinkedHashMap<String, String>> accountList) {
+        this.accountList = accountList;
     }
 }

@@ -23,6 +23,7 @@ import ku.cs.ApplicationController;
 import ku.cs.controller.components.LogAccontController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
+import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class AdminController {
     private List<LinkedHashMap<String,String>> logList;
 
     private Admin account;
-    private DataBase<Admin> dataBase;
+    private ProcessData processData;
 
 
 
@@ -95,8 +96,9 @@ public class AdminController {
        imageAccountCircle.setFill(new ImagePattern(imageAccount));
         imageAccountCircle.setStroke(Color.TRANSPARENT);
         //connect to Database
-        dataBase = new DataBase<>();
-        this.logList = dataBase.getLogList();
+        processData = new ProcessData();
+        this.logList = processData.getDataBase().getLogList();
+
         //Log zone
         //Create Gridpane and add to scrollpane
         GridPane listLog = new GridPane();
