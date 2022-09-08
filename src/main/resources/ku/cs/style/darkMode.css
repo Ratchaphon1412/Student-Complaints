@@ -1,5 +1,3 @@
-
-
 .colorIcon{
    -fx-background-color: #FFFFFF;
 }
@@ -34,21 +32,28 @@
     -fx-fill:#647DD7;
 }
 
+.bar-chart {
+
+    -fx-horizontal-grid-lines-visible: false;
+    -fx-vertical-grid-lines-visible:false;
+    -fx-background-radius: 3px 3px 0px 0px;
+     -fx-background-position: left center;
+
+}
+
 .chart-plot-background {
     -fx-background-color: transparent;
 }
 
-
+.data0.chart-bar {
+    -fx-bar-fill:#ffffff;
+}
+.data1.chart-bar {
+    -fx-bar-fill:#ffffff;
+}
 
 .chart-bar{
-    -fx-horizontal-grid-lines-visible: false;
-    -fx-vertical-grid-lines-visible:false;
-    -fx-alternative-row-visible: false;
-    -fx-alternative-column-visible: false;
-    -fx-horizontal-zero-line-visible: false;
-    -fx-vertical-zero-line-visible: false;
-    -fx-legend-visible: false;
-
+    -fx-background-color:transparent;
 }
 .data0.chart-bar{
     -fx-background-color:#2B49B3;
@@ -75,4 +80,3 @@
     -fx-width:15px;
     -fx-background-radius:3px 3px 0px 0px;
 }
-

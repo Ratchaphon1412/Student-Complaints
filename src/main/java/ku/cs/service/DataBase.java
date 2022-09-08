@@ -61,12 +61,6 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                     }
                     case "user" -> {
                         user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"));
-                        for(int i = 0; i < userBanList.size();i++){
-                            if(data.get("userName").equals(userBanList.get(i).get("userName"))) {
-                                user = new User(data.get("userName"), data.get("passWord"), data.get("pathPicture"), data.get("role"), true, userBanList.get(i).get("details"),
-                                        userBanList.get(i).get("date"), userBanList.get(i).get("count"));
-                                listUserBaned.addNewUser(user);
-                            }}
                         userList.put(data.get("userName"), user);
                     }
                     case "stuff" -> {
@@ -76,6 +70,17 @@ public class DataBase<DataObject> implements DynamicDatabase<DataObject> {
                 }
             }
         }
+        for(int i = 0 ; i  < userBanList.size() ; i++){
+            if(userList.get(userBanList.get(i).get("userName")) != null){
+                userList.get(userBanList.get(i).get("userName")).addUserBaned(true,userBanList.get(i).get("details"),
+                                                                                userBanList.get(i).get("date"),userBanList.get(i).get("count"));
+                listUserBaned.addNewUser(userList.get(userBanList.get(i).get("userName")));
+
+            }
+
+        }
+
+
 
 
 
