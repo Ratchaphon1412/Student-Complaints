@@ -36,7 +36,8 @@ public class ChangePasswordController {
             System.out.printf("Changepassword");
             closeWindows();
         }else {
-            System.out.println("cant Change");
+            ApplicationController.goToNew("Alert", "Can't Change password");
+            System.out.println("can't Change");
         }
 
     }
