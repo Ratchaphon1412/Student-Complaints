@@ -25,13 +25,13 @@ public class AdminUserBanedListController {
 
 
 
-        for(int i = 0; i < userList.getUserBanList().size();i++){
+        for(int i = 0; i < userList.getAllUser().size();i++){
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/listViewUserBanList.fxml"));
             AnchorPane listUser = (AnchorPane) fxmlLoader.load();
             AdminUserBanListController adminUserBanListController = fxmlLoader.getController();
-            adminUserBanListController.setData(userList.getUserBanList().get(i));
+            adminUserBanListController.setData(userList.getAllUser().get(i));
 
             gridPaneList.add(listUser,0,i+1);
             GridPane.setMargin(listUser, new Insets(0,0,5,0));
