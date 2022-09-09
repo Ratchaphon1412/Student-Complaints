@@ -2,7 +2,6 @@ package ku.cs;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 
 public class Application extends javafx.application.Application {
@@ -18,8 +17,6 @@ public class Application extends javafx.application.Application {
 //        ApplicationController.setAnimationType("fade", 800);
         configRoute();
         ApplicationController.goTo("Login");
-
-
     }
 
 
@@ -31,6 +28,9 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
         ApplicationController.when("Stuff",pathResource+"stuffDashBoardView.fxml",1000,580);
+        ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
+        ApplicationController.when("AdminUserBanList",pathResource+"adminUserBanedList.fxml",1000,580);
+        ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
     }
 
 

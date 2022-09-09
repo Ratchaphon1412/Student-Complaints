@@ -1,11 +1,9 @@
-
-
 .colorIcon{
-   -fx-background-color: #FFFFFF;
+    -fx-background-color: #FFFFFF;
 }
 
 .background{
-   -fx-background-color:#1A202C;
+    -fx-background-color:#1A202C;
 }
 .backgroundNavbar{
     -fx-background-color:#000000;
@@ -32,4 +30,56 @@
 }
 .circleRotatedOutside{
     -fx-fill:#647DD7;
+}
+
+.bar-chart {
+
+    -fx-horizontal-grid-lines-visible: false;
+    -fx-vertical-grid-lines-visible:false;
+    -fx-background-radius: 3px 3px 0px 0px;
+    -fx-background-position: left center;
+
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.data0.chart-bar {
+    -fx-bar-fill:#ffffff;
+}
+.data1.chart-bar {
+    -fx-bar-fill:#ffffff;
+}
+
+.chart-bar{
+    -fx-background-color:transparent;
+}
+.data0.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data1.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data2.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data3.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data4.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
 }

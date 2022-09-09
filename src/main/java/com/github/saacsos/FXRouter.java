@@ -12,18 +12,18 @@ import java.util.AbstractMap;
 import java.util.HashMap;
 
 public class FXRouter {
-    private static final String WINDOW_TITLE = "";
-    private static final Double WINDOW_WIDTH = 800.0D;
-    private static final Double WINDOW_HEIGHT = 600.0D;
-    private static final Double FADE_ANIMATION_DURATION = 800.0D;
-    private static FXRouter router;
-    private static Object mainRef;
+    public static final String WINDOW_TITLE = "";
+    public static final Double WINDOW_WIDTH = 800.0D;
+    public static final Double WINDOW_HEIGHT = 600.0D;
+    public static final Double FADE_ANIMATION_DURATION = 800.0D;
+    public static FXRouter router;
+    public static Object mainRef;
     protected static Stage window;
-    private static String windowTitle;
-    private static Double windowWidth;
-    private static Double windowHeight;
-    private static String animationType;
-    private static Double animationDuration;
+    public static String windowTitle;
+    public static Double windowWidth;
+    public static Double windowHeight;
+    public static String animationType;
+    public static Double animationDuration;
     protected static AbstractMap<String, RouteScene> routes = new HashMap();
     protected static RouteScene currentRoute;
 
@@ -151,9 +151,14 @@ public class FXRouter {
     public static Object getData() {
         return currentRoute.data;
     }
+    public static String getDataText(){
+        return currentRoute.text;
+    }
 
     protected static class RouteScene {
         public Object data;
+
+        public String text;
         public String scenePath;
         public String windowTitle;
         public double sceneWidth;
@@ -179,15 +184,15 @@ public class FXRouter {
             this.sceneHeight = sceneHeight;
         }
 
-        private static String getWindowTitle() {
+        public static String getWindowTitle() {
             return FXRouter.windowTitle != null ? FXRouter.windowTitle : "";
         }
 
-        private static double getWindowWidth() {
+        public static double getWindowWidth() {
             return FXRouter.windowWidth != null ? FXRouter.windowWidth : FXRouter.WINDOW_WIDTH;
         }
 
-        private static double getWindowHeight() {
+        public static double getWindowHeight() {
             return FXRouter.windowHeight != null ? FXRouter.windowHeight : FXRouter.WINDOW_HEIGHT;
         }
     }

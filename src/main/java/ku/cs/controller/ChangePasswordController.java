@@ -21,17 +21,25 @@ public class ChangePasswordController {
     @FXML TextField NewPassword;
     private DataBase dataBase = new DataBase();
 
-    @FXML public  void handleAcceptButton (ActionEvent actionEvent){
+    @FXML public  void handleAcceptButton (ActionEvent actionEvent) throws IOException {
     String userChange = UserChange.getText();
     String oldPassword = OldPassword.getText();
     String newPassword = NewPassword.getText();
-
-    if (dataBase.changePassword(userChange,oldPassword,newPassword)){
-        System.out.println("Password has Changed");
-        closeWindows();
-    }else{
-        System.out.println("Username or Password Incorrect");
+//
+//    if (dataBase.changePassword(userChange,oldPassword,newPassword)){
+//        System.out.println("Password has Changed");
+//        closeWindows();
+//    }else{
+//        System.out.println("Username or Password Incorrect");
+//        }
+        if(dataBase.changePasswordUser(userChange, oldPassword, newPassword)){
+            System.out.printf("Changepassword");
+            closeWindows();
+        }else {
+            ApplicationController.goToNew("Alert", "Can't Change password");
+            System.out.println("can't Change");
         }
+
     }
 
     @FXML public void initialize(){

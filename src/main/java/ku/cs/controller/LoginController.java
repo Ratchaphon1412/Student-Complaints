@@ -8,15 +8,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-
 import javafx.event.ActionEvent;
-
-import javafx.stage.Stage;
 import ku.cs.ApplicationController;
-import ku.cs.service.DataBase;
 
+import ku.cs.models.admin.Admin;
+import ku.cs.models.stuff.Stuff;
+import ku.cs.models.user.User;
+import ku.cs.service.DataBase;
 import java.io.IOException;
-import java.util.Arrays;
+import ku.cs.models.Account;
+import ku.cs.service.DynamicDatabase;
+import ku.cs.service.ProcessData;
 
 
 public class LoginController {
@@ -36,18 +38,15 @@ public class LoginController {
     @FXML
     private PasswordField passWord;
 
-    private DataBase dataBase = new DataBase();
+    private ProcessData processData;
 
     @FXML
     private void initialize() throws IOException {
         String logoKUPic = getClass().getResource("/ku/cs/assets/images/LogoKU.png").toExternalForm();
         logoKU.setImage(new Image(logoKUPic));
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        HBox buttonWindows = (HBox)fxmlLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
+        HBox buttonWindows = (HBox) FXMLLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
         anchorPaneOnTop.getChildren().add(buttonWindows);
     }
-
-
 
 
 
@@ -79,16 +78,62 @@ public class LoginController {
     public void handleLoginAuthentication() throws IOException {
         String userNameString = userName.getText();
         String passWordString = passWord.getText();
-        String[] role = {"admin","user","stuff"};
-        if(role[0].equals(dataBase.readFile(userNameString,passWordString))){
-            ApplicationController.goTo("Admin");
-            dataBase.log(userNameString,"admin");
-        }else if(role[1].equals(dataBase.readFile(userNameString,passWordString))){
-            ApplicationController.goTo("User");
-            dataBase.log(userNameString,"user");
-        }else if (role[2].equals(dataBase.readFile(userNameString,passWordString))){
-            ApplicationController.goTo("Stuff");
-            dataBase.log(userNameString,"stuff");
+        processData = new ProcessData();
+
+        //check has account
+        if(processData.checkAccount(userNameString)){
+            //check ban
+            if(!processData.checkBan(userNameString)){
+                //check role
+                switch(processData.checkRole(userNameString)){
+                    case "admin"->{
+                        DynamicDatabase<Admin> database = new ProcessData<>();
+                        Admin admin = database.login(userNameString,passWordString);
+                        if(admin != null){
+                            System.out.println("test");
+                            ApplicationController.goTo("Admin",admin);
+                        }else{
+                            System.out.println("wrong password");
+                        }
+                        break;
+                    }
+                    case "user"->{
+                        DynamicDatabase<User> database = new ProcessData<>();
+                        User user = database.login(userNameString,passWordString);
+
+                        if(user != null){
+                            if(user.isBan()){
+                                user.setCountAccess();
+                                userName.clear();
+                                passWord.clear();
+                            }
+                            else {
+                                ApplicationController.goTo("User", user);
+                            }
+                        }else{
+                            System.out.println("wrong password");
+                        }
+                        break;
+                    }
+                    case "stuff"->{
+                        DynamicDatabase<Stuff> database = new ProcessData<>();
+                        Stuff stuff = database.login(userNameString,passWordString);
+                        if(stuff != null){
+                            ApplicationController.goTo("Stuff",stuff);
+                        }else{
+                            System.out.println("wrong password");
+                        }
+                        break;
+                    }
+                }
+
+            }else{
+                ApplicationController.goToNew("Alert");
+                System.out.println("banned");
+            }
+        }else{
+            ApplicationController.goToNew("Alert", "You don't have account");
+            System.out.println("no account in system");
         }
 
     }

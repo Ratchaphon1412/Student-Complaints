@@ -10,16 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
 import ku.cs.service.DataBase;
-
+import ku.cs.service.DynamicDatabase;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import ku.cs.models.user.User;
+import ku.cs.service.ProcessData;
 
 
 public class RegisterController {
@@ -33,29 +30,40 @@ public class RegisterController {
     private Label singleFile;
     @FXML
     private ImageView userImage;
-    private DataBase dataBase = new DataBase();
+    private ProcessData dataBase;
     private String path;
     private File file;
 
     List<String> listfile;
     @FXML
-    public void signUpButton(ActionEvent actionEvent) {
+    public void signUpButton(ActionEvent actionEvent) throws IOException {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        if(dataBase.signUp(user,password,"user",path,file)){
-            System.out.println("finish");
-            try {
-                ApplicationController.goTo("Login");
-            } catch (IOException e) {
-                System.err.println(e);
+        dataBase = new ProcessData();
+        if(!dataBase.checkAccountDuplicate(user)){
+            if(password.equals(confirmpassword)){
+                if(path != null){
+                    User newUser = new User(user,password,path,"user");
+                    DynamicDatabase<User> database = new ProcessData<>();
+                   boolean checkregister = database.registerAccount(newUser,file);
+                   if(checkregister){
+                        ApplicationController.goTo("Login");
+                   }else{
+                        ApplicationController.goToNew("Alert","Failed to register");
+                   }
+                }else{
+                    ApplicationController.goToNew("Alert", "no select picture");
+                    System.out.println("no select picture");
+                }
+            }else{
+                ApplicationController.goToNew("Alert", "password not correct");
+                System.out.println("passWord not correct");
             }
+        }else{
+            ApplicationController.goToNew("Alert", "Have Account in Database");
+            System.out.println("Have Account in Database");
         }
-        else{
-            System.out.println("ชื่อซ้ำโว้ย");
-            System.out.println("รหัสไม่เหมือนกัน");
-        }
-
     }
 
     @FXML
@@ -64,6 +72,7 @@ public class RegisterController {
         listfile = new ArrayList<>();
         listfile.add("*.jpg");
         listfile.add("*.png");
+        listfile.add("*jpeg");
         choosefile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Picture", listfile));
 
 
@@ -73,12 +82,10 @@ public class RegisterController {
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
             path = file.getAbsolutePath();
-            System.out.println(path);
             userImage.setImage(new Image(new File(path).toURI().toString()));
         }
 
     }
-
 
 }
 

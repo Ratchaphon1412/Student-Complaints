@@ -1,6 +1,7 @@
 package ku.cs;
 
 import com.github.saacsos.FXRouter;
+import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -14,6 +15,11 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class ApplicationController extends FXRouter {
+    private String preloads;
+
+    ApplicationController(String preloads){
+        this.preloads = preloads;
+    }
 
     private static double[]  offset_XY,pref_WH;
     private static Rectangle2D SCREEN_BOUNDS = Screen.getPrimary().getVisualBounds();
@@ -71,6 +77,12 @@ public class ApplicationController extends FXRouter {
         createDialog(route);
 
     }
+    public static void goToNew(String routeLabel,String text) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.text = text ;
+        createDialog(route);
+
+    }
 
     public static void createDialog(RouteScene route) throws IOException {
 
@@ -90,6 +102,11 @@ public class ApplicationController extends FXRouter {
         dragWindow(resource,stage);
     }
 
+    public static void preloadToLogin(String routeLabel) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        loadNewRoute(route);
+
+    }
 
 
 }
