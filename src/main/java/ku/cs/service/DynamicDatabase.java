@@ -9,7 +9,7 @@ public interface DynamicDatabase<DataObject> {
 
     public boolean registerAccount(DataObject object, File file) throws IOException;
 
-    public boolean changeData(DataObject object);
+    public boolean changeData(DataObject object,String key) throws IOException;
     public DataObject login(String userName,String passWord) throws IOException;
 
 }

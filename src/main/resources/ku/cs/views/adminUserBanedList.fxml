@@ -99,7 +99,7 @@
             </GridPane>
          </children>
       </GridPane>
-      <Label prefHeight="18.0" prefWidth="196.0" text="List of User report" textFill="#fffdfd" GridPane.columnIndex="2" GridPane.columnSpan="8">
+      <Label prefHeight="18.0" prefWidth="196.0" text="User management" textFill="#fffdfd" GridPane.columnIndex="2" GridPane.columnSpan="8">
          <font>
             <Font name="Segoe UI Semibold" size="21.0" />
          </font>

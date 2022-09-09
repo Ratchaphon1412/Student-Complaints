@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import ku.cs.ApplicationController;
 import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
 import java.io.File;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import ku.cs.models.user.User;
+import ku.cs.service.ProcessData;
 
 
 public class RegisterController {
@@ -28,7 +30,7 @@ public class RegisterController {
     private Label singleFile;
     @FXML
     private ImageView userImage;
-    private DataBase dataBase;
+    private ProcessData dataBase;
     private String path;
     private File file;
 
@@ -38,25 +40,28 @@ public class RegisterController {
         String user = userName.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
-        dataBase = new DataBase<>();
+        dataBase = new ProcessData();
         if(!dataBase.checkAccountDuplicate(user)){
             if(password.equals(confirmpassword)){
                 if(path != null){
                     User newUser = new User(user,password,path,"user");
-                    DynamicDatabase<User> database = new DataBase<>();
+                    DynamicDatabase<User> database = new ProcessData<>();
                    boolean checkregister = database.registerAccount(newUser,file);
                    if(checkregister){
-
+                        ApplicationController.goTo("Login");
                    }else{
-
+                        ApplicationController.goToNew("Alert","Failed to register");
                    }
                 }else{
+                    ApplicationController.goToNew("Alert", "no select picture");
                     System.out.println("no select picture");
                 }
             }else{
+                ApplicationController.goToNew("Alert", "password not correct");
                 System.out.println("passWord not correct");
             }
         }else{
+            ApplicationController.goToNew("Alert", "Have Account in Database");
             System.out.println("Have Account in Database");
         }
     }
@@ -67,6 +72,7 @@ public class RegisterController {
         listfile = new ArrayList<>();
         listfile.add("*.jpg");
         listfile.add("*.png");
+        listfile.add("*jpeg");
         choosefile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Picture", listfile));
 
 

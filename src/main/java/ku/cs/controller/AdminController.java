@@ -23,6 +23,7 @@ import ku.cs.ApplicationController;
 import ku.cs.controller.components.LogAccontController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
+import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class AdminController {
     private List<LinkedHashMap<String,String>> logList;
 
     private Admin account;
-    private DataBase<Admin> dataBase;
+    private ProcessData processData;
 
 
 
@@ -83,7 +84,7 @@ public class AdminController {
        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
 //        Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+account.getPathPicture());
 //        System.out.println(target.toString());
-        System.out.println(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
+//        System.out.println(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
 //        String path = System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture();
         Image imageAccount = new Image(desDir.toURI().toString());
         //test
@@ -95,12 +96,13 @@ public class AdminController {
        imageAccountCircle.setFill(new ImagePattern(imageAccount));
         imageAccountCircle.setStroke(Color.TRANSPARENT);
         //connect to Database
-        dataBase = new DataBase<>();
-        this.logList = dataBase.getLogList();
+        processData = new ProcessData();
+        this.logList = processData.getDataBase().getLogList();
+
         //Log zone
         //Create Gridpane and add to scrollpane
         GridPane listLog = new GridPane();
-         listLog.setStyle("-fx-background-color:#2D3440;");
+//         listLog.setStyle("-fx-background-color:#2D3440;");
         listLog.setMaxHeight(30);
         listLog.setHgap(1000);
         scroll.setFitToWidth(true);
