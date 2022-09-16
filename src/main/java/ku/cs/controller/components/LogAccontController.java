@@ -31,8 +31,6 @@ public class LogAccontController {
     private LinkedHashMap<String,String> account;
 
     public void setData(LinkedHashMap<String,String> account){
-
-
            nameLabel.setText(account.get("userName"));
            roleLabel.setText(account.get("role"));
            timeLabel.setText(account.get("time"));

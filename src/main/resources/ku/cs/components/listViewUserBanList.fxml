@@ -5,14 +5,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.AdminUserBanListController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.AdminUserBanListController">
    <stylesheets>
       <URL value="@../style/darkMode.css" />
       <URL value="@../style/style.css" />
@@ -23,19 +22,19 @@
       <String fx:value="roundedCorner" />
    </styleClass>
    <children>
-      <VBox prefHeight="60.0" prefWidth="900.0">
+      <VBox prefHeight="60.0" prefWidth="705.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="900.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="705.0">
                <children>
-                  <ImageView fx:id="Img" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="54.0">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="7.0" />
                      </HBox.margin>
-                     <image>
-                        <Image url="@../../../../../../image/2022-08-11-main.png" />
-                     </image>
-                  </ImageView>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
+                     <children>
+                        <Circle fx:id="Img" fill="WHITE" radius="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="cardBackground" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="150.0">
                      <HBox.margin>
                         <Insets bottom="13.0" top="13.0" />
                      </HBox.margin>
@@ -54,7 +53,7 @@
                         <String fx:value="background" />
                      </styleClass>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="54.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="20.0">
                      <HBox.margin>
                         <Insets bottom="12.0" top="12.0" />
                      </HBox.margin>
@@ -75,8 +74,8 @@
                         <String fx:value="background" />
                      </styleClass>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="54.0" />
-                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="212.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="20.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="195.0">
                      <children>
                         <Label fx:id="textLabel" text="Text" textFill="WHITE">
                            <HBox.margin>
@@ -95,7 +94,7 @@
                         <String fx:value="background" />
                      </styleClass>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="28.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="20.0" />
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="37.0">
                      <children>
                         <Label fx:id="countBanLabel" text="X">
@@ -112,8 +111,8 @@
                         <String fx:value="circleYellow" />
                      </styleClass>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="29.0" />
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="87.0" text="Button">
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="20.0" />
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Button">
                      <styleClass>
                         <String fx:value="circleRed" />
                         <String fx:value="roundedCorner" />
