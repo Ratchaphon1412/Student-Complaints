@@ -18,6 +18,10 @@
     -fx-border-radius:30px;
     -fx-background-radius:30px;
 }
+.roundedCornerButtonTheme{
+    -fx-border-radius:50px;
+    -fx-background-radius:50px;
+}
 .roundedCornerCard{
     -fx-border-radius:10px;
     -fx-background-radius:10px;

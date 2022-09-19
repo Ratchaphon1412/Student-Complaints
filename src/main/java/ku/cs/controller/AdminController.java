@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -62,6 +63,11 @@ public class AdminController {
     @FXML
     private BarChart<String,Double> chart;
 
+    @FXML
+    private GridPane minisetting;
+
+    private SwitchTheme changeTheme;
+
     private List<LinkedHashMap<String,String>> logList;
 
     private Admin account;
@@ -82,15 +88,17 @@ public class AdminController {
         roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
-//        Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+account.getPathPicture());
-//        System.out.println(target.toString());
-//        System.out.println(System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture());
-//        String path = System.getProperty("user.dir") + File.separator + "image" + File.separator + "accounts"+File.separator+account.getPathPicture();
-        Image imageAccount = new Image(desDir.toURI().toString());
-        //test
-//        Image imageAccount = new Image();
-        //add picture to circle
+       Image imageAccount = new Image(desDir.toURI().toString());
+       //Switch Theme
+       GridPane switchTheme = (GridPane)fxmlLoader.load(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
+        minisetting.add(switchTheme,1,1);
+        //implements interface callback
+        changeTheme = new SwitchTheme() {
+            @Override
+            public void changeTheme(String theme) {
 
+            }
+        };
 
 //
        imageAccountCircle.setFill(new ImagePattern(imageAccount));

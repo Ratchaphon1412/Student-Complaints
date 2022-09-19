@@ -153,6 +153,18 @@
                                     <Label fx:id="roleDisplay" text="Admin" textFill="WHITE" />
                                  </children>
                               </VBox>
+                              <GridPane fx:id="minisetting">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="37.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="101.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="69.0" minWidth="10.0" prefWidth="35.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="23.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
                            </children>
                         </GridPane>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
