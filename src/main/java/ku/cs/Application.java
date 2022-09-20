@@ -15,10 +15,9 @@ public class Application extends javafx.application.Application {
         stage.setMinWidth(1000);
         ApplicationController.bind(this, stage);
 //        ApplicationController.setAnimationType("fade", 800);
-        configRoute();
-        //create object state for store temp data when running application
-        State state  = new State();
+        State state = new State();
         state.setTempData();
+        configRoute();
         ApplicationController.goTo("Login");
     }
 

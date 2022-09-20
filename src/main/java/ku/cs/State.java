@@ -1,7 +1,5 @@
 package ku.cs;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 import java.util.prefs.Preferences;
 
@@ -30,6 +28,16 @@ public class State {
 
     }
 
+    public void changeTheme(String theme) throws IOException {
+       prefs.put("theme",theme);
+       Properties prop = new Properties();
+       prop.setProperty("theme",theme);
+        String configFilePath = "src/config.properties";
+        File configFile = new File(configFilePath);
+        OutputStream outputStream = new FileOutputStream(configFile);
+        prop.store(outputStream,"changetheme");
+        outputStream.close();
+    }
     public Preferences getPrefs() {
         return prefs;
     }

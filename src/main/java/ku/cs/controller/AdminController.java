@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -21,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.ApplicationController;
+import ku.cs.State;
 import ku.cs.controller.components.LogAccontController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
@@ -95,10 +97,16 @@ public class AdminController {
         //implements interface callback
         changeTheme = new SwitchTheme() {
             @Override
-            public void changeTheme(String theme) {
-
+            public void changeTheme(String theme) throws IOException {
+                State state = new State();
+                state.changeTheme(theme);
+                adminpage.getStylesheets().removeAll();
+                String styleTheme = "ku/cs/style/" +theme+".css";
+                adminpage.getStylesheets().add(styleTheme);
             }
         };
+
+
 
 //
        imageAccountCircle.setFill(new ImagePattern(imageAccount));
