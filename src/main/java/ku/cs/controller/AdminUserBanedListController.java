@@ -34,9 +34,6 @@ public class AdminUserBanedListController {
 
     @FXML
     public void initialize() throws IOException {
-
-
-
         processData = new ProcessData<>();
         userList = new UserList(processData.getDataBase().getAccountList(),processData.getDataBase().getUserBanList());
         FXMLLoader fxmlLoader;
