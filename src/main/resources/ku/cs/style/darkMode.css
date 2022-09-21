@@ -83,3 +83,6 @@
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
+.textLabelColor{
+    -fx-text-fill:#FFFFFF;
+}
