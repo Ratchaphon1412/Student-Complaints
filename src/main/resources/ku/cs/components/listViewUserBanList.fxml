@@ -34,18 +34,15 @@
                         <Circle fx:id="Img" fill="WHITE" radius="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="cardBackground" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="150.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="130.0">
                      <HBox.margin>
                         <Insets bottom="13.0" top="13.0" />
                      </HBox.margin>
                      <children>
-                        <Label fx:id="nameLabel" text="name" textFill="WHITE">
+                        <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="114.0" text="name" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
                         </Label>
                      </children>
                      <styleClass>
@@ -76,16 +73,6 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="20.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="195.0">
-                     <children>
-                        <Label fx:id="textLabel" text="Text" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="8.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
                      <HBox.margin>
                         <Insets bottom="13.0" top="13.0" />
                      </HBox.margin>
@@ -93,6 +80,26 @@
                         <String fx:value="roundedCorner" />
                         <String fx:value="background" />
                      </styleClass>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefWidth="165.0">
+                           <children>
+                              <Label fx:id="textLabel" prefHeight="18.0" prefWidth="158.0" text="text" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="+">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="roundedCorner" />
+                              <String fx:value="circleGreen" />
+                           </styleClass>
+                        </Button>
+                     </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="20.0" />
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="37.0">
@@ -117,6 +124,9 @@
                         <String fx:value="circleRed" />
                         <String fx:value="roundedCorner" />
                      </styleClass>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </Button>
                </children>
             </HBox>
