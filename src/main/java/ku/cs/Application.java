@@ -16,7 +16,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.bind(this, stage);
 //        ApplicationController.setAnimationType("fade", 800);
         configRoute();
-        ApplicationController.goTo("banUser");
+        ApplicationController.goTo("Agency");
     }
 
 
@@ -31,6 +31,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
         ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
+        ApplicationController.when("Agency",pathResource+"agencyView.fxml",1000,580);
     }
 
 
