@@ -5,17 +5,19 @@ import java.util.prefs.Preferences;
 
 public class State {
     private Preferences prefs;
+    public State(){
+
+    }
 
     public void setTempData(){
-
         this.prefs = Preferences.userRoot().node(this.getClass().getName());
-
         try  {
             String configFilePath = "src/config.properties";
             FileInputStream propsInput = new FileInputStream(configFilePath);
             Properties prop = new Properties();
             //load prop
             prop.load(propsInput);
+            //set in prefs initial from prop
             prefs.put("theme",prop.getProperty("theme"));
             prefs.put("font",prop.getProperty("font"));
 
@@ -28,10 +30,12 @@ public class State {
 
     }
 
-    public void changeTheme(String theme) throws IOException {
-       prefs.put("theme",theme);
+    public void saveToConfig(String theme) throws IOException {
+        //save state
        Properties prop = new Properties();
        prop.setProperty("theme",theme);
+       System.out.println(theme);
+       prop.setProperty("font","xxx");
         String configFilePath = "src/config.properties";
         File configFile = new File(configFilePath);
         OutputStream outputStream = new FileOutputStream(configFile);

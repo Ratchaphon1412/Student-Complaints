@@ -50,7 +50,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="darkMode" mnemonicParsing="false" prefHeight="37.0" prefWidth="33.0" styleClass="moonSVG" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#darkMode" prefHeight="37.0" prefWidth="33.0" styleClass="moonSVG" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
@@ -86,7 +86,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="lightMode" mnemonicParsing="false" prefHeight="44.0" prefWidth="45.0" styleClass="sunSVG" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#lightMode" prefHeight="44.0" prefWidth="45.0" styleClass="sunSVG" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

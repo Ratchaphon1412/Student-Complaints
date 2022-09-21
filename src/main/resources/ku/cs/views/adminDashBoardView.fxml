@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -465,9 +464,4 @@
          </opaqueInsets>
       </GridPane>
    </children>
-   <stylesheets>
-      <URL value="@../style/style.css" />
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/icon.css" />
-   </stylesheets>
 </GridPane>
