@@ -1,8 +1,12 @@
 package ku.cs.controller;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.chart.PieChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import ku.cs.controller.components.AdminUserBanListController;
@@ -21,6 +25,9 @@ public class AdminUserBanedListController {
     private GridPane adminpage;
     @FXML
     private GridPane listPostReportGrid;
+
+    @FXML
+    private PieChart countBanned;
 
     private ProcessData processData;
     private UserList userList;
@@ -60,6 +67,19 @@ public class AdminUserBanedListController {
             listPostReportGrid.add(banPostUser,0,num+1);
             GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
         }
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Banned",count-1),
+                new PieChart.Data("preple",100-count-1)
+        );
+        countBanned.setClockwise(true);
+        countBanned.setLabelsVisible(true);
+        countBanned.setLabelLineLength(50);
+        countBanned.setStartAngle(180);
+        countBanned.setData(pieChartData);
+
+
+
+
 
 
 
