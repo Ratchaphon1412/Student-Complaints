@@ -12,9 +12,6 @@ import java.io.File;
 
 
 public class AdminUserBanListController {
-
-
-
     @FXML
     private Circle Img;
 

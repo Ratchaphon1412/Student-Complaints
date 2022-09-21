@@ -112,7 +112,7 @@
                      </styleClass>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="20.0" />
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Button">
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Unban">
                      <styleClass>
                         <String fx:value="circleRed" />
                         <String fx:value="roundedCorner" />

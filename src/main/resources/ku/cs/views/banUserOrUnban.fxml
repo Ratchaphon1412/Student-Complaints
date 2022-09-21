@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AdminUserBanedListController">
+<GridPane fx:id="adminpage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AdminUserBanedListController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -65,73 +65,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="5" GridPane.rowSpan="4">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <styleClass>
-                  <String fx:value="cardBackground" />
-                  <String fx:value="roundedCornerCard" />
-               </styleClass>
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="4.0" right="13.0" />
-               </GridPane.margin>
-               <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
-                     <styleClass>
-                        <String fx:value="cardBackground" />
-                        <String fx:value="roundedCornerCard" />
-                     </styleClass>
-                     <content>
-                        <GridPane prefHeight="1.0" prefWidth="1.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
-               </children>
-            </GridPane>
-            <GridPane GridPane.columnSpan="4" GridPane.rowIndex="5" GridPane.rowSpan="4">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <styleClass>
-                  <String fx:value="cardBackground" />
-                  <String fx:value="roundedCornerCard" />
-               </styleClass>
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="7.0" right="4.0" />
-               </GridPane.margin>
-               <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
-                     <styleClass>
-                        <String fx:value="cardBackground" />
-                        <String fx:value="roundedCornerCard" />
-                     </styleClass>
-                     <content>
-                        <GridPane prefHeight="1.0" prefWidth="1.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
-               </children>
-            </GridPane>
-            <GridPane GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.rowSpan="4">
+            <GridPane GridPane.columnSpan="6" GridPane.rowIndex="5" GridPane.rowSpan="4">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -152,7 +86,40 @@
                         <String fx:value="roundedCornerCard" />
                      </styleClass>
                      <content>
-                        <GridPane fx:id="gridPaneList" prefHeight="1.0" prefWidth="1.0">
+                        <GridPane fx:id="listPostReportGrid" alignment="CENTER" prefHeight="1.0" prefWidth="1.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </GridPane>
+            <GridPane alignment="CENTER" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.rowSpan="4">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <styleClass>
+                  <String fx:value="cardBackground" />
+                  <String fx:value="roundedCornerCard" />
+               </styleClass>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="7.0" right="8.0" />
+               </GridPane.margin>
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+                     <styleClass>
+                        <String fx:value="cardBackground" />
+                        <String fx:value="roundedCornerCard" />
+                     </styleClass>
+                     <content>
+                        <GridPane fx:id="gridPaneList" alignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -183,8 +150,17 @@
                   <Insets bottom="10.0" right="13.0" />
                </GridPane.margin>
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
+                        <Label text="Agency" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <HBox prefWidth="115.0" />
                         <Button mnemonicParsing="false" text="+">
                            <styleClass>
                               <String fx:value="circleGreen" />
@@ -205,7 +181,7 @@
                         <String fx:value="roundedCornerCard" />
                      </styleClass>
                      <content>
-                        <GridPane prefHeight="1.0" prefWidth="1.0">
+                        <GridPane fx:id="listAgency" alignment="CENTER" prefHeight="1.0" prefWidth="1.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
