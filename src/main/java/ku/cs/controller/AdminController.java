@@ -107,7 +107,7 @@ public class AdminController {
                 Preferences preferences = Preferences.userRoot().node(State.class.getName());
                 preferences.put("theme",theme);
                 //change stylesheet in main page
-                adminpage.getStylesheets().removeAll();
+                adminpage.getStylesheets().clear();
                 String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
                 String icon = "/ku/cs/style/icon.css";
                 String style = "/ku/cs/style/style.css";
