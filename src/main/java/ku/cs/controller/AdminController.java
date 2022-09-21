@@ -148,7 +148,7 @@ public class AdminController {
         scroll.setContent(listLog);
 
         //loop log (get log from database) and show
-        for(int row = 0 ; row < logList.size()-1 ; row++){
+        for(int row = 0 ; row < logList.size() ; row++){
             //load components
 
            if(logList.get(row) != null){
@@ -181,7 +181,7 @@ public class AdminController {
     @FXML
     public void handleAdminUserBanListButton(ActionEvent actionEvent) {
         try {
-            ApplicationController.goTo("AdminUserBanList");
+            ApplicationController.goTo("banUser");
         } catch (IOException e) {
             System.err.println(e);
         }

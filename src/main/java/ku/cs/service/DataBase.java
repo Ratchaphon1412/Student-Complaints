@@ -48,6 +48,7 @@ public class DataBase {
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
             }
         }
+
     }
 
 
