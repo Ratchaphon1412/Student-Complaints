@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -186,6 +187,16 @@ public class AdminController {
             System.err.println(e);
         }
     }
+
+    @FXML
+    public void handleAdminSettingButton(MouseEvent mouseEvent) {
+        try {
+            ApplicationController.goTo("Setting",account);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
 
 
 

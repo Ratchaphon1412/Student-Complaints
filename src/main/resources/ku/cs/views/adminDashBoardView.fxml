@@ -141,7 +141,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Circle fx:id="imageAccountCircle" fill="#1f93ff00" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                                          <Circle fx:id="imageAccountCircle" fill="#1f93ff00" onMouseClicked="#handleAdminSettingButton" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                                        </children>
                                     </HBox>
                                  </children>
