@@ -8,7 +8,7 @@
 .backgroudNavbar{
     -fx-background-color:#FFFFFF;
 }
-.backgroundNavbar.logout:{
+.backgroundNavbar.logout{
     -fx-background-color:#E1E1E8;
 }
 
@@ -34,9 +34,10 @@
 .bar-chart {
 
     -fx-horizontal-grid-lines-visible: false;
-    -fx-vertical-grid-lines-visible:false;
+    -fx-vertical-grid-lines-visible: false;
     -fx-background-radius: 3px 3px 0px 0px;
     -fx-background-position: left center;
+}
 
 .chart-plot-background {
     -fx-background-color: transparent;
@@ -81,5 +82,23 @@
     -fx-background-color: transparent;
 }
 .textLabelColor{
-    -fx-text-fill:#000000;
+    -fx-text-fill: #000000;
+
+}
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :#ffffff;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+.switchTheme{
+    -fx-background-color: #FFFFFF;
+}
+.switchThemeButton{
+    -fx-background-color: #000000;
+}
+.logStyle{
+    -fx-background-color:#B9C3DF ;
 }

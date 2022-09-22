@@ -160,9 +160,7 @@ public class AdminController {
                logAccontController.setData(logList.get(row));
                listLog.add(anchorPane,0,row+1);
                listLog.setMargin(anchorPane, new Insets(0,0,5,0));
-
            }
-
         }
         XYChart.Series<String,Double> series = new XYChart.Series<>();
         series.setName("Past work 3 months");

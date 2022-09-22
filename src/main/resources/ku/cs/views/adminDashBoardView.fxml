@@ -252,17 +252,17 @@
                                     <Label layoutX="10.0" layoutY="39.0" text="Report" textFill="#ff605c" />
                                     <Circle fill="DODGERBLUE" layoutX="147.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
                                     <Circle fill="#1f93ff00" layoutX="147.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
-                                    <Label layoutX="133.0" layoutY="30.0" text="20" textFill="WHITE">
+                                    <Label layoutX="133.0" layoutY="30.0" styleClass="textLabelColor" text="20" textFill="WHITE">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="155.0" layoutY="48.0" text="100" textFill="WHITE">
+                                    <Label layoutX="155.0" layoutY="48.0" styleClass="textLabelColor" text="100" textFill="WHITE">
                                        <font>
                                           <Font size="8.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="153.0" layoutY="40.0" text="/" textFill="WHITE">
+                                    <Label layoutX="153.0" layoutY="40.0" styleClass="textLabelColor" text="/" textFill="WHITE">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
@@ -301,17 +301,17 @@
                               </Button>
                               <Circle fill="DODGERBLUE" layoutX="151.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
                               <Circle fill="#1f93ff00" layoutX="151.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
-                              <Label layoutX="137.0" layoutY="29.0" text="20" textFill="WHITE">
+                              <Label layoutX="137.0" layoutY="29.0" styleClass="textLabelColor" text="20" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="159.0" layoutY="47.0" text="100" textFill="WHITE">
+                              <Label layoutX="159.0" layoutY="47.0" styleClass="textLabelColor" text="100" textFill="WHITE">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="157.0" layoutY="39.0" text="/" textFill="WHITE">
+                              <Label layoutX="157.0" layoutY="39.0" styleClass="textLabelColor" text="/" textFill="WHITE">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -351,17 +351,17 @@
                               </Button>
                               <Circle fill="DODGERBLUE" layoutX="154.0" layoutY="40.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
                               <Circle fill="#1f93ff00" layoutX="154.0" layoutY="40.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
-                              <Label layoutX="139.0" layoutY="27.0" text="20" textFill="WHITE">
+                              <Label layoutX="139.0" layoutY="27.0" styleClass="textLabelColor" text="20" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="161.0" layoutY="45.0" text="100" textFill="WHITE">
+                              <Label layoutX="161.0" layoutY="45.0" styleClass="textLabelColor" text="100" textFill="WHITE">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="159.0" layoutY="37.0" text="/" textFill="WHITE">
+                              <Label layoutX="159.0" layoutY="37.0" styleClass="textLabelColor" text="/" textFill="WHITE">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -408,22 +408,22 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
                                  <children>
-                                    <Label text="Time" textFill="WHITE" />
+                                    <Label styleClass="textLabelColor" text="Time" textFill="WHITE" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="picture" textFill="WHITE" />
+                                    <Label styleClass="textLabelColor" text="picture" textFill="WHITE" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label text="Username" textFill="WHITE" />
+                                    <Label styleClass="textLabelColor" text="Username" textFill="WHITE" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                                  <children>
-                                    <Label text="Date" textFill="WHITE" />
+                                    <Label styleClass="textLabelColor" text="Date" textFill="WHITE" />
                                  </children>
                               </HBox>
                            </children>

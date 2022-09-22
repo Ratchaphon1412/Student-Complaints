@@ -37,8 +37,6 @@ public class LogAccontController {
            dateLabel.setText(account.get("date"));
            File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.get("pathPicture"));
            picture.setFill(new ImagePattern(new Image(desDir.toURI().toString(),800, 0 ,true,true)));
-
-
     }
 
 }
