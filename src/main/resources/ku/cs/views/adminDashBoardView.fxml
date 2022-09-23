@@ -148,8 +148,16 @@
                               </GridPane>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label fx:id="displatName" styleClass="textLabelColor" text="UserName" textFill="WHITE" />
-                                    <Label fx:id="roleDisplay" styleClass="textLabelColor" text="Admin" textFill="WHITE" />
+                                    <Label fx:id="displatName" text="UserName" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="textLabelColor" />
+                                          <String fx:value="Cloud" />
+                                       </styleClass></Label>
+                                    <Label fx:id="roleDisplay" text="Admin" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="textLabelColor" />
+                                          <String fx:value="Cloud" />
+                                       </styleClass></Label>
                                  </children>
                               </VBox>
                               <GridPane fx:id="minisetting">
@@ -195,10 +203,14 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="16.0" layoutY="27.0" styleClass="textLabelColor" text="Dashboard" textFill="WHITE">
+                        <Label layoutX="16.0" layoutY="27.0" text="Dashboard" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="22.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="textLabelColor" />
+                              <String fx:value="Cloud" />
+                           </styleClass>
                         </Label>
                      </children>
                   </AnchorPane>

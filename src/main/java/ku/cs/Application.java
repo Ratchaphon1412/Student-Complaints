@@ -1,5 +1,6 @@
 package ku.cs;
 
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -18,7 +19,9 @@ public class Application extends javafx.application.Application {
         State state = new State();
         state.setTempData();
         configRoute();
-
+        //loadFont
+        Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/FC-Sound.otf").toExternalForm(),10);
+        Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/Cloud-Light.otf").toExternalForm(),10);
         ApplicationController.goTo("Login");
 
     }

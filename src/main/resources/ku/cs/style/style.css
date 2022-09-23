@@ -4,6 +4,22 @@
    -fx-fullScreenButtonColor:#00CA4E;
    -fx-colorPrimary:#D9D9D9;
 }
+@font-face {
+    font-family: Cloud;
+    src:url('../assets/fonts/Cloud-Bold.otf');
+}
+@font-face {
+    font-family: FC-Sound;
+    src:url('../assets/fonts/FC-Sound.otf');
+}
+
+.Cloud{
+    -fx-font-family:'Cloud';
+
+}
+.FC-Sound{
+    -fx-font-family:'FC-Sound';
+}
 
 .leftPageRoundedCorner{
     -fx-border-radius:20 0 0 20;
