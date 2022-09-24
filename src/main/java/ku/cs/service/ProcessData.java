@@ -85,6 +85,15 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                             data.clear();
                         }
                     }
+                    if(requestBan.size() == 0){
+                        temp = new LinkedHashMap<>();
+                        temp.put("userName","");
+                        temp.put("date","");
+                        temp.put("time","");
+                        temp.put("category","");
+                        temp.put("post","");
+                        requestBan.add(temp);
+                    }
                     dataBase.setRequestban(requestBan);
                     dataBase.setUserBanList(userBanList);
                     dataBase.saveToDatabase();
@@ -95,6 +104,14 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         if(data.get("userName").equals(user.getUserName())){
                             data.clear();
                         }
+                    }
+                    if(userBanList.size() == 0){
+                        LinkedHashMap<String,String> temp = new LinkedHashMap<>();
+                        temp.put("userName","");
+                        temp.put("date","");
+                        temp.put("details","");
+                        temp.put("count","");
+                        userBanList.add(temp);
                     }
                     dataBase.setUserBanList(userBanList);
                     dataBase.saveToDatabase();

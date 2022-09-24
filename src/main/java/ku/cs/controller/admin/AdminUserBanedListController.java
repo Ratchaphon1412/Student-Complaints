@@ -126,7 +126,7 @@ public class AdminUserBanedListController {
                 new PieChart.Data("All user Banned",userList.getUserBanList().size()),
                 new PieChart.Data("All user",userList.getUserList().size())
         );
-        int percentBanned = (userList.getUserBanList().size() / userList.getUserList().size());
+//        int percentBanned = (userList.getUserBanList().size() / userList.getUserList().size());
         countBanned.setClockwise(true);
         countBanned.setLabelsVisible(true);
         countBanned.setLabelLineLength(50);
@@ -137,7 +137,7 @@ public class AdminUserBanedListController {
                 new PieChart.Data("All user Banned",userList.getUserRequestBan().size()),
                 new PieChart.Data("All user",userList.getUserList().size())
         );
-        int percentReport = (userList.getUserRequestBan().size() / userList.getUserList().size());
+//        int percentReport = (userList.getUserRequestBan().size() / userList.getUserList().size());
         countReportBan.setClockwise(true);
         countReportBan.setLabelsVisible(true);
         countReportBan.setLabelLineLength(50);
