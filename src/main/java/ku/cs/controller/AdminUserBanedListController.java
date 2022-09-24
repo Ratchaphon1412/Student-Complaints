@@ -39,13 +39,14 @@ public class AdminUserBanedListController {
         processData = new ProcessData<>();
         userList = processData.getUserList();
         userReportToBan = processData.getReportList().getReportToBanUser();
+
+
+
         FXMLLoader fxmlLoader;
         //load NavBar
         fxmlLoader = new FXMLLoader();
         GridPane navbar = (GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         adminpage.add(navbar,0,0);
-
-
 
         int count = 0;
         for(User userBan : userList.getUserBanList()){
