@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
+import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
 
 import java.io.File;
@@ -94,12 +95,16 @@ public class SettingController {
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
         dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
 
-        try {
-            ApplicationController.goTo("Admin");
-        } catch (IOException e) {
-            System.err.println(e);
+        DynamicDatabase<Admin> database = new ProcessData<>();
+        Admin admin = database.login(account.getUserName(),account.getPassWord());
+        if(admin != null){
+            //System.out.println("test");
+            ApplicationController.goTo("Admin",admin);
+        }else{
+            System.out.println("error");
         }
     }
+
 
 
     @FXML
