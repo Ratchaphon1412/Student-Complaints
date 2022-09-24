@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -97,26 +96,29 @@
                   </Label>
                   <Label text="Usename" textFill="WHITE" GridPane.columnIndex="1">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0" top="50.0" />
                      </GridPane.margin>
                   </Label>
                   <Label text="Password" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <GridPane.margin>
                         <Insets bottom="50.0" left="10.0" />
                      </GridPane.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </Label>
                   <Label text="Role" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="10.0" top="20.0" />
+                        <Insets left="10.0" top="50.0" />
                      </GridPane.margin>
                   </Label>
                   <Button mnemonicParsing="false" onAction="#fileChooser" text="Choose" GridPane.rowIndex="3">
@@ -163,18 +165,34 @@
                         <Insets left="70.0" top="40.0" />
                      </GridPane.margin>
                   </Button>
-                  <ImageView fx:id="image" fitHeight="116.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2" />
                   <Label fx:id="password" text="TextPassword" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets bottom="50.0" />
+                        <Insets bottom="50.0" top="10.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="username" text="TextUsername" textFill="WHITE" GridPane.columnIndex="2" />
+                  <Label fx:id="username" text="TextUsername" textFill="WHITE" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets top="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Label fx:id="role" text="TextRole" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets top="20.0" />
+                        <Insets top="50.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
                   </Label>
+                  <Circle fx:id="bigImageaccountCircle" fill="DODGERBLUE" radius="60.0" stroke="BLACK" strokeType="INSIDE">
+                     <GridPane.margin>
+                        <Insets left="20.0" top="100.0" />
+                     </GridPane.margin>
+                  </Circle>
                </children>
             </GridPane>
             <Label fx:id="miniuser" alignment="CENTER_RIGHT" prefHeight="14.0" prefWidth="105.0" text="username" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="1">
