@@ -7,11 +7,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import ku.cs.ApplicationController;
 import ku.cs.models.admin.Admin;
 
 import java.io.IOException;
 
 public class NavbarAdminController {
+
 
     @FXML
     private GridPane navBar;
@@ -26,4 +28,22 @@ public class NavbarAdminController {
         navBar.setMargin(buttonWindows,new Insets(60, 70, 70, 3));
     }
 
+    @FXML
+    private void goDashBoard() throws IOException {
+        ApplicationController.goTo("Admin");
+    }
+   @FXML
+    private void gotoAgency() throws IOException {
+       ApplicationController.goTo("Agency");
+   }
+
+   @FXML
+    private void gotoUserBan() throws IOException {
+        ApplicationController.goTo("banUser");
+   }
+
+   @FXML
+    private void gotoSetting() throws IOException {
+        ApplicationController.goTo("Setting");
+   }
 }

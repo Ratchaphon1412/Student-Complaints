@@ -106,7 +106,7 @@ public class AdminController {
         tableDate.setFont(font);
 
         //getObject Admin from login
-        account = (Admin) FXRouter.getData();
+        account = (Admin) ApplicationController.getData();
         //connect to Database
         processData = new ProcessData();
         //call method loadInitialAdminDashboard
