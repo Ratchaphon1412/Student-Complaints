@@ -142,13 +142,13 @@
                <children>
                   <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="UserName" textFill="WHITE" />
-                        <Label text="Admin" textFill="WHITE" />
+                        <Label fx:id="userNameAccountLabel" text="UserName" textFill="WHITE" />
+                        <Label fx:id="roleAccountLabel" text="Admin" textFill="WHITE" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Circle fill="#1f93ff" opacity="0.0" radius="26.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="imageAccount" fill="#1f93ff" opacity="0.0" radius="26.0" stroke="BLACK" strokeType="INSIDE">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -236,7 +236,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="3">
                      <children>
-                        <PieChart />
+                        <PieChart fx:id="countReportBan" />
                      </children></HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
