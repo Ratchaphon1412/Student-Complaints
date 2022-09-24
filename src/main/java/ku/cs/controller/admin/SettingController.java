@@ -12,10 +12,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
 
 import ku.cs.State;
+import ku.cs.controller.SwitchFonts;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 
@@ -29,6 +31,7 @@ import ku.cs.service.ProcessData;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.prefs.Preferences;
 
@@ -39,11 +42,28 @@ public class SettingController {
     @FXML
     private Label password;
     @FXML private Label role;
+
     @FXML
-    private Circle bigImageaccountCircle;
+    private  Label titleSetting;
+
+    @FXML
+    private Label titleUserName;
+
+    @FXML
+    private Label titlePassWord;
+
+    @FXML
+    private Label titleRole;
+    @FXML
+    private Label titleTheme;
+    @FXML
+    private Label titleFont;
+
 
     @FXML private Label miniuser;
     @FXML private Label minirole;
+    @FXML
+    private Circle bigImageaccountCircle;
     @FXML
     private GridPane gridPane;
     @FXML private Circle imageaccountCircle;
@@ -53,9 +73,10 @@ public class SettingController {
     private File file;
     private String path;
     private List<String> listfile;
-    //private DataBase dataBase = new DataBase();
+
     private ProcessData dataBase = new ProcessData<>();
     private SwitchTheme changeTheme;
+    private SwitchFonts changeFonts;
 
 
 
@@ -71,6 +92,23 @@ public class SettingController {
         gridPane.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
         gridPane.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         gridPane.getStylesheets().add(getClass().getResource(style).toExternalForm());
+
+        //set Font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),18);
+        username.setFont(font);
+        password.setFont(font);
+        role.setFont(font);
+        titleSetting.setFont(font);
+        titleSetting.setWrapText(true);
+        titleUserName.setFont(font);
+        titlePassWord.setFont(font);
+        titleRole.setFont(font);
+        titleTheme.setFont(font);
+        titleFont.setFont(font);
+        titleFont.setWrapText(true);
+        miniuser.setFont(font);
+        miniuser.setWrapText(true);
+        minirole.setFont(font);
 
         //get object Admin
         account = (Admin) ApplicationController.getData();
@@ -104,8 +142,9 @@ public class SettingController {
         bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
         //font choice
-        String[] font ={"Cloud-Bold", "FC-Sound"};
+        String[] font ={"Cloud-Bold", "FC-Sound","pixelletMedium"};
         dropDown.getItems().addAll(font);
+
 
         changeTheme = new SwitchTheme() {
             @Override
@@ -137,6 +176,26 @@ public class SettingController {
         buttonThemeController.setSwitchTheme(changeTheme);
         miniGridePane.add(switchTheme,1,1);
 
+        //set Font
+        changeFonts = new SwitchFonts() {
+            @Override
+            public void changeFonts(String fonts) throws IOException {
+                //list
+                HashMap<String,String> listFonts = new HashMap<>();
+                listFonts.put("Cloud-Bold","Cloud-Bold.otf");
+                listFonts.put("FC-Sound","FC-Sound.otf");
+                listFonts.put("pixelletMedium","pixelletMedium.ttf");
+                //save theme
+                State state = new State();
+                state.setTempData();
+                state.saveFontToConfig(listFonts.get(fonts));
+                //change state
+                Preferences preferences = Preferences.userRoot().node(State.class.getName());
+                preferences.put("font",listFonts.get(fonts));
+            }
+        };
+
+
 
 
 
@@ -163,20 +222,24 @@ public class SettingController {
 
     @FXML
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
-
+        Admin admin = null;
         //เดี๋ยวแก้
-        dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
+        if(file != null){
+            dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
+            DynamicDatabase<Admin> database = new ProcessData<>();
+            admin = database.login(account.getUserName(),account.getPassWord());
+        }
 
-
-        DynamicDatabase<Admin> database = new ProcessData<>();
-        Admin admin = database.login(account.getUserName(),account.getPassWord());
-        if(admin != null){
-            //System.out.println("test");
+        //change fonts
+        if(dropDown.getValue().toString() !=null){
+            changeFonts.changeFonts(dropDown.getValue().toString());
+        }
+        if(admin!=null){
             ApplicationController.goTo("Admin",admin);
         }else{
-            System.out.println("error");
-
+            ApplicationController.goTo("Admin",account);
         }
+        
     }
 
 
