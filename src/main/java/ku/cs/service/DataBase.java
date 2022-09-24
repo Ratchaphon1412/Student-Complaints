@@ -23,6 +23,7 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> reportList;
     private List<LinkedHashMap<String,String>> logList;
     private List<LinkedHashMap<String,String>> userBanList;
+    private List<LinkedHashMap<String,String>> requestban;
 
 
     public DataBase(){
@@ -36,13 +37,15 @@ public class DataBase {
         reportList =  new ArrayList<>();
         logList = new ArrayList<>();
         userBanList = new ArrayList<>();
+        requestban = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
+        readFile("requestban.csv");
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -52,6 +55,7 @@ public class DataBase {
                 case "report.csv" -> this.writeFile(reportList, writer);
                 case "log.csv" -> this.writeFile(logList, writer);
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
+                case "requestban.csv" -> this.writeFile(requestban,writer);
             }
         }
 
@@ -78,6 +82,7 @@ public class DataBase {
                     case "report.csv" -> reportList.add(temp);
                     case "log.csv" -> logList.add(temp);
                     case "requestunban.csv" -> userBanList.add(temp);
+                    case "requestban.csv" -> requestban.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -199,13 +204,16 @@ public class DataBase {
         return logList;
     }
 
-
     public List<LinkedHashMap<String, String>> getUserBanList() {
         return userBanList;
     }
 
+    public List<LinkedHashMap<String, String>> getRequestban() {
+        return requestban;
+    }
 
     public void setAccountList(List<LinkedHashMap<String, String>> accountList) {
         this.accountList = accountList;
     }
+
 }

@@ -83,3 +83,8 @@
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
+
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 1em;
+}

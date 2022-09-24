@@ -2,6 +2,7 @@ package ku.cs.service;
 
 import ku.cs.models.admin.Admin;
 import ku.cs.models.admin.AdminList;
+import ku.cs.models.report.ReportList;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.stuff.StuffList;
 import ku.cs.models.user.User;
@@ -23,6 +24,8 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     private StuffList stuffList;
 
+    private ReportList reportList;
+
 
 
     public ProcessData(){
@@ -30,6 +33,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList());
         stuffList = new StuffList(dataBase.getAccountList());
+        reportList = new ReportList(dataBase.getRequestban(),userList.getUserList());
     }
 
     @Override
@@ -168,5 +172,11 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         return dataBase;
     }
 
+    public UserList getUserList() {
+        return userList;
+    }
 
+    public ReportList getReportList() {
+        return reportList;
+    }
 }
