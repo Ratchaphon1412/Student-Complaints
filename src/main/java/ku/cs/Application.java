@@ -19,7 +19,7 @@ public class Application extends javafx.application.Application {
         state.setTempData();
         configRoute();
 
-        ApplicationController.goTo("Login");
+        ApplicationController.goTo("Agency");
 
     }
 
