@@ -120,10 +120,13 @@ public class AdminController {
         displayName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
-        File desDir = new File(System.getProperty("file.separator")+"image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
-        Image imageAccount = new Image(desDir.toURI().toString());
-        imageAccountCircle.setFill(new ImagePattern(imageAccount));
-        imageAccountCircle.setStroke(Color.TRANSPARENT);
+        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
+        Image imageAccount = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
+
+       if (!imageAccount.isError()){
+           imageAccountCircle.setFill(new ImagePattern(imageAccount));
+           imageAccountCircle.setStroke(Color.TRANSPARENT);
+       }
         //load NavBar
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
@@ -173,6 +176,7 @@ public class AdminController {
         //data log from Database
         List<LinkedHashMap<String,String>>logList = processData.getDataBase().getLogList();
         //loop log (get log from database) and show
+        System.out.println("log size"+logList.size());
         for(int row = 0 ; row < logList.size() ; row++){
             //load components
             if(logList.get(row) != null){
