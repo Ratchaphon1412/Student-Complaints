@@ -24,6 +24,12 @@ public class User extends Account {
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
     }
+    public void addUserBaned(Boolean ban , String requestUnban , String dateBan ,String countAccess){
+        this.ban = ban;
+        this.countAccess = Integer.parseInt(countAccess);
+        this.requestUnban = requestUnban;
+        this.dateBan = dateBan;
+    }
 
     public String getRequestUnban() {
         return requestUnban;

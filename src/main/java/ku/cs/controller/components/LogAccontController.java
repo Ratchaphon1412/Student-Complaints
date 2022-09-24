@@ -8,6 +8,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
@@ -32,13 +33,16 @@ public class LogAccontController {
 
     public void setData(LinkedHashMap<String,String> account){
 
+        nameLabel.setText(account.get("userName"));
+        roleLabel.setText(account.get("role"));
+        timeLabel.setText(account.get("time"));
+        dateLabel.setText(account.get("date"));
+        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.get("pathPicture"));
+        Image image = new Image(String.valueOf(desDir.toURI().toString()),500, 0 ,true,true);
+        if(!image.isError()){
+            picture.setFill(new ImagePattern(image));
+        }
 
-           nameLabel.setText(account.get("userName"));
-           roleLabel.setText(account.get("role"));
-           timeLabel.setText(account.get("time"));
-           dateLabel.setText(account.get("date"));
-           File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.get("pathPicture"));
-           picture.setFill(new ImagePattern(new Image(desDir.toURI().toString(),800, 0 ,true,true)));
 
 
     }

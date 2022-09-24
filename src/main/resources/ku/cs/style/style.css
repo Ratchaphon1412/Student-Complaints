@@ -4,6 +4,21 @@
    -fx-fullScreenButtonColor:#00CA4E;
    -fx-colorPrimary:#D9D9D9;
 }
+@font-face {
+    font-family: Cloud;
+    src:url('../assets/fonts/Cloud-Bold.otf');
+}
+@font-face {
+    font-family: FC-Sound;
+    src:url('../assets/fonts/FC-Sound.otf');
+}
+@font-face{
+    font-family:"pixellet";
+    font-style: normal;
+    font-weight: 300;
+    src:url('../assets/fonts/pixellet.ttf');
+}
+
 
 .leftPageRoundedCorner{
     -fx-border-radius:20 0 0 20;
@@ -17,6 +32,10 @@
 .roundedCorner{
     -fx-border-radius:30px;
     -fx-background-radius:30px;
+}
+.roundedCornerButtonTheme{
+    -fx-border-radius:50px;
+    -fx-background-radius:50px;
 }
 .roundedCornerCard{
     -fx-border-radius:10px;
@@ -43,13 +62,7 @@
     -fx-background-color:#D9D9D9;
 }
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
-    -fx-background-color :#2D3440;
-    -fx-border-color :transparent;
-    -fx-background-radius : 0.0em;
-    -fx-border-radius :2.0em;
-}
+
 
 
 .scroll-bar:horizontal .increment-button ,
@@ -93,3 +106,4 @@
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }
+

@@ -4,16 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import ku.cs.models.user.User;
 
 import java.io.File;
 
 
 public class AdminUserBanListController {
-
-
     @FXML
-    private ImageView Img;
+    private Circle Img;
 
     @FXML
     private Label countBanLabel;
@@ -35,8 +35,8 @@ public class AdminUserBanListController {
         textLabel.setText(user.getRequestUnban());
         countBanLabel.setText(String.valueOf(user.getCountAccess()));
         String fs = File.separator;
-        Image image = new Image(System.getProperty("user.dir") +fs+ "image" + fs +  "accounts" + fs+ user.getPathPicture());
-        Img.setImage(image);
+        File desDir = new File("image" + fs +  "accounts" + fs+ user.getPathPicture());
+        Img.setFill(new ImagePattern(new Image(desDir.toURI().toString(),800, 0 ,true,true)));
 
 
     }

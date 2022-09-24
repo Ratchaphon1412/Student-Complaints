@@ -1,5 +1,6 @@
 package ku.cs;
 
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -14,8 +15,12 @@ public class Application extends javafx.application.Application {
         stage.setMinHeight(580);
         stage.setMinWidth(1000);
         ApplicationController.bind(this, stage);
-//        ApplicationController.setAnimationType("fade", 800);
+        //use state
+        State state = new State();
+        state.setTempData();
+        //route config
         configRoute();
+
         ApplicationController.goTo("Login");
     }
 
@@ -29,8 +34,10 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
         ApplicationController.when("Stuff",pathResource+"stuffDashBoardView.fxml",1000,580);
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
-        ApplicationController.when("AdminUserBanList",pathResource+"adminUserBanedList.fxml",1000,580);
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
+        ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
+        ApplicationController.when("Agency",pathResource+"agencyView.fxml",1000,580);
+        ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
     }
 
 

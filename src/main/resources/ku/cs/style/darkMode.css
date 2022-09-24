@@ -1,11 +1,9 @@
-
-
 .colorIcon{
-   -fx-background-color: #FFFFFF;
+    -fx-background-color: #FFFFFF;
 }
 
 .background{
-   -fx-background-color:#1A202C;
+    -fx-background-color:#1A202C;
 }
 .backgroundNavbar{
     -fx-background-color:#000000;
@@ -38,7 +36,8 @@
 
     -fx-horizontal-grid-lines-visible: false;
     -fx-vertical-grid-lines-visible:false;
-
+    -fx-background-radius: 3px 3px 0px 0px;
+    -fx-background-position: left center;
 
 }
 
@@ -51,4 +50,62 @@
 }
 .data1.chart-bar {
     -fx-bar-fill:#ffffff;
+}
+
+.chart-bar{
+    -fx-background-color:transparent;
+}
+.data0.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data1.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data2.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data3.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data4.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 1em;
+}
+.textLabelColor{
+    -fx-text-fill:#FFFFFF;
+
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :#2D3440;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+.logStyle{
+    -fx-background-color:#232A36 ;
+}
+.switchTheme{
+    -fx-background-color: #363B56;
+}
+.switchThemeButton{
+    -fx-background-color: #FFFFFF;
+
 }
