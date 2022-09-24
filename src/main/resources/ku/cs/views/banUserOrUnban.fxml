@@ -148,7 +148,7 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Circle fx:id="imageAccount" fill="#1f93ff" opacity="0.0" radius="26.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="imageAccount" fill="#1f93ff" radius="26.0" stroke="BLACK" strokeType="INSIDE">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -204,12 +204,12 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label fx:id="lordUserUnban" text="0" textFill="WHITE">
+                        <Label fx:id="lordUserUnban1" text="0" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lordUserUnban2" text="\%" textFill="WHITE">
+                        <Label text="\%" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -246,12 +246,12 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label fx:id="lordUserUnban1" text="0" textFill="WHITE">
+                        <Label fx:id="lordUserUnban2" text="0" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lordUserUnban11" text="\%" textFill="WHITE">
+                        <Label text="\%" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
