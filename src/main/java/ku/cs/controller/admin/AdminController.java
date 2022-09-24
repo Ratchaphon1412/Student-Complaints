@@ -120,7 +120,7 @@ public class AdminController {
         displayName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
-        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
+        File desDir = new File(System.getProperty("file.separator")+"image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
         Image imageAccount = new Image(desDir.toURI().toString());
         imageAccountCircle.setFill(new ImagePattern(imageAccount));
         imageAccountCircle.setStroke(Color.TRANSPARENT);

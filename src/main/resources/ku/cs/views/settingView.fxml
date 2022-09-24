@@ -119,7 +119,7 @@
                         <Insets left="10.0" top="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button mnemonicParsing="false" text="Choose" GridPane.rowIndex="3">
+                  <Button mnemonicParsing="false" onAction="#fileChooser" text="Choose" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets bottom="40.0" left="40.0" />
                      </GridPane.margin>
@@ -154,7 +154,7 @@
                         <Insets top="40.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Save" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <Button mnemonicParsing="false" onAction="#handleSaveSettingButton" prefHeight="25.0" prefWidth="58.0" text="Save" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="roundedCorner" />
                         <String fx:value="circleGreen" />
