@@ -32,7 +32,7 @@ public class SettingController {
     private Label password;
     @FXML private Label role;
     @FXML
-    private ImageView image;
+    private Circle bigImageaccountCircle;
 
     @FXML private Label miniuser;
     @FXML private Label minirole;
@@ -67,7 +67,8 @@ public class SettingController {
         imageaccountCircle.setStroke(Color.TRANSPARENT);
 
         // String url = getClass().getResource("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture()).toExternalForm();
-        image.setImage(imageAccount);
+        bigImageaccountCircle.setFill(new ImagePattern(imageAccount));
+        bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
 
     }
@@ -85,9 +86,9 @@ public class SettingController {
 
         if (file != null) {
             path = file.getAbsolutePath();
-            image.setImage(new Image(new File(path).toURI().toString()));
+            Image image = new Image(file.toURI().toString());
+            bigImageaccountCircle.setFill(new ImagePattern(image));
         }
-
     }
 
 

@@ -25,5 +25,4 @@ public class NavbarAdminController {
         navBar.add(buttonWindows,0,0);
         navBar.setMargin(buttonWindows,new Insets(60, 70, 70, 3));
     }
-
 }
