@@ -22,8 +22,6 @@ public class Application extends javafx.application.Application {
         configRoute();
 
         ApplicationController.goTo("Login");
-
-
     }
 
 
