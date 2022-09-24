@@ -13,7 +13,7 @@ import ku.cs.models.admin.Admin;
 import java.io.IOException;
 
 public class NavbarAdminController {
-
+    private Admin admin;
 
     @FXML
     private GridPane navBar;
@@ -34,16 +34,20 @@ public class NavbarAdminController {
     }
    @FXML
     private void gotoAgency() throws IOException {
-       ApplicationController.goTo("Agency");
+       ApplicationController.goTo("Agency",admin);
    }
 
    @FXML
     private void gotoUserBan() throws IOException {
-        ApplicationController.goTo("banUser");
+        ApplicationController.goTo("banUser",admin);
    }
 
    @FXML
     private void gotoSetting() throws IOException {
-        ApplicationController.goTo("Setting");
+        ApplicationController.goTo("Setting",admin);
+   }
+
+   public void setAdmin(Admin admin){
+        this.admin = admin;
    }
 }

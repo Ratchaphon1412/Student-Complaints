@@ -21,6 +21,7 @@ import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.LogAccontController;
+import ku.cs.controller.components.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.ProcessData;
 import java.io.File;
@@ -127,6 +128,10 @@ public class AdminController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
+        NavbarAdminController navbarAdminController = fxmlLoader.getController();
+        navbarAdminController.setAdmin(account);
+
+
         adminpage.add(navbar,0,0);
         //implements interface callback
         changeTheme = new SwitchTheme() {
