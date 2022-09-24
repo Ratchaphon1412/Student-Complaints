@@ -14,8 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.ApplicationController;
+import ku.cs.State;
+import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.AdminUserBanListController;
 import ku.cs.controller.components.BanUserReportController;
+import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.report.Report;
@@ -26,6 +29,7 @@ import ku.cs.service.ProcessData;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
 
 public class AdminUserBanedListController {
@@ -46,17 +50,29 @@ public class AdminUserBanedListController {
     @FXML
     private Circle imageAccountCircle;
 
+    @FXML
+    private  GridPane minisetting;
+
     private ProcessData processData;
     private UserList userList;
     private ArrayList<Report> userReportToBan;
     private Admin account;
+    private SwitchTheme changeTheme;
 
     @FXML
     public void initialize() throws IOException {
+        //initial style
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
+        System.out.println(styleTheme);
+        String icon = "/ku/cs/style/icon.css";
+        String style = "/ku/cs/style/style.css";
+        adminpage.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+        adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
+        adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
+
         //get object Admin
         account = (Admin) ApplicationController.getData();
-
-
         // connect to database
         processData = new ProcessData<>();
         userList = processData.getUserList();
@@ -118,7 +134,43 @@ public class AdminUserBanedListController {
         countBanned.setStartAngle(180);
         countBanned.setData(pieChartData);
 //        countBanned.getData().clear();
+
+
+        changeTheme = new SwitchTheme() {
+            @Override
+            public void changeTheme(String theme) throws IOException {
+                //save theme
+                State state = new State();
+                state.setTempData();
+                state.saveThemeToConfig(theme);
+                //change state
+                Preferences preferences = Preferences.userRoot().node(State.class.getName());
+                preferences.put("theme",theme);
+                //change stylesheet in main page
+                adminpage.getStylesheets().clear();
+                String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
+                String icon = "/ku/cs/style/icon.css";
+                String style = "/ku/cs/style/style.css";
+                adminpage.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+                adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
+                adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
+
+
+
+            }
+        };
+        //Switch Theme
+        FXMLLoader fxmlLoader1 = new FXMLLoader();
+        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
+        GridPane switchTheme = (GridPane)fxmlLoader1.load();
+        ButtonThemeController buttonThemeController = fxmlLoader1.getController();
+        buttonThemeController.setSwitchTheme(changeTheme);
+        minisetting.add(switchTheme,1,1);
+
+
     }
+
+
 
 
 
