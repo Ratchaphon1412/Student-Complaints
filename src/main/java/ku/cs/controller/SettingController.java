@@ -15,6 +15,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
+import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
@@ -41,17 +42,21 @@ public class SettingController {
     private GridPane gridPane;
     @FXML private Circle imageaccountCircle;
     @FXML private ChoiceBox dropDown;
+    @FXML private GridPane miniGridePane;
+
     private File file;
     private String path;
     private List<String> listfile;
     //private DataBase dataBase = new DataBase();
     private ProcessData dataBase = new ProcessData<>();
+    private SwitchTheme changeTheme;
 
 
 
     private Admin account;
 
     public void initialize() throws IOException {
+        ///set everything
         FXMLLoader fxmlLoader = new FXMLLoader();
         GridPane navbar = (GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         gridPane.add(navbar, 0, 0);
@@ -72,8 +77,17 @@ public class SettingController {
         bigImageaccountCircle.setFill(new ImagePattern(imageAccount));
         bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
+        //font
         String font[] ={"Cloud-Bold", "FC-Sound"};
         dropDown.getItems().addAll(font);
+
+        //theme
+        FXMLLoader fxmlLoader1 = new FXMLLoader();
+        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
+        GridPane switchTheme = (GridPane)fxmlLoader1.load();
+        ButtonThemeController buttonThemeController = fxmlLoader1.getController();
+        buttonThemeController.setSwitchTheme(changeTheme);
+        miniGridePane.add(switchTheme,1,1);
 
     }
 
