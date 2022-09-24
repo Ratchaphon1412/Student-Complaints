@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.user;
 
 
 public class UserController {

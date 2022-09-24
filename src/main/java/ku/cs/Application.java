@@ -1,5 +1,6 @@
 package ku.cs;
 
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -14,11 +15,14 @@ public class Application extends javafx.application.Application {
         stage.setMinHeight(580);
         stage.setMinWidth(1000);
         ApplicationController.bind(this, stage);
-//        ApplicationController.setAnimationType("fade", 800);
+        //use state
         State state = new State();
         state.setTempData();
+        //route config
         configRoute();
-        ApplicationController.goTo("banUser");
+        ApplicationController.goTo("Login");
+
+
     }
 
 
