@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.admin;
 
 import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
@@ -8,17 +8,21 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
+
+import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
+
+import ku.cs.controller.components.NavbarAdminController;
+
 import ku.cs.models.admin.Admin;
-import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
+
 import ku.cs.service.ProcessData;
 
 import java.io.File;
@@ -56,12 +60,14 @@ public class SettingController {
     private Admin account;
 
     public void initialize() throws IOException {
-        ///set everything
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        GridPane navbar = (GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
-        gridPane.add(navbar, 0, 0);
 
-        account =  (Admin) FXRouter.getData();
+        account = (Admin) ApplicationController.getData();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        GridPane navbar = (GridPane) fxmlLoader.load();
+        NavbarAdminController navbarAdminController = fxmlLoader.getController();
+        navbarAdminController.setAdmin(account);
+        gridPane.add(navbar, 0, 0);
         username.setText(account.getUserName());
         password.setText(account.getPassWord());
         role.setText(account.getRole());
@@ -112,7 +118,10 @@ public class SettingController {
 
     @FXML
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
+
+        //เดี๋ยวแก้
         dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
+
 
         DynamicDatabase<Admin> database = new ProcessData<>();
         Admin admin = database.login(account.getUserName(),account.getPassWord());
@@ -121,6 +130,7 @@ public class SettingController {
             ApplicationController.goTo("Admin",admin);
         }else{
             System.out.println("error");
+
         }
     }
 

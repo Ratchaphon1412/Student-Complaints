@@ -21,6 +21,7 @@ import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.LogAccontController;
+import ku.cs.controller.components.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.ProcessData;
 import java.io.File;
@@ -108,7 +109,7 @@ public class AdminController {
         tableDate.setFont(font);
 
         //getObject Admin from login
-        account = (Admin) FXRouter.getData();
+        account = (Admin) ApplicationController.getData();
         //connect to Database
         processData = new ProcessData();
         //call method loadInitialAdminDashboard
@@ -122,13 +123,20 @@ public class AdminController {
         roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
-        Image imageAccount = new Image(desDir.toURI().toString());
-        imageAccountCircle.setFill(new ImagePattern(imageAccount));
-        imageAccountCircle.setStroke(Color.TRANSPARENT);
+        Image imageAccount = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
+
+       if (!imageAccount.isError()){
+           imageAccountCircle.setFill(new ImagePattern(imageAccount));
+           imageAccountCircle.setStroke(Color.TRANSPARENT);
+       }
         //load NavBar
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
+        NavbarAdminController navbarAdminController = fxmlLoader.getController();
+        navbarAdminController.setAdmin(account);
+
+
         adminpage.add(navbar,0,0);
         //implements interface callback
         changeTheme = new SwitchTheme() {
@@ -170,6 +178,7 @@ public class AdminController {
         //data log from Database
         List<LinkedHashMap<String,String>>logList = processData.getDataBase().getLogList();
         //loop log (get log from database) and show
+        System.out.println("log size"+logList.size());
         for(int row = 0 ; row < logList.size() ; row++){
             //load components
             if(logList.get(row) != null){
