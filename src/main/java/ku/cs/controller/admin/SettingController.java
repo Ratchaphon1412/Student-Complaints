@@ -1,9 +1,10 @@
-package ku.cs.controller;
+package ku.cs.controller.admin;
 
 import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
+import ku.cs.controller.components.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DynamicDatabase;
 
@@ -31,13 +33,14 @@ public class SettingController {
     private Label password;
     @FXML private Label role;
     @FXML
-    private ImageView image;
+    private Circle bigImageaccountCircle;
 
     @FXML private Label miniuser;
     @FXML private Label minirole;
     @FXML
     private GridPane gridPane;
     @FXML private Circle imageaccountCircle;
+    @FXML private ChoiceBox dropDown;
     private File file;
     private String path;
     private List<String> listfile;
@@ -49,11 +52,14 @@ public class SettingController {
     private Admin account;
 
     public void initialize() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        GridPane navbar = (GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
-        gridPane.add(navbar, 0, 0);
 
-        account =  (Admin) FXRouter.getData();
+        account = (Admin) ApplicationController.getData();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        GridPane navbar = (GridPane) fxmlLoader.load();
+        NavbarAdminController navbarAdminController = fxmlLoader.getController();
+        navbarAdminController.setAdmin(account);
+        gridPane.add(navbar, 0, 0);
         username.setText(account.getUserName());
         password.setText(account.getPassWord());
         role.setText(account.getRole());
@@ -66,8 +72,11 @@ public class SettingController {
         imageaccountCircle.setStroke(Color.TRANSPARENT);
 
         // String url = getClass().getResource("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture()).toExternalForm();
-        image.setImage(imageAccount);
+        bigImageaccountCircle.setFill(new ImagePattern(imageAccount));
+        bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
+        String font[] ={"Cloud-Bold", "FC-Sound"};
+        dropDown.getItems().addAll(font);
 
     }
 
@@ -84,14 +93,16 @@ public class SettingController {
 
         if (file != null) {
             path = file.getAbsolutePath();
-            image.setImage(new Image(new File(path).toURI().toString()));
+            Image image = new Image(file.toURI().toString());
+            bigImageaccountCircle.setFill(new ImagePattern(image));
         }
-
     }
 
 
     @FXML
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
+
+        //เดี๋ยวแก้
         dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
 
 
