@@ -15,6 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
 
+import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 
@@ -29,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 
 public class SettingController {
@@ -60,40 +62,83 @@ public class SettingController {
     private Admin account;
 
     public void initialize() throws IOException {
+        //initial style
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
+        System.out.println(styleTheme);
+        String icon = "/ku/cs/style/icon.css";
+        String style = "/ku/cs/style/style.css";
+        gridPane.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+        gridPane.getStylesheets().add(getClass().getResource(icon).toExternalForm());
+        gridPane.getStylesheets().add(getClass().getResource(style).toExternalForm());
 
+        //get object Admin
         account = (Admin) ApplicationController.getData();
+        initializeSetting();
+
+    }
+
+
+    private void initializeSetting() throws IOException {
+        //load nav
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
         gridPane.add(navbar, 0, 0);
+
+        //set label
         username.setText(account.getUserName());
         password.setText(account.getPassWord());
         role.setText(account.getRole());
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
 
+        //set image account
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
         Image imageAccount = new Image(desDir.toURI().toString());
         imageaccountCircle.setFill(new ImagePattern(imageAccount));
         imageaccountCircle.setStroke(Color.TRANSPARENT);
-
-        // String url = getClass().getResource("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture()).toExternalForm();
         bigImageaccountCircle.setFill(new ImagePattern(imageAccount));
         bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
-        //font
-        String font[] ={"Cloud-Bold", "FC-Sound"};
+        //font choice
+        String[] font ={"Cloud-Bold", "FC-Sound"};
         dropDown.getItems().addAll(font);
 
-        //theme
+        changeTheme = new SwitchTheme() {
+            @Override
+            public void changeTheme(String theme) throws IOException {
+                //save theme
+                State state = new State();
+                state.setTempData();
+                state.saveThemeToConfig(theme);
+                //change state
+                Preferences preferences = Preferences.userRoot().node(State.class.getName());
+                preferences.put("theme",theme);
+                //change stylesheet in main page
+                gridPane.getStylesheets().clear();
+                String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
+                String icon = "/ku/cs/style/icon.css";
+                String style = "/ku/cs/style/style.css";
+                gridPane.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+                gridPane.getStylesheets().add(getClass().getResource(icon).toExternalForm());
+                gridPane.getStylesheets().add(getClass().getResource(style).toExternalForm());
+
+            }
+        };
+
+//        theme
         FXMLLoader fxmlLoader1 = new FXMLLoader();
         fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
         GridPane switchTheme = (GridPane)fxmlLoader1.load();
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         miniGridePane.add(switchTheme,1,1);
+
+
+
 
     }
 
