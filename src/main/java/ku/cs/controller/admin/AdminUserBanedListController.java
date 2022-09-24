@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.admin;
 
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;

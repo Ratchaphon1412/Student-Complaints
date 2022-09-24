@@ -12,14 +12,13 @@
     font-family: FC-Sound;
     src:url('../assets/fonts/FC-Sound.otf');
 }
-
-.Cloud{
-    -fx-font-family:'Cloud';
-
+@font-face{
+    font-family:"pixellet";
+    font-style: normal;
+    font-weight: 300;
+    src:url('../assets/fonts/pixellet.ttf');
 }
-.FC-Sound{
-    -fx-font-family:'FC-Sound';
-}
+
 
 .leftPageRoundedCorner{
     -fx-border-radius:20 0 0 20;

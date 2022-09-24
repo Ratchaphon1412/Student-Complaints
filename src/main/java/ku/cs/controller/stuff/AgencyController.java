@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.stuff;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

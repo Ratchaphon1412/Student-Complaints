@@ -15,13 +15,11 @@ public class Application extends javafx.application.Application {
         stage.setMinHeight(580);
         stage.setMinWidth(1000);
         ApplicationController.bind(this, stage);
-//        ApplicationController.setAnimationType("fade", 800);
+        //use state
         State state = new State();
         state.setTempData();
+        //route config
         configRoute();
-        //loadFont
-        Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/FC-Sound.otf").toExternalForm(),10);
-        Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/Cloud-Light.otf").toExternalForm(),10);
         ApplicationController.goTo("Login");
 
     }

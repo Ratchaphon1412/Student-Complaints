@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="adminpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AdminController">
+<GridPane fx:id="adminpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.AdminController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -148,15 +148,15 @@
                               </GridPane>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label fx:id="displatName" text="UserName" textFill="WHITE">
+                                    <Label fx:id="displayName" text="UserName" textFill="WHITE">
                                        <styleClass>
                                           <String fx:value="textLabelColor" />
-                                          <String fx:value="Cloud" />
+                                          <String fx:value="Pixel" />
                                        </styleClass></Label>
                                     <Label fx:id="roleDisplay" text="Admin" textFill="WHITE">
                                        <styleClass>
                                           <String fx:value="textLabelColor" />
-                                          <String fx:value="Cloud" />
+                                          <String fx:value="Pixel" />
                                        </styleClass></Label>
                                  </children>
                               </VBox>
@@ -203,13 +203,13 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="16.0" layoutY="27.0" text="Dashboard" textFill="WHITE">
+                        <Label fx:id="titleDashBoard" layoutX="16.0" layoutY="27.0" text="Dashboard" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="22.0" />
                            </font>
                            <styleClass>
                               <String fx:value="textLabelColor" />
-                              <String fx:value="Cloud" />
+                              <String fx:value="Pixel" />
                            </styleClass>
                         </Label>
                      </children>
@@ -261,7 +261,7 @@
                                           <String fx:value="colorIcon" />
                                        </styleClass>
                                     </Button>
-                                    <Label layoutX="10.0" layoutY="39.0" text="Report" textFill="#ff605c" />
+                                    <Label fx:id="titleReport" layoutX="10.0" layoutY="39.0" text="Report" textFill="#ff605c" />
                                     <Circle fill="DODGERBLUE" layoutX="147.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
                                     <Circle fill="#1f93ff00" layoutX="147.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
                                     <Label layoutX="133.0" layoutY="30.0" styleClass="textLabelColor" text="20" textFill="WHITE">
@@ -301,7 +301,7 @@
                                     <String fx:value="roundedCorner" />
                                  </styleClass>
                               </Button>
-                              <Label layoutX="8.0" layoutY="39.0" text="Agency" textFill="#ffbd44" />
+                              <Label fx:id="titleAgency" layoutX="8.0" layoutY="39.0" text="Agency" textFill="#ffbd44" />
                               <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="17.0">
                                  <font>
                                     <Font size="1.0" />
@@ -348,7 +348,7 @@
                                     <String fx:value="circleGreen" />
                                  </styleClass>
                               </Button>
-                              <Label layoutX="6.0" layoutY="39.0" text="User Total" textFill="#00ca4e" />
+                              <Label fx:id="titleUser" layoutX="6.0" layoutY="39.0" text="User Total" textFill="#00ca4e" />
                               <Button layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="22.0">
                                  <font>
                                     <Font size="1.0" />
@@ -420,22 +420,22 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
                                  <children>
-                                    <Label styleClass="textLabelColor" text="Time" textFill="WHITE" />
+                                    <Label fx:id="tableTime" styleClass="textLabelColor" text="Time" textFill="WHITE" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label styleClass="textLabelColor" text="picture" textFill="WHITE" />
+                                    <Label fx:id="tablePicture" styleClass="textLabelColor" text="picture" textFill="WHITE" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label styleClass="textLabelColor" text="Username" textFill="WHITE" />
+                                    <Label fx:id="tableUsername" styleClass="textLabelColor" text="Username" textFill="WHITE" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                                  <children>
-                                    <Label styleClass="textLabelColor" text="Date" textFill="WHITE" />
+                                    <Label fx:id="tableDate" styleClass="textLabelColor" text="Date" textFill="WHITE" />
                                  </children>
                               </HBox>
                            </children>
@@ -457,7 +457,7 @@
                   </GridPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Label layoutX="16.0" layoutY="26.0" styleClass="textLabelColor" text="Recent Users" textFill="WHITE">
+                        <Label fx:id="titleRecent" layoutX="16.0" layoutY="26.0" styleClass="textLabelColor" text="Recent Users" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="22.0" />
                            </font>

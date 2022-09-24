@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
