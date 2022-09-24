@@ -4,6 +4,7 @@ import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +40,7 @@ public class SettingController {
     @FXML
     private GridPane gridPane;
     @FXML private Circle imageaccountCircle;
+    @FXML private ChoiceBox dropDown;
     private File file;
     private String path;
     private List<String> listfile;
@@ -70,6 +72,8 @@ public class SettingController {
         bigImageaccountCircle.setFill(new ImagePattern(imageAccount));
         bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
+        String font[] ={"Cloud-Bold", "FC-Sound"};
+        dropDown.getItems().addAll(font);
 
     }
 
