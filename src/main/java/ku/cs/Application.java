@@ -15,6 +15,8 @@ public class Application extends javafx.application.Application {
         stage.setMinWidth(1000);
         ApplicationController.bind(this, stage);
 //        ApplicationController.setAnimationType("fade", 800);
+        State state = new State();
+        state.setTempData();
         configRoute();
         ApplicationController.goTo("banUser");
     }
@@ -31,6 +33,8 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
         ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
+        ApplicationController.when("Agency",pathResource+"agencyView.fxml",1000,580);
+        ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
     }
 
 

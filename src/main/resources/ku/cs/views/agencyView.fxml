@@ -8,13 +8,11 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.AgencyController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,22 +38,23 @@
    <children>
       <GridPane styleClass="background" GridPane.columnIndex="1" GridPane.columnSpan="2147483647">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="181.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.0" minWidth="10.0" prefWidth="384.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="526.9930419921875" minWidth="10.0" prefWidth="301.0098876953125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="647.9911499023438" minWidth="10.0" prefWidth="641.4901123046875" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane GridPane.columnIndex="1">
+            <GridPane styleClass="rightPageRoundedCorner" GridPane.columnIndex="1">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="243.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="141.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="441.748046875" minWidth="10.0" prefWidth="333.37237548828125" />
+                  <ColumnConstraints maxWidth="184.9505615234375" minWidth="10.0" prefWidth="183.81787109375" />
+                  <ColumnConstraints maxWidth="89.805908203125" minWidth="10.0" prefWidth="16.18212890625" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="104.66666412353516" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="116.33333587646484" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="81.13267517089844" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="116.58219909667969" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="223.0" minHeight="10.0" prefHeight="223.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="53.333343505859375" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="100.66665649414062" minHeight="10.0" prefHeight="56.666656494140625" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="78.66665649414062" minHeight="0.0" prefHeight="51.999969482421875" vgrow="SOMETIMES" />
@@ -66,12 +65,12 @@
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.6666564941406" minWidth="10.0" prefWidth="32.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.6666564941406" minWidth="0.0" prefWidth="188.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="0.0" prefWidth="140.00003051757812" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="40.999969482421875" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.1456298828125" minWidth="0.0" prefWidth="297.4822998046875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="1.8543701171875" prefWidth="7.5177001953125" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="36.333335876464844" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="300.66666412353516" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="54.09991455078125" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="436.5228576660156" minHeight="10.0" prefHeight="418.40008544921875" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <styleClass>
                         <String fx:value="cardBackground" />
@@ -105,7 +104,7 @@
                         </VBox>
                      </children>
                   </GridPane>
-                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="5">
+                  <GridPane prefWidth="422.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="5">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -121,22 +120,22 @@
                      <children>
                         <GridPane GridPane.columnSpan="2">
                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="64.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="102.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="95.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="92.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="40.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="17.62066650390625" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.37933349609375" minWidth="10.0" prefWidth="225.37933349609375" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.08746337890625" minWidth="10.0" prefWidth="127.90179443359375" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="208.60943603515625" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="0.0" prefWidth="0.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                              <VBox alignment="CENTER" prefHeight="62.0" prefWidth="125.0" GridPane.columnIndex="1">
                                  <children>
                                     <Label text="Username" textFill="WHITE" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                              <VBox alignment="CENTER" prefHeight="62.0" prefWidth="73.0" GridPane.columnIndex="2">
                                  <children>
                                     <Label text="Date" textFill="WHITE" />
                                  </children>
@@ -166,31 +165,15 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
                      </GridPane.margin>
                   </GridPane>
-                  <GridPane GridPane.columnSpan="2">
+                  <GridPane prefHeight="85.0" prefWidth="577.0" GridPane.columnSpan="2">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="207.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="121.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="56.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="352.30694580078125" minWidth="10.0" prefWidth="352.30694580078125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.79815673828125" minWidth="10.0" prefWidth="194.69305419921875" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <GridPane GridPane.columnIndex="2">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <Circle fx:id="imageAccountCircle" fill="#1f93ff00" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </GridPane>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
                               <Label fx:id="displatName" text="UserName" textFill="WHITE" />
@@ -209,9 +192,9 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="153.0" minHeight="10.0" prefHeight="94.33334350585938" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="18.333328247070312" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="184.6666717529297" minHeight="10.0" prefHeight="99.33331298828125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="153.0" minHeight="10.0" prefHeight="133.4188232421875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="184.6666717529297" minHeight="1.4178009033203125" prefHeight="35.551513671875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="236.23670959472656" minHeight="10.0" prefHeight="210.448486328125" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="118.66665649414062" minHeight="10.0" prefHeight="118.66665649414062" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="24.666656494140625" minHeight="10.0" prefHeight="17.333343505859375" vgrow="SOMETIMES" />
               </rowConstraints>
@@ -227,15 +210,15 @@
                   </VBox>
                   <GridPane GridPane.columnSpan="3" GridPane.rowIndex="1">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="48.0" minWidth="10.0" prefWidth="21.333335876464844" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="56.666664123535156" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.355979919433594" minWidth="0.0" prefWidth="18.098365783691406" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.09835815429688" minWidth="10.0" prefWidth="134.4016342163086" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.03749084472656" minWidth="10.0" prefWidth="116.90164184570312" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="49.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="33.666664123535156" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="29.666664123535156" minHeight="10.0" prefHeight="20.333328247070312" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="37.333335876464844" minHeight="10.0" prefHeight="32.66667175292969" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="49.0" minHeight="9.0" prefHeight="14.416854858398438" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="40.58314514160156" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="47.19673156738281" minHeight="10.0" prefHeight="21.235336303710938" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="59.13584899902344" minHeight="10.0" prefHeight="58.26466369628906" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <styleClass>
                         <String fx:value="cardBackground" />
@@ -249,7 +232,7 @@
                         <Label text="--" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0">
+                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="37.0">
                                  <styleClass>
                                     <String fx:value="circleRed" />
                                     <String fx:value="roundedCorner" />
@@ -261,15 +244,15 @@
                   </GridPane>
                   <GridPane GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.33333587646484" minWidth="10.0" prefWidth="24.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.33333587646484" minWidth="10.0" prefWidth="54.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="10.0" prefWidth="85.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.66667175292969" minWidth="10.0" prefWidth="17.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.33333587646484" minWidth="4.440238952636719" prefWidth="17.34075927734375" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.05976104736328" minWidth="10.0" prefWidth="139.65924072265625" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.16632080078125" minWidth="10.0" prefWidth="99.78802490234375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.66667175292969" minWidth="8.83367919921875" prefWidth="20.71197509765625" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="83.33332824707031" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="172.0" minHeight="10.0" prefHeight="166.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="13.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="236.0" minHeight="10.0" prefHeight="236.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="32.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <styleClass>
                         <String fx:value="roundedCorner" />
@@ -279,12 +262,12 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="30.0" prefWidth="64.0" GridPane.columnIndex="1">
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="64.0" GridPane.columnIndex="1">
                            <children>
                               <Label text="Agency" textFill="WHITE" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="70.0" GridPane.columnIndex="2">
+                        <VBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="130.0" GridPane.columnIndex="2">
                            <children>
                               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="+">
                                  <styleClass>
@@ -308,4 +291,8 @@
       <URL value="@../style/icon.css" />
       <URL value="@../style/picture.css" />
    </stylesheets>
+   <styleClass>
+      <String fx:value="rightPageRoundedCorner" />
+      <String fx:value="leftPageRoundedCorner" />
+   </styleClass>
 </GridPane>

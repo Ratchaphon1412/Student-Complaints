@@ -1,0 +1,85 @@
+.colorIcon{
+    -fx-background-color:#000000;
+}
+
+.background{
+    -fx-background-color:#D9D9D9;
+}
+.backgroudNavbar{
+    -fx-background-color:#FFFFFF;
+}
+.backgroundNavbar.logout:{
+    -fx-background-color:#E1E1E8;
+}
+
+.cardBackground{
+    -fx-background-color:#FFFFFF;
+}
+.circleRed{
+    -fx-background-color:-fx-closeButtonColor;
+}
+.circleYellow{
+    -fx-background-color:-fx-minimizeButtonColor;
+}
+.circleGreen{
+    -fx-background-color:-fx-fullScreenButtonColor;
+}
+.circleRotatedInside{
+    -fx-fill:#FFFFFF;
+}
+.circleRotatedOutside{
+    -fx-fill:#647DD7;
+}
+
+.bar-chart {
+
+    -fx-horizontal-grid-lines-visible: false;
+    -fx-vertical-grid-lines-visible:false;
+    -fx-background-radius: 3px 3px 0px 0px;
+    -fx-background-position: left center;
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.data0.chart-bar {
+    -fx-bar-fill:#ffffff;
+}
+.data1.chart-bar {
+    -fx-bar-fill:#ffffff;
+}
+
+.chart-bar{
+    -fx-background-color:transparent;
+}
+.data0.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data1.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data2.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data3.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.data4.chart-bar{
+    -fx-background-color:#2B49B3;
+    -fx-width:15px;
+    -fx-background-radius:3px 3px 0px 0px;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.textLabelColor{
+    -fx-text-fill:#000000;
+}

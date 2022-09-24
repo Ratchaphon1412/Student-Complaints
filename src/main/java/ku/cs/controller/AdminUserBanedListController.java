@@ -36,7 +36,6 @@ public class AdminUserBanedListController {
 
     @FXML
     public void initialize() throws IOException {
-
         processData = new ProcessData<>();
         userList = processData.getUserList();
         userReportToBan = processData.getReportList().getReportToBanUser();
