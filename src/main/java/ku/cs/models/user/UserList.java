@@ -14,34 +14,37 @@ public class UserList {
     private User user;
 
     private List<User> userBanList;
+    private List<User> userRequestBan;
 
-    public  UserList(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList){
+
+    public  UserList(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestban){
         userList = new ArrayList<>();
         userBanList = new ArrayList<>();
-        createObjectUser(accountList,banList);
+        userRequestBan = new ArrayList<>();
+        createObjectUser(accountList,banList, requestban);
         //initial banUser
-        for (User user : userList){
-            if(user.isBan()== true){
-                userBanList.add(user);
-            }
-        }
+//        for (User user : userList){
+//            if(user.isBan()== true){
+//                userBanList.add(user);
+//            }
+//        }
 
     }
 
 
 
-    public void createObjectUser(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList){
+    public void createObjectUser(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestban){
         for(LinkedHashMap<String,String> account :accountList ){
             if(account.get("role").equals("user")){
                 for (LinkedHashMap<String,String>ban:banList){
                     if(account.get("userName").equals(ban.get("userName"))){
                         User user = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),true,ban.get("details"),ban.get("date"),ban.get("count"));
                         userBanList.add(user);
-                    }
+                     }
                 }
             }
         }
-        for(LinkedHashMap<String,String> account :accountList ){
+        for(LinkedHashMap<String,String> account :accountList){
             if(account.get("role").equals("user")){
                 for (User banned:userBanList){
                     if(!account.get("userName").equals(banned.getUserName())){
@@ -53,8 +56,22 @@ public class UserList {
                 }
             }
         }
+        for(LinkedHashMap<String,String> account : accountList){
+            if(account.get("role").equals("user")){
+                for(LinkedHashMap<String,String> banRequest : requestban){
+                    if(account.get("userName").equals(banRequest.get("userName"))){
+                        User tem = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),
+                                            account.get("role"),banRequest.get("category"),banRequest.get("time"),
+                                            banRequest.get("date"),null);
+                        userRequestBan.add(tem);
+                    }
+                }
+            }
+        }
 
     }
+
+
 
     public void addNewUser(User user){
         userList.add(user);
@@ -77,7 +94,7 @@ public class UserList {
         return userBanList;
     }
 
-
-
-
+    public List<User> getUserRequestBan() {
+        return userRequestBan;
+    }
 }

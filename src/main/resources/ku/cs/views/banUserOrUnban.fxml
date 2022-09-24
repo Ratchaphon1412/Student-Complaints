@@ -154,12 +154,14 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
+
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="94.0" prefWidth="88.0" GridPane.columnIndex="1">
                      <children>
                         <Circle fx:id="imageAccountCircle" fill="#1f93ff" radius="27.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                      </children></HBox>
+
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="4">
@@ -198,6 +200,7 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
                         <Label fx:id="lordUserUnban" styleClass="textLabelColor" text="0" textFill="WHITE">
+
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -229,7 +232,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="3">
                      <children>
-                        <PieChart />
+                        <PieChart fx:id="countReportBan" />
                      </children></HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
@@ -240,11 +243,13 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
                         <Label fx:id="lordUserUnban1" styleClass="textLabelColor" text="0" textFill="WHITE">
+
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
                         <Label fx:id="lordUserUnban11" styleClass="textLabelColor" text="\%" textFill="WHITE">
+
                            <font>
                               <Font size="15.0" />
                            </font>

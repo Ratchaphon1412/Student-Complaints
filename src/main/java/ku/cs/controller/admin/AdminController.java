@@ -75,6 +75,8 @@ public class AdminController {
     @FXML
     private GridPane minisetting;
 
+
+
     private SwitchTheme changeTheme;
 
     private Admin account;
@@ -208,7 +210,7 @@ public class AdminController {
     @FXML
     public void handleAdminUserBanListButton(ActionEvent actionEvent) {
         try {
-            ApplicationController.goTo("banUser");
+            ApplicationController.goTo("banUser",account);
         } catch (IOException e) {
             System.err.println(e);
         }
