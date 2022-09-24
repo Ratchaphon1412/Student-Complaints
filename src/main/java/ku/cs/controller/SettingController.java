@@ -12,11 +12,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
 import ku.cs.models.admin.Admin;
+import ku.cs.service.DataBase;
+import ku.cs.service.DynamicDatabase;
+import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SettingController {
@@ -33,6 +39,12 @@ public class SettingController {
     @FXML
     private GridPane gridPane;
     @FXML private Circle imageaccountCircle;
+    private File file;
+    private String path;
+    private List<String> listfile;
+    //private DataBase dataBase = new DataBase();
+    private ProcessData dataBase = new ProcessData<>();
+
 
 
     private Admin account;
@@ -59,6 +71,42 @@ public class SettingController {
 
 
     }
+
+    @FXML
+    public void fileChooser(ActionEvent actionEvent) {
+        FileChooser choosefile = new FileChooser();
+        listfile = new ArrayList<>();
+        listfile.add("*.jpg");
+        listfile.add("*.png");
+        listfile.add("*jpeg");
+        choosefile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Picture", listfile));
+
+        file = choosefile.showOpenDialog(null);
+
+        if (file != null) {
+            path = file.getAbsolutePath();
+            image.setImage(new Image(new File(path).toURI().toString()));
+        }
+
+    }
+
+
+    @FXML
+    public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
+        dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
+
+        DynamicDatabase<Admin> database = new ProcessData<>();
+        Admin admin = database.login(account.getUserName(),account.getPassWord());
+        if(admin != null){
+            //System.out.println("test");
+            ApplicationController.goTo("Admin",admin);
+        }else{
+            System.out.println("error");
+        }
+    }
+
+
+
     @FXML
     public void handleCancleSettingButton(ActionEvent actionEvent) {
         try {
@@ -68,12 +116,6 @@ public class SettingController {
         }
     }
 
-//    @FXML
-//    public void handleChoosePictureButton(ActionEvent actionEvent) {
-//        try {
-//            ApplicationController.goTo("Admin");
-//        } catch (IOException e) {
-//            System.err.println(e);
-//        }
-//    }
+
+
 }
