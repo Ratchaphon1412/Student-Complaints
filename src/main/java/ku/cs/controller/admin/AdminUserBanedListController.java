@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.controller.components.AdminUserBanListController;
@@ -68,10 +67,8 @@ public class AdminUserBanedListController {
     @FXML
     public void initialize() throws IOException {
         account = (Admin) FXRouter.getData();
-
         roleAccountLabel.setText(account.getRole());
         userNameAccountLabel.setText(account.getUserName());
-
 
         //load NavBar
         fxmlLoader = new FXMLLoader();
@@ -113,7 +110,7 @@ public class AdminUserBanedListController {
         int num = 1;
         for(User userBan : userList.getUserRequestBan()){
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/banUserPostReport.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/banUserReport.fxml"));
             GridPane banPostUser = (GridPane) fxmlLoader.load();
             BanUserReportController banUserReportController = fxmlLoader.getController();
             banUserReportController.setData(userBan,account,banAndUnBan);
