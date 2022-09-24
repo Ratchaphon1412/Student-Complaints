@@ -25,7 +25,7 @@
     -fx-background-color:-fx-fullScreenButtonColor;
 }
 .circleRotatedInside{
-    -fx-fill:#2D3440;
+    -fx-fill:#FFFFFF;
 }
 .circleRotatedOutside{
     -fx-fill:#647DD7;
@@ -79,4 +79,7 @@
 }
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
+}
+.textLabelColor{
+    -fx-text-fill:#000000;
 }

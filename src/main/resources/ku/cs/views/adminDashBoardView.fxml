@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -142,17 +141,29 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Circle fx:id="imageAccountCircle" fill="#1f93ff00" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                                          <Circle fx:id="imageAccountCircle" fill="#1f93ff00" onMouseClicked="#handleAdminSettingButton" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                                        </children>
                                     </HBox>
                                  </children>
                               </GridPane>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label fx:id="displatName" text="UserName" textFill="WHITE" />
-                                    <Label fx:id="roleDisplay" text="Admin" textFill="WHITE" />
+                                    <Label fx:id="displatName" styleClass="textLabelColor" text="UserName" textFill="WHITE" />
+                                    <Label fx:id="roleDisplay" styleClass="textLabelColor" text="Admin" textFill="WHITE" />
                                  </children>
                               </VBox>
+                              <GridPane fx:id="minisetting">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="37.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="101.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="69.0" minWidth="10.0" prefWidth="35.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="23.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
                            </children>
                         </GridPane>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
@@ -184,7 +195,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="16.0" layoutY="27.0" text="Dashboard" textFill="WHITE">
+                        <Label layoutX="16.0" layoutY="27.0" styleClass="textLabelColor" text="Dashboard" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="22.0" />
                            </font>
@@ -434,7 +445,7 @@
                   </GridPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Label layoutX="16.0" layoutY="26.0" text="Recent Users" textFill="WHITE">
+                        <Label layoutX="16.0" layoutY="26.0" styleClass="textLabelColor" text="Recent Users" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="22.0" />
                            </font>
@@ -453,9 +464,4 @@
          </opaqueInsets>
       </GridPane>
    </children>
-   <stylesheets>
-      <URL value="@../style/style.css" />
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/icon.css" />
-   </stylesheets>
 </GridPane>
