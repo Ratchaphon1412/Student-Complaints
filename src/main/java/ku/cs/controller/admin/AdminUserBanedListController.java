@@ -1,6 +1,5 @@
 package ku.cs.controller.admin;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,12 +9,14 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import ku.cs.controller.components.AdminUserBanListController;
+import ku.cs.controller.components.BanUserReportController;
+import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
 import ku.cs.models.user.UserList;
-import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class AdminUserBanedListController {
@@ -31,11 +32,13 @@ public class AdminUserBanedListController {
 
     private ProcessData processData;
     private UserList userList;
+    private ArrayList<Report> userReportToBan;
 
     @FXML
     public void initialize() throws IOException {
         processData = new ProcessData<>();
-        userList = new UserList(processData.getDataBase().getAccountList(),processData.getDataBase().getUserBanList());
+        userList = processData.getUserList();
+        userReportToBan = processData.getReportList().getReportToBanUser();
         FXMLLoader fxmlLoader;
         //load NavBar
         fxmlLoader = new FXMLLoader();
@@ -46,7 +49,6 @@ public class AdminUserBanedListController {
 
         int count = 0;
         for(User userBan : userList.getUserBanList()){
-
             fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/listViewUserBanList.fxml"));
             AnchorPane listUser = (AnchorPane) fxmlLoader.load();
@@ -57,13 +59,21 @@ public class AdminUserBanedListController {
             GridPane.setMargin(listUser, new Insets(0,0,5,0));
             count++;
         }
-        for(int num = 0 ; num < 5 ; num++){
+        int num = 1;
+        for(Report tem : userReportToBan){
             fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/banUserPostReport.fxml"));
             GridPane banPostUser = (GridPane) fxmlLoader.load();
-            listPostReportGrid.add(banPostUser,0,num+1);
+            BanUserReportController banUserReportController = fxmlLoader.getController();
+            banUserReportController.setData(tem);
+
+            listPostReportGrid.add(banPostUser,0,num++);
             GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
         }
+
+
+
+
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Banned",count-1),
                 new PieChart.Data("preple",100-count-1)
@@ -73,6 +83,7 @@ public class AdminUserBanedListController {
         countBanned.setLabelLineLength(50);
         countBanned.setStartAngle(180);
         countBanned.setData(pieChartData);
+//        countBanned.getData().clear();
 
 
 

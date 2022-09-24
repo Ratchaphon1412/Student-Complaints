@@ -190,7 +190,11 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="3">
                      <children>
-                        <PieChart fx:id="countBanned" style="-fx-background-color: #FFFFFF;" />
+                        <PieChart fx:id="countBanned">
+                           <styleClass>
+                              <String fx:value="roundedCorner" />
+                              <String fx:value="chart-pie-label" />
+                           </styleClass></PieChart>
                      </children></HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">

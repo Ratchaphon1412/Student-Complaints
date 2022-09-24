@@ -9,6 +9,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -203,6 +204,16 @@ public class AdminController {
             System.err.println(e);
         }
     }
+
+    @FXML
+    public void handleAdminSettingButton(MouseEvent mouseEvent) {
+        try {
+            ApplicationController.goTo("Setting",account);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
 
 
 
