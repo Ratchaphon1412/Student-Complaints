@@ -10,5 +10,13 @@ module cs.ku {
     exports ku.cs.controller;
     exports ku.cs.controller.components;
     opens ku.cs.controller.components to javafx.fxml;
+    exports ku.cs.controller.admin;
+    opens ku.cs.controller.admin to javafx.fxml;
+    exports ku.cs.controller.login;
+    opens ku.cs.controller.login to javafx.fxml;
+    exports ku.cs.controller.stuff;
+    opens ku.cs.controller.stuff to javafx.fxml;
+    exports ku.cs.controller.user;
+    opens ku.cs.controller.user to javafx.fxml;
 
 }

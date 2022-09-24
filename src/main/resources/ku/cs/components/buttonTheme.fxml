@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -16,11 +15,6 @@
    <rowConstraints>
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
-   <stylesheets>
-      <URL value="@../style/style.css" />
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/icon.css" />
-   </stylesheets>
    <children>
       <GridPane alignment="CENTER">
         <columnConstraints>
@@ -50,7 +44,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#darkMode" prefHeight="37.0" prefWidth="33.0" styleClass="moonSVG" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#darkMode" prefHeight="37.0" prefWidth="33.0" GridPane.rowIndex="1">
+                           <styleClass>
+                              <String fx:value="moonSVG" />
+                              <String fx:value="switchThemeButton" />
+                           </styleClass></Button>
                      </children>
                   </GridPane>
                </children>
@@ -68,8 +66,8 @@
          <children>
             <GridPane prefHeight="87.0" prefWidth="82.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="21.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" prefWidth="46.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="34.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" prefWidth="45.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="21.0" />
                </columnConstraints>
                <rowConstraints>
@@ -86,7 +84,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#lightMode" prefHeight="44.0" prefWidth="45.0" styleClass="sunSVG" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#lightMode" prefHeight="44.0" prefWidth="45.0" GridPane.rowIndex="1">
+                           <styleClass>
+                              <String fx:value="sunSVG" />
+                              <String fx:value="switchThemeButton" />
+                           </styleClass></Button>
                      </children>
                   </GridPane>
                </children>
@@ -98,7 +100,7 @@
       </GridPane>
    </children>
    <styleClass>
-      <String fx:value="cardBackground" />
       <String fx:value="roundedCornerButtonTheme" />
+      <String fx:value="switchTheme" />
    </styleClass>
 </GridPane>

@@ -31,9 +31,9 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     public ProcessData(){
         dataBase = new DataBase();
         adminList = new AdminList(dataBase.getAccountList());
-        userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList());
+        userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
         stuffList = new StuffList(dataBase.getAccountList());
-        reportList = new ReportList(dataBase.getRequestban(),userList.getUserList());
+        reportList = new ReportList();
     }
 
     @Override
@@ -68,6 +68,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             case "banUser"->{
                User user = (User) object;
                 List<LinkedHashMap<String,String>> userBanList= dataBase.getUserBanList();
+                List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
                 if(user.isBan()){
                     //true แสดงว่าพึ่งโดน แบน
                     LinkedHashMap<String,String> temp = new LinkedHashMap<>();
@@ -79,19 +80,26 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     temp.put("count","0");
 
                     userBanList.add(temp);
+                    for(LinkedHashMap<String,String> data : requestBan){
+                        if(data.get("userName").equals(user.getUserName())){
+                            data.clear();
+                        }
+                    }
+                    dataBase.setRequestban(requestBan);
                     dataBase.setUserBanList(userBanList);
                     dataBase.saveToDatabase();
-                }else{
+                }
+                else{
                     // ลบ ban
                     for(LinkedHashMap<String,String> data : userBanList){
                         if(data.get("userName").equals(user.getUserName())){
                             data.clear();
                         }
                     }
+                    dataBase.setUserBanList(userBanList);
                     dataBase.saveToDatabase();
                 }
             }
-
         }
         return false;
     }

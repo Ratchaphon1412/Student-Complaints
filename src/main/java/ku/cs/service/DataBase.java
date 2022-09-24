@@ -202,6 +202,10 @@ public class DataBase {
         this.userBanList = userBanList;
     }
 
+    public void setRequestban(List<LinkedHashMap<String, String>> requestban) {
+        this.requestban = requestban;
+    }
+
     public List<LinkedHashMap<String, String>> getAccountList() {
         return accountList;
     }

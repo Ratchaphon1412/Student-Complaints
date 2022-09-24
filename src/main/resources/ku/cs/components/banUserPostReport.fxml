@@ -85,7 +85,7 @@
       </HBox>
       <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Ban">
+            <Button mnemonicParsing="false" onAction="#click" prefHeight="40.0" prefWidth="70.0" text="Ban">
                <styleClass>
                   <String fx:value="circleRed" />
                   <String fx:value="roundedCorner" />
