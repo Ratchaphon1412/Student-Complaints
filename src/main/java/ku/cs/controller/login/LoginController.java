@@ -78,7 +78,7 @@ public class LoginController {
     public void handleLoginAuthentication() throws IOException {
         String userNameString = userName.getText();
         String passWordString = passWord.getText();
-        processData = new ProcessData();
+        processData = new ProcessData<>();
 
         //check has account
         if(processData.checkAccount(userNameString)){

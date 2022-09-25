@@ -25,7 +25,6 @@ public class DataBase {
     }
 
 
-
     public void initializeData(){
         accountList = new ArrayList<>();
         reportList =  new ArrayList<>();

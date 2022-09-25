@@ -11,17 +11,28 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import ku.cs.ApplicationController;
+import ku.cs.State;
+import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.AdminUserBanListController;
 import ku.cs.controller.components.BanUserReportController;
+import ku.cs.controller.components.ButtonThemeController;
+import ku.cs.controller.components.NavbarAdminController;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
 import ku.cs.models.user.UserList;
 import ku.cs.service.ProcessData;
 
 import java.io.File;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.prefs.Preferences;
+
 
 
 public class AdminUserBanedListController {
@@ -38,11 +49,13 @@ public class AdminUserBanedListController {
     private GridPane gridPaneList;
 
     @FXML
-    private Circle imageAccount;
-
-    @FXML
     private GridPane listPostReportGrid;
 
+
+    @FXML
+    private Label userName;
+    @FXML
+    private Label roleDisplay;
 
     @FXML
     private Label lordUserUnban1;
@@ -50,38 +63,105 @@ public class AdminUserBanedListController {
     @FXML
     private Label lordUserUnban2;
 
-    @FXML
-    private Label roleAccountLabel;
+
 
     @FXML
-    private Label userNameAccountLabel;
+    private Circle imageAccountCircle;
 
+    @FXML
+    private  GridPane minisetting;
 
     private ProcessData processData;
     private UserList userList;
-//    private UserList userReportToBan;
+
+
+    private Admin account;
+    private SwitchTheme changeTheme;
+
+    //    private UserList userReportToBan;
     private BanAndUnBan banAndUnBan;
     private FXMLLoader fxmlLoader;
-    private Admin account;
+
+
 
     @FXML
     public void initialize() throws IOException {
-        account = (Admin) FXRouter.getData();
-        roleAccountLabel.setText(account.getRole());
-        userNameAccountLabel.setText(account.getUserName());
+        //initial style
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
+        System.out.println(styleTheme);
+        String icon = "/ku/cs/style/icon.css";
+        String style = "/ku/cs/style/style.css";
+        adminpage.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+        adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
+        adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
+
+        //get object Admin
+        account = (Admin) ApplicationController.getData();
+        // connect to database
+        processData = new ProcessData<>();
+        userList = processData.getUserList();
+//        userReportToBan = processData.getReportList().getReportToBanUser();
+        //call initialUserpage
+        initialUserBanpage();
+
+
+    }
+    private void initialUserBanpage() throws IOException {
+//        userName.setText(account.getUserName());
+//        roleDisplay.setText(account.getRole());
+        //get picture from objectAdmin
+        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
+        Image imageAccount = new Image(desDir.toURI().toString());
+        imageAccountCircle.setFill(new ImagePattern(imageAccount));
+        imageAccountCircle.setStroke(Color.TRANSPARENT);
+
 
         //load NavBar
         fxmlLoader = new FXMLLoader();
-        GridPane navbar = (GridPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        GridPane navbar = (GridPane) fxmlLoader.load();
+        NavbarAdminController navbarAdminController = fxmlLoader.getController();
+        navbarAdminController.setAdmin(account);
         adminpage.add(navbar,0,0);
+
+        changeTheme = new SwitchTheme() {
+            @Override
+            public void changeTheme(String theme) throws IOException {
+                //save theme
+                State state = new State();
+                state.setTempData();
+                state.saveThemeToConfig(theme);
+                //change state
+                Preferences preferences = Preferences.userRoot().node(State.class.getName());
+                preferences.put("theme",theme);
+                //change stylesheet in main page
+                adminpage.getStylesheets().clear();
+                String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
+                String icon = "/ku/cs/style/icon.css";
+                String style = "/ku/cs/style/style.css";
+                adminpage.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+                adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
+                adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
+            }
+        };
+        //Switch Theme
+        FXMLLoader fxmlLoader1 = new FXMLLoader();
+        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
+        GridPane switchTheme = (GridPane)fxmlLoader1.load();
+        ButtonThemeController buttonThemeController = fxmlLoader1.getController();
+        buttonThemeController.setSwitchTheme(changeTheme);
+        minisetting.add(switchTheme,1,1);
+
+
 
         refetch();
     }
 
     private void refetch() throws IOException {
 
-        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
-        imageAccount.setFill(new ImagePattern(new Image(desDir.toURI().toString(),800, 0 ,true,true)));
+//        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
+//        imageAccount.setFill(new ImagePattern(new Image(desDir.toURI().toString(),800, 0 ,true,true)));
 
         processData = new ProcessData<>();
         userList = processData.getUserList();
@@ -94,9 +174,8 @@ public class AdminUserBanedListController {
                 refetch();
             }
         };
-
-
         int count = 1;
+
         for(User userBan : userList.getUserBanList()){
             fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/listViewUserBanList.fxml"));
@@ -118,9 +197,6 @@ public class AdminUserBanedListController {
             listPostReportGrid.add(banPostUser,0,num++);
             GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
         }
-
-
-
 
         ObservableList<PieChart.Data> pieChartBanned = FXCollections.observableArrayList(
                 new PieChart.Data("All user Banned",userList.getUserBanList().size()),
@@ -149,11 +225,16 @@ public class AdminUserBanedListController {
         a = userList.getUserBanList().size();
         b = userList.getUserRequestBan().size();
         c = userList.getUserList().size();
+        System.out.println(a + " " + c);
+        System.out.println(b+ " "+c);
 
         lordUserUnban1.setText(String.valueOf(Math.ceil(a/c*100)));
         lordUserUnban2.setText(String.valueOf(Math.ceil(b/c*100)));
+
+    }
     }
 
 
 
-}
+
+

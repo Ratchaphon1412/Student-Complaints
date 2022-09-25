@@ -50,12 +50,16 @@ public class UserList {
                     if(!account.get("userName").equals(banned.getUserName())){
                         User user1 = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),false,"","","0");
                         userList.add(user1);
-                    }else{
-                        userList.add(banned);
+                        System.out.println(user1+"+++");
                     }
+//                    else{
+//                        userList.add(banned);
+//                        System.out.println(banned+"---");
+//                    }
                 }
             }
         }
+        userList.addAll(userBanList);
         for(LinkedHashMap<String,String> account : accountList){
             if(account.get("role").equals("user")){
                 for(LinkedHashMap<String,String> banRequest : requestban){

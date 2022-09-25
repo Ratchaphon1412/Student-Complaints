@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,15 +11,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.AdminUserBanListController">
-   <stylesheets>
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/style.css" />
-      <URL value="@../style/icon.css" />
-   </stylesheets>
-   <styleClass>
-      <String fx:value="cardBackground" />
-      <String fx:value="roundedCorner" />
-   </styleClass>
    <children>
       <VBox prefHeight="60.0" prefWidth="705.0">
          <children>
@@ -31,7 +21,7 @@
                         <Insets left="7.0" />
                      </HBox.margin>
                      <children>
-                        <Circle fx:id="Img" fill="WHITE" radius="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="cardBackground" />
+                        <Circle fx:id="Img" fill="WHITE" radius="27.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="cardBackground" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="130.0">
@@ -39,7 +29,7 @@
                         <Insets bottom="13.0" top="13.0" />
                      </HBox.margin>
                      <children>
-                        <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="114.0" text="name" textFill="WHITE">
+                        <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="114.0" styleClass="textLabelColor" text="name" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>
@@ -60,7 +50,7 @@
                         <Insets bottom="13.0" top="13.0" />
                      </HBox.margin>
                      <children>
-                        <Label fx:id="dateLabel" text="XX/XX/XXXX" textFill="WHITE">
+                        <Label fx:id="dateLabel" styleClass="textLabelColor" text="XX/XX/XXXX" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -83,7 +73,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefWidth="165.0">
                            <children>
-                              <Label fx:id="textLabel" prefHeight="18.0" prefWidth="158.0" text="text" textFill="WHITE">
+                              <Label fx:id="textLabel" prefHeight="18.0" prefWidth="158.0" styleClass="textLabelColor" text="text" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -96,6 +86,7 @@
                            </font>
                            <styleClass>
                               <String fx:value="roundedCorner" />
+                              <String fx:value="textLabelColor" />
                               <String fx:value="circleGreen" />
                            </styleClass>
                         </Button>
@@ -104,7 +95,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="20.0" />
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="37.0">
                      <children>
-                        <Label fx:id="countBanLabel" text="X">
+                        <Label fx:id="countBanLabel" styleClass="textLabelColor" text="X">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -122,6 +113,7 @@
                   <Button mnemonicParsing="false" onAction="#click" prefHeight="40.0" prefWidth="70.0" text="Unban">
                      <styleClass>
                         <String fx:value="circleRed" />
+                        <String fx:value="textLabelColor" />
                         <String fx:value="roundedCorner" />
                      </styleClass>
                      <font>
@@ -133,4 +125,8 @@
          </children>
       </VBox>
    </children>
+   <styleClass>
+      <String fx:value="roundedCorner" />
+      <String fx:value="logStyle" />
+   </styleClass>
 </AnchorPane>

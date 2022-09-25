@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -15,8 +14,8 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
 import ku.cs.models.admin.Admin;
-import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
+
 import ku.cs.service.ProcessData;
 
 import java.io.File;
@@ -96,6 +95,7 @@ public class SettingController {
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
         dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
 
+
         DynamicDatabase<Admin> database = new ProcessData<>();
         Admin admin = database.login(account.getUserName(),account.getPassWord());
         if(admin != null){
@@ -103,6 +103,7 @@ public class SettingController {
             ApplicationController.goTo("Admin",admin);
         }else{
             System.out.println("error");
+
         }
     }
 
