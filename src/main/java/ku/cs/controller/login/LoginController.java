@@ -128,7 +128,7 @@ public class LoginController {
                 }
 
             }else{
-                ApplicationController.goToNew("Alert");
+                ApplicationController.goToNew("Alert", "You are banned");
                 System.out.println("banned");
             }
         }else{

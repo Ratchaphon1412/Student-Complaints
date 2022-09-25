@@ -32,7 +32,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Label fx:id="textStatus" prefHeight="25.0" prefWidth="207.0" text="Label" textFill="WHITE">
+            <Label fx:id="textStatus" alignment="CENTER" prefHeight="25.0" prefWidth="207.0" text="Label" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
