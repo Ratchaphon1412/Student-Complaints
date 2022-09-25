@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -57,7 +58,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ScrollPane prefHeight="476.0" prefWidth="402.0" styleClass="roundedCornerCard" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ScrollPane prefHeight="0.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <content>
                   <GridPane fx:id="feed" prefHeight="1.0" prefWidth="1.0">
                      <columnConstraints>
@@ -67,7 +68,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-               </content></ScrollPane>
+               </content>
+               <styleClass>
+                  <String fx:value="roundedCorner" />
+                  <String fx:value="background" />
+               </styleClass></ScrollPane>
          </children>
       </GridPane>
       <GridPane GridPane.columnIndex="17" GridPane.columnSpan="4">

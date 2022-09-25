@@ -24,11 +24,11 @@ public class UserFeedController {
         root.add(navbar,0,0);
 
         for(int i = 1 ; i < 5 ; i++) {
-            FXMLLoader fxmlLoader1 = new FXMLLoader();
-            fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
-            GridPane feedComponant = (GridPane) fxmlLoader1.load();
+            FXMLLoader fxmlLoaderFeed = new FXMLLoader();
+            fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
+            GridPane feedComponant = (GridPane) fxmlLoaderFeed.load();
             feed.add(feedComponant, 0, i);
-            GridPane.setMargin(feedComponant, new Insets(0, 0, 5, 0));
+            GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
         }
     }
 }
