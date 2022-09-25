@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="staff" prefHeight="38.0" prefWidth="558.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.staffListAgencyController">
+<AnchorPane fx:id="staff" prefHeight="38.0" prefWidth="558.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" prefHeight="40.0" prefWidth="571.0" styleClass="roundedCorner">
          <children>

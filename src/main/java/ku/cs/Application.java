@@ -22,7 +22,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("Login");
+        ApplicationController.goTo("feed");
 
     }
 
@@ -40,6 +40,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
         ApplicationController.when("Agency",pathResource+"agencyView.fxml",1000,580);
         ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
+        ApplicationController.when("feed",pathResource+"problemFeedView.fxml",1000,580);
     }
 
 

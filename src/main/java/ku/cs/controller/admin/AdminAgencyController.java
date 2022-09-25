@@ -25,7 +25,7 @@ public class AdminAgencyController {
 
         for(int i = 1 ; i < 5 ; i++) {
             fxmlLoader = new FXMLLoader();
-            AnchorPane staffComponant = (AnchorPane) FXMLLoader.load(getClass().getResource("/ku/cs/components/staffList.fxml"));
+            AnchorPane staffComponant = (AnchorPane) fxmlLoader.load(getClass().getResource("/ku/cs/components/staffList.fxml"));
             staffList.add(staffComponant, 0, i);
             GridPane.setMargin(staffComponant, new Insets(0,0,5,0));
         }
