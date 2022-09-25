@@ -159,9 +159,6 @@
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
                               </GridPane>
                            </content>
                         </ScrollPane>
