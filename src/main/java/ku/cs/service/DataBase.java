@@ -20,6 +20,7 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> requestban;
 
 
+
     public DataBase(){
         initializeData();
     }
@@ -31,6 +32,7 @@ public class DataBase {
         logList = new ArrayList<>();
         userBanList = new ArrayList<>();
         requestban = new ArrayList<>();
+
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
