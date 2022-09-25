@@ -9,30 +9,29 @@ import java.util.List;
 
 public class ReportList {
     private ArrayList<Report> reportList;
-    private ArrayList<Report> reportToBanUser;
 
     public ReportList(){
         reportList = new ArrayList<>();
-        reportToBanUser = new ArrayList<>();
+//        reportToBanUser = new ArrayList<>();
     }
 
-    public ReportList(List<LinkedHashMap<String,String>> requestbanlist,List<User> userList){
-        reportList = new ArrayList<>();
-        reportToBanUser = new ArrayList<>();
-        for(LinkedHashMap<String,String> tem : requestbanlist){
-            User userTarget = null;
-            for(User user : userList){
-                if(user.getUserName().equals(tem.get("name"))){
-                    userTarget = user;
-                }
-            }
-            if(userTarget != null){
-                Report account = new Report(userTarget, tem.get("Title"), tem.get("date"), tem.get("time"), tem.get("post"), tem.get("image"));
-                reportToBanUser.add(account);
-            }
-
-        }
-    }
+//    public ReportList(List<LinkedHashMap<String,String>> requestbanlist,List<User> userList){
+//        reportList = new ArrayList<>();
+//        reportToBanUser = new ArrayList<>();
+//        for(LinkedHashMap<String,String> tem : requestbanlist){
+//            User userTarget = null;
+//            for(User user : userList){
+//                if(user.getUserName().equals(tem.get("name"))){
+//                    userTarget = user;
+//                }
+//            }
+//            if(userTarget != null){
+//                Report account = new Report(userTarget, tem.get("Title"), tem.get("date"), tem.get("time"), tem.get("post"), tem.get("image"));
+//                reportToBanUser.add(account);
+//            }
+//
+//        }
+//    }
 
     public void addReport(Report report){
         reportList.add(report);
@@ -42,7 +41,7 @@ public class ReportList {
         return reportList;
     }
 
-    public ArrayList<Report> getReportToBanUser() {
-        return reportToBanUser;
-    }
+//    public ArrayList<Report> getReportToBanUser() {
+//        return reportToBanUser;
+//    }
 }

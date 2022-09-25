@@ -28,9 +28,10 @@ public class NavbarAdminController {
         navBar.setMargin(buttonWindows,new Insets(60, 70, 70, 3));
     }
 
+
     @FXML
     private void goDashBoard() throws IOException {
-        ApplicationController.goTo("Admin");
+        ApplicationController.goTo("Admin",admin);
     }
    @FXML
     private void gotoAgency() throws IOException {

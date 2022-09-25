@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -31,7 +30,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <children>
-                  <Circle fx:id="Img" fill="WHITE" radius="23.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fx:id="Img" fill="WHITE" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE">
                      <HBox.margin>
                         <Insets top="2.0" />
                      </HBox.margin>
@@ -39,7 +38,7 @@
                </children>
             </HBox>
             <HBox prefWidth="20.0" />
-            <Label prefHeight="18.0" prefWidth="34.0" text="name" textFill="WHITE">
+            <Label prefHeight="18.0" prefWidth="34.0" styleClass="textLabelColor" text="name" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -47,7 +46,7 @@
             <HBox prefWidth="20.0" />
             <HBox alignment="CENTER_LEFT" prefWidth="180.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="159.0" textFill="WHITE">
+                  <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="159.0" styleClass="textLabelColor" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
@@ -61,7 +60,7 @@
                </HBox.margin>
             </HBox>
             <HBox prefWidth="49.0" />
-            <Label text="date | time" textFill="WHITE">
+            <Label styleClass="textLabelColor" text="date | time" textFill="WHITE">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -69,9 +68,9 @@
             <HBox prefWidth="18.0" />
             <HBox alignment="CENTER" prefWidth="150.0">
                <children>
-                  <Label fx:id="dateLabel" text="XX:XX:XXXX" textFill="WHITE" />
+                  <Label fx:id="dateLabel" styleClass="textLabelColor" text="XX:XX:XXXX" textFill="WHITE" />
                   <Label text=" | " textFill="WHITE" />
-                  <Label fx:id="timeLabel" text="XX:XX:XX" textFill="WHITE" />
+                  <Label fx:id="timeLabel" styleClass="textLabelColor" text="XX:XX:XX" textFill="WHITE" />
                </children>
                <styleClass>
                   <String fx:value="roundedCorner" />
@@ -85,7 +84,7 @@
       </HBox>
       <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="Ban">
+            <Button mnemonicParsing="false" onAction="#click" prefHeight="40.0" prefWidth="70.0" text="Ban">
                <styleClass>
                   <String fx:value="circleRed" />
                   <String fx:value="roundedCorner" />
@@ -105,7 +104,7 @@
       <HBox alignment="CENTER_LEFT" GridPane.columnSpan="3" GridPane.rowIndex="1">
          <children>
             <HBox prefWidth="44.0" />
-            <Label prefHeight="18.0" prefWidth="37.0" text="Title" textFill="WHITE" />
+            <Label prefHeight="18.0" prefWidth="37.0" styleClass="textLabelColor" text="Title" textFill="WHITE" />
             <HBox prefWidth="20.0" />
             <HBox alignment="CENTER_LEFT" prefWidth="360.0">
                <HBox.margin>
@@ -116,7 +115,7 @@
                   <String fx:value="cardBackground" />
                </styleClass>
                <children>
-                  <Label fx:id="titleLabel" prefHeight="18.0" prefWidth="343.0" textFill="WHITE">
+                  <Label fx:id="titleLabel" prefHeight="18.0" prefWidth="343.0" styleClass="textLabelColor" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -124,7 +123,7 @@
                </children>
             </HBox>
             <HBox prefWidth="20.0" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-radius: 50;" styleClass="cardBackground" text="  details" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-radius: 50;" text="  details" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
@@ -138,17 +137,16 @@
                <font>
                   <Font size="13.0" />
                </font>
+               <styleClass>
+                  <String fx:value="cardBackground" />
+                  <String fx:value="textLabelColor" />
+               </styleClass>
             </Button>
          </children>
       </HBox>
    </children>
-   <stylesheets>
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/style.css" />
-      <URL value="@../style/icon.css" />
-   </stylesheets>
    <styleClass>
-      <String fx:value="background" />
       <String fx:value="roundedCornerCard" />
+      <String fx:value="logStyle" />
    </styleClass>
 </GridPane>

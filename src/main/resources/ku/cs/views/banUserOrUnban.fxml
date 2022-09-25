@@ -68,10 +68,13 @@
          <children>
             <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="5" GridPane.rowSpan="4">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="13.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="720.0" minWidth="10.0" prefWidth="708.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="720.0" minWidth="8.0" prefWidth="13.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="185.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <styleClass>
                   <String fx:value="cardBackground" />
@@ -81,7 +84,7 @@
                   <Insets bottom="10.0" left="7.0" right="8.0" />
                </GridPane.margin>
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="179.0" prefWidth="707.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <styleClass>
                         <String fx:value="cardBackground" />
                         <String fx:value="roundedCornerCard" />
@@ -101,10 +104,13 @@
             </GridPane>
             <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.rowSpan="4">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.0" minWidth="6.0" prefWidth="14.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="716.0" minWidth="10.0" prefWidth="701.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="716.0" minWidth="10.0" prefWidth="16.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="109.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="222.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <styleClass>
                   <String fx:value="cardBackground" />
@@ -114,13 +120,13 @@
                   <Insets bottom="10.0" left="7.0" right="8.0" />
                </GridPane.margin>
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="222.0" prefWidth="701.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <styleClass>
                         <String fx:value="cardBackground" />
                         <String fx:value="roundedCornerCard" />
                      </styleClass>
                      <content>
-                        <GridPane fx:id="gridPaneList" alignment="CENTER">
+                        <GridPane fx:id="gridPaneList" alignment="CENTER" prefHeight="1.0" prefWidth="1.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -143,31 +149,21 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="userName" text="UserName" textFill="WHITE" />
-                        <Label fx:id="roleDisplay" text="Admin" textFill="WHITE">
+                        <Label fx:id="userName" styleClass="textLabelColor" text="UserName" textFill="WHITE" />
+                        <Label fx:id="roleDisplay" styleClass="textLabelColor" text="Admin" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
+
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="94.0" prefWidth="88.0" GridPane.columnIndex="1">
                      <children>
                         <Circle fx:id="imageAccountCircle" fill="#1f93ff" radius="27.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                      </children></HBox>
+
                </children>
             </GridPane>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="715.0" GridPane.columnIndex="1" GridPane.columnSpan="6">
-               <children>
-                  <Label text="Ban User of Unban User" textFill="WHITE">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
             <GridPane GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="4">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -198,17 +194,18 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="count user unban" textFill="WHITE" />
+                        <Label styleClass="textLabelColor" text="count user unban" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label fx:id="lordUserUnban" text="0" textFill="WHITE">
+                        <Label fx:id="lordUserUnban1" styleClass="textLabelColor" text="0" textFill="WHITE">
+
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lordUserUnban2" text="\%" textFill="WHITE">
+                        <Label styleClass="textLabelColor" text="\%" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -235,22 +232,24 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="3">
                      <children>
-                        <PieChart />
+                        <PieChart fx:id="countReportBan" />
                      </children></HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="count user ban" textFill="WHITE" />
+                        <Label styleClass="textLabelColor" text="count user ban" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label fx:id="lordUserUnban1" text="0" textFill="WHITE">
+                        <Label fx:id="lordUserUnban2" styleClass="textLabelColor" text="0" textFill="WHITE">
+
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lordUserUnban11" text="\%" textFill="WHITE">
+                        <Label styleClass="textLabelColor" text="\%" textFill="WHITE">
+
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -261,6 +260,27 @@
                <GridPane.margin>
                   <Insets bottom="10.0" right="15.0" />
                </GridPane.margin>
+            </GridPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Label styleClass="textLabelColor" text="List of User Report" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <GridPane fx:id="minisetting" GridPane.columnIndex="6">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="23.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="69.0" minWidth="10.0" prefWidth="13.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+               </rowConstraints>
             </GridPane>
          </children>
          <styleClass>

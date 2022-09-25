@@ -20,10 +20,10 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> requestban;
 
 
+
     public DataBase(){
         initializeData();
     }
-
 
 
     public void initializeData(){
@@ -32,6 +32,7 @@ public class DataBase {
         logList = new ArrayList<>();
         userBanList = new ArrayList<>();
         requestban = new ArrayList<>();
+
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
@@ -200,6 +201,10 @@ public class DataBase {
 
     public void setUserBanList(List<LinkedHashMap<String, String>> userBanList) {
         this.userBanList = userBanList;
+    }
+
+    public void setRequestban(List<LinkedHashMap<String, String>> requestban) {
+        this.requestban = requestban;
     }
 
     public List<LinkedHashMap<String, String>> getAccountList() {

@@ -12,7 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.stuff.AgencyController">
+
+<GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.AdminAgencyController">
+
+
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="10.0" prefWidth="84.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="10.0" prefWidth="32.0" />
@@ -147,12 +150,12 @@
                               </VBox>
                            </children>
                         </GridPane>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="background" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="5">
+                        <ScrollPane prefHeight="354.0" prefWidth="574.0" styleClass="background" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="5">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </GridPane.margin>
                            <content>
-                              <GridPane fx:id="staffList" prefWidth="100.0">
+                              <GridPane fx:id="staffList" prefHeight="1.0" prefWidth="1.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
@@ -283,7 +286,7 @@
                               </Button>
                            </children>
                         </VBox>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="cardBackground" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

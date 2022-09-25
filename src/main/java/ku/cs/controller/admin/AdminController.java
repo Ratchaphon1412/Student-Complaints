@@ -75,6 +75,8 @@ public class AdminController {
     @FXML
     private GridPane minisetting;
 
+
+
     private SwitchTheme changeTheme;
 
     private Admin account;
@@ -94,9 +96,10 @@ public class AdminController {
         adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
         //set Font
-        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),18);
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         titleDashBoard.setFont(font);
         titleRecent.setFont(font);
+        displayName.setFont(font);
         roleDisplay.setFont(font);
         titleReport.setFont(font);
         titleAgency.setFont(font);
@@ -176,7 +179,7 @@ public class AdminController {
         //data log from Database
         List<LinkedHashMap<String,String>>logList = processData.getDataBase().getLogList();
         //loop log (get log from database) and show
-        System.out.println("log size"+logList.size());
+//        System.out.println("log size"+logList.size());
         for(int row = 0 ; row < logList.size() ; row++){
             //load components
             if(logList.get(row) != null){
@@ -208,7 +211,7 @@ public class AdminController {
     @FXML
     public void handleAdminUserBanListButton(ActionEvent actionEvent) {
         try {
-            ApplicationController.goTo("banUser");
+            ApplicationController.goTo("banUser",account);
         } catch (IOException e) {
             System.err.println(e);
         }

@@ -31,9 +31,9 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     public ProcessData(){
         dataBase = new DataBase();
         adminList = new AdminList(dataBase.getAccountList());
-        userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList());
+        userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
         stuffList = new StuffList(dataBase.getAccountList());
-        reportList = new ReportList(dataBase.getRequestban(),userList.getUserList());
+        reportList = new ReportList();
     }
 
     @Override
@@ -68,6 +68,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             case "banUser"->{
                User user = (User) object;
                 List<LinkedHashMap<String,String>> userBanList= dataBase.getUserBanList();
+                List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
                 if(user.isBan()){
                     //true แสดงว่าพึ่งโดน แบน
                     LinkedHashMap<String,String> temp = new LinkedHashMap<>();
@@ -79,19 +80,50 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     temp.put("count","0");
 
                     userBanList.add(temp);
-                    dataBase.setUserBanList(userBanList);
-                    dataBase.saveToDatabase();
-                }else{
-                    // ลบ ban
-                    for(LinkedHashMap<String,String> data : userBanList){
-                        if(data.get("userName").equals(user.getUserName())){
-                            data.clear();
+                    for(int i = 0 ; i < requestBan.size() ; i++){
+                        if(requestBan.get(i).get("userName").equals(user.getUserName())){
+                            requestBan.remove(i);
                         }
                     }
+                    if(requestBan.size() == 0){
+                        temp = new LinkedHashMap<>();
+                        temp.put("userName","");
+                        temp.put("date","");
+                        temp.put("time","");
+                        temp.put("category","");
+                        temp.put("post","");
+                        requestBan.add(temp);
+                    }
+                    if(requestBan.get(0).get("userName").equals("")){
+                        requestBan.remove(0);
+                    }
+                    dataBase.setRequestban(requestBan);
+                    dataBase.setUserBanList(userBanList);
+                    dataBase.saveToDatabase();
+                }
+                else{
+                    // ลบ ban
+
+                    for(int i = 0;i < userBanList.size();i++){
+                        if(userBanList.get(i).get("userName").equals(user.getUserName())){
+                            userBanList.remove(i);
+                        }
+                    }
+                    if(userBanList.size() == 0){
+                        LinkedHashMap<String,String> temp = new LinkedHashMap<>();
+                        temp.put("userName","");
+                        temp.put("date","");
+                        temp.put("details","");
+                        temp.put("count","");
+                        userBanList.add(temp);
+                    }
+                    if(userBanList.get(0).get("userName").equals("")){
+                        userBanList.remove(0);
+                    }
+                    dataBase.setUserBanList(userBanList);
                     dataBase.saveToDatabase();
                 }
             }
-
         }
         return false;
     }
