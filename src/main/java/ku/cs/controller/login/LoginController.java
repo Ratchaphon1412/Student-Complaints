@@ -3,19 +3,24 @@ package ku.cs.controller.login;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
+import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 
+import ku.cs.State;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.user.User;
 import ku.cs.service.DataBase;
 import java.io.IOException;
+import java.util.prefs.Preferences;
+
 import ku.cs.models.Account;
 import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
@@ -41,11 +46,28 @@ public class LoginController {
     private ProcessData processData;
 
     @FXML
+    private Label forgetLogin;
+    @FXML
+    private Label welcomeLogin;
+    @FXML
+    private Label sighUpLogin;
+
+
+
+
+
+    @FXML
     private void initialize() throws IOException {
         String logoKUPic = getClass().getResource("/ku/cs/assets/images/LogoKU.png").toExternalForm();
         logoKU.setImage(new Image(logoKUPic));
         HBox buttonWindows = (HBox) FXMLLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
         anchorPaneOnTop.getChildren().add(buttonWindows);
+        //font
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        forgetLogin.setFont(font);
+        welcomeLogin.setFont(font);
+        sighUpLogin.setFont(font);
     }
 
 
@@ -137,5 +159,7 @@ public class LoginController {
         }
 
     }
+
+
 
 }
