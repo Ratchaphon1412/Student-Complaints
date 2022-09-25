@@ -231,7 +231,7 @@ public class SettingController {
         }
 
         //change fonts
-        if(dropDown.getValue().toString() !=null){
+        if(dropDown.getValue() !=null){
             changeFonts.changeFonts(dropDown.getValue().toString());
         }
         if(admin!=null){
