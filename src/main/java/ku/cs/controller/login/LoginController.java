@@ -93,6 +93,7 @@ public class LoginController {
                             System.out.println("test");
                             ApplicationController.goTo("Admin",admin);
                         }else{
+                            ApplicationController.goToNew("Alert", "wrong password");
                             System.out.println("wrong password");
                         }
                         break;
@@ -128,7 +129,7 @@ public class LoginController {
                 }
 
             }else{
-                ApplicationController.goToNew("Alert");
+                ApplicationController.goToNew("Alert", "You are banned");
                 System.out.println("banned");
             }
         }else{

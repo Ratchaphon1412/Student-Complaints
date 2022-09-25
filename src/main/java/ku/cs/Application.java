@@ -21,6 +21,7 @@ public class Application extends javafx.application.Application {
         //route config
         configRoute();
 
+
         ApplicationController.goTo("AdminAgency");
 
     }
