@@ -96,9 +96,10 @@ public class AdminController {
         adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
         //set Font
-        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),18);
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         titleDashBoard.setFont(font);
         titleRecent.setFont(font);
+        displayName.setFont(font);
         roleDisplay.setFont(font);
         titleReport.setFont(font);
         titleAgency.setFont(font);
