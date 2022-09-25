@@ -1,7 +1,5 @@
 package ku.cs.models.stuff;
 
-import ku.cs.models.admin.Admin;
-import ku.cs.models.user.User;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -9,15 +7,34 @@ import java.util.List;
 
 public class StuffList {
     private LinkedHashMap<String, String> stuffAgencyList;
-    private ArrayList<String> agency ;
+    private ArrayList<String> agency;
+
+    private LinkedHashMap<String,String> agencyStuffList;
     private List<Stuff> stuffList;
 
     Stuff stuff;
 
-    public StuffList (List<LinkedHashMap<String,String>> accountList){
-        stuffAgencyList = new LinkedHashMap<String, String>();
+    public StuffList (List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> agencyList){
+        stuffAgencyList = new LinkedHashMap<>();
         stuffList = new ArrayList<>();
         agency = new ArrayList<>();
+        agencyStuffList = new LinkedHashMap<>();
+
+        //set agency
+        for(LinkedHashMap<String,String> temp: agencyList){
+            agency.add(temp.get("agency"));
+            String[] tempArray = temp.get("stuffNameList").split("\\|");
+            for(int i =0; i< tempArray.length ; i++){
+                agencyStuffList.put(tempArray[i],temp.get("agency"));
+            }
+
+//            LinkedHashMap<String,String[]> tempAgency = new LinkedHashMap<>();
+//            tempAgency.put(temp.get("agency"),tempArray);
+//            agencyStuffList.add(tempAgency);
+        }
+
+
+
         createObjectStuff(accountList);
     }
 
@@ -29,12 +46,20 @@ public class StuffList {
     }
 
     private void createObjectStuff(List<LinkedHashMap<String,String>> accountList){
-        for(LinkedHashMap<String,String> account :accountList ){
-            if(account.get("role").equals("stuff")){
-                Stuff stuff = new Stuff(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),"");
-                stuffList.add(stuff);
-            }
-        }
+//        for(LinkedHashMap<String,String> account :accountList ){
+//            if(account.get("role").equals("stuff")){
+//              for(LinkedHashMap<String,String[]>temp : agencyStuffList){
+//                  String[] listName = temp.get("stuffNameList");
+//                    for(int i = 0; i <listName.length ;i++){
+////                        if(listName[i].equals(account.get("userName"))){
+////                            Stuff stuff = new Stuff(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),);
+////                            stuffList.add(stuff);
+////                        }
+//                    }
+//
+//              }
+//            }
+//        }
     }
 
     public void addNewAgency(String newAgency){
@@ -63,5 +88,7 @@ public class StuffList {
         return stuffAgencyList;
     }
 
-
+    public List<LinkedHashMap<String, String[]>> getAgencyStuffList() {
+        return agencyStuffList;
+    }
 }

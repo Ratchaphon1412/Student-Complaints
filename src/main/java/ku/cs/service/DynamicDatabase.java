@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public interface DynamicDatabase<DataObject> {
 
-    public boolean registerAccount(DataObject object, File file) throws IOException;
+    public boolean registerAccount(DataObject object, File file,String role) throws IOException;
 
     public boolean changeData(DataObject object,String key) throws IOException;
     public DataObject login(String userName,String passWord) throws IOException;

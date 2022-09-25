@@ -11,6 +11,7 @@ import ku.cs.models.user.UserList;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,34 +33,73 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         dataBase = new DataBase();
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
-        stuffList = new StuffList(dataBase.getAccountList());
+        stuffList = new StuffList(dataBase.getAccountList(),dataBase.getStuffAgencyList());
         reportList = new ReportList();
     }
 
     @Override
-    public boolean registerAccount(DataObject object, File file) throws IOException {
+    public boolean registerAccount(DataObject object, File file,String role) throws IOException {
         try
         {
-            User newUser = (User) object;
-            newUser.setPathPicture(dataBase.saveImage(newUser.getPathPicture(), newUser.getUserName(),file));
-            LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
-            createAccount.put("userName",newUser.getUserName());
-            createAccount.put("passWord",newUser.getPassWord());
-            createAccount.put("role",newUser.getRole());
-            createAccount.put("pathPicture",newUser.getPathPicture());
-            //get listAccount from database
-            List<LinkedHashMap<String,String>> accountList = dataBase.getAccountList();
-            //add new user
-            accountList.add(createAccount);
-            //set field account list in database
-            dataBase.setAccountList(accountList);
-            //savetoDatabase
-            dataBase.saveToDatabase();
-            return true;
+            switch (role){
+                case "user":{
+                    User newUser = (User) object;
+                    newUser.setPathPicture(dataBase.saveImage(newUser.getPathPicture(), newUser.getUserName(),file));
+                    LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
+                    createAccount.put("userName",newUser.getUserName());
+                    createAccount.put("passWord",newUser.getPassWord());
+                    createAccount.put("role",newUser.getRole());
+                    createAccount.put("pathPicture",newUser.getPathPicture());
+                    //get listAccount from database
+                    List<LinkedHashMap<String,String>> accountList = dataBase.getAccountList();
+                    //add new user
+                    accountList.add(createAccount);
+                    //set field account list in database
+                    dataBase.setAccountList(accountList);
+                    //savetoDatabase
+                    dataBase.saveToDatabase();
+                    return true;
+                }
+                case "stuff":{
+                    Stuff stuff = (Stuff) object;
+                    stuff.setPathPicture(dataBase.saveImage(stuff.getPathPicture(),stuff.getUserName(),file));
+                    LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
+                    createAccount.put("userName",stuff.getUserName());
+                    createAccount.put("passWord",stuff.getPassWord());
+                    createAccount.put("role",stuff.getRole());
+                    createAccount.put("pathPicture",stuff.getPathPicture());
+                    //get listAccount from database
+                    List<LinkedHashMap<String,String>> accountList = dataBase.getAccountList();
+                    //add new stuff
+                    accountList.add(createAccount);
+                    dataBase.setAccountList(accountList);
+
+                    //get list Agency
+                    List<LinkedHashMap<String,String>> agencyList = dataBase.getStuffAgencyList();
+                    //loop check agency and add stuff name to agency
+                    for(LinkedHashMap<String,String> agency : agencyList){
+                        if(agency.get("agency").equals(stuff.getAgency())){
+                           String temp = agency.get("stuffNameList");
+                           if(temp.equals("")){
+                               temp +=stuff.getUserName();
+                           }else{
+                               temp += "|" + stuff.getUserName();
+                           }
+                           agency.put("stuffNameList",temp);
+                        }
+                    }
+                    dataBase.setStuffAgencyList(agencyList);
+                    //savetoDatabase
+                    dataBase.saveToDatabase();
+                    return true;
+
+                }
+            }
         }catch (Exception e){
             System.out.println(e);
             return false;
         }
+        return false;
     }
 
     @Override

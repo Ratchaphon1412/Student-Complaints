@@ -19,6 +19,8 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> userBanList;
     private List<LinkedHashMap<String,String>> requestban;
 
+    private List<LinkedHashMap<String,String>> stuffAgencyList;
+
 
 
     public DataBase(){
@@ -32,15 +34,17 @@ public class DataBase {
         logList = new ArrayList<>();
         userBanList = new ArrayList<>();
         requestban = new ArrayList<>();
+        stuffAgencyList = new ArrayList<>();
 
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
         readFile("requestban.csv");
+        readFile("stuffagencylist.csv");
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffagencylist.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -51,6 +55,7 @@ public class DataBase {
                 case "log.csv" -> this.writeFile(logList, writer);
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
                 case "requestban.csv" -> this.writeFile(requestban,writer);
+                case "stuffagencylist.csv"->this.writeFile(stuffAgencyList,writer);
             }
         }
 
@@ -78,6 +83,7 @@ public class DataBase {
                     case "log.csv" -> logList.add(temp);
                     case "requestunban.csv" -> userBanList.add(temp);
                     case "requestban.csv" -> requestban.add(temp);
+                    case "stuffagencylist.csv"->stuffAgencyList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -231,4 +237,11 @@ public class DataBase {
         this.accountList = accountList;
     }
 
+    public void setStuffAgencyList(List<LinkedHashMap<String, String>> stuffAgencyList) {
+        this.stuffAgencyList = stuffAgencyList;
+    }
+
+    public List<LinkedHashMap<String, String>> getStuffAgencyList() {
+        return stuffAgencyList;
+    }
 }
