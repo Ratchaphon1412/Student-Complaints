@@ -15,4 +15,14 @@ public class Stuff extends Account {
         return agency;
     }
 
+    @Override
+    public String toString() {
+        return "Stuff{" +
+                "agency='" + agency + '\'' +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", pathPicture='" + pathPicture + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

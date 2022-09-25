@@ -22,7 +22,7 @@ public class AgencyController {
     private GridPane root;
 
     @FXML
-    private GridPane staffList;
+    private GridPane staffListGridPane;
 
     @FXML
     private Circle imageAccountCircle;
@@ -39,7 +39,7 @@ public class AgencyController {
     public void initialize() throws IOException {
         account = (Admin) ApplicationController.getData();
 
-        System.out.println(account.getUserName());
+
         //load navbar
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
@@ -53,7 +53,7 @@ public class AgencyController {
         FXMLLoader fxmlLoader1 = new FXMLLoader();
         fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/staffList.fxml"));
         AnchorPane staffComponant = (AnchorPane) fxmlLoader1.load();
-        staffList.add(staffComponant,0,0);
+        staffListGridPane.add(staffComponant,0,0);
         //set display
         displayName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());

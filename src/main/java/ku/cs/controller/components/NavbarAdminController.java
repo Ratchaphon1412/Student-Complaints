@@ -35,7 +35,7 @@ public class NavbarAdminController {
     }
    @FXML
     private void gotoAgency() throws IOException {
-       ApplicationController.goTo("Agency",admin);
+       ApplicationController.goTo("AdminAgency",admin);
    }
 
    @FXML

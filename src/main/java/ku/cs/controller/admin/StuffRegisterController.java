@@ -46,7 +46,7 @@ public class StuffRegisterController {
     private void initialize(){
         ProcessData processData = new ProcessData<>();
 
-        stuffList = new StuffList(processData.getDataBase().getAccountList(),processData.getDataBase().getStuffAgencyList());
+        stuffList = new StuffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
 
 //        choiceAgency.getItems().addAll();
     }

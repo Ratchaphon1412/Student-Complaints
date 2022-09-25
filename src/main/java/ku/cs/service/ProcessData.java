@@ -33,7 +33,8 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         dataBase = new DataBase();
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
-        stuffList = new StuffList(dataBase.getAccountList(),dataBase.getStuffAgencyList());
+        stuffList = new StuffList(dataBase.getAccountList(),dataBase.getAgencyList());
+
         reportList = new ReportList();
     }
 
@@ -75,7 +76,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     dataBase.setAccountList(accountList);
 
                     //get list Agency
-                    List<LinkedHashMap<String,String>> agencyList = dataBase.getStuffAgencyList();
+                    List<LinkedHashMap<String,String>> agencyList = dataBase.getAgencyList();
                     //loop check agency and add stuff name to agency
                     for(LinkedHashMap<String,String> agency : agencyList){
                         if(agency.get("agency").equals(stuff.getAgency())){
@@ -88,7 +89,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                            agency.put("stuffNameList",temp);
                         }
                     }
-                    dataBase.setStuffAgencyList(agencyList);
+                    dataBase.setAgencyList(agencyList);
                     //savetoDatabase
                     dataBase.saveToDatabase();
                     return true;
@@ -252,6 +253,10 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     public UserList getUserList() {
         return userList;
+    }
+
+    public StuffList getStuffList() {
+        return stuffList;
     }
 
     public ReportList getReportList() {

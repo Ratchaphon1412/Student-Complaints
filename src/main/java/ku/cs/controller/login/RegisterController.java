@@ -87,6 +87,15 @@ public class RegisterController {
 
     }
 
+    @FXML
+    public void handleCancleSettingButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goTo("Login");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
 }
 
 
