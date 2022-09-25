@@ -151,7 +151,18 @@
                            <styleClass>
                               <String fx:value="roundedCorner" />
                               <String fx:value="primaryColor" />
-                           </styleClass></Button>
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="52.0" prefWidth="275.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleCancleSettingButton" prefHeight="25.0" prefWidth="62.0" text="Cancle">
+                           <styleClass>
+                              <String fx:value="roundedCorner" />
+                              <String fx:value="primaryColor" />
+                           </styleClass>
+                        </Button>
                      </children>
                   </VBox>
                </children>
