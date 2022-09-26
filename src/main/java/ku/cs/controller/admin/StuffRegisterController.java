@@ -2,13 +2,11 @@ package ku.cs.controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 import ku.cs.models.stuff.Stuff;
 import ku.cs.models.stuff.StuffList;
@@ -34,6 +32,9 @@ public class StuffRegisterController {
     @FXML
     private ChoiceBox choiceAgency;
 
+    @FXML
+    private Button close;
+
     private StuffList stuffList;
 
     private ProcessData dataBase;
@@ -47,8 +48,7 @@ public class StuffRegisterController {
         ProcessData processData = new ProcessData<>();
 
         stuffList = new StuffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
-
-//        choiceAgency.getItems().addAll();
+        choiceAgency.getItems().addAll(stuffList.getAgency());
     }
 
 
@@ -60,15 +60,19 @@ public class StuffRegisterController {
         dataBase = new ProcessData<>();
 
 
-
+        String selectAgency = "";
         if(!dataBase.checkAccountDuplicate(user)){
             if(password.equals(confirmpassword)){
                 if(path != null){
-                    Stuff newUser = new Stuff(user,password,path,"stuff","");
+                    if(choiceAgency.getValue() !=null){
+                        selectAgency = choiceAgency.getValue().toString();
+                    }
+                    Stuff newUser = new Stuff(user,password,path,"stuff",selectAgency);
                     DynamicDatabase<Stuff> database = new ProcessData<>();
                     boolean checkregister = database.registerAccount(newUser,file,"stuff");
                     if(checkregister){
-                        ApplicationController.goTo("Login");
+//                        ApplicationController.goTo("Login");
+                        closeWindows();
                     }else{
                         ApplicationController.goToNew("Alert","Failed to register");
                     }
@@ -108,6 +112,12 @@ public class StuffRegisterController {
             userImage.setImage(new Image(new File(path).toURI().toString()));
         }
 
+    }
+
+    @FXML
+    private void closeWindows(){
+        Stage stage = (Stage)close.getScene().getWindow();
+        stage.close();
     }
 
 

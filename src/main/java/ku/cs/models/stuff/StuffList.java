@@ -16,28 +16,12 @@ public class StuffList {
 
 
     public StuffList (List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> agencyList){
-        stuffAgencyList = new LinkedHashMap<String, String>();
-
+        stuffAgencyList = new LinkedHashMap<>();
         stuffList = new ArrayList<>();
         agency = new ArrayList<>();
         agencyStuffList = new LinkedHashMap<>();
-//
-//        //set agency
-//        for(LinkedHashMap<String,String> temp: agencyList){
-//            agency.add(temp.get("agency"));
-//            String[] tempArray = temp.get("stuffNameList").split("\\|");
-//            for(int i =0; i< tempArray.length ; i++){
-//                agencyStuffList.put(tempArray[i],temp.get("agency"));
-//            }
-//
-////            LinkedHashMap<String,String[]> tempAgency = new LinkedHashMap<>();
-////            tempAgency.put(temp.get("agency"),tempArray);
-////            agencyStuffList.add(tempAgency);
-//        }
 
-
-
-        createObjectStuff(accountList);
+        createObjectStuff(accountList,agencyList);
         checkAgency(agencyList);
         setAgency(agencyList);
     }
@@ -48,6 +32,13 @@ public class StuffList {
         stuffAgencyList.put(key, name);
 
     }
+
+    private void setAgency(List<LinkedHashMap<String,String>> agecyList){
+        for(int i = 0 ; i < agecyList.size() ; i++){
+            agency.add(agecyList.get(i).get("agency"));
+        }
+    }
+
     private void checkAgency(List<LinkedHashMap<String,String>> agecyList){
         for(Stuff data : stuffList) {
             for (int i = 0; i < agecyList.size(); i++) {
@@ -59,30 +50,11 @@ public class StuffList {
                 }
             }
         }
-    }
-    private void setAgency(List<LinkedHashMap<String,String>> agecyList){
-        for(int i = 0 ; i < agecyList.size() ; i++){
-            agency.add(agecyList.get(i).get("agency"));
-        }
+
     }
 
 
-
-    private void createObjectStuff(List<LinkedHashMap<String,String>> accountList){
-
-//        for(LinkedHashMap<String,String> account :accountList ){
-//            if(account.get("role").equals("stuff")){
-//              for(LinkedHashMap<String,String[]>temp : agencyStuffList){
-//                  String[] listName = temp.get("stuffNameList");
-//                    for(int i = 0; i <listName.length ;i++){
-////                        if(listName[i].equals(account.get("userName"))){
-////                            Stuff stuff = new Stuff(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),);
-////                            stuffList.add(stuff);
-////                        }
-//                    }
-//
-//              }
-//            }
+    private void createObjectStuff(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> agencyList){
 
         for(LinkedHashMap<String,String> account :accountList ){
             if(account.get("role").equals("stuff")){
@@ -90,6 +62,7 @@ public class StuffList {
                 stuffList.add(stuff);
             }
         }
+
     }
 
     public void addNewAgency(String newAgency){

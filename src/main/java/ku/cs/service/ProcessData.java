@@ -11,7 +11,6 @@ import ku.cs.models.user.UserList;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -164,6 +163,46 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     dataBase.setUserBanList(userBanList);
                     dataBase.saveToDatabase();
                 }
+            }
+            case "changeAgency"->{
+                Stuff stuff = (Stuff) object;
+                List<LinkedHashMap<String,String>> agencyList = dataBase.getAgencyList();
+                //add
+                for(LinkedHashMap<String,String> temp : agencyList){
+
+                    if(temp.get("agency").equals(stuff.getAgency())){
+                        if(temp.get("stuffNameList").equals("")){
+                            temp.put("stuffNameList",stuff.getUserName());
+                        }else{
+                            String namelist = temp.get("stuffNameList");
+                            namelist += "|"+stuff.getUserName();
+                            temp.put("stuffNameList",namelist);
+                        }
+                    }
+                }
+
+                //remove
+                for(LinkedHashMap<String,String> temp : agencyList){
+                    if(!temp.get("agency").equals(stuff.getAgency())){
+                        String[] nameList = temp.get("stuffNameList").split("\\|");
+                        String nameListTemp = "";
+                       for(int i = 0 ; i< nameList.length ; i++){
+                           if(nameList[i].equals(stuff.getUserName())){
+
+                           }else{
+                               if(i == 0){
+                                   nameListTemp += nameList[i];
+                               }else{
+                                   nameListTemp += "|"+nameList[i];
+                               }
+                           }
+                       }
+                       temp.put("stuffNameList",nameListTemp);
+                    }
+                }
+                dataBase.setAgencyList(agencyList);
+                dataBase.saveToDatabase();
+
             }
         }
         return false;

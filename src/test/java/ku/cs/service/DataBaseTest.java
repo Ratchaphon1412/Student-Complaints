@@ -2,7 +2,6 @@ package ku.cs.service;
 
 import org.junit.jupiter.api.Test;
 
-import javax.xml.crypto.Data;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,30 +23,36 @@ class DataBaseTest {
     void getStuffAgencyList() {
         DataBase dataBase = new DataBase();
 
-        System.out.println(dataBase.getStuffAgencyList());
-        List<LinkedHashMap<String,String>> agencyList = dataBase.getStuffAgencyList();
+//        System.out.println(dataBase.getStuffAgencyList());
+//        List<LinkedHashMap<String,String>> agencyList = dataBase.getStuffAgencyList();
         //loop check agency and add stuff name to agency
 
-        for(LinkedHashMap<String,String> agency : agencyList){
-            if(agency.get("agency").equals("xxxxxxxx")){
-                String temp = agency.get("stuffNameList");
-                if(temp.equals("")){
-                    temp +="test";
-                }else{
-                    temp += "|" + "test";
-                }
-                agency.put("stuffNameList",temp);
-            }
-        }
-        for(LinkedHashMap<String,String> test : agencyList){
-            String[] temp= test.get("stuffNameList").split("\\|");
-            for(int i = 0;i<temp.length ;i++){
-                System.out.print(temp[i]+" ");
-            }
+//        for(LinkedHashMap<String,String> agency : agencyList){
+//            if(agency.get("agency").equals("xxxxxxxx")){
+//                String temp = agency.get("stuffNameList");
+//                if(temp.equals("")){
+//                    temp +="test";
+//                }else{
+//                    temp += "|" + "test";
+//                }
+//                agency.put("stuffNameList",temp);
+//            }
+//        }
+//        for(LinkedHashMap<String,String> test : agencyList){
+//            String[] temp= test.get("stuffNameList").split("\\|");
+//            for(int i = 0;i<temp.length ;i++){
+//                System.out.print(temp[i]+" ");
+//            }
+//
+//        }
+//
+//        System.out.println(agencyList);
 
-        }
+    }
 
-        System.out.println(agencyList);
-
+    @Test
+    void getAgencyList() {
+        DataBase dataBase = new DataBase();
+        System.out.println(dataBase.getAgencyList());
     }
 }

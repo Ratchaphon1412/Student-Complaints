@@ -35,7 +35,7 @@
             <children>
                 <Pane prefHeight="52.0" prefWidth="53.0">
                     <children>
-                        <Button alignment="CENTER" layoutX="15.0" layoutY="23.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="8.0">
+                        <Button alignment="CENTER" layoutX="15.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" prefHeight="8.0" prefWidth="8.0">
                             <font>
                                 <Font size="7.0" />
                             </font>
@@ -44,7 +44,7 @@
                                 <String fx:value="colorIcon" />
                             </styleClass>
                         </Button>
-                        <Button layoutX="10.0" layoutY="24.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="4.0">
+                        <Button layoutX="10.0" layoutY="24.0" mnemonicParsing="false" onAction="#logOut" prefHeight="0.0" prefWidth="4.0">
                             <font>
                                 <Font size="6.0" />
                             </font>

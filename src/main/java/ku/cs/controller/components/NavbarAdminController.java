@@ -48,6 +48,10 @@ public class NavbarAdminController {
         ApplicationController.goTo("Setting",admin);
    }
 
+   @FXML
+   private void logOut() throws IOException {
+        ApplicationController.goTo("Login");
+   }
    public void setAdmin(Admin admin){
         this.admin = admin;
    }

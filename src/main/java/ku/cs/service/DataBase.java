@@ -37,7 +37,6 @@ public class DataBase {
         userBanList = new ArrayList<>();
         requestban = new ArrayList<>();
         agencyList = new ArrayList<>();
-
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");

@@ -35,6 +35,9 @@ public class AgencyController {
     private Admin account;
 
 
+
+
+
     @FXML
     public void initialize() throws IOException {
         account = (Admin) ApplicationController.getData();
