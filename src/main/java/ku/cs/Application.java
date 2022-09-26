@@ -40,6 +40,9 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
         ApplicationController.when("Agency",pathResource+"agencyView.fxml",1000,580);
         ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
+        ApplicationController.when("AllProblem",pathResource+"allProblemReportView.fxml",1000,580);
+        ApplicationController.when("Feed",pathResource+"problemFeedView.fxml",1000,580);
+        ApplicationController.when("Report",pathResource+"problemReportView.fxml",1000,580);
     }
 
 
