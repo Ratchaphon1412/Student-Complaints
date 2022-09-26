@@ -14,11 +14,13 @@ public class StuffList {
 
     Stuff stuff;
 
-    public StuffList (List<LinkedHashMap<String,String>> accountList){
+    public StuffList (List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> agecyList){
         stuffAgencyList = new LinkedHashMap<String, String>();
         stuffList = new ArrayList<>();
         agency = new ArrayList<>();
         createObjectStuff(accountList);
+        checkAgency(agecyList);
+        setAgency(agecyList);
     }
 
     public void toStuffList(Stuff stuff){
@@ -27,11 +29,30 @@ public class StuffList {
         stuffAgencyList.put(key, name);
 
     }
+    private void checkAgency(List<LinkedHashMap<String,String>> agecyList){
+        for(Stuff data : stuffList) {
+            for (int i = 0; i < agecyList.size(); i++) {
+                String[] stuffInAgecy = agecyList.get(i).get("stuffNameList").split("\\|");
+                for (String nameStuff : stuffInAgecy) {
+                    if (nameStuff.equals(data.getUserName())){
+                        data.setAgency(agecyList.get(i).get("agency"));
+                    }
+                }
+            }
+        }
+    }
+    private void setAgency(List<LinkedHashMap<String,String>> agecyList){
+        for(int i = 0 ; i < agecyList.size() ; i++){
+            agency.add(agecyList.get(i).get("agency"));
+        }
+    }
+
+
 
     private void createObjectStuff(List<LinkedHashMap<String,String>> accountList){
         for(LinkedHashMap<String,String> account :accountList ){
             if(account.get("role").equals("stuff")){
-                Stuff stuff = new Stuff(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),"");
+                stuff = new Stuff(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),"");
                 stuffList.add(stuff);
             }
         }
@@ -63,5 +84,11 @@ public class StuffList {
         return stuffAgencyList;
     }
 
+    public List<Stuff> getStuffList() {
+        return stuffList;
+    }
 
+    public ArrayList<String> getAgency() {
+        return agency;
+    }
 }

@@ -46,16 +46,19 @@ public class UserList {
         }
         for(LinkedHashMap<String,String> account :accountList){
             if(account.get("role").equals("user")){
+                boolean checkUserBan = true;
                 for (User banned:userBanList){
-                    if(!account.get("userName").equals(banned.getUserName())){
-                        User user1 = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),false,"","","0");
-                        userList.add(user1);
-                        System.out.println(user1+"+++");
+                    if(account.get("userName").equals(banned.getUserName())){
+                        checkUserBan = false;
                     }
 //                    else{
 //                        userList.add(banned);
 //                        System.out.println(banned+"---");
 //                    }
+                }
+                if(checkUserBan){
+                    User user1 = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),false,"","","0");
+                    userList.add(user1);
                 }
             }
         }

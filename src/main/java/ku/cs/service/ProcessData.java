@@ -32,7 +32,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         dataBase = new DataBase();
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
-        stuffList = new StuffList(dataBase.getAccountList());
+        stuffList = new StuffList(dataBase.getAccountList(),dataBase.getAgencyList());
         reportList = new ReportList();
     }
 
@@ -212,6 +212,10 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     public UserList getUserList() {
         return userList;
+    }
+
+    public StuffList getStuffList() {
+        return stuffList;
     }
 
     public ReportList getReportList() {
