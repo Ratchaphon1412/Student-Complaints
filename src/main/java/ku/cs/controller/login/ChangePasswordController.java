@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +19,7 @@ public class ChangePasswordController {
     @FXML TextField UserChange;
     @FXML TextField OldPassword;
     @FXML TextField NewPassword;
+
     private DataBase dataBase = new DataBase();
 
     @FXML public  void handleAcceptButton (ActionEvent actionEvent) throws IOException {

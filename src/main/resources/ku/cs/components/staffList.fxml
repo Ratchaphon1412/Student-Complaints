@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ku.cs.components.StaffList"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="38.0" prefWidth="558.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.StaffListAgencyController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="40.0" prefWidth="571.0" styleClass="roundedCorner">
+         <children>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="574.0">
+               <children>
+                  <HBox prefWidth="30.0" />
+                  <Circle fx:id="imageStuff" fill="DODGERBLUE" radius="18.0" smooth="false" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="roundedCorner">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Circle>
+                  <HBox prefWidth="30.0" />
+                  <HBox prefWidth="20.0" />
+                  <Label fx:id="nameStuffLabel" prefHeight="17.0" prefWidth="149.0" styleClass="textLabelColor" text="Name" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <HBox prefWidth="30.0" />
+                  <Label fx:id="AgencyLabel" prefHeight="17.0" prefWidth="165.0" styleClass="textLabelColor" text="Date" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <HBox prefWidth="30.0" />
+                  <ChoiceBox fx:id="choiceAgency" prefWidth="150.0" />
+                  <HBox prefWidth="30.0" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#submitChangeAgency" prefHeight="31.0" prefWidth="95.0" text="choose">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <stylesheets>
+                        <URL value="@../style/style.css" />
+                        <URL value="@../style/darkMode.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="roundedCorner" />
+                        <String fx:value="circleGreen" />
+                     </styleClass>
+                  </Button>
+                  <HBox prefWidth="30.0" />
+               </children>
+               <styleClass>
+                  <String fx:value="cardBackground" />
+                  <String fx:value="roundedCornerCard" />
+               </styleClass>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

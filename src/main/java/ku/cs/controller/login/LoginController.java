@@ -1,4 +1,4 @@
-package ku.cs.controller;
+package ku.cs.controller.login;
 
 
 import javafx.fxml.FXML;
@@ -78,7 +78,7 @@ public class LoginController {
     public void handleLoginAuthentication() throws IOException {
         String userNameString = userName.getText();
         String passWordString = passWord.getText();
-        processData = new ProcessData();
+        processData = new ProcessData<>();
 
         //check has account
         if(processData.checkAccount(userNameString)){
@@ -93,6 +93,7 @@ public class LoginController {
                             System.out.println("test");
                             ApplicationController.goTo("Admin",admin);
                         }else{
+                            ApplicationController.goToNew("Alert", "wrong password");
                             System.out.println("wrong password");
                         }
                         break;
@@ -128,7 +129,7 @@ public class LoginController {
                 }
 
             }else{
-                ApplicationController.goToNew("Alert");
+                ApplicationController.goToNew("Alert", "You are banned");
                 System.out.println("banned");
             }
         }else{

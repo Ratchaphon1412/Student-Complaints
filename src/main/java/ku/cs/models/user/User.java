@@ -1,6 +1,7 @@
 package ku.cs.models.user;
 
 import ku.cs.models.Account;
+import ku.cs.models.report.Report;
 
 public class User extends Account {
     private boolean ban;
@@ -8,7 +9,12 @@ public class User extends Account {
     private String requestUnban;
     private String dateBan;
 
-    private UserList userList;
+    private Report post;
+    private String time;
+    private String dateRequestBan;
+    private String category;
+
+
 
 
 
@@ -23,6 +29,21 @@ public class User extends Account {
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
+    }
+    public User(String userName, String passWord, String pathPicture, String role,String category,String time,String date,Report post){
+        super(userName, passWord, pathPicture, role);
+        this.category = category;
+        this.time = time;
+        this.dateRequestBan = date;
+        this.post = post;
+        this.ban = false;
+    }
+
+    public void addRequestedBan(String category,String time,String date,Report post){
+        this.category = category;
+        this.time = time;
+        this.dateRequestBan = date;
+        this.post = post;
     }
     public void addUserBaned(Boolean ban , String requestUnban , String dateBan ,String countAccess){
         this.ban = ban;
@@ -45,6 +66,22 @@ public class User extends Account {
 
     public int getCountAccess() {
         return countAccess;
+    }
+
+    public Report getPost() {
+        return post;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getDateRequestBan() {
+        return dateRequestBan;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public void setBan() {

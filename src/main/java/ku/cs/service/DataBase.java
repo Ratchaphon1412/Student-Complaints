@@ -17,6 +17,12 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> reportList;
     private List<LinkedHashMap<String,String>> logList;
     private List<LinkedHashMap<String,String>> userBanList;
+    private List<LinkedHashMap<String,String>> requestban;
+
+
+    private List<LinkedHashMap<String,String>> agencyList;
+
+
 
 
     public DataBase(){
@@ -24,19 +30,22 @@ public class DataBase {
     }
 
 
-
     public void initializeData(){
         accountList = new ArrayList<>();
         reportList =  new ArrayList<>();
         logList = new ArrayList<>();
         userBanList = new ArrayList<>();
+        requestban = new ArrayList<>();
+        agencyList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
+        readFile("requestban.csv");
+        readFile("stuffAgencyList.csv");
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -46,6 +55,8 @@ public class DataBase {
                 case "report.csv" -> this.writeFile(reportList, writer);
                 case "log.csv" -> this.writeFile(logList, writer);
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
+                case "requestban.csv" -> this.writeFile(requestban,writer);
+                case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
             }
         }
 
@@ -72,6 +83,8 @@ public class DataBase {
                     case "report.csv" -> reportList.add(temp);
                     case "log.csv" -> logList.add(temp);
                     case "requestunban.csv" -> userBanList.add(temp);
+                    case "requestban.csv" -> requestban.add(temp);
+                    case "stuffAgencyList.csv" -> agencyList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -169,6 +182,20 @@ public class DataBase {
                 }
             }
         }
+        //System.out.println("pp");
+        return false;
+    }
+
+    public boolean changePicture(String username, String password, String newPath) throws IOException {
+        for (LinkedHashMap<String, String> dataLine : accountList){
+            if(dataLine.get("userName").equals(username)){
+                if(dataLine.get("passWord").equals(password)){
+                    dataLine.replace("pathPicture", newPath);
+                    saveToDatabase();
+                    return true;
+                }
+            }
+        }
         System.out.println("pp");
         return false;
 
@@ -177,8 +204,14 @@ public class DataBase {
 
 
 
+
+
     public void setUserBanList(List<LinkedHashMap<String, String>> userBanList) {
         this.userBanList = userBanList;
+    }
+
+    public void setRequestban(List<LinkedHashMap<String, String>> requestban) {
+        this.requestban = requestban;
     }
 
     public List<LinkedHashMap<String, String>> getAccountList() {
@@ -193,13 +226,25 @@ public class DataBase {
         return logList;
     }
 
-
     public List<LinkedHashMap<String, String>> getUserBanList() {
         return userBanList;
     }
 
+    public List<LinkedHashMap<String, String>> getRequestban() {
+        return requestban;
+    }
 
     public void setAccountList(List<LinkedHashMap<String, String>> accountList) {
         this.accountList = accountList;
+    }
+
+
+    public List<LinkedHashMap<String, String>> getAgencyList() {
+        return agencyList;
+
+    }
+
+    public void setAgencyList(List<LinkedHashMap<String, String>> agencyList) {
+        this.agencyList = agencyList;
     }
 }

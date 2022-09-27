@@ -16,10 +16,12 @@ public class AdminList {
     }
     private void createObjectAdmin(List<LinkedHashMap<String,String>> accountList){
         for(LinkedHashMap<String,String> account :accountList ){
-            if(account.get("role").equals("admin")){
-                Admin admin = new Admin(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"));
-                adminList.add(admin);
-            }
+//            System.out.println(account.keySet());
+              if(account.get("role").equals("admin")){
+                  Admin admin = new Admin(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"));
+                  adminList.add(admin);
+              }
+
         }
     }
 

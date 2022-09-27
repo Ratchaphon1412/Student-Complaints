@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import ku.cs.controller.admin.AgencyLoad;
 
 import java.io.IOException;
 import java.util.AbstractMap;
@@ -155,8 +156,11 @@ public class FXRouter {
         return currentRoute.text;
     }
 
+    public static AgencyLoad getAgencyLoad(){return currentRoute.agencyLoad;}
+
     protected static class RouteScene {
         public Object data;
+        public AgencyLoad agencyLoad;
 
         public String text;
         public String scenePath;

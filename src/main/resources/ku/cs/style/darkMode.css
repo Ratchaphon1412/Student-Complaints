@@ -83,6 +83,29 @@
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 1em;
+}
 .textLabelColor{
     -fx-text-fill:#FFFFFF;
+
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :#2D3440;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+.logStyle{
+    -fx-background-color:#232A36 ;
+}
+.switchTheme{
+    -fx-background-color: #363B56;
+}
+.switchThemeButton{
+    -fx-background-color: #FFFFFF;
+
 }
