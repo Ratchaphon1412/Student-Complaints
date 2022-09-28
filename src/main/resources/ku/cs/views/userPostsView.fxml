@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="userPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.user.UserController">
+<GridPane fx:id="userPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.user.UserPostsProfileController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.266658782958984" minWidth="10.0" prefWidth="37.86663665771484" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.19999809265136" minWidth="10.0" prefWidth="107.73336334228514" />

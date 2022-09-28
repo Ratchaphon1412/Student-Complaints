@@ -11,13 +11,12 @@ import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.ClickNamePostsUser;
 import ku.cs.controller.components.NamePostsUserController;
-import ku.cs.controller.components.NavbarAdminController;
 import ku.cs.models.user.User;
 
 import java.io.IOException;
 import java.util.prefs.Preferences;
 
-public class UserController {
+public class UserPostsProfileController {
 
     @FXML
     private GridPane myPostsGridPane;
