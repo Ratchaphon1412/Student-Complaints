@@ -8,14 +8,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import ku.cs.ApplicationController;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.user.User;
 
 import java.io.IOException;
 
-public class NavbarAdminController {
-    private Admin admin;
+public class NavbarUser {
+    private User user;
 
     @FXML
     private GridPane navBar;
+
     @FXML
     public void initialize() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -30,32 +32,30 @@ public class NavbarAdminController {
 
     @FXML
     private void goDashBoard() throws IOException {
-        ApplicationController.goTo("Admin",admin);
+//        ApplicationController.goTo("Admin",user);
     }
-   @FXML
+    @FXML
     private void gotoAgency() throws IOException {
-       ApplicationController.goTo("AdminAgency",admin);
-   }
+//        ApplicationController.goTo("AdminAgency",user);
+    }
 
-   @FXML
+    @FXML
     private void gotoUserBan() throws IOException {
-        ApplicationController.goTo("banUser",admin);
-   }
+//        ApplicationController.goTo("banUser",user);
+    }
 
-   @FXML
+    @FXML
     private void gotoSetting() throws IOException {
-        ApplicationController.goTo("Setting",admin);
-   }
+//        ApplicationController.goTo("Setting",user);
+    }
 
-   @FXML
-   private void logOut() throws IOException {
+    @FXML
+    private void logOut() throws IOException {
         ApplicationController.goTo("Login");
-   }
-   @FXML
-   private void gotoCategory() throws IOException{
-        ApplicationController.goTo("AdminCategory", admin);
-   }
-   public void setAdmin(Admin admin){
-        this.admin = admin;
-   }
+    }
+    public void setUser(User user){
+        this.user = user;
+    }
+
 }
+
