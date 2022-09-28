@@ -22,7 +22,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("AdminCategory");
+        ApplicationController.goTo("Login");
 
     }
 
