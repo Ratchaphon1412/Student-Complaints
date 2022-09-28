@@ -7,14 +7,18 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
+import ku.cs.State;
 import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.Preferences;
+
 import ku.cs.models.user.User;
 import ku.cs.service.ProcessData;
 
@@ -29,12 +33,25 @@ public class RegisterController {
     @FXML
     private Label singleFile;
     @FXML
+    private Label uploadPicture;
+    @FXML
+    private Label sighUpTitle;
+    @FXML
     private ImageView userImage;
     private ProcessData dataBase;
     private String path;
     private File file;
-
     List<String> listfile;
+
+    @FXML
+    public void initialize() throws IOException{
+        //font
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        uploadPicture.setFont(font);
+        sighUpTitle.setFont(font);
+        singleFile.setFont(font);
+    }
     @FXML
     public void signUpButton(ActionEvent actionEvent) throws IOException {
         String user = userName.getText();

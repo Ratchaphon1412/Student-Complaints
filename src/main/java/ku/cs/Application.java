@@ -33,7 +33,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("changePassword",pathResource+"changePasswordView.fxml", 600, 400);
         ApplicationController.when("Admin",pathResource+"adminDashBoardView.fxml",1000,580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
-        ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
+//        ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
         ApplicationController.when("Stuff",pathResource+"stuffDashBoardView.fxml",1000,580);
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
@@ -42,9 +42,11 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
         ApplicationController.when("RegisterStuff",pathResource+"registerStuff.fxml",1000,580);
         ApplicationController.when("AdminAgencyAdd",pathResource +"addNewAgency.fxml",600,400);
-        ApplicationController.when("AllProblem",pathResource+"allProblemReportView.fxml",1000,580);
+        ApplicationController.when("AllProblem",pathResource+"allProblemReportView.fxml",1000,580);//
         ApplicationController.when("Feed",pathResource+"problemFeedView.fxml",1000,580);
         ApplicationController.when("Report",pathResource+"problemReportView.fxml",1000,580);
+        ApplicationController.when("User",pathResource+"problemFeedView.fxml",1000,580);
+
     }
 
 
