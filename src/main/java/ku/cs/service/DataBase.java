@@ -47,7 +47,7 @@ public class DataBase {
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv","reportcategory.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -204,6 +204,7 @@ public class DataBase {
         return false;
 
     }
+
 
 
 

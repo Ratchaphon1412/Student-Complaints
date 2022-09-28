@@ -11,6 +11,7 @@ import ku.cs.models.user.UserList;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -284,6 +285,37 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         dataBase.changePicture(username,password, dataBase.saveImage(path, username, file));
         return true;
     }
+
+    public void addCategory(String category) throws IOException{
+
+        List<LinkedHashMap<String,String>> categoryList = dataBase.getCategoryList();
+        //create hashMap
+
+        LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
+        newCategory.put("category",category);
+
+
+        categoryList.add(newCategory);
+
+        dataBase.setCategoryList(categoryList);
+
+        dataBase.saveToDatabase();
+
+
+//        LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
+//        newCategory.put("category",category);
+//
+//        if(categoryList == null){
+//            categoryList = new ArrayList<>();
+//            this.categoryList.add(newCategory);
+//            this.saveToDatabase();
+//        }else{
+//            this.categoryList.add(newCategory);
+//            this.saveToDatabase();
+//        }
+
+    }
+
 
 
     public DataBase getDataBase() {
