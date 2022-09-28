@@ -153,8 +153,6 @@ public class AdminAgencyController {
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
-
-
         initialAdminAgency();
 
 

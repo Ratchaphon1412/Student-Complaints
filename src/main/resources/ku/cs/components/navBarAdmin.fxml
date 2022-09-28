@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="navBar" alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.NavbarAdminController">
+<GridPane fx:id="navBar" alignment="CENTER" stylesheets="@../style/icon.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.NavbarAdminController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -57,7 +57,7 @@
                 </Pane>
             </children>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
             <children>
                 <Button mnemonicParsing="false" onAction="#gotoSetting" prefHeight="15.0" prefWidth="15.0">
                     <font>
@@ -156,6 +156,23 @@
                 </Pane>
             </children>
         </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+         <children>
+            <Pane prefHeight="30.0" prefWidth="19.0">
+               <children>
+                  <Button layoutX="-1.0" layoutY="7.0" mnemonicParsing="false" onAction="#gotoCategory" prefHeight="18.0" prefWidth="22.0">
+                     <font>
+                        <Font size="5.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="colorIcon" />
+                        <String fx:value="categoryInsidePlusSVG" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
     </children>
    <styleClass>
       <String fx:value="backgroundNavbar" />
