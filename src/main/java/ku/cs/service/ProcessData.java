@@ -11,6 +11,7 @@ import ku.cs.models.user.UserList;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -285,6 +286,44 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         return true;
     }
 
+    public void addCategory(String category) throws IOException{
+
+        List<LinkedHashMap<String,String>> categoryList = dataBase.getCategoryList();
+        //create hashMap
+
+        LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
+        newCategory.put("category",category);
+
+
+        categoryList.add(newCategory);
+
+        dataBase.setCategoryList(categoryList);
+
+        dataBase.saveToDatabase();
+
+    }
+
+    public void  addTitle(String category, String title) throws IOException {
+        List<LinkedHashMap<String, String>> categoryList = dataBase.getCategoryList();
+        for (LinkedHashMap<String, String> dataLine : categoryList){
+            if(dataLine.get("category").equals(category)){
+                if (dataLine.get("title").equals("")){
+                    dataLine.put("title", title);
+                    dataBase.saveToDatabase();
+                   // System.out.println("pp");
+                }else {
+                    String temp = dataLine.get("title");
+                    temp += "|"+title;
+                    dataLine.put("title",temp);
+                    dataBase.saveToDatabase();
+                   // System.out.println("oo");
+                }
+
+            }
+        }
+
+
+    }
 
     public DataBase getDataBase() {
         return dataBase;

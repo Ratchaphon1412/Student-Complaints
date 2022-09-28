@@ -140,6 +140,7 @@ public class AdminCategoryController {
     void goToAddCategoryButton(ActionEvent event) throws IOException {
         ApplicationController.goTo("AddCategory");
     }
+<<<<<<< HEAD
     @FXML
     public void handleAdminSettingButton(MouseEvent mouseEvent) {
         try {
@@ -152,5 +153,7 @@ public class AdminCategoryController {
 
 
 
+=======
+>>>>>>> cd8c07ff23c613ca0f5752262cdc6523b10155c4
 
 }

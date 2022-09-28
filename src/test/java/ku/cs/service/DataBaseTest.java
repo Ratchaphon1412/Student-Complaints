@@ -3,6 +3,7 @@ package ku.cs.service;
 import org.junit.jupiter.api.Test;
 
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -54,5 +55,11 @@ class DataBaseTest {
     void getAgencyList() {
         DataBase dataBase = new DataBase();
         System.out.println(dataBase.getAgencyList());
+    }
+
+    @Test
+    void addNewCategory () throws IOException {
+       ProcessData data = new ProcessData();
+       data.addTitle("water", "xxx");
     }
 }
