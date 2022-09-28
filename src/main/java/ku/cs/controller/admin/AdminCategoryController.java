@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -85,14 +86,7 @@ public class AdminCategoryController {
         displayName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
 
-        //get picture from objectAdmin
-        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
-        Image imageAccount = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
 
-        if (!imageAccount.isError()){
-            imageAccountCircle.setFill(new ImagePattern(imageAccount));
-            imageAccountCircle.setStroke(Color.TRANSPARENT);
-        }
         changeTheme = new SwitchTheme() {
             @Override
             public void changeTheme(String theme) throws IOException {
@@ -121,10 +115,20 @@ public class AdminCategoryController {
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
         initializeAdminCategory();
-
-
     }
     private void initializeAdminCategory() throws IOException{
+        //set username
+        displayName.setText(account.getUserName());
+        roleDisplay.setText(account.getRole());
+        //get picture from objectAdmin
+        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
+        Image imageAccount = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
+
+        if (!imageAccount.isError()){
+            imageAccountCircle.setFill(new ImagePattern(imageAccount));
+            imageAccountCircle.setStroke(Color.TRANSPARENT);
+        }
+
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
@@ -135,6 +139,14 @@ public class AdminCategoryController {
     @FXML
     void goToAddCategoryButton(ActionEvent event) throws IOException {
         ApplicationController.goTo("AddCategory");
+    }
+    @FXML
+    public void handleAdminSettingButton(MouseEvent mouseEvent) {
+        try {
+            ApplicationController.goTo("Setting",account);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
 
 

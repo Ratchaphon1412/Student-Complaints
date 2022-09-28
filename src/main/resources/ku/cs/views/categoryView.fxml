@@ -183,7 +183,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
                            <children>
-                              <Circle fx:id="imageAccountCircle" fill="DODGERBLUE" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fx:id="imageAccountCircle" fill="DODGERBLUE" onMouseClicked="#handleAdminSettingButton" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </VBox>
                         <GridPane fx:id="minisetting" GridPane.columnIndex="1">
