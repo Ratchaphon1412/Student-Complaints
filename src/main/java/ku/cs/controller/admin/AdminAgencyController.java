@@ -161,6 +161,8 @@ public class AdminAgencyController {
     }
 
     private void initialAdminAgency() throws IOException {
+        gridPaneAgency.getChildren().clear();
+        staffListGridPane.getChildren().clear();
 
         processData = new ProcessData<>();
         stuffListData = processData.getStuffList();
