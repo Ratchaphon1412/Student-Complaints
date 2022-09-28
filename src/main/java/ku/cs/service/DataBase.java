@@ -18,9 +18,8 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> logList;
     private List<LinkedHashMap<String,String>> userBanList;
     private List<LinkedHashMap<String,String>> requestban;
-
-
     private List<LinkedHashMap<String,String>> agencyList;
+    private List<LinkedHashMap<String,String>> categoryList;
 
 
 
@@ -37,11 +36,14 @@ public class DataBase {
         userBanList = new ArrayList<>();
         requestban = new ArrayList<>();
         agencyList = new ArrayList<>();
+        categoryList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
         readFile("requestban.csv");
         readFile("stuffAgencyList.csv");
+        readFile("reportcategory.csv");
+
     }
 
     public void saveToDatabase() throws IOException {
@@ -57,6 +59,7 @@ public class DataBase {
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
                 case "requestban.csv" -> this.writeFile(requestban,writer);
                 case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
+                case "reportcategory.csv" -> this.writeFile(categoryList, writer);
             }
         }
 
@@ -85,6 +88,7 @@ public class DataBase {
                     case "requestunban.csv" -> userBanList.add(temp);
                     case "requestban.csv" -> requestban.add(temp);
                     case "stuffAgencyList.csv" -> agencyList.add(temp);
+                    case "reportcategory.csv" -> categoryList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -245,6 +249,14 @@ public class DataBase {
     }
 
     public void setAgencyList(List<LinkedHashMap<String, String>> agencyList) {
+        this.agencyList = agencyList;
+    }
+
+    public List<LinkedHashMap<String, String>> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<LinkedHashMap<String, String>> agencyList) {
         this.agencyList = agencyList;
     }
 }
