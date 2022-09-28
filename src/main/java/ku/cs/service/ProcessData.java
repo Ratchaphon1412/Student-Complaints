@@ -301,18 +301,27 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
         dataBase.saveToDatabase();
 
+    }
 
-//        LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
-//        newCategory.put("category",category);
-//
-//        if(categoryList == null){
-//            categoryList = new ArrayList<>();
-//            this.categoryList.add(newCategory);
-//            this.saveToDatabase();
-//        }else{
-//            this.categoryList.add(newCategory);
-//            this.saveToDatabase();
-//        }
+    public void  addTitle(String category, String title) throws IOException {
+        List<LinkedHashMap<String, String>> categoryList = dataBase.getCategoryList();
+        for (LinkedHashMap<String, String> dataLine : categoryList){
+            if(dataLine.get("category").equals(category)){
+                if (dataLine.get("title").equals("")){
+                    dataLine.put("title", title);
+                    dataBase.saveToDatabase();
+                   // System.out.println("pp");
+                }else {
+                    String temp = dataLine.get("title");
+                    temp += "|"+title;
+                    dataLine.put("title",temp);
+                    dataBase.saveToDatabase();
+                   // System.out.println("oo");
+                }
+
+            }
+        }
+
 
     }
 

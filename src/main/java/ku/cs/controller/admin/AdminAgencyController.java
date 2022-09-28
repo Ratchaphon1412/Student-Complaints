@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -153,8 +154,6 @@ public class AdminAgencyController {
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
-
-
         initialAdminAgency();
 
 
@@ -202,12 +201,17 @@ public class AdminAgencyController {
     @FXML
     public void addAgencyButton() throws IOException {
         ApplicationController.goToNew("AdminAgencyAdd",agencyLoad);
-
-
     }
-
     @FXML
     public void addStuffButton() throws IOException {
         ApplicationController.goToNew("RegisterStuff");
+    }
+    @FXML
+    public void handleAdminSettingButton(MouseEvent mouseEvent) {
+        try {
+            ApplicationController.goTo("Setting", account);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
 }

@@ -159,7 +159,7 @@
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="94.0" prefWidth="88.0" GridPane.columnIndex="1">
                      <children>
-                        <Circle fx:id="imageAccountCircle" fill="#1f93ff" radius="27.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                        <Circle fx:id="imageAccountCircle" fill="#1f93ff" onMouseClicked="#handleAdminSettingButton" radius="27.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                      </children></HBox>
 
                </children>
