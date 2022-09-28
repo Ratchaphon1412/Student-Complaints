@@ -60,6 +60,6 @@ class DataBaseTest {
     @Test
     void addNewCategory () throws IOException {
        ProcessData data = new ProcessData();
-       data.addCategory("lighting");
+       data.addCategory("bla bla");
     }
 }

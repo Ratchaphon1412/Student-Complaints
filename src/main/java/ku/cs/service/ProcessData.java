@@ -316,8 +316,6 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     }
 
-
-
     public DataBase getDataBase() {
         return dataBase;
     }

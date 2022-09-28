@@ -119,7 +119,6 @@ public class DataBase {
                     schemaBuilder.addColumn(key);
                 }
             }
-
             schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
         }
         CsvMapper mapper = new CsvMapper();
@@ -257,7 +256,7 @@ public class DataBase {
         return categoryList;
     }
 
-    public void setCategoryList(List<LinkedHashMap<String, String>> agencyList) {
-        this.agencyList = agencyList;
+    public void setCategoryList(List<LinkedHashMap<String, String>> categoryList) {
+        this.categoryList = categoryList;
     }
 }
