@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ku.cs.controller.admin.AgencyLoad;
 
 import java.io.IOException;
 
@@ -83,6 +84,13 @@ public class ApplicationController extends FXRouter {
         createDialog(route);
 
     }
+
+    public static  void goToNew(String routeLabel , AgencyLoad agencyLoad) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.agencyLoad = agencyLoad ;
+        createDialog(route);
+    }
+
 
     public static void createDialog(RouteScene route) throws IOException {
 

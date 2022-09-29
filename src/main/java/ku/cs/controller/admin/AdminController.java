@@ -218,6 +218,15 @@ public class AdminController {
     }
 
     @FXML
+    public void handleAdminAgencyListButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goTo("AdminAgency",account);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
+    @FXML
     public void handleAdminSettingButton(MouseEvent mouseEvent) {
         try {
             ApplicationController.goTo("Setting",account);

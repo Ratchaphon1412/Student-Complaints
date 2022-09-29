@@ -1,6 +1,5 @@
 package ku.cs.controller.components;
 
-import com.github.saacsos.FXRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -35,7 +34,7 @@ public class NavbarAdminController {
     }
    @FXML
     private void gotoAgency() throws IOException {
-       ApplicationController.goTo("Agency",admin);
+       ApplicationController.goTo("AdminAgency",admin);
    }
 
    @FXML
@@ -48,6 +47,14 @@ public class NavbarAdminController {
         ApplicationController.goTo("Setting",admin);
    }
 
+   @FXML
+   private void logOut() throws IOException {
+        ApplicationController.goTo("Login");
+   }
+   @FXML
+   private void gotoCategory() throws IOException{
+        ApplicationController.goTo("AdminCategory", admin);
+   }
    public void setAdmin(Admin admin){
         this.admin = admin;
    }

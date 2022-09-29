@@ -292,7 +292,7 @@
                               <Insets left="2.0" right="2.0" />
                            </GridPane.margin>
                            <children>
-                              <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0">
+                              <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleAdminAgencyListButton" prefHeight="30.0" prefWidth="32.0">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
@@ -302,7 +302,7 @@
                                  </styleClass>
                               </Button>
                               <Label fx:id="titleAgency" layoutX="8.0" layoutY="39.0" text="Agency" textFill="#ffbd44" />
-                              <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="17.0">
+                              <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleAdminAgencyListButton" prefHeight="15.0" prefWidth="17.0">
                                  <font>
                                     <Font size="1.0" />
                                  </font>

@@ -63,7 +63,7 @@ public class RegisterController {
                 if(path != null){
                     User newUser = new User(user,password,path,"user");
                     DynamicDatabase<User> database = new ProcessData<>();
-                   boolean checkregister = database.registerAccount(newUser,file);
+                   boolean checkregister = database.registerAccount(newUser,file,"user");
                    if(checkregister){
                         ApplicationController.goTo("Login");
                    }else{
@@ -102,6 +102,15 @@ public class RegisterController {
             userImage.setImage(new Image(new File(path).toURI().toString()));
         }
 
+    }
+
+    @FXML
+    public void handleCancleSettingButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goTo("Login");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
 
 }

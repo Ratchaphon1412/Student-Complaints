@@ -9,7 +9,7 @@ public class State {
     public void setTempData(){
         Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
         try  {
-            String configFilePath = "src/config.properties";
+            String configFilePath = "config.properties";
             FileInputStream propsInput = new FileInputStream(configFilePath);
             Properties prop = new Properties();
             //load prop
@@ -32,7 +32,7 @@ public class State {
        Properties prop = new Properties();
        prop.setProperty("theme",theme);
        prop.setProperty("font",prefs.get("font",null));
-        String configFilePath = "src/config.properties";
+        String configFilePath = "config.properties";
         File configFile = new File(configFilePath);
         OutputStream outputStream = new FileOutputStream(configFile);
         prop.store(outputStream,"Change Theme");
@@ -45,7 +45,7 @@ public class State {
         Properties prop = new Properties();
         prop.setProperty("theme",prefs.get("theme",null));
         prop.setProperty("font",fontName);
-        String configFilePath = "src/config.properties";
+        String configFilePath = "config.properties";
         File configFile = new File(configFilePath);
         OutputStream outputStream = new FileOutputStream(configFile);
         prop.store(outputStream,"Change Fonts");

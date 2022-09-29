@@ -18,6 +18,9 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> logList;
     private List<LinkedHashMap<String,String>> userBanList;
     private List<LinkedHashMap<String,String>> requestban;
+    private List<LinkedHashMap<String,String>> agencyList;
+    private List<LinkedHashMap<String,String>> categoryList;
+
 
 
 
@@ -32,15 +35,19 @@ public class DataBase {
         logList = new ArrayList<>();
         userBanList = new ArrayList<>();
         requestban = new ArrayList<>();
-
+        agencyList = new ArrayList<>();
+        categoryList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
         readFile("requestban.csv");
+        readFile("stuffAgencyList.csv");
+        readFile("reportcategory.csv");
+
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv","reportcategory.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -51,6 +58,8 @@ public class DataBase {
                 case "log.csv" -> this.writeFile(logList, writer);
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
                 case "requestban.csv" -> this.writeFile(requestban,writer);
+                case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
+                case "reportcategory.csv" -> this.writeFile(categoryList, writer);
             }
         }
 
@@ -78,6 +87,8 @@ public class DataBase {
                     case "log.csv" -> logList.add(temp);
                     case "requestunban.csv" -> userBanList.add(temp);
                     case "requestban.csv" -> requestban.add(temp);
+                    case "stuffAgencyList.csv" -> agencyList.add(temp);
+                    case "reportcategory.csv" -> categoryList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -108,7 +119,6 @@ public class DataBase {
                     schemaBuilder.addColumn(key);
                 }
             }
-
             schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
         }
         CsvMapper mapper = new CsvMapper();
@@ -199,6 +209,7 @@ public class DataBase {
 
 
 
+
     public void setUserBanList(List<LinkedHashMap<String, String>> userBanList) {
         this.userBanList = userBanList;
     }
@@ -231,4 +242,21 @@ public class DataBase {
         this.accountList = accountList;
     }
 
+
+    public List<LinkedHashMap<String, String>> getAgencyList() {
+        return agencyList;
+
+    }
+
+    public void setAgencyList(List<LinkedHashMap<String, String>> agencyList) {
+        this.agencyList = agencyList;
+    }
+
+    public List<LinkedHashMap<String, String>> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<LinkedHashMap<String, String>> categoryList) {
+        this.categoryList = categoryList;
+    }
 }
