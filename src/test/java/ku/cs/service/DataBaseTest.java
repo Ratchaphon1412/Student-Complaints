@@ -57,9 +57,16 @@ class DataBaseTest {
         System.out.println(dataBase.getAgencyList());
     }
 
+//    @Test
+//    void addNewCategory () throws IOException {
+//       ProcessData data = new ProcessData();
+//       data.addCategory("Liver");
+//      // data.addTitle("fire","llll");
+//    }
+
     @Test
-    void addNewCategory () throws IOException {
-       ProcessData data = new ProcessData();
-       data.addTitle("water", "xxx");
+    void addNewPattern() throws IOException {
+        ProcessData data = new ProcessData();
+        data.creatPattern("Liver", "nnnn");
     }
 }

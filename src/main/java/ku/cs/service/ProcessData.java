@@ -287,17 +287,22 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
     public void addCategory(String category) throws IOException{
-
+        //add category in reportcategory.csv and pattern.csv
         List<LinkedHashMap<String,String>> categoryList = dataBase.getCategoryList();
+        List<LinkedHashMap<String,String>> patternList = dataBase.getPatternList();
+
         //create hashMap
-
         LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
-        newCategory.put("category",category);
+        LinkedHashMap<String,String> newPattern = new LinkedHashMap<>();
 
+        newCategory.put("category",category);
+        newPattern.put("category",category);
 
         categoryList.add(newCategory);
+        patternList.add(newPattern);
 
         dataBase.setCategoryList(categoryList);
+        dataBase.setPatternList(patternList);
 
         dataBase.saveToDatabase();
 
@@ -321,8 +326,26 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
             }
         }
+    }
 
+    public void creatPattern(String category, String pattern) throws IOException {
+        List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
+        for (LinkedHashMap<String, String> dataLine : patternList){
+            if(dataLine.get("category").equals(category)){
+                if (dataLine.get("pattern").equals("")){
+                    dataLine.put("pattern", pattern);
+                    dataBase.saveToDatabase();
+                    // System.out.println("pp");
+                }else {
+                    String temp = dataLine.get("pattern");
+                    temp += "|"+pattern;
+                    dataLine.put("pattern",temp);
+                    dataBase.saveToDatabase();
+                    // System.out.println("oo");
+                }
 
+            }
+        }
     }
 
     public DataBase getDataBase() {
