@@ -21,6 +21,8 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> agencyList;
     private List<LinkedHashMap<String,String>> categoryList;
 
+    private List<LinkedHashMap<String,String>> patternList;
+
 
 
 
@@ -37,17 +39,20 @@ public class DataBase {
         requestban = new ArrayList<>();
         agencyList = new ArrayList<>();
         categoryList = new ArrayList<>();
+        patternList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
         readFile("requestban.csv");
         readFile("stuffAgencyList.csv");
         readFile("reportcategory.csv");
+        readFile("pattern.csv");
+        readFile("report.csv");
 
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv","reportcategory.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv","reportcategory.csv","pattern.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -60,6 +65,7 @@ public class DataBase {
                 case "requestban.csv" -> this.writeFile(requestban,writer);
                 case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
                 case "reportcategory.csv" -> this.writeFile(categoryList, writer);
+                case "pattern.csv"->this.writeFile(patternList,writer);
             }
         }
 
@@ -89,6 +95,7 @@ public class DataBase {
                     case "requestban.csv" -> requestban.add(temp);
                     case "stuffAgencyList.csv" -> agencyList.add(temp);
                     case "reportcategory.csv" -> categoryList.add(temp);
+                    case "pattern.csv"->patternList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -259,4 +266,13 @@ public class DataBase {
     public void setCategoryList(List<LinkedHashMap<String, String>> categoryList) {
         this.categoryList = categoryList;
     }
+
+    public List<LinkedHashMap<String, String>> getPatternList() {
+        return patternList;
+    }
+
+    public void setPatternList(List<LinkedHashMap<String, String>> patternList) {
+        this.patternList = patternList;
+    }
+
 }

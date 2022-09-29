@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -69,6 +70,8 @@ public class AdminAgencyController {
 
     @FXML
     private  Label tableTitleRole;
+
+
 
     private SwitchTheme changeTheme;
 
@@ -175,13 +178,12 @@ public class AdminAgencyController {
         int i = 1;
         for(Stuff data:stuffListData.getStuffList()) {
             fxmlLoader = new FXMLLoader();
-
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/staffList.fxml"));
             AnchorPane staffComponant = (AnchorPane) fxmlLoader.load();
             StaffListAgencyController staffListAgencyController = fxmlLoader.getController();
             staffListAgencyController.setData(data);
-
             GridPane.setMargin(staffComponant, new Insets(0,0,5,0));
+            staffListGridPane.add(staffComponant,0,i);
             i++;
         }
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
