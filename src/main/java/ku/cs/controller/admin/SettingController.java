@@ -225,7 +225,7 @@ public class SettingController {
         Admin admin = null;
         //เดี๋ยวแก้
         if(file != null){
-            dataBase.ChangPicture(account.getUserName(),account.getPassWord(), path, file);
+            dataBase.changePicture(account.getUserName(),account.getPassWord(), path, file);
             DynamicDatabase<Admin> database = new ProcessData<>();
             admin = database.login(account.getUserName(),account.getPassWord());
         }
