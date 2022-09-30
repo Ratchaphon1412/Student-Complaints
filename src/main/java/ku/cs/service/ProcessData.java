@@ -281,7 +281,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     }
 
-    public boolean ChangPicture(String username, String password, String path, File file) throws IOException {
+    public boolean changePicture(String username, String password, String path, File file) throws IOException {
         dataBase.changePicture(username,password, dataBase.saveImage(path, username, file));
         return true;
     }
