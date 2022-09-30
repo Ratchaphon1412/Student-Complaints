@@ -135,7 +135,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         temp.put("post","");
                         requestBan.add(temp);
                     }
-                    if(requestBan.get(0).get("userName").equals("")){
+                    if(requestBan.get(0).get("userName").equals("") && requestBan.size() == 2){
                         requestBan.remove(0);
                     }
                     dataBase.setRequestban(requestBan);
@@ -158,7 +158,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         temp.put("count","");
                         userBanList.add(temp);
                     }
-                    if(userBanList.get(0).get("userName").equals("")){
+                    if(userBanList.get(0).get("userName").equals("") && requestBan.size() == 2){
                         userBanList.remove(0);
                     }
                     dataBase.setUserBanList(userBanList);
