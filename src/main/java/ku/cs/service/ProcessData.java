@@ -34,8 +34,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
         stuffList = new StuffList(dataBase.getAccountList(),dataBase.getAgencyList());
-
-        reportList = new ReportList();
+        reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList());
     }
 
     @Override
@@ -135,7 +134,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         temp.put("post","");
                         requestBan.add(temp);
                     }
-                    if(requestBan.get(0).get("userName").equals("")){
+                    if(requestBan.get(0).get("userName").equals("") && requestBan.size() == 2){
                         requestBan.remove(0);
                     }
                     dataBase.setRequestban(requestBan);
@@ -158,7 +157,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         temp.put("count","");
                         userBanList.add(temp);
                     }
-                    if(userBanList.get(0).get("userName").equals("")){
+                    if(userBanList.get(0).get("userName").equals("") && requestBan.size() == 2){
                         userBanList.remove(0);
                     }
                     dataBase.setUserBanList(userBanList);
@@ -281,7 +280,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     }
 
-    public boolean ChangPicture(String username, String password, String path, File file) throws IOException {
+    public boolean changePicture(String username, String password, String path, File file) throws IOException {
         dataBase.changePicture(username,password, dataBase.saveImage(path, username, file));
         return true;
     }

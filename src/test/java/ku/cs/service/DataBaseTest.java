@@ -1,9 +1,11 @@
 package ku.cs.service;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.junit.jupiter.api.Test;
 
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -61,5 +63,19 @@ class DataBaseTest {
     void addNewCategory () throws IOException {
        ProcessData data = new ProcessData();
        data.addTitle("water", "xxx");
+    }
+
+    @Test
+    void getReportList() throws UnsupportedEncodingException {
+        DataBase dataBase = new DataBase();
+         List<LinkedHashMap<String,String>> ReportList = dataBase.getReportList();
+        List<LinkedHashMap<String,String>> patternList = dataBase.getPatternList();
+        String test = ReportList.get(1).get("title");
+        System.out.println(ReportList);
+        System.out.println(patternList);
+
+        assertEquals(test,"น้ำท่วมคณะวิทยาศาสตร์");
+
+
     }
 }
