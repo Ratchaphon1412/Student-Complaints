@@ -126,9 +126,9 @@ public class UserDashboardController {
             ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
             System.out.println(report.getTitle());
             problemFeedController.setReport(report);
-
-            feed.add(feedComponant, 0, i);
             GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
+            feed.add(feedComponant, 0, i+1);
+
             i++;
         }
     }
