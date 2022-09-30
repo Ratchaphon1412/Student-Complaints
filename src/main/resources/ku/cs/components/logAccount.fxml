@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="100.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.LogAccontController">
+   <children>
+      <VBox alignment="CENTER" layoutX="42.0" prefHeight="125.0" prefWidth="580.0" styleClass="roundedCornerCard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="598.0" styleClass="roundedCorner">
+               <children>
+                  <Circle fx:id="picture" fill="DODGERBLUE" radius="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label fx:id="nameLabel" contentDisplay="CENTER" prefHeight="50.0" prefWidth="176.0" styleClass="textLabelColor" text="name" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="roleLabel" prefHeight="50.0" prefWidth="77.0" styleClass="textLabelColor" text="role" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timeLabel" prefHeight="50.0" prefWidth="89.0" styleClass="textLabelColor" text="xx:xx:xx" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateLabel" prefHeight="50.0" prefWidth="95.0" styleClass="textLabelColor" text="xx/xx/xxxx" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="logStyle" />
+      <String fx:value="roundedCornerCard" />
+   </styleClass>
+</AnchorPane>

@@ -1,176 +1,280 @@
 package ku.cs.service;
 
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.*;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
+import java.text.SimpleDateFormat;
+
 
 public class DataBase {
 
-    public void DataBase() {
+    private final String endpointPath = "database";
+    private List<LinkedHashMap<String,String>> accountList;
+    private List<LinkedHashMap<String,String>> reportList;
+    private List<LinkedHashMap<String,String>> logList;
+    private List<LinkedHashMap<String,String>> userBanList;
+    private List<LinkedHashMap<String,String>> requestban;
+    private List<LinkedHashMap<String,String>> agencyList;
+    private List<LinkedHashMap<String,String>> categoryList;
+
+    private List<LinkedHashMap<String,String>> patternList;
+
+
+
+
+    public DataBase(){
+        initializeData();
     }
 
-    public String readFile(String name, String password) {
-//        String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
-        String fs = File.separator;
-        String file = System.getProperty("user.dir") + fs + "database" + fs + "account.csv";
-        String line = "";
-        ArrayList<String[]> bigListAdmin = new ArrayList();
-        String[] listAdmin;
-        BufferedReader adminDataBase = null;
-        String stage = null;
-        boolean loginStage = false;
-        try {
-            adminDataBase = new BufferedReader(new FileReader(file));
-            while ((line = adminDataBase.readLine()) != null) {
-                listAdmin = line.split(",");
-                bigListAdmin.add(listAdmin);
-            }
 
+    public void initializeData(){
+        accountList = new ArrayList<>();
+        reportList =  new ArrayList<>();
+        logList = new ArrayList<>();
+        userBanList = new ArrayList<>();
+        requestban = new ArrayList<>();
+        agencyList = new ArrayList<>();
+        categoryList = new ArrayList<>();
+        patternList = new ArrayList<>();
+        readFile("account.csv");
+        readFile("log.csv");
+        readFile("requestunban.csv");
+        readFile("requestban.csv");
+        readFile("stuffAgencyList.csv");
+        readFile("reportcategory.csv");
+        readFile("pattern.csv");
+        readFile("report.csv");
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        for (int i = 0; i < bigListAdmin.size(); i++) {
-            if (bigListAdmin.get(i)[0].equals(name) && bigListAdmin.get(i)[1].equals(password)) {
-                loginStage = true;
-                stage = bigListAdmin.get(i)[2];
-                break;
-            }
-        }
-        return stage;
     }
 
-    public boolean signUp(String name, String password, String role, String path, File pathOldPicture) {
-        Path target;
-        BufferedWriter bw = null;
-        //String file = getClass().getResource("/ku/cs/database/account.csv").getPath();
-        //String f ใช้สำหรับwindow เท่านั้น
-
-        String fs = File.separator;
-        String file = System.getProperty("user.dir") + fs + "database" + fs + "account.csv";
-        boolean status = true;
-
-        String line = "";
-        ArrayList<String[]> bigList = new ArrayList();
-        String[] listData;
-        try {
-            BufferedReader dataBase = new BufferedReader(new FileReader(file));
-            while ((line = dataBase.readLine()) != null) {
-                listData = line.split(",");
-                bigList.add(listData);
+    public void saveToDatabase() throws IOException {
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv","reportcategory.csv","pattern.csv"};
+        for(String databaseName : database){
+            String path = endpointPath + File.separator + databaseName;
+            File file = new File(path);
+            Writer writer = new FileWriter(file);
+            switch (databaseName) {
+                case "account.csv" -> this.writeFile(accountList, writer);
+                case "report.csv" -> this.writeFile(reportList, writer);
+                case "log.csv" -> this.writeFile(logList, writer);
+                case "requestunban.csv" -> this.writeFile(userBanList,writer);
+                case "requestban.csv" -> this.writeFile(requestban,writer);
+                case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
+                case "reportcategory.csv" -> this.writeFile(categoryList, writer);
+                case "pattern.csv"->this.writeFile(patternList,writer);
             }
-            File profilePictureDir = new File("image");
-            if (!profilePictureDir.exists()) {
-                profilePictureDir.mkdirs();
-            }
-
-            String[] fileSplit = pathOldPicture.getName().split("\\.");
-            String filename = (String) (LocalDate.now() + "-" + fileSplit[fileSplit.length - 2] + "." +
-                    fileSplit[fileSplit.length - 1]);
-            target = FileSystems.getDefault().getPath(
-                    profilePictureDir.getAbsolutePath() + System.getProperty("file.separator") + filename);
-            Files.copy(pathOldPicture.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
+
+    }
+
+
+    private void readFile(String fileTaget){
+        String path = endpointPath + File.separator + fileTaget;
+        File file = new File(path);
+        BufferedReader buffer = null;
+        FileReader reader = null;
+
         try {
-            FileWriter fw = new FileWriter(file, true);
-            bw = new BufferedWriter(fw);
-            //check if it has account in database it will return true
-            for (int i = 0; i < bigList.size(); i++) {
-                if ((bigList.get(i)[0]).equals(name)) {
-                    status = false;
+
+            reader = new FileReader(file);
+            buffer = new BufferedReader(reader);
+            CsvMapper mapper = new CsvMapper();
+            CsvSchema schema =CsvSchema.emptySchema().withHeader();
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+
+
+            while(iterator.hasNext()){
+                LinkedHashMap<String,String> temp = iterator.next();
+                switch (fileTaget) {
+                    case "account.csv" -> accountList.add(temp);
+                    case "report.csv" -> reportList.add(temp);
+                    case "log.csv" -> logList.add(temp);
+                    case "requestunban.csv" -> userBanList.add(temp);
+                    case "requestban.csv" -> requestban.add(temp);
+                    case "stuffAgencyList.csv" -> agencyList.add(temp);
+                    case "reportcategory.csv" -> categoryList.add(temp);
+                    case "pattern.csv"->patternList.add(temp);
                 }
             }
-            if (status == true) {
-                line = name + ',' + password + ',' + role + ',' + target.toString() + "\n";
-                bw.write(line);
-                System.out.println(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bw != null)
-                    bw.close();
-            } catch (Exception ex) {
-                System.out.println("Error in closing the BufferedWriter" + ex);
-            }
-        }
-        return status;
-
-    }
-
-
-    public void log(String username, String role) {
-        BufferedWriter database = null;
-        try {
-            String fs = File.separator;
-            String file = System.getProperty("user.dir") + fs + "database" + fs + "log.csv";
-//            String f = getClass().getResource("/ku/cs/database/log.csv").getPath();
-            System.out.println(file);
-            String log = username + "," + role + "," + LocalDate.now() + "," + System.currentTimeMillis() + "\n";
-            database = new BufferedWriter(new FileWriter(file, true));
-            database.write(log);
-            if (database != null) {
-                database.close();
-            }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public boolean changePassword(String name, String password, String newpassword) {
-        String f = System.getProperty("user.dir") + File.separator + "database/account.csv";
-        String line = "";
-        boolean status = false;
-        ArrayList<String[]> listData = new ArrayList<>();
-        String[] listarr;
-        BufferedWriter bw = null;
-        try {
-            BufferedReader dataBase = new BufferedReader(new FileReader(f));
-            while ((line = dataBase.readLine()) != null) {
-                listarr = line.split(",");
-                listData.add(listarr);
-            }
-            FileWriter fw = new FileWriter(f);
-            bw = new BufferedWriter(fw);
-            for (int i = 0; i < listData.size(); i++) {
-                if (listData.get(i)[0].equals(name) && listData.get(i)[1].equals(password)) {
-                    listData.get(i)[1] = newpassword;
-                    status = true;
-                }
-                String content = listData.get(i)[0] + ',' + listData.get(i)[1] + ',' + listData.get(i)[2] +','+listData.get(i)[3] + "\n";
-                bw.write(content);
-
-            }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
             try {
-                if (bw != null)
-                    bw.close();
-            } catch (Exception ex) {
-                System.out.println("Error in closing the BufferedWriter" + ex);
+                buffer.close();
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
-        return status;
 
     }
+
+
+
+
+    private void writeFile(List<LinkedHashMap<String,String>> listOfMap, Writer writer) throws IOException {
+        CsvSchema schema = null;
+        CsvSchema.Builder schemaBuilder = CsvSchema.builder();
+        List<LinkedHashMap<String,String>> temp = new ArrayList<>();
+        if(listOfMap !=null && !listOfMap.isEmpty()){
+            for (LinkedHashMap<String, String> stringStringLinkedHashMap : listOfMap) {
+                schemaBuilder.clearColumns();
+                temp.add(stringStringLinkedHashMap);
+                for (String key : listOfMap.get(0).keySet()) {
+                    schemaBuilder.addColumn(key);
+                }
+            }
+            schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
+        }
+        CsvMapper mapper = new CsvMapper();
+        mapper.writer(schema).writeValues(writer).write(temp);
+        writer.flush();
+    }
+
+
+
+
+
+    public void log(String userName, String role, String path) throws IOException {
+        Date currentDate = new Date();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        LinkedHashMap<String,String> logTemp = new LinkedHashMap<>();
+        logTemp.put("userName",userName);
+        logTemp.put("role" ,role);
+        logTemp.put("pathPicture",path);
+        logTemp.put("date",dateFormat.format(currentDate));
+        logTemp.put("time",timeFormat.format(currentDate));
+        if(role.equals("admin")){
+            return ;
+        }
+        if(logList == null){
+            logList = new ArrayList<>();
+            this.logList.add(logTemp);
+            this.saveToDatabase();
+        }else{
+            this.logList.add(logTemp);
+            this.saveToDatabase();
+        }
+    }
+
+
+    String saveImage(String path, String name, File file){
+        File desDir = new File("image"+System.getProperty("file.separator")+"accounts");
+         try {
+             if(path != null && file  != null){
+                 // CREATE FOLDER IF NOT EXIST
+                 if(!desDir.exists()){
+                     desDir.mkdirs();
+                 }
+                 String[] extension = path.split("\\.");
+                 String filename = name+"_"+ LocalDate.now()+"_"+System.currentTimeMillis() + "."+extension[1];
+                 Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+filename);
+                 Files.copy(file.toPath(),target, StandardCopyOption.REPLACE_EXISTING );
+                return filename;
+
+             }
+         }catch (IOException e){
+             e.printStackTrace();
+         }
+        return null;
+    }
+
+    public boolean changePasswordUser(String username, String oldPassword, String newPassword) throws IOException {
+        for (LinkedHashMap<String, String> dataLine : accountList){
+            if(dataLine.get("userName").equals(username)){
+                if(dataLine.get("passWord").equals(oldPassword)){
+                    dataLine.replace("passWord", newPassword);
+                    saveToDatabase();
+                    return true;
+                }
+            }
+        }
+        //System.out.println("pp");
+        return false;
+    }
+
+    public boolean changePicture(String username, String password, String newPath) throws IOException {
+        for (LinkedHashMap<String, String> dataLine : accountList){
+            if(dataLine.get("userName").equals(username)){
+                if(dataLine.get("passWord").equals(password)){
+                    dataLine.replace("pathPicture", newPath);
+                    saveToDatabase();
+                    return true;
+                }
+            }
+        }
+        System.out.println("pp");
+        return false;
+
+    }
+
+
+
+
+
+
+
+    public void setUserBanList(List<LinkedHashMap<String, String>> userBanList) {
+        this.userBanList = userBanList;
+    }
+
+    public void setRequestban(List<LinkedHashMap<String, String>> requestban) {
+        this.requestban = requestban;
+    }
+
+    public List<LinkedHashMap<String, String>> getAccountList() {
+        return accountList;
+    }
+
+    public List<LinkedHashMap<String, String>> getReportList() {
+        return reportList;
+    }
+
+    public List<LinkedHashMap<String, String>> getLogList() {
+        return logList;
+    }
+
+    public List<LinkedHashMap<String, String>> getUserBanList() {
+        return userBanList;
+    }
+
+    public List<LinkedHashMap<String, String>> getRequestban() {
+        return requestban;
+    }
+
+    public void setAccountList(List<LinkedHashMap<String, String>> accountList) {
+        this.accountList = accountList;
+    }
+
+
+    public List<LinkedHashMap<String, String>> getAgencyList() {
+        return agencyList;
+
+    }
+
+    public void setAgencyList(List<LinkedHashMap<String, String>> agencyList) {
+        this.agencyList = agencyList;
+    }
+
+    public List<LinkedHashMap<String, String>> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<LinkedHashMap<String, String>> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public List<LinkedHashMap<String, String>> getPatternList() {
+        return patternList;
+    }
+
+    public void setPatternList(List<LinkedHashMap<String, String>> patternList) {
+        this.patternList = patternList;
+    }
+
 }

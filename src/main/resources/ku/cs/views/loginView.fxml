@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="mainLoginPage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.LoginController">
+<GridPane fx:id="mainLoginPage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.login.LoginController">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="387.0" minWidth="10.0" prefWidth="301.0" />
@@ -85,7 +85,7 @@
                <children>
                   <VBox alignment="CENTER">
                      <children>
-                        <Label text="Welcome to System" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="welcomeLogin" text="Welcome to System" textAlignment="CENTER" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
@@ -130,33 +130,40 @@
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <AnchorPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </HBox>
-                        <Label layoutX="29.0" layoutY="44.0" text="Forgot or Reset password ?" textAlignment="CENTER" textFill="#f8f8f8">
+                        <Label fx:id="forgetLogin" text="Forgot or Reset password ?" textAlignment="CENTER" textFill="#f8f8f8">
                            <font>
                               <Font size="12.0" />
                            </font>
                         </Label>
-                        <Label layoutX="29.0" layoutY="72.0" text="Don’t have the account ?" textFill="WHITE" />
-                        <Hyperlink layoutX="181.0" layoutY="41.0" onAction="#handleChangePasswordButton" text="Reset password" textFill="#fcfcfc" underline="true">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Hyperlink>
-                        <Hyperlink layoutX="181.0" layoutY="68.0" onAction="#handleRegisterButton" text="Sigh Up!" textFill="WHITE" underline="true">
+                        <Hyperlink onAction="#handleChangePasswordButton" text="Reset password" textFill="#fcfcfc" underline="true">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Hyperlink>
                      </children>
-                  </AnchorPane>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="sighUpLogin" text="Don’t have the account ?" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Label>
+                        <Hyperlink onAction="#handleRegisterButton" text="Sigh Up!" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>
