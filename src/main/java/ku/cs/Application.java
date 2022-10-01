@@ -49,6 +49,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("User",pathResource+"problemFeedView.fxml",1000,580);
         ApplicationController.when("AdminCategory",pathResource+"categoryView.fxml",1000,580);
         ApplicationController.when("AddCategory",pathResource+"addCategoryView.fxml",1000, 580);
+        ApplicationController.when("UserSetting",pathResource+"userSettingView.fxml",1000, 580);
     }
 
 
