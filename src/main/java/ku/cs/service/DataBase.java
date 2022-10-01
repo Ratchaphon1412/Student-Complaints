@@ -88,7 +88,7 @@ public class DataBase {
             buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
-            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8)));
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
 
 
             while(iterator.hasNext()){
