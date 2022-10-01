@@ -4,13 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
@@ -20,8 +20,8 @@ import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.NavbarAdminController;
 import ku.cs.controller.components.StaffListAgencyController;
 import ku.cs.models.admin.Admin;
-import ku.cs.models.stuff.Stuff;
-import ku.cs.models.stuff.StuffList;
+import ku.cs.models.staff.Staff;
+import ku.cs.models.staff.StaffList;
 import ku.cs.service.ProcessData;
 
 import java.io.File;
@@ -70,11 +70,13 @@ public class AdminAgencyController {
     @FXML
     private  Label tableTitleRole;
 
+
+
     private SwitchTheme changeTheme;
 
     private FXMLLoader fxmlLoader;
     private ProcessData processData;
-    private StuffList stuffListData;
+    private StaffList staffListData;
 
     private Admin account;
 
@@ -165,7 +167,7 @@ public class AdminAgencyController {
         staffListGridPane.getChildren().clear();
 
         processData = new ProcessData<>();
-        stuffListData = processData.getStuffList();
+        staffListData = processData.getStaffList();
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
@@ -173,22 +175,21 @@ public class AdminAgencyController {
         navbarAdminController.setAdmin(account);
         root.add(navbar,0,0);
         int i = 1;
-        for(Stuff data:stuffListData.getStuffList()) {
+        for(Staff data: staffListData.getStaffList()) {
             fxmlLoader = new FXMLLoader();
-
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/staffList.fxml"));
             AnchorPane staffComponant = (AnchorPane) fxmlLoader.load();
             StaffListAgencyController staffListAgencyController = fxmlLoader.getController();
             staffListAgencyController.setData(data);
-
             GridPane.setMargin(staffComponant, new Insets(0,0,5,0));
+            staffListGridPane.add(staffComponant,0,i);
             i++;
         }
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
 
         i = 1;
-        for(String temp : stuffListData.getAgency() ) {
+        for(String temp : staffListData.getAgency() ) {
             Label label = new Label();
             label.setText(String.valueOf(i) + "."+temp);
             label.getStyleClass().add("textLabelColor");

@@ -5,23 +5,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.NavbarUser;
+import ku.cs.models.report.Report;
+import ku.cs.models.report.ReportList;
 import ku.cs.models.user.User;
+import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.prefs.Preferences;
 
-public class UserFeedController {
+public class UserDashboardController {
 
 
     @FXML
@@ -42,15 +47,24 @@ public class UserFeedController {
     @FXML
     private GridPane minisetting;
 
+    @FXML
+    private Label titleFeed;
+
+    @FXML
+    private Label titleSort;
+
     private SwitchTheme changeTheme;
+
+    private ProcessData processData;
 
     private User user;
 
     @FXML
     public void initialize() throws IOException {
-
-
-
+        processData = new ProcessData<>();
+       List<Report> reportList = processData.getReportList().getReportLists();
+        //getObject from router
+        user = (User) ApplicationController.getData();
         //initial style
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
@@ -60,9 +74,17 @@ public class UserFeedController {
         root.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
         root.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         root.getStylesheets().add(getClass().getResource(style).toExternalForm());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        //set label
+        userName.setText(user.getUserName());
+        roleUser.setText(user.getRole());
+        userName.setFont(font);
+        roleUser.setFont(font);
+        titleFeed.setFont(font);
+        titleSort.setFont(font);
 
-        //getObject from router
-        user = (User) ApplicationController.getData();
+
+
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
@@ -71,9 +93,6 @@ public class UserFeedController {
         navbarUser.setUser(user);
         root.add(navbar,0,0);
 
-        //set label
-        userName.setText(user.getUserName());
-        roleUser.setText(user.getRole());
 
         //set image
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+user.getPathPicture());
@@ -113,13 +132,27 @@ public class UserFeedController {
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
 
-
-        for(int i = 1 ; i < 5 ; i++) {
+        int i = 0;
+        for(Report report : reportList) {
             FXMLLoader fxmlLoaderFeed = new FXMLLoader();
             fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
             GridPane feedComponant = (GridPane) fxmlLoaderFeed.load();
-            feed.add(feedComponant, 0, i);
+            ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
+            System.out.println(report.getTitle());
+            problemFeedController.setReport(report);
             GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
+            feed.add(feedComponant, 0, i+1);
+
+            i++;
+        }
+    }
+
+    @FXML
+    public void handleUserSettingButton(MouseEvent mouseEvent) {
+        try {
+            ApplicationController.goTo("UserSetting",user);
+        } catch (IOException e) {
+            System.err.println(e);
         }
     }
 }

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.user.UserFeedController">
+<GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.user.UserDashboardController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -44,8 +46,8 @@
    <children>
       <GridPane GridPane.columnIndex="1" GridPane.columnSpan="20">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="239.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="733.0" minWidth="10.0" prefWidth="572.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="259.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="733.0" minWidth="10.0" prefWidth="520.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="145.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="61.0" />
         </columnConstraints>
@@ -55,31 +57,16 @@
           <RowConstraints maxHeight="75.0" minHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="155.0" text="Problem feed" textFill="WHITE" GridPane.columnSpan="4">
+            <Label fx:id="titleFeed" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="155.0" styleClass="textLabelColor" text="Problem feed" textFill="WHITE" GridPane.columnSpan="4">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <ScrollPane prefHeight="0.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <content>
-                  <GridPane fx:id="feed" prefHeight="1.0" prefWidth="1.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                  </GridPane>
-               </content>
-               <styleClass>
-                  <String fx:value="roundedCorner" />
-                  <String fx:value="background" />
-               </styleClass></ScrollPane>
             <GridPane GridPane.rowIndex="1">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.0" minWidth="6.0" prefWidth="6.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="158.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="5.0" prefWidth="11.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="212.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="0.0" prefWidth="0.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -87,7 +74,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane GridPane.columnIndex="1">
+                  <GridPane prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -109,7 +96,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2">
                            <children>
-                              <Label text="Sort " textFill="WHITE" />
+                              <Label fx:id="titleSort" styleClass="textLabelColor" text="Sort " textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
@@ -124,6 +111,15 @@
                         </VBox>
                      </children>
                   </GridPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <ImageView fitHeight="86.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/LogoKU.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
             <GridPane prefHeight="89.0" prefWidth="561.0" GridPane.columnIndex="1">
@@ -149,6 +145,33 @@
                   </GridPane>
                </children>
             </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="425.0" minHeight="10.0" prefHeight="425.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ScrollPane prefHeight="470.0" prefWidth="526.0" GridPane.rowIndex="1">
+                     <content>
+                        <GridPane fx:id="feed" prefHeight="1.0" prefWidth="1.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                     <styleClass>
+                        <String fx:value="roundedCorner" />
+                        <String fx:value="background" />
+                     </styleClass>
+                  </ScrollPane>
+               </children>
+            </GridPane>
          </children>
          <styleClass>
             <String fx:value="background" />
@@ -167,13 +190,13 @@
          <children>
             <VBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="80.0">
                <children>
-                  <Label fx:id="userName" text="Username" textFill="WHITE" />
-                  <Label fx:id="roleUser" text="User" textFill="WHITE" />
+                  <Label fx:id="userName" styleClass="textLabelColor" text="Username" textFill="WHITE" />
+                  <Label fx:id="roleUser" styleClass="textLabelColor" text="User" textFill="WHITE" />
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Circle fx:id="imageAccount" fill="DODGERBLUE" radius="24.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Circle fx:id="imageAccount" fill="DODGERBLUE" onMouseClicked="#handleUserSettingButton" radius="24.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                </children>
             </HBox>
          </children>

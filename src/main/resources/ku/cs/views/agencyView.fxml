@@ -126,36 +126,36 @@
                         <GridPane GridPane.columnSpan="2">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="17.62066650390625" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.37933349609375" minWidth="10.0" prefWidth="180.40003662109376" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.08746337890625" minWidth="10.0" prefWidth="153.99996337890624" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.79999999999995" minWidth="10.0" prefWidth="252.4000366210937" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.37933349609375" minWidth="10.0" prefWidth="199.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="172.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.79999999999995" minWidth="10.0" prefWidth="218.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="0.0" prefWidth="0.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="205.0" GridPane.columnIndex="1">
+                              <VBox alignment="CENTER" prefHeight="38.0" prefWidth="205.0" GridPane.columnIndex="1">
                                  <children>
                                     <Label fx:id="tableTitleUserName" styleClass="textLabelColor" text="Username" textFill="WHITE">
                                        <VBox.margin>
-                                          <Insets left="48.0" />
+                                          <Insets />
                                        </VBox.margin></Label>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="73.0" GridPane.columnIndex="2">
+                              <VBox alignment="CENTER" prefHeight="38.0" prefWidth="171.0" GridPane.columnIndex="2">
                                  <children>
                                     <Label fx:id="tableTitleAgency" styleClass="textLabelColor" text="agency" textFill="WHITE">
                                        <VBox.margin>
-                                          <Insets left="5.0" />
+                                          <Insets />
                                        </VBox.margin></Label>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                              <VBox alignment="CENTER" prefHeight="38.0" prefWidth="224.0" GridPane.columnIndex="3">
                                  <children>
                                     <Label fx:id="tableTitleRole" styleClass="textLabelColor" text="Role" textFill="WHITE">
                                        <VBox.margin>
-                                          <Insets left="55.0" />
+                                          <Insets />
                                        </VBox.margin></Label>
                                  </children>
                               </VBox>
@@ -187,8 +187,8 @@
                   </GridPane>
                   <GridPane prefHeight="85.0" prefWidth="577.0" GridPane.columnSpan="2">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="306.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.0" minWidth="10.0" prefWidth="103.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="265.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.0" minWidth="10.0" prefWidth="150.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.79815673828125" minWidth="10.0" prefWidth="112.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.79815673828125" minWidth="10.0" prefWidth="106.0" />
                     </columnConstraints>
@@ -240,7 +240,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3">
                      <children>
-                        <Label fx:id="titleReport" styleClass="textLabelColor" text="List of User report" textFill="WHITE">
+                        <Label fx:id="titleReport" styleClass="textLabelColor" text="Agency" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

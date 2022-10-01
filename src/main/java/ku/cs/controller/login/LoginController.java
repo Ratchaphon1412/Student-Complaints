@@ -15,13 +15,12 @@ import ku.cs.ApplicationController;
 
 import ku.cs.State;
 import ku.cs.models.admin.Admin;
-import ku.cs.models.stuff.Stuff;
+import ku.cs.models.staff.Staff;
 import ku.cs.models.user.User;
-import ku.cs.service.DataBase;
+
 import java.io.IOException;
 import java.util.prefs.Preferences;
 
-import ku.cs.models.Account;
 import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
 
@@ -138,11 +137,11 @@ public class LoginController {
                         }
                         break;
                     }
-                    case "stuff"->{
-                        DynamicDatabase<Stuff> database = new ProcessData<>();
-                        Stuff stuff = database.login(userNameString,passWordString);
-                        if(stuff != null){
-                            ApplicationController.goTo("Stuff",stuff);
+                    case "staff"->{
+                        DynamicDatabase<Staff> database = new ProcessData<>();
+                        Staff staff = database.login(userNameString,passWordString);
+                        if(staff != null){
+                            ApplicationController.goTo("Staff",staff);
                         }else{
                             System.out.println("wrong password");
                         }
@@ -158,9 +157,6 @@ public class LoginController {
             ApplicationController.goToNew("Alert", "You don't have account");
             System.out.println("no account in system");
         }
-
     }
-
-
 
 }

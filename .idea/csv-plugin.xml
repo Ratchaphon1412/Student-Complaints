@@ -3,13 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\database\StuffAgencyList.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\database\account.csv">
           <value>
             <Attribute>
@@ -67,13 +60,6 @@
           </value>
         </entry>
         <entry key="\database\stuffAgencyList.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\database\stuffagencylist.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

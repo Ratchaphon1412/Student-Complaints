@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -21,6 +23,7 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> agencyList;
     private List<LinkedHashMap<String,String>> categoryList;
     private List<LinkedHashMap<String,String>> patternList;
+
 
 
 
@@ -46,6 +49,7 @@ public class DataBase {
         readFile("stuffAgencyList.csv");
         readFile("reportcategory.csv");
         readFile("pattern.csv");
+        readFile("report.csv");
 
     }
 
@@ -54,7 +58,7 @@ public class DataBase {
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
-            Writer writer = new FileWriter(file);
+            Writer writer = new OutputStreamWriter(new FileOutputStream(file),StandardCharsets.UTF_8);
             switch (databaseName) {
                 case "account.csv" -> this.writeFile(accountList, writer);
                 case "report.csv" -> this.writeFile(reportList, writer);
@@ -63,11 +67,14 @@ public class DataBase {
                 case "requestban.csv" -> this.writeFile(requestban,writer);
                 case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
                 case "reportcategory.csv" -> this.writeFile(categoryList, writer);
-                case "pattern.csv" -> this.writeFile(patternList, writer);
+                case "pattern.csv"->this.writeFile(patternList,writer);
+
             }
         }
 
+
     }
+
 
 
     private void readFile(String fileTaget){
@@ -77,11 +84,13 @@ public class DataBase {
         FileReader reader = null;
 
         try {
+
             reader = new FileReader(file);
             buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
-            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8)));
+
 
             while(iterator.hasNext()){
                 LinkedHashMap<String,String> temp = iterator.next();
@@ -93,7 +102,7 @@ public class DataBase {
                     case "requestban.csv" -> requestban.add(temp);
                     case "stuffAgencyList.csv" -> agencyList.add(temp);
                     case "reportcategory.csv" -> categoryList.add(temp);
-                    case "pattern.csv" -> patternList.add(temp);
+                    case "pattern.csv"->patternList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -272,4 +281,5 @@ public class DataBase {
     public void setPatternList(List<LinkedHashMap<String, String>> patternList) {
         this.patternList = patternList;
     }
+
 }
