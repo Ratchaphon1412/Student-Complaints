@@ -1,11 +1,9 @@
 package ku.cs.models.admin;
 
 import ku.cs.models.Account;
-import ku.cs.models.stuff.Stuff;
-import ku.cs.models.stuff.StuffList;
+import ku.cs.models.staff.Staff;
+import ku.cs.models.staff.StaffList;
 import ku.cs.models.user.User;
-
-import java.util.ArrayList;
 
 public class Admin extends Account {
 
@@ -16,21 +14,21 @@ public class Admin extends Account {
     public void banUser(User user){
         user.setBan();
     }
-    public void changeStuffAgency(Stuff stuff, String newAgency){
-        stuff.setAgency(newAgency);
+    public void changeStuffAgency(Staff staff, String newAgency){
+        staff.setAgency(newAgency);
     }
 
-    public Stuff addNewStuff (String userName, String passWord, String pathPicture, String role, String agency) {
-        Stuff stuff = new Stuff(userName, passWord, pathPicture, role, agency);
-        return stuff;
+    public Staff addNewStuff (String userName, String passWord, String pathPicture, String role, String agency) {
+        Staff staff = new Staff(userName, passWord, pathPicture, role, agency);
+        return staff;
     }
 
-    public void changeAgencyNameStuffList(StuffList stuffList,String oldName, String newName){
-        stuffList.changeAgencyName(oldName, newName);
+    public void changeAgencyNameStuffList(StaffList staffList, String oldName, String newName){
+        staffList.changeAgencyName(oldName, newName);
     }
 
-    public void addNewAgencyStuff(StuffList stuffList, String newAgency){
-        stuffList.addNewAgency(newAgency);
+    public void addNewAgencyStuff(StaffList staffList, String newAgency){
+        staffList.addNewAgency(newAgency);
     }
     public void createMainCategory(){
 

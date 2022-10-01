@@ -3,15 +3,14 @@ package ku.cs.service;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.admin.AdminList;
 import ku.cs.models.report.ReportList;
-import ku.cs.models.stuff.Stuff;
-import ku.cs.models.stuff.StuffList;
+import ku.cs.models.staff.Staff;
+import ku.cs.models.staff.StaffList;
 import ku.cs.models.user.User;
 import ku.cs.models.user.UserList;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,7 +22,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     private UserList userList;
 
-    private StuffList stuffList;
+    private StaffList staffList;
 
     private ReportList reportList;
 
@@ -33,7 +32,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         dataBase = new DataBase();
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
-        stuffList = new StuffList(dataBase.getAccountList(),dataBase.getAgencyList());
+        staffList = new StaffList(dataBase.getAccountList(),dataBase.getAgencyList());
 
         reportList = new ReportList();
     }
@@ -61,14 +60,14 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     dataBase.saveToDatabase();
                     return true;
                 }
-                case "stuff":{
-                    Stuff stuff = (Stuff) object;
-                    stuff.setPathPicture(dataBase.saveImage(stuff.getPathPicture(),stuff.getUserName(),file));
+                case "staff":{
+                    Staff staff = (Staff) object;
+                    staff.setPathPicture(dataBase.saveImage(staff.getPathPicture(), staff.getUserName(),file));
                     LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
-                    createAccount.put("userName",stuff.getUserName());
-                    createAccount.put("passWord",stuff.getPassWord());
-                    createAccount.put("role",stuff.getRole());
-                    createAccount.put("pathPicture",stuff.getPathPicture());
+                    createAccount.put("userName", staff.getUserName());
+                    createAccount.put("passWord", staff.getPassWord());
+                    createAccount.put("role", staff.getRole());
+                    createAccount.put("pathPicture", staff.getPathPicture());
                     //get listAccount from database
                     List<LinkedHashMap<String,String>> accountList = dataBase.getAccountList();
                     //add new stuff
@@ -79,14 +78,14 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     List<LinkedHashMap<String,String>> agencyList = dataBase.getAgencyList();
                     //loop check agency and add stuff name to agency
                     for(LinkedHashMap<String,String> agency : agencyList){
-                        if(agency.get("agency").equals(stuff.getAgency())){
-                           String temp = agency.get("stuffNameList");
+                        if(agency.get("agency").equals(staff.getAgency())){
+                           String temp = agency.get("staffNameList");
                            if(temp.equals("")){
-                               temp +=stuff.getUserName();
+                               temp += staff.getUserName();
                            }else{
-                               temp += "|" + stuff.getUserName();
+                               temp += "|" + staff.getUserName();
                            }
-                           agency.put("stuffNameList",temp);
+                           agency.put("staffNameList",temp);
                         }
                     }
                     dataBase.setAgencyList(agencyList);
@@ -166,29 +165,29 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 }
             }
             case "changeAgency"->{
-                Stuff stuff = (Stuff) object;
+                Staff staff = (Staff) object;
                 List<LinkedHashMap<String,String>> agencyList = dataBase.getAgencyList();
                 //add
                 for(LinkedHashMap<String,String> temp : agencyList){
 
-                    if(temp.get("agency").equals(stuff.getAgency())){
-                        if(temp.get("stuffNameList").equals("")){
-                            temp.put("stuffNameList",stuff.getUserName());
+                    if(temp.get("agency").equals(staff.getAgency())){
+                        if(temp.get("staffNameList").equals("")){
+                            temp.put("staffNameList", staff.getUserName());
                         }else{
-                            String namelist = temp.get("stuffNameList");
-                            namelist += "|"+stuff.getUserName();
-                            temp.put("stuffNameList",namelist);
+                            String namelist = temp.get("staffNameList");
+                            namelist += "|"+ staff.getUserName();
+                            temp.put("staffNameList",namelist);
                         }
                     }
                 }
 
                 //remove
                 for(LinkedHashMap<String,String> temp : agencyList){
-                    if(!temp.get("agency").equals(stuff.getAgency())){
-                        String[] nameList = temp.get("stuffNameList").split("\\|");
+                    if(!temp.get("agency").equals(staff.getAgency())){
+                        String[] nameList = temp.get("staffNameList").split("\\|");
                         String nameListTemp = "";
                        for(int i = 0 ; i< nameList.length ; i++){
-                           if(nameList[i].equals(stuff.getUserName())){
+                           if(nameList[i].equals(staff.getUserName())){
 
                            }else{
                                if(i == 0){
@@ -198,7 +197,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                                }
                            }
                        }
-                       temp.put("stuffNameList",nameListTemp);
+                       temp.put("staffNameList",nameListTemp);
                     }
                 }
                 dataBase.setAgencyList(agencyList);
@@ -228,12 +227,12 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     return (DataObject) user;
                 }
                 break;
-            }case "stuff"->{
-                Stuff check = stuffList.getStuff(userName);
+            }case "staff"->{
+                Staff check = staffList.getStaff(userName);
                 if(check.getPassWord().equals(passWord)){
-                   Stuff stuff = check;
-                    dataBase.log(stuff.getUserName(),stuff.getRole(),stuff.getPathPicture());
-                    return (DataObject) stuff;
+                   Staff staff = check;
+                    dataBase.log(staff.getUserName(), staff.getRole(), staff.getPathPicture());
+                    return (DataObject) staff;
                 }
             }
         }
@@ -333,8 +332,8 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         return userList;
     }
 
-    public StuffList getStuffList() {
-        return stuffList;
+    public StaffList getStaffList() {
+        return staffList;
     }
 
     public ReportList getReportList() {

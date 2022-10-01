@@ -8,8 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
-import ku.cs.models.stuff.Stuff;
-import ku.cs.models.stuff.StuffList;
+import ku.cs.models.staff.Staff;
+import ku.cs.models.staff.StaffList;
 import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
 import java.io.File;
@@ -35,7 +35,7 @@ public class StuffRegisterController {
     @FXML
     private Button close;
 
-    private StuffList stuffList;
+    private StaffList staffList;
 
     private ProcessData dataBase;
     private String path;
@@ -47,8 +47,8 @@ public class StuffRegisterController {
     private void initialize(){
         ProcessData processData = new ProcessData<>();
 
-        stuffList = new StuffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
-        choiceAgency.getItems().addAll(stuffList.getAgency());
+        staffList = new StaffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
+        choiceAgency.getItems().addAll(staffList.getAgency());
     }
 
 
@@ -67,8 +67,8 @@ public class StuffRegisterController {
                     if(choiceAgency.getValue() !=null){
                         selectAgency = choiceAgency.getValue().toString();
                     }
-                    Stuff newUser = new Stuff(user,password,path,"stuff",selectAgency);
-                    DynamicDatabase<Stuff> database = new ProcessData<>();
+                    Staff newUser = new Staff(user,password,path,"stuff",selectAgency);
+                    DynamicDatabase<Staff> database = new ProcessData<>();
                     boolean checkregister = database.registerAccount(newUser,file,"stuff");
                     if(checkregister){
 //                        ApplicationController.goTo("Login");
