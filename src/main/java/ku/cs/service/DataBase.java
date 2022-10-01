@@ -46,7 +46,7 @@ public class DataBase {
         readFile("log.csv");
         readFile("requestunban.csv");
         readFile("requestban.csv");
-        readFile("stuffAgencyList.csv");
+        readFile("staffAgencyList.csv");
         readFile("reportcategory.csv");
         readFile("pattern.csv");
         readFile("report.csv");
@@ -54,7 +54,7 @@ public class DataBase {
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv","reportcategory.csv","pattern.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","reportcategory.csv","pattern.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -65,7 +65,7 @@ public class DataBase {
                 case "log.csv" -> this.writeFile(logList, writer);
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
                 case "requestban.csv" -> this.writeFile(requestban,writer);
-                case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
+                case "staffAgencyList.csv" -> this.writeFile(agencyList,writer);
                 case "reportcategory.csv" -> this.writeFile(categoryList, writer);
                 case "pattern.csv"->this.writeFile(patternList,writer);
             }
@@ -99,7 +99,7 @@ public class DataBase {
                     case "log.csv" -> logList.add(temp);
                     case "requestunban.csv" -> userBanList.add(temp);
                     case "requestban.csv" -> requestban.add(temp);
-                    case "stuffAgencyList.csv" -> agencyList.add(temp);
+                    case "staffAgencyList.csv" -> agencyList.add(temp);
                     case "reportcategory.csv" -> categoryList.add(temp);
                     case "pattern.csv"->patternList.add(temp);
                 }

@@ -1,8 +1,8 @@
-package ku.cs.models.stuff;
+package ku.cs.models.staff;
 import ku.cs.models.Account;
-public class Stuff extends Account {
+public class Staff extends Account {
     private String agency;
-    public Stuff(String userName, String passWord, String pathPicture, String role, String agency) {
+    public Staff(String userName, String passWord, String pathPicture, String role, String agency) {
         super(userName, passWord, pathPicture, role);
         this.agency = agency;
     }
