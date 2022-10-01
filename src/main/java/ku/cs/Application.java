@@ -44,7 +44,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("AdminAgencyAdd",pathResource +"addNewAgency.fxml",600,400);
         ApplicationController.when("AllProblem",pathResource+"allProblemReportView.fxml",1000,580);//
         ApplicationController.when("Feed",pathResource+"problemFeedView.fxml",1000,580);
-        ApplicationController.when("Report",pathResource+"problemReportView.fxml",1000,580);
+        ApplicationController.when("Report",pathResource+"detailProblemView.fxml",1000,580);
         ApplicationController.when("UserPostsProfile",pathResource+"userPostsView.fxml",1000,580);
         ApplicationController.when("User",pathResource+"problemFeedView.fxml",1000,580);
         ApplicationController.when("AdminCategory",pathResource+"categoryView.fxml",1000,580);
