@@ -58,7 +58,7 @@ public class DataBase {
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
-            Writer writer = new FileWriter(file);
+            Writer writer = new OutputStreamWriter(new FileOutputStream(file),StandardCharsets.UTF_8);
             switch (databaseName) {
                 case "account.csv" -> this.writeFile(accountList, writer);
                 case "report.csv" -> this.writeFile(reportList, writer);
@@ -88,7 +88,7 @@ public class DataBase {
             buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
-            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8)));
 
 
             while(iterator.hasNext()){
