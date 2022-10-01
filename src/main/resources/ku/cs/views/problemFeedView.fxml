@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -202,9 +201,4 @@
          </children>
       </GridPane>
    </children>
-   <stylesheets>
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/style.css" />
-      <URL value="@../style/icon.css" />
-   </stylesheets>
 </GridPane>
