@@ -157,9 +157,6 @@ public class LoginController {
             ApplicationController.goToNew("Alert", "You don't have account");
             System.out.println("no account in system");
         }
-
     }
-
-
 
 }

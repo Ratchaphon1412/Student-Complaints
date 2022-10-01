@@ -2,6 +2,7 @@ package ku.cs.controller.user;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import ku.cs.models.report.Report;
 
 public class ProblemReportController {
 
@@ -20,14 +21,14 @@ public class ProblemReportController {
     @FXML
     private TextField title;
 
+    private Report report;
+
     public void initialize(){
-        String title = this.title.getText();
-        String category = this.category.getText();
-        String about = this.about.getText();
-        String date = this.date.getText();
-        String detail = this.detail.getText();
+
+
 
 
     }
+
 
 }
