@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -86,7 +88,7 @@ public class DataBase {
             buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
-            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(file);
+            MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8)));
 
 
             while(iterator.hasNext()){
