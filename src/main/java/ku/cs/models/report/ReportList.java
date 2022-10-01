@@ -24,7 +24,7 @@ public class ReportList {
         for(LinkedHashMap<String,String> reportKey:reportList){
             for(LinkedHashMap<String,String> pattern: patternList){
                 if(pattern.get("category").equals(reportKey.get("category"))){
-                    Report report = new Report(userList.getUser(reportKey.get("user")),reportKey.get("title"),new Category(reportKey.get("category"),reportKey.get("data"),pattern.get("pattern")),reportKey.get("reportStage"),reportKey.get("problemDate"),reportKey.get("receiveDate"));
+                    Report report = new Report(userList.getUser(reportKey.get("user")),reportKey.get("title"),new Category(reportKey.get("category"),reportKey.get("text"),reportKey.get("image"),pattern.get("text"), pattern.get("image")),reportKey.get("reportStage"),reportKey.get("problemDate"),reportKey.get("receiveDate"));
                     reportLists.add(report);
 
                 }

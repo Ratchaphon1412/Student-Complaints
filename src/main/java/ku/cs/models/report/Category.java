@@ -7,58 +7,52 @@ import java.util.TreeMap;
 
 public class Category {
     private String nameCategory;
-    private String data;
-    private String pattern;
+    private String dataText;
 
-    private LinkedHashMap<String, List<LinkedHashMap<String,String>>> mapPatternValue;
+    private String dataImage;
+    private String text;
+    private String image;
 
-    public Category(String nameCategory,String data,String pattern) {
-        this.mapPatternValue = new LinkedHashMap<>();
+    private LinkedHashMap<String,LinkedHashMap<String,String>> mapDataPattern;
+
+
+    public Category(String nameCategory,String dataText,String dataImage,String text,String image) {
+        this.mapDataPattern = new LinkedHashMap<>();
         this.nameCategory = nameCategory;
-        this.data = data;
-        this.pattern = pattern;
+        this.dataText = dataText;
+        this.dataImage = dataImage;
+        this.text = text;
+        this.image = image;
         mapPattern();
     }
 
 
 
     private void mapPattern(){
-        String[] patternArray = pattern.split("\\|");
-        String[] dataArray = data.split("\\|");
-        List<LinkedHashMap<String,String>> tempText =  new ArrayList<>();
-        List<LinkedHashMap<String,String>> tempImage = new ArrayList<>();
-
-        for(int i = 0; i < patternArray.length;i++ ){
-            switch (patternArray[i]){
-                case "text":{
-                    LinkedHashMap<String,String> dataText = new LinkedHashMap<>();
-                    String[] subdata = dataArray[i].split(":");
-                    dataText.put(subdata[0],subdata[1]);
-                    tempText.add(dataText);
-                }
-                case "image":{
-                    LinkedHashMap<String,String> dataImage = new LinkedHashMap<>();
-                    String[] subdata = dataArray[i].split(":");
-                    dataImage.put(subdata[0],subdata[1]);
-                    tempImage.add(dataImage);
-                }
-            }
-
+        String[] dataTextArray = dataText.split("\\|");
+        String[] dataImageArray = dataImage.split("\\|");
+        String[] patternText = text.split("\\|");
+        String[] patternImage = image.split("\\|");
+        LinkedHashMap<String,String> generateText = new LinkedHashMap<>();
+        // บรรยายความรู้สึก key น้ำท้วมแล้วไอสาสสสสสเอ้ย value
+        for(int i = 0; i < patternText.length ; i++){
+          generateText.put(patternText[i],dataTextArray[i]);
         }
-        mapPatternValue.put("text",tempText);
-        mapPatternValue.put("image",tempImage);
+        LinkedHashMap<String,String> generateImage = new LinkedHashMap<>();
+        //รูปภาพเพิ่มเดิมของสถานที key  gugGG_2022-09-26_1664207021492.jpg value
+        for(int i = 0;i < patternImage.length; i++){
+            generateImage.put(patternImage[i],dataImageArray[i]);
+        }
 
-
-
-
-
+        mapDataPattern.put("text",generateText);
+        mapDataPattern.put("image",generateImage);
     }
 
     public String getNameCategory() {
         return nameCategory;
     }
 
-    public LinkedHashMap<String, List<LinkedHashMap<String, String>>> getMapPatternValue() {
-        return mapPatternValue;
+    public LinkedHashMap<String, LinkedHashMap<String, String>> getMapDataPattern() {
+        return mapDataPattern;
     }
 }

@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
@@ -45,6 +46,12 @@ public class UserDashboardController {
     @FXML
     private GridPane minisetting;
 
+    @FXML
+    private Label titleFeed;
+
+    @FXML
+    private Label titleSort;
+
     private SwitchTheme changeTheme;
 
     private ProcessData processData;
@@ -55,7 +62,8 @@ public class UserDashboardController {
     public void initialize() throws IOException {
         processData = new ProcessData<>();
        List<Report> reportList = processData.getReportList().getReportLists();
-
+        //getObject from router
+        user = (User) ApplicationController.getData();
         //initial style
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
@@ -65,9 +73,17 @@ public class UserDashboardController {
         root.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
         root.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         root.getStylesheets().add(getClass().getResource(style).toExternalForm());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        //set label
+        userName.setText(user.getUserName());
+        roleUser.setText(user.getRole());
+        userName.setFont(font);
+        roleUser.setFont(font);
+        titleFeed.setFont(font);
+        titleSort.setFont(font);
 
-        //getObject from router
-        user = (User) ApplicationController.getData();
+
+
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
@@ -76,9 +92,6 @@ public class UserDashboardController {
         navbarUser.setUser(user);
         root.add(navbar,0,0);
 
-        //set label
-        userName.setText(user.getUserName());
-        roleUser.setText(user.getRole());
 
         //set image
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+user.getPathPicture());
