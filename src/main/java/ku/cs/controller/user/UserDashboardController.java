@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -143,6 +144,15 @@ public class UserDashboardController {
             feed.add(feedComponant, 0, i+1);
 
             i++;
+        }
+    }
+
+    @FXML
+    public void handleUserSettingButton(MouseEvent mouseEvent) {
+        try {
+            ApplicationController.goTo("UserSetting",user);
+        } catch (IOException e) {
+            System.err.println(e);
         }
     }
 }
