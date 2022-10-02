@@ -44,7 +44,7 @@
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin></Label>
-                  <Label fx:id="nameAgency" alignment="TOP_LEFT" styleClass="textLabelColor" text="Agency" textFill="WHITE">
+                  <Label fx:id="nameAgency" alignment="TOP_LEFT" styleClass="textLabelColor" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -66,7 +66,7 @@
             </VBox>
             <HBox alignment="CENTER_LEFT" prefHeight="88.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2">
                <children>
-                  <Label alignment="TOP_LEFT" styleClass="textLabelColor" text="Stuff:" textFill="WHITE">
+                  <Label alignment="TOP_LEFT" styleClass="textLabelColor" text="Staff:" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -74,7 +74,7 @@
                         <Insets left="25.0" />
                      </HBox.margin>
                   </Label>
-                  <Label alignment="TOP_LEFT" styleClass="textLabelColor" text="Stuff" textFill="WHITE">
+                  <Label fx:id="nameStaff" alignment="TOP_LEFT" styleClass="textLabelColor" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

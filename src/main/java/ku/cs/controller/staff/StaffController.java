@@ -16,6 +16,8 @@ public class StaffController {
 
     @FXML
     public void initialize() throws IOException {
+
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/staff/navBarStaff.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
