@@ -138,7 +138,6 @@ public class UserDashboardController {
             fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
             GridPane feedComponant = (GridPane) fxmlLoaderFeed.load();
             ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
-            System.out.println(report.getTitle());
             problemFeedController.setReport(report);
             GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
             feed.add(feedComponant, 0, i+1);

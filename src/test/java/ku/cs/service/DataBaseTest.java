@@ -62,14 +62,15 @@ class DataBaseTest {
     @Test
     void addNewCategory () throws IOException {
        ProcessData data = new ProcessData();
-       data.addCategory("ไฟไหม้");
+       data.addCategory("น้ำท่วม");
       // data.addTitle("fire","llll");
     }
 
     @Test
     void addNewPattern() throws IOException {
         ProcessData data = new ProcessData();
-        data.creatPattern("ไฟไหม้", "ไฟไหม้ตึก","ไฟลาม");
+        data.addText("ไฟไหม้", "ไฟไหม้ตึก");
+        data.addImage("ไฟไหม้", "รูปไฟไหม้");
     }
 
     @Test
