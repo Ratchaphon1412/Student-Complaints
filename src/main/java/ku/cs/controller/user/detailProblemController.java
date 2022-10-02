@@ -60,7 +60,7 @@ public class detailProblemController {
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         titleReport.setText(report.getTitle());
        status.setText(report.getReportStage());
-        date.setText(report.getReceiveDate());
+
         titleReport.setFont(font);
         status.setFont(font);
         date.setFont(font);

@@ -1,9 +1,12 @@
 package ku.cs.controller.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -16,6 +19,7 @@ import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.NavbarUser;
+import ku.cs.models.report.Filterer;
 import ku.cs.models.report.Report;
 import ku.cs.models.report.ReportList;
 import ku.cs.models.user.User;
@@ -23,7 +27,7 @@ import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 import java.util.prefs.Preferences;
 
 public class UserDashboardController {
@@ -53,16 +57,58 @@ public class UserDashboardController {
     @FXML
     private Label titleSort;
 
+    @FXML
+    private ChoiceBox sortChoice;
+
+    @FXML
+    private ChoiceBox choiceSort2;
+
+    @FXML
+    private Label titleRangeVote;
+
+    @FXML
+    private TextField lessNum;
+
+    @FXML
+    private TextField mostNum;
+
+
+
     private SwitchTheme changeTheme;
 
     private ProcessData processData;
+
+    private ReportList reportLists;
+
+    private List<Report> reportSorted;
+    private String choiceSort;
+
 
     private User user;
 
     @FXML
     public void initialize() throws IOException {
         processData = new ProcessData<>();
-       List<Report> reportList = processData.getReportList().getReportLists();
+        reportLists = processData.getReportList();
+        reportSorted = new ArrayList<>();
+        reportSorted = reportLists.getReportLists();
+
+       //get pattern for get category
+       List<LinkedHashMap<String,String>> patternList = processData.getDataBase().getPatternList();
+        ArrayList<String> choiceSort = new ArrayList<>();
+        choiceSort.add("All");
+        for(LinkedHashMap<String,String>temp : patternList){
+            choiceSort.add(temp.get("category"));
+        }
+        sortChoice.getItems().addAll(choiceSort);
+        ArrayList<String> sortChoiceVote = new ArrayList<>();
+        sortChoiceVote.add("New Post");
+        sortChoiceVote.add("Old Post");
+        sortChoiceVote.add("Most Like");
+        sortChoiceVote.add("Least Like");
+        choiceSort2.getItems().addAll(sortChoiceVote);
+
+
         //getObject from router
         user = (User) ApplicationController.getData();
         //initial style
@@ -82,10 +128,10 @@ public class UserDashboardController {
         roleUser.setFont(font);
         titleFeed.setFont(font);
         titleSort.setFont(font);
+        titleRangeVote.setFont(font);
 
 
-
-
+        //navbar
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
@@ -97,7 +143,6 @@ public class UserDashboardController {
         //set image
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+user.getPathPicture());
         Image image = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
-
         if (!image.isError()){
             imageAccount.setFill(new ImagePattern(image));
             imageAccount.setStroke(Color.TRANSPARENT);
@@ -131,19 +176,7 @@ public class UserDashboardController {
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
-
-        int i = 0;
-        for(Report report : reportList) {
-            FXMLLoader fxmlLoaderFeed = new FXMLLoader();
-            fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
-            GridPane feedComponant = (GridPane) fxmlLoaderFeed.load();
-            ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
-            problemFeedController.setReport(report);
-            GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
-            feed.add(feedComponant, 0, i+1);
-
-            i++;
-        }
+        refetch();
     }
 
     @FXML
@@ -154,4 +187,185 @@ public class UserDashboardController {
             System.err.println(e);
         }
     }
+
+    private void refetch() throws IOException {
+        feed.getChildren().clear();
+        //show report
+        int i = 0;
+        for(Report report : reportSorted) {
+            FXMLLoader fxmlLoaderFeed = new FXMLLoader();
+            fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
+            GridPane feedComponant = (GridPane) fxmlLoaderFeed.load();
+            ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
+            problemFeedController.setReport(report,user);
+            GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
+            feed.add(feedComponant, 0, i+1);
+            i++;
+        }
+
+    }
+
+
+    @FXML
+    public void buttonSort(ActionEvent actionEvent) throws IOException {
+        String choice = sortChoice.getValue().toString();
+
+        if(!choice.equals("All")){
+            //set sort
+            sort(choiceSort,reportLists.getReportLists());
+            reportLists.setReportSetterSort(reportLists.getReportLists());
+            ReportList reportpare = reportLists.sortReport(new Filterer<Report>() {
+                @Override
+                public boolean filter(Report report) {
+                    if(report.getCategory().getNameCategory().equals(choice)){
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            if(reportpare.getReportSort().size() != 0){
+                reportSorted = reportpare.getReportSort();
+                refetch();
+            }else{
+                List<Report> temp = reportSorted;
+                reportSorted = reportpare.getReportSort();
+                refetch();
+                reportSorted = temp;
+            }
+            lessNum.clear();
+            mostNum.clear();
+        }else{
+            reportSorted = reportLists.getReportLists();
+            refetch();
+        }
+    }
+    @FXML
+    private void sortButtonVote() throws IOException {
+        choiceSort = choiceSort2.getValue().toString();
+
+        sort(choiceSort,reportSorted);
+
+    }
+
+    private void sort(String choice,List<Report> reportSort) throws IOException {
+        switch (choice){
+            case "New Post":{
+                Comparator newPost = new Comparator() {
+                    @Override
+                    public int compare(Object o1, Object o2) {
+                        Report p1 = (Report) o1;
+                        Report p2 = (Report) o2;
+                        return p2.getDate().compareTo(p1.getDate());
+                    }
+                };
+                Collections.sort(reportSort,newPost);
+                refetch();
+                break;
+            }
+            case "Old Post":{
+                Comparator oldPost = new Comparator() {
+                    @Override
+                    public int compare(Object o1, Object o2) {
+                        Report p1 = (Report) o1;
+                        Report p2 = (Report) o2;
+                        return p1.getDate().compareTo(p2.getDate());
+                    }
+                };
+                Collections.sort(reportSort,oldPost);
+                refetch();
+                break;
+            }
+            case "Most Like":{
+                Comparator mostLike = new Comparator() {
+                    @Override
+                    public int compare(Object o1, Object o2) {
+                        Report p1 = (Report) o1;
+                        Report p2 = (Report) o2;
+                        return p2.getCountLike()-p1.getCountLike();
+                    }
+                };
+
+                Collections.sort(reportSort,mostLike);
+                refetch();
+                break;
+            }
+            case "Least Like":{
+
+                Comparator leastLike = new Comparator() {
+                    @Override
+                    public int compare(Object o1, Object o2) {
+                        Report p1 = (Report) o1;
+                        Report p2 = (Report) o2;
+                        return p1.getCountLike()-p2.getCountLike();
+                    }
+                };
+                Collections.sort(reportSort,leastLike);
+                refetch();
+                break;
+            }
+
+        }
+    }
+
+
+    @FXML
+    private void sortVote(ActionEvent actionEvent) throws IOException {
+        String less = lessNum.getText();
+        String most = mostNum.getText();
+
+        if(!most.equals("") && !less.equals("")){
+            int lessInt = Integer.parseInt(less);
+            int mostInt = Integer.parseInt(most);
+            System.out.println(lessInt);
+            System.out.println(mostInt);
+            reportLists.setReportSetterSort(reportSorted);
+            ReportList reportpare = reportLists.sortReport(new Filterer<Report>() {
+                @Override
+                public boolean filter(Report report) {
+                    if(report.getCountLike()>=lessInt && report.getCountLike()<=mostInt){
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            if(reportpare.getReportSort().size() != 0){
+                reportSorted = reportpare.getReportSort();
+                refetch();
+            }else{
+                List<Report> temp = reportSorted;
+                reportSorted = reportpare.getReportSort();
+                refetch();
+                reportSorted = temp;
+            }
+
+
+
+        }else if(!most.equals("") && less.equals("")){
+            int mostInt = Integer.parseInt(most);
+            System.out.println(mostInt);
+            reportLists.setReportSetterSort(reportSorted);
+            ReportList reportpare = reportLists.sortReport(new Filterer<Report>() {
+                @Override
+                public boolean filter(Report report) {
+                    if(report.getCountLike()>mostInt){
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            if(reportpare.getReportSort().size() != 0){
+                reportSorted = reportpare.getReportSort();
+                refetch();
+            }else{
+                List<Report> temp = reportSorted;
+                reportSorted = reportpare.getReportSort();
+                refetch();
+                reportSorted = temp;
+            }
+        }
+
+
+
+    }
+
 }

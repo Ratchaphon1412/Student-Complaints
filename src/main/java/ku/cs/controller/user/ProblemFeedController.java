@@ -2,6 +2,7 @@ package ku.cs.controller.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -34,8 +35,23 @@ public class ProblemFeedController {
     private Label status;
 
     @FXML
+    private Label showDate;
+
+    @FXML
     private Circle imageUser;
 
+
+
+    @FXML
+    private Label category;
+
+    @FXML
+    private Label coutlikeLabel;
+
+    @FXML
+    private Button likeButton;
+
+    private boolean likeCheck;
 
 
 
@@ -43,24 +59,34 @@ public class ProblemFeedController {
 
 
 
-    public void setReport(Report report){
+    public void setReport(Report report,User user){
+        //font
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         userName.setFont(font);
         content.setFont(font);
         title.setFont(font);
         status.setFont(font);
+        showDate.setFont( Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),10));
+        coutlikeLabel.setFont(font);
+        category.setFont(font);
+        //get Object
         this.report =report;
-        userName.setText(report.getReporter().getUserName());
-//        LinkedHashMap<String,List<LinkedHashMap<String,String>>> temp = report.getCategory().getMapDataPattern();
+
+
         LinkedHashMap<String, LinkedHashMap<String, String>> temp = report.getCategory().getMapDataPattern();
         LinkedHashMap<String,String> temp2= temp.get("text");
         String[] keyContent = temp2.keySet().toArray(String[]::new);
 
-
+        //set Text
+        userName.setText(report.getReporter().getUserName());
         content.setText(temp2.get(keyContent[0]));
         title.setText(report.getTitle());
         status.setText(report.getReportStage());
+        category.setText(report.getCategory().getNameCategory());
+        showDate.setText(report.getProblemDate());
+        coutlikeLabel.setText(String.valueOf(report.getCountLike()));
+
 
         //set image
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+report.getReporter().getPathPicture());
@@ -71,6 +97,18 @@ public class ProblemFeedController {
             imageUser.setStroke(Color.TRANSPARENT);
         }
 
+        //set Like
+        for(String userName: report.getUserNameLike()){
+            if(userName.equals(user.getUserName())){
+                likeCheck = true;
+            }
+        }
+        if(likeCheck == true){
+            likeButton.getStyleClass().removeAll();
+            likeButton.getStyleClass().add("likedSVG");
+            likeButton.getStyleClass().add("colorIcon");
+        }
+
     }
      @FXML
      public void  viewPost(ActionEvent actionEvent) throws IOException {
@@ -79,6 +117,18 @@ public class ProblemFeedController {
 
         @FXML
         public void like(ActionEvent actionEvent){
-            System.out.println("test");
+          if(likeCheck == true){
+            //delete like
+              likeButton.getStyleClass().remove("likedSVG");
+              likeButton.getStyleClass().add("likeSVG");
+              likeButton.getStyleClass().add("colorIcon");
+          }else{
+              //add
+              likeButton.getStyleClass().remove("likeSVG");
+              likeButton.getStyleClass().add("likedSVG");
+              likeButton.getStyleClass().add("colorIcon");
+          }
+           likeCheck = !likeCheck;
+
         }
 }
