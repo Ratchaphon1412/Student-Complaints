@@ -1,6 +1,5 @@
 package ku.cs.controller.admin;
 
-import com.github.saacsos.FXRouter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,9 +20,8 @@ import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.AdminUserBanListController;
 import ku.cs.controller.components.BanUserReportController;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarAdminController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
-import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
 import ku.cs.models.user.UserList;
 import ku.cs.service.ProcessData;
@@ -31,7 +29,6 @@ import ku.cs.service.ProcessData;
 import java.io.File;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.prefs.Preferences;
 
 

@@ -1,4 +1,4 @@
-package ku.cs.controller.components;
+package ku.cs.controller.components.navbar;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,12 +7,11 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import ku.cs.ApplicationController;
-import ku.cs.models.admin.Admin;
 import ku.cs.models.user.User;
 
 import java.io.IOException;
 
-public class NavbarUser {
+public class NavbarUserController {
     private User user;
 
     @FXML

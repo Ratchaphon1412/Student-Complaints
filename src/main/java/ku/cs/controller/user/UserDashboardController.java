@@ -15,9 +15,8 @@ import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarUser;
+import ku.cs.controller.components.navbar.NavbarUserController;
 import ku.cs.models.report.Report;
-import ku.cs.models.report.ReportList;
 import ku.cs.models.user.User;
 import ku.cs.service.ProcessData;
 
@@ -89,8 +88,8 @@ public class UserDashboardController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
-        NavbarUser navbarUser = fxmlLoader.getController();
-        navbarUser.setUser(user);
+        NavbarUserController navbarUserController = fxmlLoader.getController();
+        navbarUserController.setUser(user);
         root.add(navbar,0,0);
 
 

@@ -1,4 +1,4 @@
-package ku.cs.controller.components;
+package ku.cs.controller.components.navbar;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
