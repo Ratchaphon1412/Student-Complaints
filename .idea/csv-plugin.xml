@@ -3,21 +3,7 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="C:\Users\Ratch\Downloads\staffAgencyList.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\database\account.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\database\categoryReport.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -60,13 +46,6 @@
           </value>
         </entry>
         <entry key="\database\requestunban.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\database\stuffAgencyList.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

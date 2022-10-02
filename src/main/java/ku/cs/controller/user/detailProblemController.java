@@ -1,11 +1,14 @@
 package ku.cs.controller.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.components.ReportImage;
@@ -41,6 +44,10 @@ public class detailProblemController {
 
     @FXML
     private ScrollPane scroll;
+
+    @FXML
+    private Button close;
+
 
     private Report report;
 
@@ -79,14 +86,19 @@ public class detailProblemController {
         for(String key:dataReportMap.get("image").keySet()){
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/reportImage.fxml"));
-            GridPane temp = (GridPane) fxmlLoader.load();
-            ReportImage reportImage = fxmlLoader.getController();
+            GridPane temp = (GridPane) fxmlLoader.load();ReportImage reportImage = fxmlLoader.getController();
             reportImage.setDataImage(key,dataReportMap.get("image").get(key));
             tempGrid.add(temp,0,i);
             i++;
         }
         scroll.setContent(tempGrid);
 
+    }
+
+    @FXML
+    private void closeButton(ActionEvent actionEvent){
+        Stage stage = (Stage)close.getScene().getWindow();
+        stage.close();
     }
 
 
