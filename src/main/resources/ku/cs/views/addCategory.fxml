@@ -69,7 +69,7 @@
             </VBox>
          </children>
       </GridPane>
-      <GridPane GridPane.columnIndex="2" GridPane.columnSpan="13">
+      <GridPane stylesheets="@../style/style.css" GridPane.columnIndex="2" GridPane.columnSpan="13">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -88,7 +88,8 @@
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="185.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="269.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="138.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
@@ -99,15 +100,15 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addCatagoryField" alignment="CENTER" prefHeight="25.0" prefWidth="258.0">
+                        <TextField fx:id="addCatagoryField" alignment="CENTER" prefHeight="25.0" prefWidth="329.0">
                            <HBox.margin>
-                              <Insets left="50.0" top="8.0" />
+                              <Insets left="40.0" top="8.0" />
                            </HBox.margin>
                         </TextField>
                         <HBox prefHeight="100.0" prefWidth="200.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="108.0" prefWidth="766.0" GridPane.rowIndex="1">
+                  <HBox prefHeight="108.0" prefWidth="766.0" GridPane.rowIndex="2">
                      <children>
                         <ChoiceBox fx:id="dropDown" prefWidth="150.0">
                            <HBox.margin>
@@ -121,16 +122,31 @@
                            <padding>
                               <Insets left="50.0" />
                            </padding></TextField>
-                        <Button mnemonicParsing="false" onAction="#handleExample" text="add">
+                        <Button mnemonicParsing="false" onAction="#handleExample" styleClass="circleYellow" text="add">
                            <HBox.margin>
                               <Insets left="80.0" />
                            </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="766.0" GridPane.rowIndex="2">
+                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="766.0" GridPane.rowIndex="3">
                      <children>
-                        <Label fx:id="text" text="Label" textFill="WHITE" />
+                        <Label fx:id="text" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="200.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="Type" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </children>
@@ -147,14 +163,14 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleSubmitButton" text="Submit" />
+                        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleSubmitButton" styleClass="circleGreen" text="Submit" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
          </children>
       </GridPane>
-      <GridPane GridPane.columnSpan="3">
+      <GridPane GridPane.columnIndex="1" GridPane.columnSpan="3">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="18.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="53.0" minWidth="10.0" prefWidth="52.0" />
