@@ -22,8 +22,8 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> requestban;
     private List<LinkedHashMap<String,String>> agencyList;
     private List<LinkedHashMap<String,String>> categoryList;
-
     private List<LinkedHashMap<String,String>> patternList;
+    private List<LinkedHashMap<String,String>> likePostList;
 
 
 
@@ -42,6 +42,7 @@ public class DataBase {
         agencyList = new ArrayList<>();
         categoryList = new ArrayList<>();
         patternList = new ArrayList<>();
+        likePostList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
@@ -50,11 +51,12 @@ public class DataBase {
         readFile("reportcategory.csv");
         readFile("pattern.csv");
         readFile("report.csv");
+        readFile("likepost.csv");
 
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","reportcategory.csv","pattern.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","reportcategory.csv","pattern.csv","likepost.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -68,6 +70,7 @@ public class DataBase {
                 case "staffAgencyList.csv" -> this.writeFile(agencyList,writer);
                 case "reportcategory.csv" -> this.writeFile(categoryList, writer);
                 case "pattern.csv"->this.writeFile(patternList,writer);
+                case "likepost.csv"->this.writeFile(likePostList,writer);
             }
         }
 
@@ -102,6 +105,7 @@ public class DataBase {
                     case "staffAgencyList.csv" -> agencyList.add(temp);
                     case "reportcategory.csv" -> categoryList.add(temp);
                     case "pattern.csv"->patternList.add(temp);
+                    case "likepost.csv"->likePostList.add(temp);
                 }
             }
         } catch (IOException e) {
@@ -281,4 +285,11 @@ public class DataBase {
         this.patternList = patternList;
     }
 
+    public List<LinkedHashMap<String, String>> getLikePostList() {
+        return likePostList;
+    }
+
+    public void setLikePostList(List<LinkedHashMap<String, String>> likePostList) {
+        this.likePostList = likePostList;
+    }
 }

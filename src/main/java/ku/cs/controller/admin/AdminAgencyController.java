@@ -174,7 +174,9 @@ public class AdminAgencyController {
         navbarAdminController.setAdmin(account);
         root.add(navbar,0,0);
         int i = 1;
+
         for(Staff data: staffListData.getStaffList()) {
+
             fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/staffList.fxml"));
             AnchorPane staffComponant = (AnchorPane) fxmlLoader.load();

@@ -109,3 +109,16 @@
     -fx-background-color: #FFFFFF;
 
 }
+
+.choice-box{
+    -fx-background-color:#1A202C;
+}
+.choice-box .label {
+    -fx-text-fill: white;
+}
+.context-menu .label{
+    -fx-text-fill: black;
+}
+.textFieldSearch{
+    -fx-text-fill: white;
+}
