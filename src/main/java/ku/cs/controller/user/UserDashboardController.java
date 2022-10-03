@@ -102,6 +102,8 @@ public class UserDashboardController {
         choiceSort2.getItems().addAll(sortChoiceVote);
         choiceSort2.setValue("Old Post");
         sortChoice.setValue("All");
+        this.choiceSortCategory = "All";
+        this.choiceSort = "Old Post";
 
 
         //getObject from router

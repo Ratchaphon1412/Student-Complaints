@@ -288,4 +288,8 @@ public class DataBase {
     public List<LinkedHashMap<String, String>> getLikePostList() {
         return likePostList;
     }
+
+    public void setLikePostList(List<LinkedHashMap<String, String>> likePostList) {
+        this.likePostList = likePostList;
+    }
 }

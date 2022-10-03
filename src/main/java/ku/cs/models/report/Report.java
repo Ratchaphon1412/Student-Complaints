@@ -4,7 +4,7 @@ import ku.cs.models.user.User;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 public class Report {
     private User reporter;
@@ -15,7 +15,7 @@ public class Report {
 
     private int countLike;
 
-    private String[] userNameLike;
+    private List<String> userNameLike;
 
     private Date date;
     private String time;
@@ -31,7 +31,9 @@ public class Report {
         this.problemDate = problemDate;
         this.countLike = Integer.parseInt(like);
         this.time = time;
-        this.userNameLike = userLike.split("\\|");
+       String[] userLink = userLike.split("\\|");
+       this.userNameLike = new ArrayList<>();
+        Collections.addAll(userNameLike,userLink);
 
         try {
             String dateString = problemDate + " " + time;
@@ -72,11 +74,22 @@ public class Report {
         return countLike;
     }
 
-    public String[] getUserNameLike() {
+    public List<String> getUserNameLike() {
         return userNameLike;
+    }
+    public void addLike(String userName){
+        this.countLike = this.countLike + 1;
+        userNameLike.add(userName);
+    }
+
+    public void deleteLike(String userName){
+        this.countLike = this.countLike - 1;
+        userNameLike.remove(userName);
     }
 
     public Date getDate() {
         return date;
     }
+
+
 }

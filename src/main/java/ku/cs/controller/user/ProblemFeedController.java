@@ -14,6 +14,8 @@ import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
+import ku.cs.service.DynamicDatabase;
+import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +54,7 @@ public class ProblemFeedController {
     private Button likeButton;
 
     private boolean likeCheck;
+    private User user;
 
 
 
@@ -72,42 +75,9 @@ public class ProblemFeedController {
         category.setFont(font);
         //get Object
         this.report =report;
+        this.user = user;
 
-
-        LinkedHashMap<String, LinkedHashMap<String, String>> temp = report.getCategory().getMapDataPattern();
-        LinkedHashMap<String,String> temp2= temp.get("text");
-        String[] keyContent = temp2.keySet().toArray(String[]::new);
-
-        //set Text
-        userName.setText(report.getReporter().getUserName());
-        content.setText(temp2.get(keyContent[0]));
-        title.setText(report.getTitle());
-        status.setText(report.getReportStage());
-        category.setText(report.getCategory().getNameCategory());
-        showDate.setText(report.getProblemDate());
-        coutlikeLabel.setText(String.valueOf(report.getCountLike()));
-
-
-        //set image
-        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+report.getReporter().getPathPicture());
-        Image image = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
-
-        if (!image.isError()){
-            imageUser.setFill(new ImagePattern(image));
-            imageUser.setStroke(Color.TRANSPARENT);
-        }
-
-        //set Like
-        for(String userName: report.getUserNameLike()){
-            if(userName.equals(user.getUserName())){
-                likeCheck = true;
-            }
-        }
-        if(likeCheck == true){
-            likeButton.getStyleClass().removeAll();
-            likeButton.getStyleClass().add("likedSVG");
-            likeButton.getStyleClass().add("colorIcon");
-        }
+        refetch();
 
     }
      @FXML
@@ -116,19 +86,73 @@ public class ProblemFeedController {
      }
 
         @FXML
-        public void like(ActionEvent actionEvent){
+        public void like(ActionEvent actionEvent) throws IOException {
           if(likeCheck == true){
             //delete like
-              likeButton.getStyleClass().remove("likedSVG");
-              likeButton.getStyleClass().add("likeSVG");
-              likeButton.getStyleClass().add("colorIcon");
+
+              //connect models
+              report.deleteLike(user.getUserName());
+              DynamicDatabase<Report> dynamicDatabase = new ProcessData<>();
+              dynamicDatabase.changeData(report,"like");
+              likeCheck = !likeCheck;
+              refetch();
+
           }else{
               //add
-              likeButton.getStyleClass().remove("likeSVG");
-              likeButton.getStyleClass().add("likedSVG");
-              likeButton.getStyleClass().add("colorIcon");
-          }
-           likeCheck = !likeCheck;
 
+              //connect models
+              report.addLike(user.getUserName());
+              DynamicDatabase<Report> dynamicDatabase = new ProcessData<>();
+              dynamicDatabase.changeData(report,"like");
+              likeCheck = !likeCheck;
+              refetch();
+
+          }
+
+
+        }
+
+        private void refetch(){
+            LinkedHashMap<String, LinkedHashMap<String, String>> temp = report.getCategory().getMapDataPattern();
+            LinkedHashMap<String,String> temp2= temp.get("text");
+            String[] keyContent = temp2.keySet().toArray(String[]::new);
+
+            //set Text
+            userName.setText(report.getReporter().getUserName());
+            content.setText(temp2.get(keyContent[0]));
+            title.setText(report.getTitle());
+            status.setText(report.getReportStage());
+            category.setText(report.getCategory().getNameCategory());
+            showDate.setText(report.getProblemDate());
+            coutlikeLabel.setText(String.valueOf(report.getCountLike()));
+
+
+            //set image
+            File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+report.getReporter().getPathPicture());
+            Image image = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
+
+            if (!image.isError()){
+                imageUser.setFill(new ImagePattern(image));
+                imageUser.setStroke(Color.TRANSPARENT);
+            }
+
+            //set Like database
+            System.out.println(report.getUserNameLike());
+            for(String userName: report.getUserNameLike()){
+                if(userName.equals(user.getUserName())){
+                    likeCheck = true;
+                }else{
+                    likeCheck = false;
+                }
+            }
+            if(likeCheck == true){
+                likeButton.getStyleClass().removeAll();
+                likeButton.getStyleClass().add("likedSVG");
+                likeButton.getStyleClass().add("colorIcon");
+            }else{
+                likeButton.getStyleClass().remove("likedSVG");
+                likeButton.getStyleClass().add("likeSVG");
+                likeButton.getStyleClass().add("colorIcon");
+            }
         }
 }
