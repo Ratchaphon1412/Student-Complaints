@@ -2,6 +2,7 @@ package ku.cs.service;
 
 import ku.cs.models.admin.Admin;
 import ku.cs.models.admin.AdminList;
+import ku.cs.models.report.Report;
 import ku.cs.models.report.ReportList;
 import ku.cs.models.staff.Staff;
 import ku.cs.models.staff.StaffList;
@@ -202,6 +203,19 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 dataBase.setAgencyList(agencyList);
                 dataBase.saveToDatabase();
 
+            }
+            case "addPrecessProblem"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> reportList = dataBase.getReportList();
+                for(LinkedHashMap<String,String> temp : reportList){
+                    if(temp.get("title").equals(report.getTitle())){
+                        temp.put("process" ,report.getProcess());
+                        temp.put("reportStage" , report.getReportStage());
+                        temp.put("staff", report.getStaff());
+                    }
+                }
+                dataBase.setReportList(reportList);
+                dataBase.saveToDatabase();
             }
         }
         return false;

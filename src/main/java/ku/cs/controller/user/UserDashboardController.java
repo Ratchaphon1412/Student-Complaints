@@ -1,5 +1,6 @@
 package ku.cs.controller.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -61,7 +62,7 @@ public class UserDashboardController {
     @FXML
     public void initialize() throws IOException {
         processData = new ProcessData<>();
-       List<Report> reportList = processData.getReportList().getReportLists();
+        List<Report> reportList = processData.getReportList().getReportLists();
         //getObject from router
         user = (User) ApplicationController.getData();
         //initial style
@@ -137,7 +138,6 @@ public class UserDashboardController {
             fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
             GridPane feedComponant = (GridPane) fxmlLoaderFeed.load();
             ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
-            System.out.println(report.getTitle());
             problemFeedController.setReport(report);
             GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
             feed.add(feedComponant, 0, i+1);
@@ -153,5 +153,9 @@ public class UserDashboardController {
         } catch (IOException e) {
             System.err.println(e);
         }
+    }
+    @FXML
+    public void buttonSearch(ActionEvent actionEvent){
+
     }
 }

@@ -281,4 +281,7 @@ public class DataBase {
         this.patternList = patternList;
     }
 
+    public void setReportList(List<LinkedHashMap<String, String>> reportList) {
+        this.reportList = reportList;
+    }
 }

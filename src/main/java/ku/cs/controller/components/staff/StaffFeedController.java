@@ -1,15 +1,15 @@
 package ku.cs.controller.components.staff;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
+import ku.cs.ApplicationController;
 import ku.cs.State;
+import ku.cs.controller.staff.ShowProcessProblem;
 import ku.cs.models.report.Report;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.prefs.Preferences;
 
@@ -31,17 +31,22 @@ public class StaffFeedController {
     private Label title;
 
     private Report report;
+    private ShowProcessProblem showProcessProblem;
 
 
-    public void setData(Report report){
+    public void setData(Report report, ShowProcessProblem showProcessProblem){
+        this.showProcessProblem = showProcessProblem;
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
-//        userName.setFont(font);
+        nameAgency.setFont(font);
+        nameStaff.setFont(font);
         content.setFont(font);
         title.setFont(font);
         status.setFont(font);
         this.report =report;
-//        userName.setText(report.getReporter().getUserName());
+        nameAgency.setText(report.getAgency());
+        nameStaff.setText(report.getStaff());
+        status.setText(report.getReportStage());
 //        LinkedHashMap<String,List<LinkedHashMap<String,String>>> temp = report.getCategory().getMapDataPattern();
         LinkedHashMap<String, LinkedHashMap<String, String>> temp = report.getCategory().getMapDataPattern();
         LinkedHashMap<String,String> temp2= temp.get("text");
@@ -52,15 +57,16 @@ public class StaffFeedController {
         title.setText(report.getTitle());
         status.setText(report.getReportStage());
 
-        //set image
-        File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+report.getReporter().getPathPicture());
-        Image image = new Image(String.valueOf(desDir.toURI()),500,0,true,true);
-
-//        if (!image.isError()){
-//            imageUser.setFill(new ImagePattern(image));
-//            imageUser.setStroke(Color.TRANSPARENT);
-//        }
-
     }
+    @FXML
+    public void  viewPost(ActionEvent actionEvent) throws IOException {
+        ApplicationController.goToNew("DetailReport",report);
+    }
+
+    @FXML
+    public void showProcess(ActionEvent actionEvent){
+        showProcessProblem.showData(report);
+    }
+
 
 }

@@ -85,6 +85,12 @@ public class ApplicationController extends FXRouter {
 
     }
 
+    public static void goToNew(String routeLabel,Object object) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.data = object;
+        createDialog(route);
+    }
+
     public static  void goToNew(String routeLabel , AgencyLoad agencyLoad) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.agencyLoad = agencyLoad ;

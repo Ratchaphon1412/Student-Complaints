@@ -1,20 +1,22 @@
 package ku.cs.controller.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
 import java.util.prefs.Preferences;
 
 public class ProblemFeedController {
@@ -70,4 +72,15 @@ public class ProblemFeedController {
         }
 
     }
+     @FXML
+     public void  viewPost(ActionEvent actionEvent) throws IOException {
+            ApplicationController.goToNew("DetailReport",report);
+     }
+
+     @FXML
+     public void like(ActionEvent actionEvent){
+        System.out.println("test");
+     }
+
+
 }

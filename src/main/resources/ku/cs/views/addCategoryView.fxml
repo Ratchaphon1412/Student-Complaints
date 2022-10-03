@@ -87,7 +87,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ScrollPane prefHeight="407.0" prefWidth="766.0" />
+                  <ScrollPane prefHeight="407.0" prefWidth="766.0">
+                     <content>
+                        <GridPane fx:id="girdPaneAddCategory">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </content></ScrollPane>
                </children>
             </GridPane>
             <GridPane alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">

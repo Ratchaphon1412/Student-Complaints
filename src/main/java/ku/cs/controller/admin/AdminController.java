@@ -179,7 +179,7 @@ public class AdminController {
         List<LinkedHashMap<String,String>>logList = processData.getDataBase().getLogList();
         //loop log (get log from database) and show
 //        System.out.println("log size"+logList.size());
-        for(int row = 0 ; row < logList.size() ; row++){
+        for(int row = logList.size()-1 ; row > logList.size()-16 ; row--){
             //load components
             if(logList.get(row) != null){
                 FXMLLoader fxmlLoader2 = new FXMLLoader();
