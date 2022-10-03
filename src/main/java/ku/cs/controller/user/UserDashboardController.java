@@ -333,12 +333,4 @@ public class UserDashboardController {
 
 
     }
-<<<<<<< HEAD
-
-=======
-    @FXML
-    public void buttonSearch(ActionEvent actionEvent){
-
-    }
->>>>>>> featureStaff
 }

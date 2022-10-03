@@ -82,13 +82,12 @@ public class DataBase {
     private void readFile(String fileTaget){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
-        BufferedReader buffer = null;
-        FileReader reader = null;
+//        BufferedReader buffer = null;
+//        FileReader reader = null;
 
         try {
-
-            reader = new FileReader(file);
-            buffer = new BufferedReader(reader);
+//            reader = new FileReader(file);
+//            buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
             MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8)));
@@ -110,14 +109,15 @@ public class DataBase {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } finally {
-            try {
-                buffer.close();
-                reader.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
+//        finally {
+//            try {
+//                buffer.close();
+//                reader.close();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
 
     }
 

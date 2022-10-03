@@ -176,10 +176,12 @@ public class AdminController {
         scroll.setContent(listLog);
 
         //data log from Database
+        int count = 1;
         List<LinkedHashMap<String,String>>logList = processData.getDataBase().getLogList();
-        //loop log (get log from database) and show
-//        System.out.println("log size"+logList.size());
-        for(int row = logList.size()-1 ; row > logList.size()-16 ; row--){
+        for(int row = logList.size()-1 ; row >= 0 ; row--){
+            if(count >= 15){
+                break;
+            }
             //load components
             if(logList.get(row) != null){
                 FXMLLoader fxmlLoader2 = new FXMLLoader();
@@ -188,10 +190,12 @@ public class AdminController {
                 AnchorPane anchorPane = (AnchorPane) fxmlLoader2.load();
                 LogAccontController logAccontController = fxmlLoader2.getController();
                 logAccontController.setData(logList.get(row));
-                listLog.add(anchorPane,0,row+1);
+                listLog.add(anchorPane,0,count);
                 listLog.setMargin(anchorPane, new Insets(0,0,5,0));
             }
+            count++;
         }
+
         //bar Chart
         XYChart.Series<String,Double> series = new XYChart.Series<>();
         series.setName("Past work 3 months");
