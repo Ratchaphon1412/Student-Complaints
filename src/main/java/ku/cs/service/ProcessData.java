@@ -204,36 +204,48 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 dataBase.saveToDatabase();
 
             }
-            case "like"->{
+            case "like"-> {
                 Report report = (Report) object;
-                List<LinkedHashMap<String,String>> linkList = dataBase.getLikePostList();
-                LinkedHashMap<String,String> newLinkLine = new LinkedHashMap<>();
+                List<LinkedHashMap<String, String>> linkList = dataBase.getLikePostList();
+                LinkedHashMap<String, String> newLinkLine = new LinkedHashMap<>();
                 int countIndex = 0;
-                for(LinkedHashMap<String,String> temp : linkList){
-                    if(temp.get("title").equals(report.getTitle())){
-                        newLinkLine.put("title",report.getTitle());
-                        newLinkLine.put("like",String.valueOf(report.getCountLike()));
+                for (LinkedHashMap<String, String> temp : linkList) {
+                    if (temp.get("title").equals(report.getTitle())) {
+                        newLinkLine.put("title", report.getTitle());
+                        newLinkLine.put("like", String.valueOf(report.getCountLike()));
                         String allUserLike = "";
                         int count = 0;
-                        for(String user:report.getUserNameLike()){
+                        for (String user : report.getUserNameLike()) {
 
-                            if(count == 0){
+                            if (count == 0) {
                                 allUserLike += user;
-                            }else{
-                                allUserLike += "|" +user;
+                            } else {
+                                allUserLike += "|" + user;
                             }
-                         count ++;
+                            count++;
                         }
-                        newLinkLine.put("userName",allUserLike);
-                       break;
+                        newLinkLine.put("userName", allUserLike);
+                        break;
                     }
-                countIndex++;
+                    countIndex++;
                 }
                 linkList.remove(countIndex);
                 linkList.add(newLinkLine);
                 dataBase.setLikePostList(linkList);
                 dataBase.saveToDatabase();
-
+            }
+            case "addPrecessProblem"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> reportList = dataBase.getReportList();
+                for(LinkedHashMap<String,String> temp : reportList){
+                    if(temp.get("title").equals(report.getTitle())){
+                        temp.put("process" ,report.getProcess());
+                        temp.put("reportStage" , report.getReportStage());
+                        temp.put("staff", report.getStaff());
+                    }
+                }
+                dataBase.setReportList(reportList);
+                dataBase.saveToDatabase();
             }
         }
         return false;

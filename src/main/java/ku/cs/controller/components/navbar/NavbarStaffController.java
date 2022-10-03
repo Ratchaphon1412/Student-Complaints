@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import ku.cs.ApplicationController;
 import ku.cs.models.staff.Staff;
 import ku.cs.models.user.User;
 
@@ -29,6 +30,15 @@ public class NavbarStaffController {
         navBar.setMargin(buttonWindows,new Insets(60, 70, 70, 3));
     }
 
+
+    @FXML
+    private void logOut() throws IOException {
+        ApplicationController.goTo("Login");
+    }
+    @FXML
+    private void goDashBoardStaff() throws IOException {
+        ApplicationController.goTo("Staff",staff);
+    }
 
 
 

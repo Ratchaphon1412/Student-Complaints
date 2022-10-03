@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -62,7 +62,7 @@
             </Label>
             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                <children>
-                  <Label styleClass="textLabelColor" text="nameStaff">
+                  <Label fx:id="nameStaffLabel" styleClass="textLabelColor" text="nameStaff">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -70,7 +70,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label styleClass="textLabelColor" text="Staff">
+                  <Label fx:id="roleLabel" styleClass="textLabelColor" text="Staff">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -82,7 +82,7 @@
                   <Insets right="12.0" top="5.0" />
                </GridPane.margin>
                <children>
-                  <Circle fill="DODGERBLUE" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="imageStaff" fill="DODGERBLUE" onMouseClicked="#handleStaffSetting" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
             </HBox>
             <GridPane prefHeight="89.0" prefWidth="561.0" GridPane.columnIndex="1">
@@ -154,7 +154,7 @@
                                     <Insets left="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label styleClass="textLabelColor" text="work">
+                              <Label fx:id="nameProblem" styleClass="textLabelColor">
                                  <VBox.margin>
                                     <Insets left="10.0" top="5.0" />
                                  </VBox.margin>
@@ -174,7 +174,7 @@
                                     <Insets left="10.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextArea disable="true" style="-fx-control-inner-background: #000000;" styleClass="textLabelColor" wrapText="true">
+                              <TextArea fx:id="processTextArea" styleClass="textAreaTheme" wrapText="true">
                                  <VBox.margin>
                                     <Insets left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
@@ -183,14 +183,26 @@
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="4">
                            <children>
-                              <Label styleClass="textLabelColor" text="status">
+                              <Label styleClass="textLabelColor" text="Status:">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
-                              <ChoiceBox prefWidth="150.0" />
+                              <ChoiceBox fx:id="StatusChoiceBox" prefWidth="150.0" styleClass="textLabelColor" />
                            </children>
                         </HBox>
+                        <Button mnemonicParsing="false" onAction="#saveProcessStaff" text="add" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <styleClass>
+                              <String fx:value="circleGreen" />
+                              <String fx:value="roundedCornerButtonTheme" />
+                           </styleClass>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Button>
                      </children>
                   </GridPane>
                   <ScrollPane fx:id="showDataProblemScrollPane" prefHeight="490.0" prefWidth="644.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
@@ -211,7 +223,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                      <children>
-                        <Label styleClass="textLabelColor" text="My Work">
+                        <Label styleClass="textLabelColor" text="Process Work">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -228,9 +240,4 @@
       </GridPane>
       <HBox prefHeight="100.0" prefWidth="200.0" />
    </children>
-   <stylesheets>
-      <URL value="@../../style/darkMode.css" />
-      <URL value="@../../style/style.css" />
-      <URL value="@../../style/icon.css" />
-   </stylesheets>
 </GridPane>

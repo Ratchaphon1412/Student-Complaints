@@ -22,6 +22,7 @@ import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 
 import ku.cs.models.admin.Admin;
+import ku.cs.models.staff.Staff;
 import ku.cs.service.DynamicDatabase;
 
 import ku.cs.service.ProcessData;
@@ -34,7 +35,7 @@ import java.util.List;
 import java.util.prefs.Preferences;
 
 
-public class SettingController {
+public class SettingController<DataObject> {
     @FXML
     private Label username;
     @FXML
@@ -109,7 +110,9 @@ public class SettingController {
         minirole.setFont(font);
 
         //get object Admin
+        System.out.println(ApplicationController.getData().getClass().getName());
         account = (Admin) ApplicationController.getData();
+
         initializeSetting();
 
     }

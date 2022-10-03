@@ -292,4 +292,7 @@ public class DataBase {
     public void setLikePostList(List<LinkedHashMap<String, String>> likePostList) {
         this.likePostList = likePostList;
     }
+    public void setReportList(List<LinkedHashMap<String, String>> reportList) {
+        this.reportList = reportList;
+    }
 }

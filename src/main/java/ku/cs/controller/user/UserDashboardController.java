@@ -1,5 +1,6 @@
 package ku.cs.controller.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -332,5 +333,12 @@ public class UserDashboardController {
 
 
     }
+<<<<<<< HEAD
 
+=======
+    @FXML
+    public void buttonSearch(ActionEvent actionEvent){
+
+    }
+>>>>>>> featureStaff
 }

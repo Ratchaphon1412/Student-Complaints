@@ -115,3 +115,8 @@
 .textFieldSearch{
     -fx-text-fill: black;
 }
+.textAreaTheme{
+    -fx-control-inner-background: #D9D9D9;
+    -fx-text-fill: #000000;
+    -fx-background-radius:3px 3px 3px 3px;
+}

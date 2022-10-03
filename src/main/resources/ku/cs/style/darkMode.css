@@ -107,7 +107,6 @@
 }
 .switchThemeButton{
     -fx-background-color: #FFFFFF;
-
 }
 
 .choice-box{
@@ -121,4 +120,9 @@
 }
 .textFieldSearch{
     -fx-text-fill: white;
+}
+.textAreaTheme{
+    -fx-control-inner-background: #1A202C;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius:3px 3px 3px 3px;
 }

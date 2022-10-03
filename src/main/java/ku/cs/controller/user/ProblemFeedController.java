@@ -84,7 +84,6 @@ public class ProblemFeedController {
      public void  viewPost(ActionEvent actionEvent) throws IOException {
             ApplicationController.goToNew("DetailReport",report);
      }
-
         @FXML
         public void like(ActionEvent actionEvent) throws IOException {
           if(likeCheck == true){

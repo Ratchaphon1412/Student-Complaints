@@ -22,7 +22,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("Staff");
+        ApplicationController.goTo("Login");
 
     }
 
@@ -52,6 +52,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("AddCategory",pathResource+"addCategoryView.fxml",1000, 580);
         ApplicationController.when("UserSetting",pathResource+"userSettingView.fxml",1000, 580);
         ApplicationController.when("DetailReport",pathResource+"detailProblemView.fxml",900,480);
+        ApplicationController.when("SettingStaff","ku/cs/components/staff/settingStaff.fxml",1000,580);
     }
 
 
