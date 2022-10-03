@@ -89,7 +89,7 @@
                <children>
                   <ScrollPane prefHeight="407.0" prefWidth="766.0">
                      <content>
-                        <GridPane fx:id="girdPaneAddCategory">
+                        <GridPane>
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>

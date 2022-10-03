@@ -1,6 +1,5 @@
 package ku.cs.controller.user;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -8,7 +7,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -19,7 +17,6 @@ import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.NavbarUser;
-import ku.cs.models.report.Filterer;
 import ku.cs.models.report.Report;
 import ku.cs.models.report.ReportList;
 import ku.cs.models.user.User;
@@ -58,10 +55,10 @@ public class UserDashboardController {
     private Label titleSort;
 
     @FXML
-    private ChoiceBox sortChoice;
+    private ChoiceBox<String> sortChoice;
 
     @FXML
-    private ChoiceBox choiceSort2;
+    private ChoiceBox<String> choiceSort2;
 
     @FXML
     private Label titleRangeVote;
@@ -73,22 +70,18 @@ public class UserDashboardController {
     private TextField mostNum;
 
 
-
-    private SwitchTheme changeTheme;
-
-    private ProcessData processData;
-
     private ReportList reportLists;
 
     private List<Report> reportSorted;
     private String choiceSort;
+    private String choiceSortCategory;
 
 
     private User user;
 
     @FXML
     public void initialize() throws IOException {
-        processData = new ProcessData<>();
+        ProcessData<User> processData = new ProcessData<>();
         reportLists = processData.getReportList();
         reportSorted = new ArrayList<>();
         reportSorted = reportLists.getReportLists();
@@ -107,6 +100,8 @@ public class UserDashboardController {
         sortChoiceVote.add("Most Like");
         sortChoiceVote.add("Least Like");
         choiceSort2.getItems().addAll(sortChoiceVote);
+        choiceSort2.setValue("Old Post");
+        sortChoice.setValue("All");
 
 
         //getObject from router
@@ -117,10 +112,10 @@ public class UserDashboardController {
         System.out.println(styleTheme);
         String icon = "/ku/cs/style/icon.css";
         String style = "/ku/cs/style/style.css";
-        root.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
-        root.getStylesheets().add(getClass().getResource(icon).toExternalForm());
-        root.getStylesheets().add(getClass().getResource(style).toExternalForm());
-        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(styleTheme)).toExternalForm());
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(icon)).toExternalForm());
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(style)).toExternalForm());
+        Font font =  Font.loadFont(Objects.requireNonNull(getClass().getResource("/ku/cs/assets/fonts/" + preferences.get("font", null))).toExternalForm(),15);
         //set label
         userName.setText(user.getUserName());
         roleUser.setText(user.getRole());
@@ -134,7 +129,7 @@ public class UserDashboardController {
         //navbar
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
-        GridPane navbar = (GridPane) fxmlLoader.load();
+        GridPane navbar = fxmlLoader.load();
         NavbarUser navbarUser = fxmlLoader.getController();
         navbarUser.setUser(user);
         root.add(navbar,0,0);
@@ -148,7 +143,10 @@ public class UserDashboardController {
             imageAccount.setStroke(Color.TRANSPARENT);
         }
         //implements interface callback
-        changeTheme = new SwitchTheme() {
+        //save theme
+        //change state
+        //change stylesheet in main page
+        SwitchTheme changeTheme = new SwitchTheme() {
             @Override
             public void changeTheme(String theme) throws IOException {
                 //save theme
@@ -157,22 +155,22 @@ public class UserDashboardController {
                 state.saveThemeToConfig(theme);
                 //change state
                 Preferences preferences = Preferences.userRoot().node(State.class.getName());
-                preferences.put("theme",theme);
+                preferences.put("theme", theme);
                 //change stylesheet in main page
                 root.getStylesheets().clear();
-                String styleTheme = "/ku/cs/style/" +preferences.get("theme",null)+".css";
+                String styleTheme = "/ku/cs/style/" + preferences.get("theme", null) + ".css";
                 String icon = "/ku/cs/style/icon.css";
                 String style = "/ku/cs/style/style.css";
-                root.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
-                root.getStylesheets().add(getClass().getResource(icon).toExternalForm());
-                root.getStylesheets().add(getClass().getResource(style).toExternalForm());
+                root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(styleTheme)).toExternalForm());
+                root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(icon)).toExternalForm());
+                root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(style)).toExternalForm());
             }
         };
 
         //Switch Theme
         FXMLLoader fxmlLoader1 = new FXMLLoader();
         fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
-        GridPane switchTheme = (GridPane)fxmlLoader1.load();
+        GridPane switchTheme = fxmlLoader1.load();
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
@@ -180,11 +178,11 @@ public class UserDashboardController {
     }
 
     @FXML
-    public void handleUserSettingButton(MouseEvent mouseEvent) {
+    public void handleUserSettingButton() {
         try {
             ApplicationController.goTo("UserSetting",user);
         } catch (IOException e) {
-            System.err.println(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -195,7 +193,7 @@ public class UserDashboardController {
         for(Report report : reportSorted) {
             FXMLLoader fxmlLoaderFeed = new FXMLLoader();
             fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
-            GridPane feedComponant = (GridPane) fxmlLoaderFeed.load();
+            GridPane feedComponant = fxmlLoaderFeed.load();
             ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
             problemFeedController.setReport(report,user);
             GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
@@ -207,22 +205,25 @@ public class UserDashboardController {
 
 
     @FXML
-    public void buttonSort(ActionEvent actionEvent) throws IOException {
-        String choice = sortChoice.getValue().toString();
+    public void buttonSort() throws IOException {
+        String choice = sortChoice.getValue();
+        this.choiceSortCategory = choice;
+        sortCategory(choice);
+    }
+    @FXML
+    private void sortButtonVote() throws IOException {
+        choiceSort = choiceSort2.getValue();
 
+        sortColletion(choiceSort,reportSorted);
+
+    }
+
+    private void sortCategory(String choice) throws IOException {
         if(!choice.equals("All")){
             //set sort
-            sort(choiceSort,reportLists.getReportLists());
+            sortColletion(choiceSort,reportLists.getReportLists());
             reportLists.setReportSetterSort(reportLists.getReportLists());
-            ReportList reportpare = reportLists.sortReport(new Filterer<Report>() {
-                @Override
-                public boolean filter(Report report) {
-                    if(report.getCategory().getNameCategory().equals(choice)){
-                        return true;
-                    }
-                    return false;
-                }
-            });
+            ReportList reportpare = reportLists.sortReport(report -> report.getCategory().getNameCategory().equals(choice));
             if(reportpare.getReportSort().size() != 0){
                 reportSorted = reportpare.getReportSort();
                 refetch();
@@ -239,95 +240,65 @@ public class UserDashboardController {
             refetch();
         }
     }
-    @FXML
-    private void sortButtonVote() throws IOException {
-        choiceSort = choiceSort2.getValue().toString();
-
-        sort(choiceSort,reportSorted);
-
-    }
-
-    private void sort(String choice,List<Report> reportSort) throws IOException {
-        switch (choice){
-            case "New Post":{
-                Comparator newPost = new Comparator() {
-                    @Override
-                    public int compare(Object o1, Object o2) {
-                        Report p1 = (Report) o1;
-                        Report p2 = (Report) o2;
-                        return p2.getDate().compareTo(p1.getDate());
-                    }
+    private void sortColletion(String choice, List<Report> reportSort) throws IOException {
+        switch (choice) {
+            case "New Post" -> {
+                Comparator newPost = (o1, o2) -> {
+                    Report p1 = (Report) o1;
+                    Report p2 = (Report) o2;
+                    return p2.getDate().compareTo(p1.getDate());
                 };
-                Collections.sort(reportSort,newPost);
+                reportSort.sort(newPost);
                 refetch();
-                break;
             }
-            case "Old Post":{
-                Comparator oldPost = new Comparator() {
-                    @Override
-                    public int compare(Object o1, Object o2) {
-                        Report p1 = (Report) o1;
-                        Report p2 = (Report) o2;
-                        return p1.getDate().compareTo(p2.getDate());
-                    }
+            case "Old Post" -> {
+                Comparator oldPost = (o1, o2) -> {
+                    Report p1 = (Report) o1;
+                    Report p2 = (Report) o2;
+                    return p1.getDate().compareTo(p2.getDate());
                 };
-                Collections.sort(reportSort,oldPost);
+                reportSort.sort(oldPost);
                 refetch();
-                break;
+
             }
-            case "Most Like":{
-                Comparator mostLike = new Comparator() {
-                    @Override
-                    public int compare(Object o1, Object o2) {
-                        Report p1 = (Report) o1;
-                        Report p2 = (Report) o2;
-                        return p2.getCountLike()-p1.getCountLike();
-                    }
+            case "Most Like" -> {
+                Comparator mostLike = (o1, o2) -> {
+                    Report p1 = (Report) o1;
+                    Report p2 = (Report) o2;
+                    return p2.getCountLike() - p1.getCountLike();
                 };
 
-                Collections.sort(reportSort,mostLike);
+                reportSort.sort(mostLike);
                 refetch();
-                break;
-            }
-            case "Least Like":{
 
-                Comparator leastLike = new Comparator() {
-                    @Override
-                    public int compare(Object o1, Object o2) {
-                        Report p1 = (Report) o1;
-                        Report p2 = (Report) o2;
-                        return p1.getCountLike()-p2.getCountLike();
-                    }
+            }
+            case "Least Like" -> {
+
+                Comparator leastLike = (o1, o2) -> {
+                    Report p1 = (Report) o1;
+                    Report p2 = (Report) o2;
+                    return p1.getCountLike() - p2.getCountLike();
                 };
-                Collections.sort(reportSort,leastLike);
+                reportSort.sort(leastLike);
                 refetch();
-                break;
-            }
 
+            }
         }
     }
 
 
     @FXML
-    private void sortVote(ActionEvent actionEvent) throws IOException {
+    private void sortVote() throws IOException {
         String less = lessNum.getText();
         String most = mostNum.getText();
-
+        sortCategory(choiceSortCategory);
         if(!most.equals("") && !less.equals("")){
             int lessInt = Integer.parseInt(less);
             int mostInt = Integer.parseInt(most);
             System.out.println(lessInt);
             System.out.println(mostInt);
             reportLists.setReportSetterSort(reportSorted);
-            ReportList reportpare = reportLists.sortReport(new Filterer<Report>() {
-                @Override
-                public boolean filter(Report report) {
-                    if(report.getCountLike()>=lessInt && report.getCountLike()<=mostInt){
-                        return true;
-                    }
-                    return false;
-                }
-            });
+            ReportList reportpare = reportLists.sortReport(report -> report.getCountLike() >= lessInt && report.getCountLike() <= mostInt);
             if(reportpare.getReportSort().size() != 0){
                 reportSorted = reportpare.getReportSort();
                 refetch();
@@ -340,19 +311,11 @@ public class UserDashboardController {
 
 
 
-        }else if(!most.equals("") && less.equals("")){
+        }else if(!most.equals("")){
             int mostInt = Integer.parseInt(most);
             System.out.println(mostInt);
             reportLists.setReportSetterSort(reportSorted);
-            ReportList reportpare = reportLists.sortReport(new Filterer<Report>() {
-                @Override
-                public boolean filter(Report report) {
-                    if(report.getCountLike()>mostInt){
-                        return true;
-                    }
-                    return false;
-                }
-            });
+            ReportList reportpare = reportLists.sortReport(report -> report.getCountLike() > mostInt);
             if(reportpare.getReportSort().size() != 0){
                 reportSorted = reportpare.getReportSort();
                 refetch();
