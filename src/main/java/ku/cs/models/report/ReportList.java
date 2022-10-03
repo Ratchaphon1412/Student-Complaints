@@ -22,6 +22,7 @@ public class ReportList {
         this.reportLists = new ArrayList<>();
         this.reportSort = new ArrayList<>();
         this.reportSetterSort = new ArrayList<>();
+        this.reportListAgency = new ArrayList<>();
         createObjectReport(reportList,userList,patternList,likePostList);
     }
 
