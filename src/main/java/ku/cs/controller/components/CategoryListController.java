@@ -11,7 +11,7 @@ public class CategoryListController {
 
     @FXML
     public void initialize(){
-        categoryLabel.setText();
+        //categoryLabel.setText();
     }
 
 }

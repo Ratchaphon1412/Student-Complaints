@@ -262,11 +262,17 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
     public boolean checkBan(String userName){
-        for (LinkedHashMap<String,String> accountBan:dataBase.getUserBanList()){
-            for (String key:accountBan.keySet()){
-                if(key.equals(userName)){
-                    return true;
-                }
+//        for (LinkedHashMap<String,String> accountBan:dataBase.getUserBanList()){
+//            for (String key:accountBan.keySet()){
+//                if(key.equals(userName)){
+//                    return true;
+//                }
+//            }
+//        }
+        List<LinkedHashMap<String, String>> banList = dataBase.getUserBanList();
+        for (LinkedHashMap<String, String> dataLine : banList){
+            if(dataLine.get("userName").equals(userName)){
+                return true;
             }
         }
         return false;

@@ -37,6 +37,8 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Staff",pathResource+"stuffDashBoardView.fxml",1000,580);
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
+        ApplicationController.when("AlertRequest",pathResource+"alertRequestUnbanView.fxml",600,400);
+        ApplicationController.when("Request",pathResource+"requestUnbanView.fxml",600,400);
         ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
         ApplicationController.when("AdminAgency",pathResource+"agencyView.fxml",1000,580);
         ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
@@ -49,6 +51,8 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("User",pathResource+"problemFeedView.fxml",1000,580);
         ApplicationController.when("AdminCategory",pathResource+"categoryView.fxml",1000,580);
         ApplicationController.when("AddCategory",pathResource+"addCategoryView.fxml",1000, 580);
+        ApplicationController.when("Info",pathResource+"infoVIew.fxml",1000,580);
+
     }
 
 

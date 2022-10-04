@@ -97,6 +97,14 @@ public class LoginController {
         }
     }
     @FXML
+    public void infoButton(ActionEvent actionEvent){
+        try {
+            ApplicationController.goTo("Info");
+        }catch (IOException e){
+            System.err.println(e);
+        }
+    }
+    @FXML
     public void handleLoginAuthentication() throws IOException {
         String userNameString = userName.getText();
         String passWordString = passWord.getText();
@@ -134,7 +142,8 @@ public class LoginController {
                                 ApplicationController.goTo("User", user);
                             }
                         }else{
-                            System.out.println("wrong password");
+                            ApplicationController.goToNew("Alert", "wrong password");
+                            System.out.println("wrong password user");
                         }
                         break;
                     }
@@ -144,23 +153,21 @@ public class LoginController {
                         if(stuff != null){
                             ApplicationController.goTo("Stuff",stuff);
                         }else{
-                            System.out.println("wrong password");
+                            ApplicationController.goToNew("Alert", "wrong password");
+                            System.out.println("wrong password staff");
                         }
                         break;
                     }
                 }
 
             }else{
-                ApplicationController.goToNew("Alert", "You are banned");
+                //ทำหน้าขออันแบน
+                ApplicationController.goTo("AlertRequest", "You are banned");
                 System.out.println("banned");
             }
         }else{
             ApplicationController.goToNew("Alert", "You don't have account");
             System.out.println("no account in system");
         }
-
     }
-
-
-
 }
