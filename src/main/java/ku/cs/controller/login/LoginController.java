@@ -161,7 +161,7 @@ public class LoginController {
 
             }else{
                 //ทำหน้าขออันแบน
-                ApplicationController.goTo("AlertRequest", "You are banned");
+                ApplicationController.goToNew("AlertRequest", "You are banned");
                 System.out.println("banned");
             }
         }else{
