@@ -46,7 +46,7 @@ public class AddCategoryController {
     }
     @FXML void initializeCategory() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/categoryList.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/categoryList.fxml"));
         AnchorPane categoryComponant = fxmlLoader.load();
         AddCategoryController addCategoryController = fxmlLoader.getController();
 
