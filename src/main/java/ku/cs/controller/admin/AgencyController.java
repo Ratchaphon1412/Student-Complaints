@@ -44,7 +44,7 @@ public class AgencyController {
 
         //load navbar
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         //send object to nav
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
@@ -53,7 +53,7 @@ public class AgencyController {
         root.add(navbar,0,0);
         //load stuff list
         FXMLLoader fxmlLoader1 = new FXMLLoader();
-        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/staffList.fxml"));
+        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/staff/staffList.fxml"));
         AnchorPane staffComponant = (AnchorPane) fxmlLoader1.load();
         staffListGridPane.add(staffComponant,0,0);
         //set display

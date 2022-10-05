@@ -29,29 +29,31 @@ public class Application extends javafx.application.Application {
 
     private static void configRoute() {
         String pathResource = "ku/cs/views/";
+        //login zone
         ApplicationController.when("Login", pathResource+"loginView.fxml",1000,580);
         ApplicationController.when("changePassword",pathResource+"changePasswordView.fxml", 600, 400);
-        ApplicationController.when("Admin",pathResource+"adminDashBoardView.fxml",1000,580);
-        ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
-//        ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
-        ApplicationController.when("Staff",pathResource+"staff/staffProcessProblem.fxml",1000,580);
-        ApplicationController.when("User",pathResource+"userDashBoardView.fxml",1000,580);
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
-        ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
-        ApplicationController.when("AdminAgency",pathResource+"agencyView.fxml",1000,580);
-        ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
-        ApplicationController.when("RegisterStuff",pathResource+"registerStuff.fxml",1000,580);
-        ApplicationController.when("AdminAgencyAdd",pathResource +"addNewAgency.fxml",600,400);
-        ApplicationController.when("AllProblem",pathResource+"allProblemReportView.fxml",1000,580);//
-        ApplicationController.when("Feed",pathResource+"problemFeedView.fxml",1000,580);
-        ApplicationController.when("Report",pathResource+"detailProblemView.fxml",1000,580);
-        ApplicationController.when("UserPostsProfile",pathResource+"userPostsView.fxml",1000,580);
-        ApplicationController.when("User",pathResource+"problemFeedView.fxml",1000,580);
-        ApplicationController.when("AdminCategory",pathResource+"categoryView.fxml",1000,580);
-        ApplicationController.when("AddCategory",pathResource+"addCategoryView.fxml",1000, 580);
-        ApplicationController.when("UserSetting",pathResource+"userSettingView.fxml",1000, 580);
-        ApplicationController.when("DetailReport",pathResource+"detailProblemView.fxml",900,480);
+        ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
+        //Admin zone
+        ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);
+        ApplicationController.when("Setting",pathResource+"admin/settingView.fxml",1000,580);
+        ApplicationController.when("AdminAgency",pathResource+"admin/agencyView.fxml",1000,580);
+        ApplicationController.when("AdminAgencyAdd",pathResource +"admin/addNewAgency.fxml",600,400);
+        ApplicationController.when("RegisterStuff",pathResource+"admin/registerStuff.fxml",1000,580);
+        ApplicationController.when("banUser",pathResource+"admin/banUserOrUnban.fxml",1000,580);
+        ApplicationController.when("AllProblem",pathResource+"admin/allProblemReportView.fxml",1000,580);
+        ApplicationController.when("AddCategory",pathResource+"admin/addCategoryView.fxml",1000, 580);
+        ApplicationController.when("AdminCategory",pathResource+"admin/categoryView.fxml",1000,580);
+        //User zone
+        ApplicationController.when("User",pathResource+"user/userDashBoardView.fxml",1000,580);
+        ApplicationController.when("DetailReport",pathResource+"user/detailProblemView.fxml",900,480);
+        ApplicationController.when("Report",pathResource+"user/detailProblemView.fxml",1000,580);
+        ApplicationController.when("UserPostsProfile",pathResource+"user/userPostsView.fxml",1000,580);
+        ApplicationController.when("UserSetting",pathResource+"user/userSettingView.fxml",1000, 580);
+
+        //Staff zone
+        ApplicationController.when("Staff",pathResource+"staff/staffProcessProblem.fxml",1000,580);
         ApplicationController.when("SettingStaff","ku/cs/components/staff/settingStaff.fxml",1000,580);
     }
 

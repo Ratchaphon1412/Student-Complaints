@@ -22,5 +22,9 @@ module cs.ku {
     opens ku.cs.controller.components.navbar to javafx.fxml;
     exports ku.cs.controller.components.staff;
     opens ku.cs.controller.components.staff to javafx.fxml;
+    exports ku.cs.controller.components.admin;
+    opens ku.cs.controller.components.admin to javafx.fxml;
+    exports ku.cs.controller.components.user;
+    opens ku.cs.controller.components.user to javafx.fxml;
 
 }
