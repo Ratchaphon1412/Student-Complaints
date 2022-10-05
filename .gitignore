@@ -41,5 +41,3 @@ build/
 .idea/discord.xml
 
 ## file csv and config
-*.csv
-config.properties
