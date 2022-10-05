@@ -7,7 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
-import ku.cs.models.stuff.StuffList;
+import ku.cs.models.staff.StaffList;
 import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
 
@@ -36,8 +36,8 @@ public class AdminAgencyAddNewController {
     private void initialize(){
         processData = new ProcessData<>();
         agencyLoad = (AgencyLoad) ApplicationController.getAgencyLoad();
-        StuffList stuffList = new StuffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
-        choiceBoxAgency.getItems().addAll(stuffList.getAgency());
+        StaffList staffList = new StaffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
+        choiceBoxAgency.getItems().addAll(staffList.getAgency());
 
     }
     @FXML

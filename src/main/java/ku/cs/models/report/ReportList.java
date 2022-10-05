@@ -8,40 +8,32 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ReportList {
-    private ArrayList<Report> reportList;
 
-    public ReportList(){
-        reportList = new ArrayList<>();
-//        reportToBanUser = new ArrayList<>();
+    private List<Report> reportLists;
+
+    private Category category;
+
+
+    public ReportList(List<LinkedHashMap<String,String>>reportList,UserList userList,List<LinkedHashMap<String,String>> patternList){
+        this.reportLists = new ArrayList<>();
+        createObjectReport(reportList,userList,patternList);
     }
 
-//    public ReportList(List<LinkedHashMap<String,String>> requestbanlist,List<User> userList){
-//        reportList = new ArrayList<>();
-//        reportToBanUser = new ArrayList<>();
-//        for(LinkedHashMap<String,String> tem : requestbanlist){
-//            User userTarget = null;
-//            for(User user : userList){
-//                if(user.getUserName().equals(tem.get("name"))){
-//                    userTarget = user;
-//                }
-//            }
-//            if(userTarget != null){
-//                Report account = new Report(userTarget, tem.get("Title"), tem.get("date"), tem.get("time"), tem.get("post"), tem.get("image"));
-//                reportToBanUser.add(account);
-//            }
-//
-//        }
-//    }
+    private void createObjectReport(List<LinkedHashMap<String,String>>reportList,UserList userList,List<LinkedHashMap<String,String>> patternList){
 
-    public void addReport(Report report){
-        reportList.add(report);
+        for(LinkedHashMap<String,String> reportKey:reportList){
+            for(LinkedHashMap<String,String> pattern: patternList){
+                if(pattern.get("category").equals(reportKey.get("category"))){
+                    Report report = new Report(userList.getUser(reportKey.get("user")),reportKey.get("title"),new Category(reportKey.get("category"),reportKey.get("text"),reportKey.get("image"),pattern.get("text"), pattern.get("image")),reportKey.get("reportStage"),reportKey.get("problemDate"),reportKey.get("receiveDate"));
+                    reportLists.add(report);
+
+                }
+            }
+        }
     }
 
-    public ArrayList<Report> getReportList() {
-        return reportList;
-    }
 
-//    public ArrayList<Report> getReportToBanUser() {
-//        return reportToBanUser;
-//    }
+    public List<Report> getReportLists() {
+        return reportLists;
+    }
 }

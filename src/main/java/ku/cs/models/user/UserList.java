@@ -22,12 +22,7 @@ public class UserList {
         userBanList = new ArrayList<>();
         userRequestBan = new ArrayList<>();
         createObjectUser(accountList,banList, requestban);
-        //initial banUser
-//        for (User user : userList){
-//            if(user.isBan()== true){
-//                userBanList.add(user);
-//            }
-//        }
+
 
     }
 

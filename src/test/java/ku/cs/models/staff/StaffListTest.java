@@ -1,13 +1,8 @@
-package ku.cs.models.stuff;
+package ku.cs.models.staff;
 
-import ku.cs.service.DataBase;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-class StuffListTest {
+class StaffListTest {
 
     @Test
     void getAgencyStuffList() {

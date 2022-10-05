@@ -11,7 +11,11 @@ public class CategoryListController {
 
     @FXML
     public void initialize(){
+<<<<<<< HEAD
         //categoryLabel.setText();
+=======
+
+>>>>>>> 088d29c2adfc9673799053203483474896188f90
     }
 
 }
