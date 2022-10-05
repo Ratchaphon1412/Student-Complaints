@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.components.navbar.NavbarUserController;
@@ -34,11 +35,15 @@ public class CreatePostController {
     private Circle imageAccountBigger;
     @FXML
     private Label roleDisplay;
+    @FXML
+    private Label displayNameBig;
+
+    @FXML
+    private Label roleDisplayBig;
+
 
     @FXML
     public void initialize() throws IOException {
-
-
         //initial style
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         String styleTheme = "/ku/cs/style/" + preferences.get("theme", null) + ".css";
@@ -48,12 +53,21 @@ public class CreatePostController {
         root.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
         root.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         root.getStylesheets().add(getClass().getResource(style).toExternalForm());
+        //set Font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        displayName.setFont(font);
+        roleDisplay.setFont(font);
+        displayNameBig.setFont(font);
+        roleDisplayBig.setFont(font);
 
         //getObject from router
         user = (User) ApplicationController.getData();
-
+        initializePost();
+    }
+    private void initializePost() throws IOException {
+        //load nav
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarUserController navbarUser = fxmlLoader.getController();
         navbarUser.setUser(user);
@@ -62,6 +76,8 @@ public class CreatePostController {
         //set label
         displayName.setText(user.getUserName());
         roleDisplay.setText(user.getRole());
+        displayNameBig.setText(user.getUserName());
+        roleDisplayBig.setText(user.getRole());
 
         //set image
         File desDir = new File("image" + System.getProperty("file.separator") + "accounts" + System.getProperty("file.separator") + user.getPathPicture());

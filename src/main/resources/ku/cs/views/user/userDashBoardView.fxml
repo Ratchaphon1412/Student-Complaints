@@ -238,11 +238,7 @@
                                  </styleClass></TextField>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-<<<<<<< HEAD
-                                    <Button mnemonicParsing="false"  text="Search">
-=======
                                     <Button mnemonicParsing="false" text="Search">
->>>>>>> 108caa2c8fe5a480bc773e7f95761205166e9d96
                                        <styleClass>
                                           <String fx:value="roundedCorner" />
                                           <String fx:value="circleYellow" />

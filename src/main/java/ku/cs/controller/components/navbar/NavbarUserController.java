@@ -31,21 +31,16 @@ public class NavbarUserController {
 
     @FXML
     private void goDashBoard() throws IOException {
-//        ApplicationController.goTo("Admin",user);
+        ApplicationController.goTo("User",user);
     }
     @FXML
-    private void gotoAgency() throws IOException {
-//        ApplicationController.goTo("AdminAgency",user);
-    }
-
-    @FXML
-    private void gotoUserBan() throws IOException {
-//        ApplicationController.goTo("banUser",user);
+    private void gotoCreatePost() throws IOException {
+        ApplicationController.goTo("Post",user);
     }
 
     @FXML
     private void gotoSetting() throws IOException {
-//        ApplicationController.goTo("Setting",user);
+       ApplicationController.goTo("UserSetting",user);
     }
 
     @FXML
