@@ -11,7 +11,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.ApplicationController;
 import ku.cs.State;
-import ku.cs.controller.components.NavbarUser;
+import ku.cs.controller.components.navbar.NavbarUserController;
 import ku.cs.models.user.User;
 
 import java.io.File;
@@ -30,7 +30,8 @@ public class CreatePostController {
     @FXML
     private GridPane root;
     private User user;
-
+    @FXML
+    private Circle imageAccountBigger;
     @FXML
     private Label roleDisplay;
 
@@ -54,7 +55,7 @@ public class CreatePostController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
-        NavbarUser navbarUser = fxmlLoader.getController();
+        NavbarUserController navbarUser = fxmlLoader.getController();
         navbarUser.setUser(user);
         root.add(navbar, 0, 0);
 
@@ -69,6 +70,8 @@ public class CreatePostController {
         if (!image.isError()) {
             imageAccountCircle.setFill(new ImagePattern(image));
             imageAccountCircle.setStroke(Color.TRANSPARENT);
+            imageAccountBigger.setFill(new ImagePattern(image));
+            imageAccountBigger.setStroke(Color.TRANSPARENT);
         }
 
     }
