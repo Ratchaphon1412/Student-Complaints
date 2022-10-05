@@ -3,7 +3,6 @@ package ku.cs.controller.admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -11,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.ApplicationController;
-import ku.cs.controller.components.NavbarAdminController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 
 import java.io.File;

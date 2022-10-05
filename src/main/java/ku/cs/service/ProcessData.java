@@ -2,6 +2,7 @@ package ku.cs.service;
 
 import ku.cs.models.admin.Admin;
 import ku.cs.models.admin.AdminList;
+import ku.cs.models.report.Report;
 import ku.cs.models.report.ReportList;
 import ku.cs.models.staff.Staff;
 import ku.cs.models.staff.StaffList;
@@ -35,7 +36,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
         staffList = new StaffList(dataBase.getAccountList(),dataBase.getAgencyList());
-        reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList());
+        reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList(),dataBase.getLikePostList());
     }
 
     @Override
@@ -204,6 +205,49 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 dataBase.setAgencyList(agencyList);
                 dataBase.saveToDatabase();
 
+            }
+            case "like"-> {
+                Report report = (Report) object;
+                List<LinkedHashMap<String, String>> linkList = dataBase.getLikePostList();
+                LinkedHashMap<String, String> newLinkLine = new LinkedHashMap<>();
+                int countIndex = 0;
+                for (LinkedHashMap<String, String> temp : linkList) {
+                    if (temp.get("title").equals(report.getTitle())) {
+                        newLinkLine.put("title", report.getTitle());
+                        newLinkLine.put("like", String.valueOf(report.getCountLike()));
+                        String allUserLike = "";
+                        int count = 0;
+                        for (String user : report.getUserNameLike()) {
+
+                            if (count == 0) {
+                                allUserLike += user;
+                            } else {
+                                allUserLike += "|" + user;
+                            }
+                            count++;
+                        }
+                        newLinkLine.put("userName", allUserLike);
+                        break;
+                    }
+                    countIndex++;
+                }
+                linkList.remove(countIndex);
+                linkList.add(newLinkLine);
+                dataBase.setLikePostList(linkList);
+                dataBase.saveToDatabase();
+            }
+            case "addPrecessProblem"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> reportList = dataBase.getReportList();
+                for(LinkedHashMap<String,String> temp : reportList){
+                    if(temp.get("title").equals(report.getTitle())){
+                        temp.put("process" ,report.getProcess());
+                        temp.put("reportStage" , report.getReportStage());
+                        temp.put("staff", report.getStaff());
+                    }
+                }
+                dataBase.setReportList(reportList);
+                dataBase.saveToDatabase();
             }
         }
         return false;

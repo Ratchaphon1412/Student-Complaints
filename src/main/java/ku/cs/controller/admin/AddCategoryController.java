@@ -1,8 +1,6 @@
 package ku.cs.controller.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.ChoiceBox;
@@ -11,8 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import ku.cs.ApplicationController;
-import ku.cs.controller.components.StaffListAgencyController;
-import ku.cs.service.DataBase;
+import ku.cs.models.admin.Admin;
 import ku.cs.service.ProcessData;
 
 import java.io.IOException;
@@ -22,12 +19,9 @@ import java.util.LinkedHashMap;
 public class AddCategoryController {
 
     @FXML
-    private GridPane girdPaneAddCategory;
-    private ProcessData processData;
-    private FXMLLoader fxmlLoader;
-
-    @FXML
     private TextField addCatagoryField;
+
+    private ProcessData<Admin> processData;
 
     @FXML
     private TextField addText;
@@ -41,8 +35,7 @@ public class AddCategoryController {
 
 
     public void initialize() throws IOException {
-        listExampleString = new ArrayList<>();
-        processData = new ProcessData();
+        processData = new ProcessData<>();
         initializeCategory();
 
 
@@ -51,52 +44,25 @@ public class AddCategoryController {
         //initializeCategory();
 
     }
-
-    @FXML
-    void initializeCategory() throws IOException {
-//        fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/categoryList.fxml"));
-//        AnchorPane categoryComponant = (AnchorPane) fxmlLoader.load();
-//        AddCategoryController addCategoryController = fxmlLoader.getController();
-//
-//        GridPane.setMargin(categoryComponant, new Insets(0,0,5,0));
-
-        String[] pattern = {"text", "image"};
-        dropDown.getItems().addAll(pattern);
-        if(dropDown.isShowing()) {
-            System.out.println("bbbb");
-        }
-
-
+    @FXML void initializeCategory() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/categoryList.fxml"));
+        AnchorPane categoryComponant = fxmlLoader.load();
+        AddCategoryController addCategoryController = fxmlLoader.getController();
 
     }
 
     @FXML
-    void closeButton(ActionEvent event) {
+    void closeButton() {
         try {
             ApplicationController.goTo("AdminCategory");
         } catch (IOException e) {
-            System.err.println(e);
+            throw new RuntimeException(e);
         }
     }
 
 
-    @FXML
-    private void handleExample() {
-        System.out.println(dropDown.getValue());
-        listExampleString.add(addText.getText());
-        String label = "";
-        int count = 1;
-        for (String temp : listExampleString) {
-            label += count + "." + temp + "\n";
-            count++;
-        }
-        text.setWrapText(true);
-        text.setText(label);
-        addText.clear();
-    }
-
-    public void handleSubmitButton() throws IOException {
+    void applyButton() throws IOException {
         String category = addCatagoryField.getText();
         processData.addCategory(category);
         for (String dataLine : listExampleString) {
