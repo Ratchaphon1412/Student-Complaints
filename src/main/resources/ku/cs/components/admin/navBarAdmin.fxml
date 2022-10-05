@@ -166,7 +166,7 @@
                      </font>
                      <styleClass>
                         <String fx:value="colorIcon" />
-                        <String fx:value="categoryInsidePlusSVG" />
+                        <String fx:value="categorySVG" />
                      </styleClass>
                   </Button>
                </children>

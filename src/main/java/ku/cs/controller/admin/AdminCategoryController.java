@@ -138,7 +138,7 @@ public class AdminCategoryController {
     }
     @FXML
     void goToAddCategoryButton(ActionEvent event) throws IOException {
-        ApplicationController.goTo("AddCategory");
+        ApplicationController.goTo("addCategory");
     }
 
     @FXML

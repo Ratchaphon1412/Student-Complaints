@@ -28,6 +28,7 @@ public class DataBase {
 
 
 
+
     public DataBase(){
         initializeData();
     }
@@ -56,6 +57,7 @@ public class DataBase {
     }
 
     public void saveToDatabase() throws IOException {
+
         String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","reportcategory.csv","pattern.csv","likepost.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;

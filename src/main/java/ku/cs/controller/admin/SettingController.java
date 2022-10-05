@@ -65,7 +65,7 @@ public class SettingController<DataObject> {
     @FXML
     private GridPane gridPane;
     @FXML private Circle imageaccountCircle;
-    @FXML private ChoiceBox dropDown;
+    @FXML private ChoiceBox<String> dropDown;
     @FXML private GridPane miniGridePane;
 
     private File file;

@@ -27,6 +27,8 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     private ReportList reportList;
 
+    private boolean checkCategory;
+
 
 
     public ProcessData(){
@@ -304,11 +306,17 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
     public boolean checkBan(String userName){
-        for (LinkedHashMap<String,String> accountBan:dataBase.getUserBanList()){
-            for (String key:accountBan.keySet()){
-                if(key.equals(userName)){
-                    return true;
-                }
+//        for (LinkedHashMap<String,String> accountBan:dataBase.getUserBanList()){
+//            for (String key:accountBan.keySet()){
+//                if(key.equals(userName)){
+//                    return true;
+//                }
+//            }
+//        }
+        List<LinkedHashMap<String, String>> banList = dataBase.getUserBanList();
+        for (LinkedHashMap<String, String> dataLine : banList){
+            if(dataLine.get("userName").equals(userName)){
+                return true;
             }
         }
         return false;
@@ -329,19 +337,36 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
     public void addCategory(String category) throws IOException{
+        checkCategory = false;
+        List<LinkedHashMap<String, String>> newCategoryList = dataBase.getCategoryList();
+        for (LinkedHashMap<String, String> dataLine : newCategoryList){
+            if(dataLine.get("category").equals(category)){
+                checkCategory = true;
+            }
+        }
+        if(!checkCategory){
+            //add category in reportcategory.csv and pattern.csv
+            List<LinkedHashMap<String,String>> categoryList = dataBase.getCategoryList();
+            List<LinkedHashMap<String,String>> patternList = dataBase.getPatternList();
 
-        List<LinkedHashMap<String,String>> categoryList = dataBase.getCategoryList();
-        //create hashMap
+            //create hashMap
+            LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
+            LinkedHashMap<String,String> newPattern = new LinkedHashMap<>();
 
-        LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
-        newCategory.put("category",category);
+            newCategory.put("category",category);
+            newPattern.put("category",category);
+
+            categoryList.add(newCategory);
+            patternList.add(newPattern);
+
+            dataBase.setCategoryList(categoryList);
+            dataBase.setPatternList(patternList);
+
+            dataBase.saveToDatabase();
+        }
 
 
-        categoryList.add(newCategory);
 
-        dataBase.setCategoryList(categoryList);
-
-        dataBase.saveToDatabase();
 
     }
 
@@ -363,8 +388,74 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
             }
         }
+    }
 
+//    public void creatPattern(String category, String text, String image) throws IOException {
+//        List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
+//        for (LinkedHashMap<String, String> dataLine : patternList){
+//            if(dataLine.get("category").equals(category)){
+//                if (dataLine.get("text").equals("")){
+//                    dataLine.put("text", text);
+//                    dataLine.put("image", image);
+//                    dataBase.saveToDatabase();
+//                     System.out.println("pp");
+//                }else {
+//                    String temp = dataLine.get("text");
+//                    temp += "|"+text;
+//                    dataLine.put("text",temp);
+//
+//                    String pic = dataLine.get("image");
+//                    pic += "|"+image;
+//                    dataLine.put("image",pic);
+//
+//
+//                    dataBase.saveToDatabase();
+//                     System.out.println("oo");
+//                }
+//
+//
+//            }
+//        }
+//    }
 
+    public void addText(String category, String text) throws IOException {
+        List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
+        for (LinkedHashMap<String, String> dataLine : patternList) {
+            if (dataLine.get("category").equals(category)) {
+                if (dataLine.get("text").equals("")) {
+                    dataLine.put("text", text);
+                    dataBase.saveToDatabase();
+                    //System.out.println("pp");
+                } else {
+                    String temp = dataLine.get("text");
+                    temp += "|" + text;
+                    dataLine.put("text", temp);
+
+                    dataBase.saveToDatabase();
+                    //System.out.println("oo");
+                }
+            }
+        }
+    }
+
+    public void addImage(String category, String image) throws IOException {
+        List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
+        for (LinkedHashMap<String, String> dataLine : patternList) {
+            if (dataLine.get("category").equals(category)) {
+                if (dataLine.get("image").equals("")) {
+                    dataLine.put("image", image);
+                    dataBase.saveToDatabase();
+                    //System.out.println("pp");
+                } else {
+                    String temp = dataLine.get("image");
+                    temp += "|" + image;
+                    dataLine.put("image", temp);
+
+                    dataBase.saveToDatabase();
+                    //System.out.println("oo");
+                }
+            }
+        }
     }
 
     public DataBase getDataBase() {
