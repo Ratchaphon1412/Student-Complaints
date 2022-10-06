@@ -34,7 +34,8 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
         staffList = new StaffList(dataBase.getAccountList(),dataBase.getAgencyList());
-        reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList(),dataBase.getLikePostList());
+        reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList(),dataBase.getLikePostList(),dataBase.getRequestban());
+
     }
 
     @Override
@@ -114,7 +115,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     LinkedHashMap<String,String> temp = new LinkedHashMap<>();
                     Date currentDate = new Date();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    temp.put("userName",user.getUserName());
+                    temp.put("headData",user.getUserName());
                     temp.put("date",dateFormat.format(currentDate));
                     temp.put("details","");
                     temp.put("count","0");
@@ -127,14 +128,14 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     }
                     if(requestBan.size() == 0){
                         temp = new LinkedHashMap<>();
-                        temp.put("userName","");
+                        temp.put("headData","");
                         temp.put("date","");
                         temp.put("time","");
                         temp.put("category","");
                         temp.put("post","");
                         requestBan.add(temp);
                     }
-                    if(requestBan.get(0).get("userName").equals("") && requestBan.size() == 2){
+                    if(requestBan.get(0).get("headData").equals("") && requestBan.size() == 2){
                         requestBan.remove(0);
                     }
                     dataBase.setRequestban(requestBan);
@@ -145,19 +146,19 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     // ลบ ban
 
                     for(int i = 0;i < userBanList.size();i++){
-                        if(userBanList.get(i).get("userName").equals(user.getUserName())){
+                        if(userBanList.get(i).get("headData").equals(user.getUserName())){
                             userBanList.remove(i);
                         }
                     }
                     if(userBanList.size() == 0){
                         LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-                        temp.put("userName","");
+                        temp.put("headData","");
                         temp.put("date","");
                         temp.put("details","");
                         temp.put("count","");
                         userBanList.add(temp);
                     }
-                    if(userBanList.get(0).get("userName").equals("") && requestBan.size() == 2){
+                    if(userBanList.get(0).get("headData").equals("") && requestBan.size() == 2){
                         userBanList.remove(0);
                     }
                     dataBase.setUserBanList(userBanList);

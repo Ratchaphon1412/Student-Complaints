@@ -9,7 +9,6 @@ public class User extends Account {
     private String requestUnban;
     private String dateBan;
 
-    private Report post;
     private String time;
     private String dateRequestBan;
     private String category;
@@ -30,20 +29,18 @@ public class User extends Account {
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
     }
-    public User(String userName, String passWord, String pathPicture, String role,String category,String time,String date,Report post){
+    public User(String userName, String passWord, String pathPicture, String role,String category,String time,String date){
         super(userName, passWord, pathPicture, role);
         this.category = category;
         this.time = time;
         this.dateRequestBan = date;
-        this.post = post;
         this.ban = false;
     }
 
-    public void addRequestedBan(String category,String time,String date,Report post){
+    public void addRequestedBan(String category,String time,String date){
         this.category = category;
         this.time = time;
         this.dateRequestBan = date;
-        this.post = post;
     }
     public void addUserBaned(Boolean ban , String requestUnban , String dateBan ,String countAccess){
         this.ban = ban;
@@ -51,6 +48,7 @@ public class User extends Account {
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
     }
+
 
     public String getRequestUnban() {
         return requestUnban;
@@ -66,10 +64,6 @@ public class User extends Account {
 
     public int getCountAccess() {
         return countAccess;
-    }
-
-    public Report getPost() {
-        return post;
     }
 
     public String getTime() {

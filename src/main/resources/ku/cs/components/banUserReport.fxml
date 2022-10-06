@@ -38,7 +38,7 @@
                </children>
             </HBox>
             <HBox prefWidth="20.0" />
-            <Label prefHeight="18.0" prefWidth="34.0" styleClass="textLabelColor" text="name" textFill="WHITE">
+            <Label fx:id="headData" prefHeight="18.0" prefWidth="34.0" styleClass="textLabelColor" text="name" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -84,7 +84,7 @@
       </HBox>
       <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" onAction="#click" prefHeight="40.0" prefWidth="70.0" text="Ban">
+            <Button fx:id="clickId" mnemonicParsing="false" onAction="#click" prefHeight="40.0" prefWidth="70.0" text="Ban">
                <styleClass>
                   <String fx:value="circleRed" />
                   <String fx:value="roundedCorner" />
@@ -123,7 +123,7 @@
                </children>
             </HBox>
             <HBox prefWidth="20.0" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-radius: 50;" text="  details" textFill="WHITE">
+            <Button fx:id="detailsPost" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" style="-fx-background-radius: 50;" text="  details" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </HBox.margin>

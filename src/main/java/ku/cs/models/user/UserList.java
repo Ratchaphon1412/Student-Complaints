@@ -2,6 +2,8 @@ package ku.cs.models.user;
 
 import ku.cs.controller.ListViewUserBanList;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Report;
+import ku.cs.models.report.ReportList;
 import ku.cs.service.DataBase;
 
 import java.util.ArrayList;
@@ -17,13 +19,11 @@ public class UserList {
     private List<User> userRequestBan;
 
 
-    public  UserList(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestban){
+    public  UserList(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestBan){
         userList = new ArrayList<>();
         userBanList = new ArrayList<>();
         userRequestBan = new ArrayList<>();
-        createObjectUser(accountList,banList, requestban);
-
-
+        createObjectUser(accountList,banList, requestBan);
     }
 
 
@@ -61,17 +61,23 @@ public class UserList {
         for(LinkedHashMap<String,String> account : accountList){
             if(account.get("role").equals("user")){
                 for(LinkedHashMap<String,String> banRequest : requestban){
-                    if(account.get("userName").equals(banRequest.get("userName"))){
+                    if(account.get("userName").equals(banRequest.get("headData")) && banRequest.get("type").equals("user")){
                         User tem = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),
                                             account.get("role"),banRequest.get("category"),banRequest.get("time"),
-                                            banRequest.get("date"),null);
+                                            banRequest.get("date"));
                         userRequestBan.add(tem);
                     }
                 }
             }
         }
-
     }
+
+
+
+
+
+
+
 
 
 

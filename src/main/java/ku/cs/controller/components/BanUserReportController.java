@@ -1,7 +1,9 @@
 package ku.cs.controller.components;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -31,6 +33,11 @@ public class BanUserReportController {
     @FXML
     private Label titleLabel;
 
+    @FXML
+    private Label headData;
+    @FXML
+    private Button clickId;
+
     private BanAndUnBan banAndUnBan;
 
     private User user;
@@ -42,7 +49,9 @@ public class BanUserReportController {
     private void click(ActionEvent actionEvent) throws IOException {
         admin.banUser(user);
         processData.changeData(user,"banUser");
+        clickId.setOnAction(null);
         banAndUnBan.onClickBanOrUnban();
+
     }
 
 
@@ -52,6 +61,8 @@ public class BanUserReportController {
         this.banAndUnBan = banAndUnBan;
         this.processData = new ProcessData<User>();
         nameLabel.setText(user.getUserName());
+//        if(user.get)
+
         timeLabel.setText(user.getTime());
         dateLabel.setText(user.getDateRequestBan());
         titleLabel.setText(user.getCategory());
