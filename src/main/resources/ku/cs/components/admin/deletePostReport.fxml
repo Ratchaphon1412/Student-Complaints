@@ -91,10 +91,10 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" GridPane.columnSpan="3" GridPane.rowIndex="1">
          <children>
-            <HBox prefWidth="44.0" />
-            <Label prefHeight="18.0" prefWidth="37.0" styleClass="textLabelColor" text="categoryReport" textFill="WHITE" />
+            <HBox prefWidth="10.0" />
+            <Label prefHeight="18.0" prefWidth="89.0" styleClass="textLabelColor" text="categoryReport" textFill="WHITE" />
             <HBox prefWidth="20.0" />
-            <HBox alignment="CENTER_LEFT" prefWidth="360.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="317.0">
                <HBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
@@ -103,7 +103,7 @@
                   <String fx:value="cardBackground" />
                </styleClass>
                <children>
-                  <Label fx:id="categoryReportLabel" prefHeight="18.0" prefWidth="343.0" styleClass="textLabelColor" textFill="WHITE">
+                  <Label fx:id="categoryReportLabel" prefHeight="18.0" prefWidth="330.0" styleClass="textLabelColor" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
