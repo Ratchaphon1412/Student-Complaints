@@ -118,14 +118,14 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     LinkedHashMap<String,String> temp = new LinkedHashMap<>();
                     Date currentDate = new Date();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    temp.put("headData",user.getUserName());
+                    temp.put("userName",user.getUserName());
                     temp.put("date",dateFormat.format(currentDate));
                     temp.put("details","");
                     temp.put("count","0");
 
                     userBanList.add(temp);
                     for(int i = 0 ; i < requestBan.size() ; i++){
-                        if(requestBan.get(i).get("userName").equals(user.getUserName())){
+                        if(requestBan.get(i).get("headData").equals(user.getUserName())){
                             requestBan.remove(i);
                         }
                     }
@@ -249,6 +249,27 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     }
                 }
                 dataBase.setReportList(reportList);
+                dataBase.saveToDatabase();
+            }
+            case "deletePost"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
+                List<LinkedHashMap<String,String>> reportList = dataBase.getReportList();
+                System.out.println(report.getTitle());
+                for(int i = 0 ; i < requestBan.size() ; i++){
+                    if(report.getTitle().equals(requestBan.get(i).get("headData"))){
+                        System.out.println(requestBan.get(i).get("headData") + " " + report.getTitle());
+                        requestBan.remove(i);
+                    }
+                }
+                for(int i = 0 ; i < reportList.size() ; i++){
+                    if(report.getTitle().equals(reportList.get(i).get("title"))){
+                        System.out.println(report.getTitle() + " " +reportList.get(i).get("title"));
+                        requestBan.remove(i);
+                    }
+                }
+                dataBase.setReportList(reportList);
+                dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
             }
         }

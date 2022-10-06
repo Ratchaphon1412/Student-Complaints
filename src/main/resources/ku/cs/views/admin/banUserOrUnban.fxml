@@ -73,8 +73,8 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="720.0" minWidth="8.0" prefWidth="13.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="185.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="95.0" minHeight="5.600007057189941" prefHeight="5.600007057189941" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="235.99999294281005" minHeight="10.0" prefHeight="235.99999294281005" vgrow="SOMETIMES" />
               </rowConstraints>
                <styleClass>
                   <String fx:value="cardBackground" />

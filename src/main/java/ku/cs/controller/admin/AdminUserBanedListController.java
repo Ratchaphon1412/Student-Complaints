@@ -20,6 +20,7 @@ import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.admin.AdminUserBanListController;
 import ku.cs.controller.components.admin.BanUserReportController;
 import ku.cs.controller.components.ButtonThemeController;
+import ku.cs.controller.components.admin.DeleteUserReportController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.report.Report;
@@ -201,10 +202,10 @@ public class AdminUserBanedListController {
         }
         for(Report report : requestBanPost){
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/banUserReport.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/deletePostReport.fxml"));
             GridPane banPostUser = (GridPane) fxmlLoader.load();
-//            BanUserReportController banUserReportController = fxmlLoader.getController();
-//            banUserReportController.setData(userBan,account,banAndUnBan);
+            DeleteUserReportController deleteUserReportController = fxmlLoader.getController();
+            deleteUserReportController.setData(report,account,banAndUnBan);
 
             listPostReportGrid.add(banPostUser,0,num++);
             GridPane.setMargin(banPostUser, new Insets(0,0,5,0));

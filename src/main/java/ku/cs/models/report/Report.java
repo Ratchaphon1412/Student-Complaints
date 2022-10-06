@@ -19,6 +19,9 @@ public class Report {
     private String agency;
     private String staff;
     private String process;
+    private String categoryReportPost;
+    private String dateRequestDalete;
+    private String timeRequestDalete;
 
 
 
@@ -52,9 +55,11 @@ public class Report {
 
     }
 
-
-
-
+    public void setRequestDaleteReportPost(String categoryReportPost , String dateRequestDalete , String timeRequestDalete) {
+        this.categoryReportPost = categoryReportPost;
+        this.dateRequestDalete = dateRequestDalete;
+        this.timeRequestDalete = timeRequestDalete;
+    }
 
     public Category getCategory() {
         return category;
@@ -110,7 +115,19 @@ public class Report {
         return process;
     }
 
-    public void setProcessProblem(String process,String reportStage,String staff){
+    public String getCategoryReportPost() {
+        return categoryReportPost;
+    }
+
+    public String getDateRequestDalete() {
+        return dateRequestDalete;
+    }
+
+    public String getTimeRequestDalete() {
+        return timeRequestDalete;
+    }
+
+    public void setProcessProblem(String process, String reportStage, String staff){
         this.process = process;
         this.reportStage = reportStage;
         this.staff = staff;
