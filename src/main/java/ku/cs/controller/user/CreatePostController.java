@@ -92,8 +92,8 @@ public class CreatePostController {
 
     }
     @FXML
-    void addPostButton(ActionEvent event) {
-
+    void addPostButton(ActionEvent event) throws IOException {
+        ApplicationController.goToNew("CreatePost",user);
     }
 
     @FXML

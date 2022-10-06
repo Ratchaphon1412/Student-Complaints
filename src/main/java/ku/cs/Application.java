@@ -71,7 +71,8 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Report",pathResource+"user/detailProblemView.fxml",1000,580);
         ApplicationController.when("UserPostsProfile",pathResource+"user/userPostsView.fxml",1000,580);
         ApplicationController.when("UserSetting",pathResource+"user/userSettingView.fxml",1000, 580);
-        ApplicationController.when("Post",pathResource+"createPostView.fxml",1000,580);
+        ApplicationController.when("Post",pathResource+"user/createPostView.fxml",1000,580);
+        ApplicationController.when("CreatePost","ku/cs/components/user/createPost.fxml",600,760);
 
         //Staff zone
         ApplicationController.when("Staff",pathResource+"staff/staffProcessProblem.fxml",1000,580);

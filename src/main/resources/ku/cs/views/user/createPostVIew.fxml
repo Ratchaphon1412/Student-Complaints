@@ -175,7 +175,7 @@
       </GridPane>
    </children>
    <stylesheets>
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/style.css" />
+      <URL value="@../../style/darkMode.css" />
+      <URL value="@../../style/style.css" />
    </stylesheets>
 </GridPane>
