@@ -97,15 +97,22 @@ public class CreatePostController {
 
         //load postuser
 
-        GridPane grirdScoll = new GridPane();
-        accountfeed.setContent(grirdScoll);
+        GridPane gridScoll = new GridPane();
 
-        FXMLLoader fxmlLoaderPost = new FXMLLoader();
-        fxmlLoaderPost.setLocation(getClass().getResource(""));
-        GridPane postComponant = fxmlLoaderPost.load();
-        GridPane.setMargin(postComponant, new Insets(0, 0, 15, 0));
-        grirdScoll.add(postComponant,0,0);
-
+        accountfeed.setContent(gridScoll);
+        accountfeed.setFitToWidth(true);
+        int countRow = 0;
+        for (Report report: user.getReportList()) {
+            FXMLLoader fxmlLoaderPost = new FXMLLoader();
+            fxmlLoaderPost.setLocation(getClass().getResource("/ku/cs/components/user/userFeed.fxml"));
+            GridPane postComponant = fxmlLoaderPost.load();
+            ProblemFeedController problemFeedController = fxmlLoaderPost.getController();
+            problemFeedController.setReport(report, user);
+            GridPane.setMargin(postComponant, new Insets(0, 0, 15, 0));
+            gridScoll.add(postComponant, 0, countRow);
+            countRow++;
+            System.out.println("Check");
+        }
     }
     @FXML
     void addPostButton(ActionEvent event) throws IOException {
