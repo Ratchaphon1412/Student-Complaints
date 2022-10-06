@@ -97,9 +97,7 @@ public class CreatePostController {
         //load postuser
         GridPane grirdScoll = new GridPane();
         accountfeed.setContent(grirdScoll);
-        for (Report tempReport:user.getReportList()){
 
-        }
     }
     @FXML
     void addPostButton(ActionEvent event) throws IOException {

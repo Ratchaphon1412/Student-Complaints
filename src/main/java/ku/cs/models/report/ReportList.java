@@ -15,15 +15,17 @@ public class ReportList {
     private List<Report> reportSort;
 
     private List<Report> reportSetterSort;
+    private List<Report> requestDeleteReport;
 
 
 
-    public ReportList(List<LinkedHashMap<String,String>>reportList,UserList userList,List<LinkedHashMap<String,String>> patternList,List<LinkedHashMap<String,String>> likePostList){
+    public ReportList(List<LinkedHashMap<String,String>>reportList,UserList userList,List<LinkedHashMap<String,String>> patternList,List<LinkedHashMap<String,String>> likePostList,List<LinkedHashMap<String,String>> requestban){
         this.reportLists = new ArrayList<>();
         this.reportSort = new ArrayList<>();
         this.reportSetterSort = new ArrayList<>();
         this.reportListAgency = new ArrayList<>();
-        createObjectReport(reportList,userList,patternList,likePostList);
+        this.requestDeleteReport = new ArrayList<>();
+        createObjectReport(reportList,userList,patternList,likePostList,requestban);
     }
 
     public ReportList(){
@@ -31,7 +33,7 @@ public class ReportList {
         this.reportListAgency = new ArrayList<>();
     }
 
-    private void createObjectReport(List<LinkedHashMap<String,String>>reportList,UserList userList,List<LinkedHashMap<String,String>> patternList,List<LinkedHashMap<String,String>>likePostList){
+    private void createObjectReport(List<LinkedHashMap<String,String>>reportList,UserList userList,List<LinkedHashMap<String,String>> patternList,List<LinkedHashMap<String,String>>likePostList,List<LinkedHashMap<String,String>> requestDelete){
 
         for(LinkedHashMap<String,String> reportKey:reportList){
             for(LinkedHashMap<String,String> pattern: patternList){
@@ -48,6 +50,15 @@ public class ReportList {
                 }
             }
         }
+        for(Report temp : reportLists){
+            for(LinkedHashMap<String ,String> tempRequest :requestDelete){
+                if(tempRequest.get("headData").equals(temp.getTitle()) && tempRequest.get("type").equals("post")){
+                    temp.setRequestDaleteReportPost(tempRequest.get("category") , tempRequest.get("date") ,tempRequest.get("time") );
+                    requestDeleteReport.add(temp);
+                }
+            }
+        }
+
     }
     public List<Report> getReportListAgency(String nameAgency){
         for(Report temp : reportLists)
@@ -87,5 +98,9 @@ public class ReportList {
 
     public void setReportSetterSort(List<Report> reportSetterSort) {
         this.reportSetterSort = reportSetterSort;
+    }
+
+    public List<Report> getRequestDeleteReport() {
+        return requestDeleteReport;
     }
 }

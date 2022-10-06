@@ -27,4 +27,5 @@ module cs.ku {
     exports ku.cs.controller.components.user;
     opens ku.cs.controller.components.user to javafx.fxml;
 
+
 }

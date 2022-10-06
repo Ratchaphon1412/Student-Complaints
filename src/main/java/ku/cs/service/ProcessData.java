@@ -8,7 +8,6 @@ import ku.cs.models.staff.Staff;
 import ku.cs.models.staff.StaffList;
 import ku.cs.models.user.User;
 import ku.cs.models.user.UserList;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -35,11 +34,9 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     public ProcessData(){
         dataBase = new DataBase();
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
-        reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList(),dataBase.getLikePostList());
-        adminList = new AdminList(dataBase.getAccountList());
-
         staffList = new StaffList(dataBase.getAccountList(),dataBase.getAgencyList());
-
+        reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList(),dataBase.getLikePostList(),dataBase.getRequestban());
+        userList.setReportUser(reportList);
     }
 
     @Override
@@ -126,20 +123,20 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
                     userBanList.add(temp);
                     for(int i = 0 ; i < requestBan.size() ; i++){
-                        if(requestBan.get(i).get("userName").equals(user.getUserName())){
+                        if(requestBan.get(i).get("headData").equals(user.getUserName())){
                             requestBan.remove(i);
                         }
                     }
                     if(requestBan.size() == 0){
                         temp = new LinkedHashMap<>();
-                        temp.put("userName","");
+                        temp.put("headData","");
                         temp.put("date","");
                         temp.put("time","");
                         temp.put("category","");
                         temp.put("post","");
                         requestBan.add(temp);
                     }
-                    if(requestBan.get(0).get("userName").equals("") && requestBan.size() == 2){
+                    if(requestBan.get(0).get("headData").equals("") && requestBan.size() == 2){
                         requestBan.remove(0);
                     }
                     dataBase.setRequestban(requestBan);
@@ -150,19 +147,19 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     // ลบ ban
 
                     for(int i = 0;i < userBanList.size();i++){
-                        if(userBanList.get(i).get("userName").equals(user.getUserName())){
+                        if(userBanList.get(i).get("headData").equals(user.getUserName())){
                             userBanList.remove(i);
                         }
                     }
                     if(userBanList.size() == 0){
                         LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-                        temp.put("userName","");
+                        temp.put("headData","");
                         temp.put("date","");
                         temp.put("details","");
                         temp.put("count","");
                         userBanList.add(temp);
                     }
-                    if(userBanList.get(0).get("userName").equals("") && requestBan.size() == 2){
+                    if(userBanList.get(0).get("headData").equals("") && requestBan.size() == 2){
                         userBanList.remove(0);
                     }
                     dataBase.setUserBanList(userBanList);
@@ -250,6 +247,27 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     }
                 }
                 dataBase.setReportList(reportList);
+                dataBase.saveToDatabase();
+            }
+            case "deletePost"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
+                List<LinkedHashMap<String,String>> reportList = dataBase.getReportList();
+                System.out.println(report.getTitle());
+                for(int i = 0 ; i < requestBan.size() ; i++){
+                    if(report.getTitle().equals(requestBan.get(i).get("headData"))){
+                        System.out.println(requestBan.get(i).get("headData") + " " + report.getTitle());
+                        requestBan.remove(i);
+                    }
+                }
+                for(int i = 0 ; i < reportList.size() ; i++){
+                    if(report.getTitle().equals(reportList.get(i).get("title"))){
+                        System.out.println(report.getTitle() + " " +reportList.get(i).get("title"));
+                        requestBan.remove(i);
+                    }
+                }
+                dataBase.setReportList(reportList);
+                dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
             }
         }
