@@ -103,8 +103,8 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" GridPane.columnSpan="3" GridPane.rowIndex="1">
          <children>
-            <HBox prefWidth="44.0" />
-            <Label prefHeight="18.0" prefWidth="37.0" styleClass="textLabelColor" text="categoryReport" textFill="WHITE" />
+            <HBox prefWidth="10.0" />
+            <Label prefHeight="18.0" prefWidth="85.0" styleClass="textLabelColor" text="categoryReport" textFill="WHITE" />
             <HBox prefWidth="20.0" />
             <HBox alignment="CENTER_LEFT" prefWidth="360.0">
                <HBox.margin>

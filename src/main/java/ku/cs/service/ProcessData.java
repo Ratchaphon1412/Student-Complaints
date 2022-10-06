@@ -263,7 +263,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 for(int i = 0 ; i < reportList.size() ; i++){
                     if(report.getTitle().equals(reportList.get(i).get("title"))){
                         System.out.println(report.getTitle() + " " +reportList.get(i).get("title"));
-                        requestBan.remove(i);
+                        reportList.remove(i);
                     }
                 }
                 dataBase.setReportList(reportList);
