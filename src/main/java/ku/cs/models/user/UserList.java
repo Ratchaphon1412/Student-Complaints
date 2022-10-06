@@ -2,6 +2,9 @@ package ku.cs.models.user;
 
 import ku.cs.controller.ListViewUserBanList;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Filterer;
+import ku.cs.models.report.Report;
+import ku.cs.models.report.ReportList;
 import ku.cs.service.DataBase;
 
 import java.util.ArrayList;
@@ -15,12 +18,15 @@ public class UserList {
 
     private List<User> userBanList;
     private List<User> userRequestBan;
+    private ReportList reportList;
 
 
-    public  UserList(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestban){
+    public  UserList(List<LinkedHashMap<String,String>> accountList, List<LinkedHashMap<String,String>> banList, List<LinkedHashMap<String,String>> requestban, ReportList reportList){
         userList = new ArrayList<>();
         userBanList = new ArrayList<>();
         userRequestBan = new ArrayList<>();
+        this.reportList = reportList;
+
         createObjectUser(accountList,banList, requestban);
 
 
@@ -33,7 +39,16 @@ public class UserList {
             if(account.get("role").equals("user")){
                 for (LinkedHashMap<String,String>ban:banList){
                     if(account.get("userName").equals(ban.get("userName"))){
-                        User user = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),true,ban.get("details"),ban.get("date"),ban.get("count"));
+                        ReportList temp = reportList.sortReport(new Filterer<Report>() {
+                            @Override
+                            public boolean filter(Report report) {
+                                if(account.get("userName").equals(report.getReporter().getUserName())){
+                                    return true;
+                                }
+                                return false;
+                            }
+                        });
+                        User user = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),true,ban.get("details"),ban.get("date"),ban.get("count"), temp.getReportSort());
                         userBanList.add(user);
                      }
                 }
@@ -52,7 +67,7 @@ public class UserList {
 //                    }
                 }
                 if(checkUserBan){
-                    User user1 = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),false,"","","0");
+                    User user1 = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),"false","","",null);//error
                     userList.add(user1);
                 }
             }

@@ -2,6 +2,9 @@ package ku.cs.models.user;
 
 import ku.cs.models.Account;
 import ku.cs.models.report.Report;
+import ku.cs.models.report.ReportList;
+
+import java.util.List;
 
 public class User extends Account {
     private boolean ban;
@@ -10,10 +13,11 @@ public class User extends Account {
     private String dateBan;
 
     private Report post;
+    private List<Report> userPostList;
     private String time;
     private String dateRequestBan;
     private String category;
-
+    private List<Report> reportList;
 
 
 
@@ -23,14 +27,20 @@ public class User extends Account {
         this.ban = false;
     }
     public User(String userName, String passWord, String pathPicture, String role, Boolean ban ,
-                String requestUnban , String dateBan ,String countAccess) {
+                String requestUnban , String dateBan , String countAccess, List<Report> reports) {
         super(userName, passWord, pathPicture, role);
         this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
+        this.reportList = reports;
     }
-    public User(String userName, String passWord, String pathPicture, String role,String category,String time,String date,Report post){
+
+    public List<Report> getReportList() {
+        return reportList;
+    }
+
+    public User(String userName, String passWord, String pathPicture, String role, String category, String time, String date, Report post){
         super(userName, passWord, pathPicture, role);
         this.category = category;
         this.time = time;
