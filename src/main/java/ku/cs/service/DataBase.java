@@ -28,6 +28,7 @@ public class DataBase {
 
 
 
+
     public DataBase(){
         initializeData();
     }
@@ -56,6 +57,7 @@ public class DataBase {
     }
 
     public void saveToDatabase() throws IOException {
+
         String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","reportcategory.csv","pattern.csv","likepost.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
@@ -171,8 +173,8 @@ public class DataBase {
     }
 
 
-    String saveImage(String path, String name, File file){
-        File desDir = new File("image"+System.getProperty("file.separator")+"accounts");
+    String saveImage(String path, String name, File file,String folderName){
+        File desDir = new File("image"+System.getProperty("file.separator")+folderName);
          try {
              if(path != null && file  != null){
                  // CREATE FOLDER IF NOT EXIST

@@ -69,7 +69,7 @@ public class RegisterController {
                    }else{
                         ApplicationController.goToNew("Alert","Failed to register");
                    }
-                }else{
+                }else{//แก้ให้ใส่ภาพตั้งต้น
                     ApplicationController.goToNew("Alert", "no select picture");
                     System.out.println("no select picture");
                 }
@@ -100,6 +100,8 @@ public class RegisterController {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
             path = file.getAbsolutePath();
             userImage.setImage(new Image(new File(path).toURI().toString()));
+        }else {
+
         }
 
     }

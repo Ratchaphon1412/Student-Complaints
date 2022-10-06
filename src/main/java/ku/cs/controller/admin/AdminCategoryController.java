@@ -130,7 +130,7 @@ public class AdminCategoryController {
         }
 
         fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
@@ -138,7 +138,7 @@ public class AdminCategoryController {
     }
     @FXML
     void goToAddCategoryButton(ActionEvent event) throws IOException {
-        ApplicationController.goTo("AddCategory");
+        ApplicationController.goTo("addCategory");
     }
 
     @FXML

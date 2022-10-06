@@ -55,6 +55,7 @@ public class Report {
 
 
 
+
     public Category getCategory() {
         return category;
     }

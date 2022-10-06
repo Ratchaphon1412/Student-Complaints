@@ -17,8 +17,8 @@ import javafx.scene.shape.Circle;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
-import ku.cs.controller.components.AdminUserBanListController;
-import ku.cs.controller.components.BanUserReportController;
+import ku.cs.controller.components.admin.AdminUserBanListController;
+import ku.cs.controller.components.admin.BanUserReportController;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
@@ -120,7 +120,7 @@ public class AdminUserBanedListController {
 
         //load NavBar
         fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
@@ -180,7 +180,7 @@ public class AdminUserBanedListController {
 
         for(User userUnban : userList.getUserBanList()){
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/listViewUserBanList.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/listViewUserBanList.fxml"));
             AnchorPane listUser = (AnchorPane) fxmlLoader.load();
             AdminUserBanListController adminUserBanListController = fxmlLoader.getController();
             adminUserBanListController.setData(userUnban,account,banAndUnBan);
@@ -191,7 +191,7 @@ public class AdminUserBanedListController {
         int num = 1;
         for(User userBan : userList.getUserRequestBan()){
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/banUserReport.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/banUserReport.fxml"));
             GridPane banPostUser = (GridPane) fxmlLoader.load();
             BanUserReportController banUserReportController = fxmlLoader.getController();
             banUserReportController.setData(userBan,account,banAndUnBan);
