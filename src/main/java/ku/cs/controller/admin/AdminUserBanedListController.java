@@ -20,8 +20,10 @@ import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.admin.AdminUserBanListController;
 import ku.cs.controller.components.admin.BanUserReportController;
 import ku.cs.controller.components.ButtonThemeController;
+import ku.cs.controller.components.admin.DeleteUserReportController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
 import ku.cs.models.user.UserList;
 import ku.cs.service.ProcessData;
@@ -29,6 +31,7 @@ import ku.cs.service.ProcessData;
 import java.io.File;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.prefs.Preferences;
 
 
@@ -77,6 +80,7 @@ public class AdminUserBanedListController {
     private SwitchTheme changeTheme;
 
     //    private UserList userReportToBan;
+    private List<Report> requestBanPost;
     private BanAndUnBan banAndUnBan;
     private FXMLLoader fxmlLoader;
 
@@ -163,6 +167,7 @@ public class AdminUserBanedListController {
 
         processData = new ProcessData<>();
         userList = processData.getUserList();
+        requestBanPost = processData.getReportList().getRequestDeleteReport();
 
         listPostReportGrid.getChildren().clear();
         gridPaneList.getChildren().clear();
@@ -174,12 +179,12 @@ public class AdminUserBanedListController {
         };
         int count = 1;
 
-        for(User userBan : userList.getUserBanList()){
+        for(User userUnban : userList.getUserBanList()){
             fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/listViewUserBanList.fxml"));
             AnchorPane listUser = (AnchorPane) fxmlLoader.load();
             AdminUserBanListController adminUserBanListController = fxmlLoader.getController();
-            adminUserBanListController.setData(userBan,account,banAndUnBan);
+            adminUserBanListController.setData(userUnban,account,banAndUnBan);
 
             gridPaneList.add(listUser,0,count++);
             GridPane.setMargin(listUser, new Insets(0,0,5,0));
@@ -191,6 +196,16 @@ public class AdminUserBanedListController {
             GridPane banPostUser = (GridPane) fxmlLoader.load();
             BanUserReportController banUserReportController = fxmlLoader.getController();
             banUserReportController.setData(userBan,account,banAndUnBan);
+
+            listPostReportGrid.add(banPostUser,0,num++);
+            GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
+        }
+        for(Report report : requestBanPost){
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/deletePostReport.fxml"));
+            GridPane banPostUser = (GridPane) fxmlLoader.load();
+            DeleteUserReportController deleteUserReportController = fxmlLoader.getController();
+            deleteUserReportController.setData(report,account,banAndUnBan);
 
             listPostReportGrid.add(banPostUser,0,num++);
             GridPane.setMargin(banPostUser, new Insets(0,0,5,0));

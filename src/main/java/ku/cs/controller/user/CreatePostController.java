@@ -99,11 +99,13 @@ public class CreatePostController {
 
         GridPane grirdScoll = new GridPane();
         accountfeed.setContent(grirdScoll);
+
         FXMLLoader fxmlLoaderPost = new FXMLLoader();
         fxmlLoaderPost.setLocation(getClass().getResource(""));
         GridPane postComponant = fxmlLoaderPost.load();
         GridPane.setMargin(postComponant, new Insets(0, 0, 15, 0));
         grirdScoll.add(postComponant,0,0);
+
     }
     @FXML
     void addPostButton(ActionEvent event) throws IOException {

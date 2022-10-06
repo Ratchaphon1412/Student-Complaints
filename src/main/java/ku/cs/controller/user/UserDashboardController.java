@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.prefs.Preferences;
 
-public class UserDashboardController {
+public class             UserDashboardController {
 
 
     @FXML
