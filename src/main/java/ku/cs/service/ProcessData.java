@@ -12,6 +12,7 @@ import ku.cs.models.user.UserList;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             switch (role){
                 case "user":{
                     User newUser = (User) object;
-                    newUser.setPathPicture(dataBase.saveImage(newUser.getPathPicture(), newUser.getUserName(),file));
+                    newUser.setPathPicture(dataBase.saveImage(newUser.getPathPicture(), newUser.getUserName(),file,"accounts"));
                     LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
                     createAccount.put("userName",newUser.getUserName());
                     createAccount.put("passWord",newUser.getPassWord());
@@ -64,7 +65,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 }
                 case "staff":{
                     Staff staff = (Staff) object;
-                    staff.setPathPicture(dataBase.saveImage(staff.getPathPicture(), staff.getUserName(),file));
+                    staff.setPathPicture(dataBase.saveImage(staff.getPathPicture(), staff.getUserName(),file,"accounts"));
                     LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
                     createAccount.put("userName", staff.getUserName());
                     createAccount.put("passWord", staff.getPassWord());
@@ -306,13 +307,6 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
     public boolean checkBan(String userName){
-//        for (LinkedHashMap<String,String> accountBan:dataBase.getUserBanList()){
-//            for (String key:accountBan.keySet()){
-//                if(key.equals(userName)){
-//                    return true;
-//                }
-//            }
-//        }
         List<LinkedHashMap<String, String>> banList = dataBase.getUserBanList();
         for (LinkedHashMap<String, String> dataLine : banList){
             if(dataLine.get("userName").equals(userName)){
@@ -332,7 +326,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
     public boolean changePicture(String username, String password, String path, File file) throws IOException {
-        dataBase.changePicture(username,password, dataBase.saveImage(path, username, file));
+        dataBase.changePicture(username,password, dataBase.saveImage(path, username, file,"accounts"));
         return true;
     }
 
@@ -364,59 +358,8 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
             dataBase.saveToDatabase();
         }
-
-
-
-
     }
 
-    public void  addTitle(String category, String title) throws IOException {
-        List<LinkedHashMap<String, String>> categoryList = dataBase.getCategoryList();
-        for (LinkedHashMap<String, String> dataLine : categoryList){
-            if(dataLine.get("category").equals(category)){
-                if (dataLine.get("title").equals("")){
-                    dataLine.put("title", title);
-                    dataBase.saveToDatabase();
-                   // System.out.println("pp");
-                }else {
-                    String temp = dataLine.get("title");
-                    temp += "|"+title;
-                    dataLine.put("title",temp);
-                    dataBase.saveToDatabase();
-                   // System.out.println("oo");
-                }
-
-            }
-        }
-    }
-
-//    public void creatPattern(String category, String text, String image) throws IOException {
-//        List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
-//        for (LinkedHashMap<String, String> dataLine : patternList){
-//            if(dataLine.get("category").equals(category)){
-//                if (dataLine.get("text").equals("")){
-//                    dataLine.put("text", text);
-//                    dataLine.put("image", image);
-//                    dataBase.saveToDatabase();
-//                     System.out.println("pp");
-//                }else {
-//                    String temp = dataLine.get("text");
-//                    temp += "|"+text;
-//                    dataLine.put("text",temp);
-//
-//                    String pic = dataLine.get("image");
-//                    pic += "|"+image;
-//                    dataLine.put("image",pic);
-//
-//
-//                    dataBase.saveToDatabase();
-//                     System.out.println("oo");
-//                }
-//
-//
-//            }
-//        }
-//    }
 
     public void addText(String category, String text) throws IOException {
         List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
@@ -457,6 +400,66 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             }
         }
     }
+
+    public void createPost(String title ,User reporter, String category, String agency,ArrayList<String>dataText,ArrayList<File>dataImage) throws IOException {
+        List<LinkedHashMap<String,String>> reportlist = dataBase.getReportList();
+        LinkedHashMap<String,String> temp = new LinkedHashMap<>();
+        Date currentDate = new Date();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        temp.put("title",title);
+        temp.put("user",reporter.getUserName());
+        temp.put("category",category);
+        temp.put("reportStage","in progress");
+        temp.put("problemDate",dateFormat.format(currentDate));
+        temp.put("time",timeFormat.format(currentDate));
+        int countText = 0;
+        String dataTextFormatted = "";
+        //text
+        for(String tempText : dataText){
+            if(countText == 0){
+                dataTextFormatted += tempText;
+            }else{
+                dataTextFormatted += "|"+tempText;
+            }
+            countText++;
+        }
+        temp.put("text",dataTextFormatted);
+
+        //save image to reports directory and return name
+        int countImage = 0;
+        String dataImageFormatted = "";
+        for(File tempImage : dataImage){
+            if(countImage == 0){
+                dataImageFormatted += dataBase.saveImage(tempImage.getAbsolutePath(),title,tempImage,"reports");
+            }else{
+                dataImageFormatted +="|"+dataBase.saveImage(tempImage.getAbsolutePath(),title,tempImage,"reports");
+            }
+            countImage++;
+        }
+        temp.put("image",dataImageFormatted);
+        temp.put("agency",agency);
+        temp.put("staff","");
+        temp.put("process","");
+
+        reportlist.add(temp);
+        dataBase.setReportList(reportlist);
+
+        List<LinkedHashMap<String,String>> likeList = dataBase.getLikePostList();
+        LinkedHashMap<String,String> tempLike = new LinkedHashMap<>();
+        tempLike.put("title",title);
+        tempLike.put("like","0");
+        tempLike.put("userName","");
+
+        likeList.add(tempLike);
+        dataBase.setLikePostList(likeList);
+
+        dataBase.saveToDatabase();
+
+
+    }
+
 
     public DataBase getDataBase() {
         return dataBase;
