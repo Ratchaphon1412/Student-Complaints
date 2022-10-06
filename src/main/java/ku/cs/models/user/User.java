@@ -4,6 +4,7 @@ import ku.cs.models.Account;
 import ku.cs.models.report.Report;
 import ku.cs.models.report.ReportList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User extends Account {
@@ -13,7 +14,6 @@ public class User extends Account {
     private String dateBan;
 
     private Report post;
-    private List<Report> userPostList;
     private String time;
     private String dateRequestBan;
     private String category;
@@ -27,13 +27,13 @@ public class User extends Account {
         this.ban = false;
     }
     public User(String userName, String passWord, String pathPicture, String role, Boolean ban ,
-                String requestUnban , String dateBan , String countAccess, List<Report> reports) {
+                String requestUnban , String dateBan , String countAccess) {
         super(userName, passWord, pathPicture, role);
         this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
-        this.reportList = reports;
+        this.reportList = new ArrayList<>();
     }
 
     public List<Report> getReportList() {

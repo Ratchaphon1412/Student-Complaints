@@ -34,9 +34,10 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     public ProcessData(){
         dataBase = new DataBase();
+        userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
         reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList(),dataBase.getLikePostList());
         adminList = new AdminList(dataBase.getAccountList());
-        userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban(),reportList);
+
         staffList = new StaffList(dataBase.getAccountList(),dataBase.getAgencyList());
 
     }
