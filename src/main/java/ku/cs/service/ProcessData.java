@@ -12,6 +12,8 @@ import ku.cs.models.user.UserList;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -134,8 +136,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         temp.put("headData","");
                         temp.put("date","");
                         temp.put("time","");
-                        temp.put("category","");
-                        temp.put("post","");
+                        temp.put("type","");
                         requestBan.add(temp);
                     }
                     if(requestBan.get(0).get("headData").equals("") && requestBan.size() == 2){
@@ -271,6 +272,39 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 dataBase.setReportList(reportList);
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
+            }
+            case "reportUser"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
+                LinkedHashMap<String,String> temp = new LinkedHashMap<>();
+
+                LocalDateTime myDateObj = LocalDateTime.now();
+                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+                String formattedDate = myDateObj.format(myFormatObj);
+
+                temp.put("headData",report.getReporter().getUserName());
+                temp.put("dateTime",formattedDate);
+                temp.put("type","user");
+                requestBan.add(temp);
+                dataBase.setRequestban(requestBan);
+                dataBase.saveToDatabase();
+            }
+            case "reportPost"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
+                LinkedHashMap<String,String> temp = new LinkedHashMap<>();
+
+                LocalDateTime myDateObj = LocalDateTime.now();
+                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+                String formattedDate = myDateObj.format(myFormatObj);
+
+                temp.put("headData",report.getTitle());
+                temp.put("dateTime",formattedDate);
+                temp.put("type","post");
+                requestBan.add(temp);
+                dataBase.setRequestban(requestBan);
+                dataBase.saveToDatabase();
+
             }
         }
         return false;

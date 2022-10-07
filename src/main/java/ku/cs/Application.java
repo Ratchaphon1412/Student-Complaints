@@ -53,6 +53,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("DetailReport",pathResource+"detailProblemView.fxml",900,480);
         ApplicationController.when("addCategory",pathResource+"addCategory.fxml",1000, 580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
+        ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",300 , 200);
 
         //Admin zone
         ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);

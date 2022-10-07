@@ -63,8 +63,8 @@ public class UserList {
                 for(LinkedHashMap<String,String> banRequest : requestban){
                     if(account.get("userName").equals(banRequest.get("headData")) && banRequest.get("type").equals("user")){
                         User tem = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),
-                                            account.get("role"),banRequest.get("category"),banRequest.get("time"),
-                                            banRequest.get("date"));
+                                            account.get("role"),
+                                            banRequest.get("dateTime"));
                         userRequestBan.add(tem);
                     }
                 }

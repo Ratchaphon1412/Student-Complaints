@@ -53,7 +53,7 @@ public class ReportList {
         for(Report temp : reportLists){
             for(LinkedHashMap<String ,String> tempRequest :requestDelete){
                 if(tempRequest.get("headData").equals(temp.getTitle()) && tempRequest.get("type").equals("post")){
-                    temp.setRequestDaleteReportPost(tempRequest.get("category") , tempRequest.get("date") ,tempRequest.get("time") );
+                    temp.setRequestDaleteReportPost(tempRequest.get("dateTime"));
                     requestDeleteReport.add(temp);
                 }
             }
