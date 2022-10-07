@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -13,6 +14,7 @@ import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.components.navbar.NavbarUserController;
+import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
 
 import java.io.File;
@@ -40,6 +42,8 @@ public class CreatePostController {
 
     @FXML
     private Label roleDisplayBig;
+    @FXML
+    private ScrollPane accountfeed;
 
 
     @FXML
@@ -89,6 +93,10 @@ public class CreatePostController {
             imageAccountBigger.setFill(new ImagePattern(image));
             imageAccountBigger.setStroke(Color.TRANSPARENT);
         }
+
+        //load postuser
+        GridPane grirdScoll = new GridPane();
+        accountfeed.setContent(grirdScoll);
 
     }
     @FXML

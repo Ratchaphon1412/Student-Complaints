@@ -2,6 +2,7 @@ package ku.cs.models.user;
 
 import ku.cs.controller.ListViewUserBanList;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Filterer;
 import ku.cs.models.report.Report;
 import ku.cs.models.report.ReportList;
 import ku.cs.service.DataBase;
@@ -28,6 +29,7 @@ public class UserList {
 
 
 
+
     public void createObjectUser(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestban){
         for(LinkedHashMap<String,String> account :accountList ){
             if(account.get("role").equals("user")){
@@ -35,7 +37,7 @@ public class UserList {
                     if(account.get("userName").equals(ban.get("userName"))){
                         User user = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),true,ban.get("details"),ban.get("date"),ban.get("count"));
                         userBanList.add(user);
-                     }
+                    }
                 }
             }
         }
@@ -72,6 +74,22 @@ public class UserList {
         }
     }
 
+
+    public void setReportUser(ReportList reportList){
+
+            for(User user:userList){
+                ReportList tempReport = reportList.sortReport(new Filterer<Report>() {
+                    @Override
+                    public boolean filter(Report report) {
+                        if(user.getUserName().equals(report.getReporter().getUserName())){
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                user.setReportList(tempReport.getReportSort());
+            }
+    }
 
 
 
