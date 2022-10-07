@@ -10,9 +10,12 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 import ku.cs.State;
+import ku.cs.controller.user.Reposthable;
 import ku.cs.models.user.User;
 import ku.cs.service.ProcessData;
 
+import javax.security.auth.RefreshFailedException;
+import javax.security.auth.Refreshable;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,10 +58,12 @@ public class CreatePost {
     private String selectedCategory;
     private String agency;
     private User user;
+    private Reposthable reposthable;
 
     @FXML
     private void initialize(){
         user = (User) ApplicationController.getData();
+        reposthable = (Reposthable) ApplicationController.getRefreshable();
 
         //initial style
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
@@ -91,7 +96,7 @@ public class CreatePost {
     }
 
     @FXML
-    private void submit() throws IOException {
+    private void submit() throws IOException, RefreshFailedException {
         String title = titleText.getText();
         String categoryText = category.getValue();
         ArrayList<String> dataTextList = new ArrayList<>();
@@ -105,7 +110,7 @@ public class CreatePost {
         }
 
         processData.createPost(title,user,categoryText,agency,dataTextList,dataImage);
-
+        reposthable.refreshPost();
         close();
 
     }
