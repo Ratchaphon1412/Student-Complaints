@@ -129,7 +129,7 @@ public class AddCategoryController {
     public void handleSubmitButton() throws IOException {
         String category = addCatagoryField.getText();
         processData.addCategory(category);
-        processData.selectAgency(category, dropDownAgency.getValue());
+
         for (String dataLine : textString) {
             processData = new ProcessData<>();
             processData.addText(category, dataLine);
@@ -139,6 +139,7 @@ public class AddCategoryController {
             processData = new ProcessData<>();
             processData.addImage(category,dataLine);
         }
+        processData.selectAgency(category, dropDownAgency.getValue());
         clear();
 
     }
