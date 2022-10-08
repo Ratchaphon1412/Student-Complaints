@@ -39,7 +39,7 @@ public class alertRequestUnbanController {
     }
     @FXML
     public void requestButton(ActionEvent event) throws IOException {
-        ApplicationController.goTo("Request", user);
+        ApplicationController.goToNew("RequestUnban");
     }
 
 }

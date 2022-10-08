@@ -40,7 +40,7 @@ public class requestUnbanController {
     }
 
     @FXML
-    public void closeWindows(ActionEvent actionEvent){
+    public void closeWindows(){
         Stage stage = (Stage)close.getScene().getWindow();
         stage.close();
     }
