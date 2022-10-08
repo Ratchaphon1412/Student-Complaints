@@ -125,17 +125,17 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="62.0" prefWidth="125.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label fx:id="tableTitleUserName" styleClass="textLabelColor" text="Username" textFill="WHITE" />
+                                    <Label fx:id="tableTitleUserName" styleClass="textLabelColor" text="Title" textFill="WHITE" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="62.0" prefWidth="73.0" GridPane.columnIndex="2">
                                  <children>
-                                    <Label fx:id="tableTitleAgency" styleClass="textLabelColor" text="agency" textFill="WHITE" />
+                                    <Label fx:id="tableTitleAgency" styleClass="textLabelColor" text="date" textFill="WHITE" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
                                  <children>
-                                    <Label fx:id="tableTitleRole" styleClass="textLabelColor" text="Role" textFill="WHITE" />
+                                    <Label fx:id="tableTitleRole" styleClass="textLabelColor" text="Ban/Pass" textFill="WHITE" />
                                  </children>
                               </VBox>
                            </children>

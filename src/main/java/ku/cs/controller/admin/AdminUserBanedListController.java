@@ -200,16 +200,6 @@ public class AdminUserBanedListController {
             listPostReportGrid.add(banPostUser,0,num++);
             GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
         }
-        for(Report report : requestBanPost){
-            fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/deletePostReport.fxml"));
-            GridPane banPostUser = (GridPane) fxmlLoader.load();
-            DeleteUserReportController deleteUserReportController = fxmlLoader.getController();
-            deleteUserReportController.setData(report,account,banAndUnBan);
-
-            listPostReportGrid.add(banPostUser,0,num++);
-            GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
-        }
 
         ObservableList<PieChart.Data> pieChartBanned = FXCollections.observableArrayList(
                 new PieChart.Data("All user Banned",userList.getUserBanList().size()),

@@ -192,6 +192,10 @@ public class AdminCategoryController {
 
         requestBanPost = processData.getReportList().getRequestDeleteReport();
         GridPane gridPane = new GridPane();
+        gridPane.setPrefWidth(200);
+        scroll.setFitToWidth(true);
+        scroll.setContent(gridPane);
+
         int num = 0;
         for(Report report : requestBanPost){
             fxmlLoader = new FXMLLoader();
@@ -203,7 +207,7 @@ public class AdminCategoryController {
             gridPane.add(banPostUser,0,num++);
             GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
         }
-        scroll.setContent(gridPane);
+
 
 
 
