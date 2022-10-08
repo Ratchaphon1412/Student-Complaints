@@ -4,10 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
@@ -35,6 +37,9 @@ public class AddCategoryController {
 
     @FXML
     private Label text;
+
+    @FXML
+    private Button close;
     private ArrayList<String> listExampleString;
     private ArrayList<String> textString;
     private  ArrayList<String> imageString;
@@ -150,6 +155,12 @@ public class AddCategoryController {
         textString.clear();
         imageString.clear();
         checkType.clear();
+    }
+
+    @FXML
+    public void closeWindows(){
+        Stage stage = (Stage)close.getScene().getWindow();
+        stage.close();
     }
 
 
