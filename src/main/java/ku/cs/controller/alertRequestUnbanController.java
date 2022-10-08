@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
+import ku.cs.models.user.User;
 
 import java.io.IOException;
 
@@ -20,6 +21,8 @@ public class alertRequestUnbanController {
 
     @FXML
     private Button close;
+    private User user;
+
 
     @FXML
     private void initialize() throws IOException {
@@ -36,7 +39,7 @@ public class alertRequestUnbanController {
     }
     @FXML
     public void requestButton(ActionEvent event) throws IOException {
-        ApplicationController.goTo("Request");
+        ApplicationController.goTo("Request", user);
     }
 
 }

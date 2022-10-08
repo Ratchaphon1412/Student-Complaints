@@ -15,11 +15,15 @@ import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.components.navbar.NavbarUserController;
+import ku.cs.models.report.Filterer;
 import ku.cs.models.report.Report;
+import ku.cs.models.report.ReportList;
 import ku.cs.models.user.User;
+import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.prefs.Preferences;
 
 public class CreatePostController {
@@ -94,14 +98,29 @@ public class CreatePostController {
             imageAccountBigger.setFill(new ImagePattern(image));
             imageAccountBigger.setStroke(Color.TRANSPARENT);
         }
-
-        //load postuser
-
+        refresh();
+    }
+    //load postuser
+    public void refresh() throws IOException {
         GridPane gridScoll = new GridPane();
 
         accountfeed.setContent(gridScoll);
         accountfeed.setFitToWidth(true);
         int countRow = 0;
+        ProcessData<User> processData = new ProcessData<>();
+        ReportList reportList = processData.getReportList();
+        List<Report> reports = reportList.getReportLists();
+        reportList.setReportSetterSort(reports);
+        ReportList tempReport = reportList.sortReport(new Filterer<Report>() {
+            @Override
+            public boolean filter(Report report) {
+                if (user.getUserName().equals(report.getReporter().getUserName())){
+                    return true;
+                }
+                return false;
+            }
+        });
+        user.setReportList(tempReport.getReportSort());
         for (Report report: user.getReportList()) {
             FXMLLoader fxmlLoaderPost = new FXMLLoader();
             fxmlLoaderPost.setLocation(getClass().getResource("/ku/cs/components/user/userFeed.fxml"));
@@ -113,11 +132,19 @@ public class CreatePostController {
             countRow++;
             System.out.println("Check");
         }
+
     }
     @FXML
     void addPostButton(ActionEvent event) throws IOException {
-        ApplicationController.goToNew("CreatePost",user);
+        Reposthable refreshable = new Reposthable() {
+            @Override
+            public void refreshPost() throws IOException {
+                refresh();
+            }
+        };
+        ApplicationController.goToNew("CreatePost",user, refreshable);
     }
+
 
     @FXML
     void handleAdminSettingButton(MouseEvent event) {

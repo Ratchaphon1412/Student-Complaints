@@ -10,10 +10,12 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 
+
 import ku.cs.State;
 import ku.cs.models.admin.Admin;
 
 import ku.cs.service.DataBase;
+
 import ku.cs.service.ProcessData;
 
 import java.io.IOException;
@@ -77,15 +79,8 @@ public class AddCategoryController {
 
         String[] pattern = {"text", "image"};
         dropDownType.getItems().addAll(pattern);
-
         dropDownAgencyList = processData.dropDownAgency();
         dropDownAgency.getItems().addAll(dropDownAgencyList);
-
-
-
-
-
-
     }
 
     @FXML

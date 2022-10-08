@@ -522,6 +522,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
 
+
     public void  selectAgency(String category, String agency) throws IOException {
         List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
         for (LinkedHashMap<String, String> dataLine : patternList) {
