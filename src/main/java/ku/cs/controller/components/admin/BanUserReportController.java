@@ -28,12 +28,6 @@ public class BanUserReportController {
     private Label nameLabel;
 
     @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label titleLabel;
-
-    @FXML
     private Button clickId;
 
     private BanAndUnBan banAndUnBan;
@@ -59,9 +53,7 @@ public class BanUserReportController {
         this.banAndUnBan = banAndUnBan;
         this.processData = new ProcessData<User>();
         nameLabel.setText(user.getUserName());
-        timeLabel.setText(user.getTime());
         dateLabel.setText(user.getDateRequestBan());
-        titleLabel.setText(user.getCategory());
         String fs = File.separator;
         File desDir = new File("image" + fs +  "accounts" + fs+ user.getPathPicture());
         Img.setFill(new ImagePattern(new Image(desDir.toURI().toString(),800, 0 ,true,true)));

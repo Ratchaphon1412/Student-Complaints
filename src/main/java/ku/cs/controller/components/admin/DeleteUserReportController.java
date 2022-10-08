@@ -26,12 +26,6 @@ public class DeleteUserReportController {
     private Label titleLabel;
 
     @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label categoryReportLabel;
-
-    @FXML
     private Button clickId;
 
     private BanAndUnBan banAndUnBan;
@@ -56,9 +50,7 @@ public class DeleteUserReportController {
         this.banAndUnBan = banAndUnBan;
         this.processData = new ProcessData<User>();
         titleLabel.setText(report.getTitle());
-        timeLabel.setText(report.getTimeRequestDalete());
-        dateLabel.setText(report.getDateRequestDalete());
-        categoryReportLabel.setText(report.getCategoryReportPost());
+        dateLabel.setText(report.getDateTimeRequestDalete());
     }
     @FXML
     public void  viewPost(ActionEvent actionEvent) throws IOException {
