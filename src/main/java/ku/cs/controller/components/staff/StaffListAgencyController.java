@@ -67,12 +67,14 @@ public class StaffListAgencyController {
         if(choiceAgency.getValue() != null){
             selectAgency = choiceAgency.getValue().toString();
         }
-        staff.setAgency(selectAgency);
-        processData.changeData(staff,"changeAgency");
+         if(!selectAgency.equals(staff.getAgency())){
+             staff.setAgency(selectAgency);
+             processData.changeData(staff,"changeAgency");
 
-        //no refetch
-        AgencyLabel.setText(selectAgency);
-
+             //no refetch
+             AgencyLabel.setText(selectAgency);
+         }
+         choiceAgency.setValue("");
 
     }
 

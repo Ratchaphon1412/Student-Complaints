@@ -67,6 +67,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 }
                 case "staff":{
                     Staff staff = (Staff) object;
+
                     staff.setPathPicture(dataBase.saveImage(staff.getPathPicture(), staff.getUserName(),file,"accounts"));
                     LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
                     createAccount.put("userName", staff.getUserName());
@@ -133,8 +134,9 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     if(requestBan.size() == 0){
                         temp = new LinkedHashMap<>();
                         temp.put("headData","");
-                        temp.put("date","");
-                        temp.put("time","");
+//                        temp.put("date","");
+//                        temp.put("time","");
+                        temp.put("dateTime","");
                         temp.put("type","");
                         requestBan.add(temp);
                     }
@@ -149,19 +151,19 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     // ลบ ban
 
                     for(int i = 0;i < userBanList.size();i++){
-                        if(userBanList.get(i).get("headData").equals(user.getUserName())){
+                        if(userBanList.get(i).get("userName").equals(user.getUserName())){
                             userBanList.remove(i);
                         }
                     }
                     if(userBanList.size() == 0){
                         LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-                        temp.put("headData","");
+                        temp.put("userName","");
                         temp.put("date","");
                         temp.put("details","");
                         temp.put("count","");
                         userBanList.add(temp);
                     }
-                    if(userBanList.get(0).get("headData").equals("") && requestBan.size() == 2){
+                    if(userBanList.get(0).get("userName").equals("") && requestBan.size() == 2){
                         userBanList.remove(0);
                     }
                     dataBase.setUserBanList(userBanList);
@@ -403,20 +405,15 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         }
         if(!checkCategory){
             //add category in reportcategory.csv and pattern.csv
-            List<LinkedHashMap<String,String>> categoryList = dataBase.getCategoryList();
             List<LinkedHashMap<String,String>> patternList = dataBase.getPatternList();
 
             //create hashMap
-            LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
             LinkedHashMap<String,String> newPattern = new LinkedHashMap<>();
 
-            newCategory.put("category",category);
             newPattern.put("category",category);
 
-            categoryList.add(newCategory);
             patternList.add(newPattern);
 
-            dataBase.setCategoryList(categoryList);
             dataBase.setPatternList(patternList);
 
             dataBase.saveToDatabase();
