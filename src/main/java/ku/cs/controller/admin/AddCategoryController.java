@@ -2,12 +2,15 @@ package ku.cs.controller.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 
+import ku.cs.State;
 import ku.cs.models.admin.Admin;
 
 import ku.cs.service.DataBase;
@@ -30,6 +33,9 @@ public class AddCategoryController {
     private ChoiceBox<String> dropDownType;
     @FXML
     private ChoiceBox<String> dropDownAgency;
+
+    @FXML
+    private Button close;
 
     @FXML
     private Label text;
@@ -84,11 +90,8 @@ public class AddCategoryController {
 
     @FXML
     void closeButton() {
-        try {
-            ApplicationController.goTo("AdminCategory");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Stage state = (Stage)close.getScene().getWindow();
+        state.close();
     }
 
 

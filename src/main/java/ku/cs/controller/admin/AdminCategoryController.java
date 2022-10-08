@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -16,8 +17,10 @@ import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
+import ku.cs.controller.components.admin.DeleteUserReportController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Report;
 import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
 
@@ -66,6 +69,9 @@ public class AdminCategoryController {
     @FXML
     private GridPane gridPaneCategory;
 
+    @FXML
+    private ScrollPane scroll;
+
     private FXMLLoader fxmlLoader;
 
     private ProcessData processData;
@@ -73,6 +79,9 @@ public class AdminCategoryController {
     private List<LinkedHashMap<String, String>> categoryList;
     private DataBase dataBase;
 
+    private List<Report> requestBanPost;
+
+    private BanAndUnBan banAndUnBan;
 
     @FXML
     public void initialize() throws IOException{
@@ -130,7 +139,17 @@ public class AdminCategoryController {
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
+
+        banAndUnBan = new BanAndUnBan() {
+            @Override
+            public void onClickBanOrUnban() throws IOException {
+                initializeAdminCategory();
+            }
+        };
+
+
         initializeAdminCategory();
+
     }
     private void initializeAdminCategory() throws IOException{
         gridPaneCategory.getChildren().clear();
@@ -171,6 +190,20 @@ public class AdminCategoryController {
             i++;
         }
 
+        requestBanPost = processData.getReportList().getRequestDeleteReport();
+        GridPane gridPane = new GridPane();
+        int num = 0;
+        for(Report report : requestBanPost){
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/deletePostReport.fxml"));
+            GridPane banPostUser = (GridPane) fxmlLoader.load();
+            DeleteUserReportController deleteUserReportController = fxmlLoader.getController();
+            deleteUserReportController.setData(report,account,banAndUnBan);
+
+            gridPane.add(banPostUser,0,num++);
+            GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
+        }
+        scroll.setContent(gridPane);
 
 
 
@@ -181,7 +214,7 @@ public class AdminCategoryController {
 
     @FXML
     void goToAddCategoryButton(ActionEvent event) throws IOException {
-        ApplicationController.goTo("addCategory");
+        ApplicationController.goToNew("addCategory");
     }
 
     @FXML
