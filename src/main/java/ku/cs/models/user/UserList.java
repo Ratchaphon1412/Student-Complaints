@@ -2,6 +2,9 @@ package ku.cs.models.user;
 
 import ku.cs.controller.ListViewUserBanList;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Filterer;
+import ku.cs.models.report.Report;
+import ku.cs.models.report.ReportList;
 import ku.cs.service.DataBase;
 
 import java.util.ArrayList;
@@ -17,14 +20,13 @@ public class UserList {
     private List<User> userRequestBan;
 
 
-    public  UserList(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestban){
+    public  UserList(List<LinkedHashMap<String,String>> accountList,List<LinkedHashMap<String,String>> banList,List<LinkedHashMap<String,String>> requestBan){
         userList = new ArrayList<>();
         userBanList = new ArrayList<>();
         userRequestBan = new ArrayList<>();
-        createObjectUser(accountList,banList, requestban);
-
-
+        createObjectUser(accountList,banList, requestBan);
     }
+
 
 
 
@@ -35,7 +37,7 @@ public class UserList {
                     if(account.get("userName").equals(ban.get("userName"))){
                         User user = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),true,ban.get("details"),ban.get("date"),ban.get("count"));
                         userBanList.add(user);
-                     }
+                    }
                 }
             }
         }
@@ -61,17 +63,40 @@ public class UserList {
         for(LinkedHashMap<String,String> account : accountList){
             if(account.get("role").equals("user")){
                 for(LinkedHashMap<String,String> banRequest : requestban){
-                    if(account.get("userName").equals(banRequest.get("userName"))){
+                    if(account.get("userName").equals(banRequest.get("headData")) && banRequest.get("type").equals("user")){
                         User tem = new User(account.get("userName"),account.get("passWord"),account.get("pathPicture"),
-                                            account.get("role"),banRequest.get("category"),banRequest.get("time"),
-                                            banRequest.get("date"),null);
+                                            account.get("role"),
+                                            banRequest.get("dateTime"));
                         userRequestBan.add(tem);
                     }
                 }
             }
         }
-
     }
+
+
+    public void setReportUser(ReportList reportList){
+            reportList.setReportSetterSort(reportList.getReportLists());
+
+            for(User user:userList){
+                ReportList tempReport = reportList.sortReport(new Filterer<Report>() {
+                    @Override
+                    public boolean filter(Report report) {
+                        if(user.getUserName().equals(report.getReporter().getUserName())){
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                user.setReportList(tempReport.getReportSort());
+            }
+    }
+
+
+
+
+
+
 
 
 

@@ -1,8 +1,6 @@
 package ku.cs.controller.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -11,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
+
+import ku.cs.models.admin.Admin;
+
 import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
 
@@ -20,12 +21,9 @@ import java.util.ArrayList;
 public class AddCategoryController {
 
     @FXML
-    private GridPane girdPaneAddCategory;
-    private ProcessData processData;
-    private FXMLLoader fxmlLoader;
-
-    @FXML
     private TextField addCatagoryField;
+
+    private ProcessData<Admin> processData;
 
     @FXML
     private TextField addText;
@@ -49,6 +47,7 @@ public class AddCategoryController {
 
 
     public void initialize() throws IOException {
+
         dataBase = new DataBase();
         listExampleString = new ArrayList<>();
         processData = new ProcessData();
@@ -64,6 +63,7 @@ public class AddCategoryController {
         //initializeCategory();
 
     }
+
 
     @FXML
     void initializeCategory() throws IOException {
@@ -85,18 +85,17 @@ public class AddCategoryController {
 
 
 
-
-
     }
 
     @FXML
-    void closeButton(ActionEvent event) {
+    void closeButton() {
         try {
             ApplicationController.goTo("AdminCategory");
         } catch (IOException e) {
-            System.err.println(e);
+            throw new RuntimeException(e);
         }
     }
+
 
 
     @FXML
@@ -132,6 +131,7 @@ public class AddCategoryController {
     }
 
     public void handleSubmitButton() throws IOException {
+
         String category = addCatagoryField.getText();
         processData.addCategory(category);
 

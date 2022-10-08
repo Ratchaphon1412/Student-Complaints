@@ -16,7 +16,7 @@ import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarAdminController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
@@ -148,7 +148,7 @@ public class AdminCategoryController {
         }
 
         fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);

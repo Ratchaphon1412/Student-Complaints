@@ -1,13 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.staff.StaffController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane GridPane.columnIndex="1" GridPane.columnSpan="20">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="239.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="733.0" minWidth="10.0" prefWidth="544.5999877929687" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="88.60001220703123" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="83.40010986328127" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="74.59996490478515" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="512.2666717529297" minHeight="10.0" prefHeight="504.8000350952148" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="238.0" text="Feed my agency" textFill="WHITE" GridPane.columnSpan="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+               <children>
+                  <Label fx:id="nameStaffLabel" styleClass="textLabelColor" text="nameStaff">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="roleLabel" styleClass="textLabelColor" text="Staff">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets right="12.0" top="5.0" />
+               </GridPane.margin>
+               <children>
+                  <Circle fx:id="imageStaff" fill="DODGERBLUE" onMouseClicked="#handleStaffSetting" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+               </children>
+            </HBox>
+            <GridPane prefHeight="89.0" prefWidth="561.0" GridPane.columnIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="407.33331298828125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.33331298828125" minWidth="10.0" prefWidth="148.66668701171875" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="66.66666412353516" minHeight="10.0" prefHeight="50.16666603088379" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <GridPane fx:id="minisetting" prefHeight="86.0" prefWidth="149.0" GridPane.columnIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="37.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="101.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="69.0" minWidth="10.0" prefWidth="35.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="23.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnSpan="4" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.59996032714844" minWidth="10.0" prefWidth="46.60000228881836" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.2000160217285" minWidth="0.0" prefWidth="299.39999771118164" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="669.0000457763672" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="238.9999755859375" minHeight="10.0" prefHeight="44.6000244140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="445.0" minHeight="10.0" prefHeight="445.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="15.0" right="25.0" />
+               </GridPane.margin>
+               <children>
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="70.26667251586915" minHeight="10.0" prefHeight="70.26667251586915" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="73.20000305175782" minHeight="10.0" prefHeight="62.533327484130865" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="92.40000915527341" minHeight="10.0" prefHeight="54.79997253417966" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.80002441406248" minHeight="10.0" prefHeight="91.80002441406248" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <styleClass>
+                        <String fx:value="cardBackground" />
+                        <String fx:value="roundedCornerCard" />
+                     </styleClass>
+                     <GridPane.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </GridPane.margin>
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3">
+                           <children>
+                              <Label styleClass="textLabelColor" text="name Problem">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="nameProblem" styleClass="textLabelColor">
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
+                           <children>
+                              <Label styleClass="textLabelColor" text="Process">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea fx:id="processTextArea" styleClass="textAreaTheme" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                           <children>
+                              <Label styleClass="textLabelColor" text="Status:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="StatusChoiceBox" prefWidth="150.0" styleClass="textLabelColor" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#saveProcessStaff" text="add" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <styleClass>
+                              <String fx:value="circleGreen" />
+                              <String fx:value="roundedCornerButtonTheme" />
+                           </styleClass>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+                  <ScrollPane fx:id="showDataProblemScrollPane" prefHeight="490.0" prefWidth="644.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="20.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="roundedCornerCard" />
+                        <String fx:value="background" />
+                     </styleClass>
+                  </ScrollPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <styleClass>
+                        <String fx:value="cardBackground" />
+                        <String fx:value="roundedCornerCard" />
+                     </styleClass>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <children>
+                        <Label styleClass="textLabelColor" text="Process Work">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </children>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="rightPageRoundedCorner" />
+         </styleClass>
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</GridPane>

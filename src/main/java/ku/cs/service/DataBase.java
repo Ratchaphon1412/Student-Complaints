@@ -23,6 +23,7 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> agencyList;
     private List<LinkedHashMap<String,String>> categoryList;
     private List<LinkedHashMap<String,String>> patternList;
+    private List<LinkedHashMap<String,String>> likePostList;
 
 
 
@@ -42,19 +43,22 @@ public class DataBase {
         agencyList = new ArrayList<>();
         categoryList = new ArrayList<>();
         patternList = new ArrayList<>();
+        likePostList = new ArrayList<>();
         readFile("account.csv");
         readFile("log.csv");
         readFile("requestunban.csv");
         readFile("requestban.csv");
-        readFile("stuffAgencyList.csv");
+        readFile("staffAgencyList.csv");
         readFile("reportcategory.csv");
         readFile("pattern.csv");
         readFile("report.csv");
+        readFile("likepost.csv");
 
     }
 
     public void saveToDatabase() throws IOException {
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","stuffAgencyList.csv","reportcategory.csv","pattern.csv"};
+
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","reportcategory.csv","pattern.csv","likepost.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
@@ -65,10 +69,10 @@ public class DataBase {
                 case "log.csv" -> this.writeFile(logList, writer);
                 case "requestunban.csv" -> this.writeFile(userBanList,writer);
                 case "requestban.csv" -> this.writeFile(requestban,writer);
-                case "stuffAgencyList.csv" -> this.writeFile(agencyList,writer);
+                case "staffAgencyList.csv" -> this.writeFile(agencyList,writer);
                 case "reportcategory.csv" -> this.writeFile(categoryList, writer);
                 case "pattern.csv"->this.writeFile(patternList,writer);
-
+                case "likepost.csv"->this.writeFile(likePostList,writer);
             }
         }
 
@@ -80,13 +84,12 @@ public class DataBase {
     private void readFile(String fileTaget){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
-        BufferedReader buffer = null;
-        FileReader reader = null;
+//        BufferedReader buffer = null;
+//        FileReader reader = null;
 
         try {
-
-            reader = new FileReader(file);
-            buffer = new BufferedReader(reader);
+//            reader = new FileReader(file);
+//            buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
             CsvSchema schema =CsvSchema.emptySchema().withHeader();
             MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8)));
@@ -100,21 +103,23 @@ public class DataBase {
                     case "log.csv" -> logList.add(temp);
                     case "requestunban.csv" -> userBanList.add(temp);
                     case "requestban.csv" -> requestban.add(temp);
-                    case "stuffAgencyList.csv" -> agencyList.add(temp);
+                    case "staffAgencyList.csv" -> agencyList.add(temp);
                     case "reportcategory.csv" -> categoryList.add(temp);
                     case "pattern.csv"->patternList.add(temp);
+                    case "likepost.csv"->likePostList.add(temp);
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } finally {
-            try {
-                buffer.close();
-                reader.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
+//        finally {
+//            try {
+//                buffer.close();
+//                reader.close();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
 
     }
 
@@ -168,8 +173,8 @@ public class DataBase {
     }
 
 
-    String saveImage(String path, String name, File file){
-        File desDir = new File("image"+System.getProperty("file.separator")+"accounts");
+    String saveImage(String path, String name, File file,String folderName){
+        File desDir = new File("image"+System.getProperty("file.separator")+folderName);
          try {
              if(path != null && file  != null){
                  // CREATE FOLDER IF NOT EXIST
@@ -282,4 +287,14 @@ public class DataBase {
         this.patternList = patternList;
     }
 
+    public List<LinkedHashMap<String, String>> getLikePostList() {
+        return likePostList;
+    }
+
+    public void setLikePostList(List<LinkedHashMap<String, String>> likePostList) {
+        this.likePostList = likePostList;
+    }
+    public void setReportList(List<LinkedHashMap<String, String>> reportList) {
+        this.reportList = reportList;
+    }
 }

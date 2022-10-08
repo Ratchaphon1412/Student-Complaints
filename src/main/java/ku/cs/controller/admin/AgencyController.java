@@ -3,7 +3,6 @@ package ku.cs.controller.admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -11,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.ApplicationController;
-import ku.cs.controller.components.NavbarAdminController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 
 import java.io.File;
@@ -45,7 +44,7 @@ public class AgencyController {
 
         //load navbar
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         //send object to nav
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
@@ -54,7 +53,7 @@ public class AgencyController {
         root.add(navbar,0,0);
         //load stuff list
         FXMLLoader fxmlLoader1 = new FXMLLoader();
-        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/staffList.fxml"));
+        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/staff/staffList.fxml"));
         AnchorPane staffComponant = (AnchorPane) fxmlLoader1.load();
         staffListGridPane.add(staffComponant,0,0);
         //set display

@@ -102,3 +102,28 @@
 .logStyle{
     -fx-background-color:#B9C3DF ;
 }
+
+.choice-box{
+    -fx-background-color:#D9D9D9;
+}
+.choice-box .label {
+    -fx-text-fill: black;
+}
+.context-menu .label{
+    -fx-text-fill: black;
+}
+.textFieldSearch{
+    -fx-text-fill: black;
+}
+.textAreaTheme{
+    -fx-control-inner-background: #D9D9D9;
+    -fx-text-fill: #000000;
+    -fx-background-radius:3px 3px 3px 3px;
+}
+.textAreaTheme-createPost{
+    -fx-control-inner-background: #FFFFFF;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius:3px 3px 3px 3px;
+    -fx-text-box-border:transparent;
+}

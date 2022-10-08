@@ -107,5 +107,29 @@
 }
 .switchThemeButton{
     -fx-background-color: #FFFFFF;
+}
 
+.choice-box{
+    -fx-background-color:#1A202C;
+}
+.choice-box .label {
+    -fx-text-fill: white;
+}
+.context-menu .label{
+    -fx-text-fill: black;
+}
+.textFieldSearch{
+    -fx-text-fill: white;
+}
+.textAreaTheme{
+    -fx-control-inner-background: #1A202C;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius:3px 3px 3px 3px;
+}
+.textAreaTheme-createPost{
+    -fx-control-inner-background: #2D3440;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius:3px 3px 3px 3px;
+    -fx-text-box-border:transparent;
 }

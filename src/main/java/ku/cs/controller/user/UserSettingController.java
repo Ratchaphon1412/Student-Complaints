@@ -17,9 +17,7 @@ import ku.cs.State;
 import ku.cs.controller.SwitchFonts;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarAdminController;
-import ku.cs.controller.components.NavbarUser;
-import ku.cs.models.admin.Admin;
+import ku.cs.controller.components.navbar.NavbarUserController;
 import ku.cs.models.user.User;
 import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
@@ -117,10 +115,10 @@ public class UserSettingController {
     private void initializeSetting() throws IOException {
         //load nav
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
-        NavbarUser navbarUser = fxmlLoader.getController();
-        navbarUser.setUser(account);
+        NavbarUserController navbarUserController = fxmlLoader.getController();
+        navbarUserController.setUser(account);
         gridPane.add(navbar, 0, 0);
 
         //set label

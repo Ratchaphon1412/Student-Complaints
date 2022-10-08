@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,8 +16,8 @@ import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarAdminController;
-import ku.cs.controller.components.StaffListAgencyController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
+import ku.cs.controller.components.staff.StaffListAgencyController;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.staff.Staff;
 import ku.cs.models.staff.StaffList;
@@ -169,15 +168,16 @@ public class AdminAgencyController {
         processData = new ProcessData<>();
         staffListData = processData.getStaffList();
         fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
         root.add(navbar,0,0);
         int i = 1;
+
         for(Staff data: staffListData.getStaffList()) {
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/staffList.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/staff/staffList.fxml"));
             AnchorPane staffComponant = (AnchorPane) fxmlLoader.load();
             StaffListAgencyController staffListAgencyController = fxmlLoader.getController();
             staffListAgencyController.setData(data);

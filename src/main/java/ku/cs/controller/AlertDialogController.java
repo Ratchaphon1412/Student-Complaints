@@ -35,12 +35,12 @@ public class AlertDialogController {
             String pathPicture = getClass().getResource("/ku/cs/assets/images/error-icon-4.png").toExternalForm();
             status.setImage(new Image(pathPicture));
             textStatus.setText(text);
-
     }
 
     @FXML
     private void continueButton(){
-
+        Stage stage = (Stage)close.getScene().getWindow();
+        stage.close();
     }
     @FXML
     public void closeWindows(){
