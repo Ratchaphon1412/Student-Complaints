@@ -255,16 +255,13 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 Report report = (Report) object;
                 List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
                 List<LinkedHashMap<String,String>> reportList = dataBase.getReportList();
-                System.out.println(report.getTitle());
                 for(int i = 0 ; i < requestBan.size() ; i++){
                     if(report.getTitle().equals(requestBan.get(i).get("headData"))){
-                        System.out.println(requestBan.get(i).get("headData") + " " + report.getTitle());
                         requestBan.remove(i);
                     }
                 }
                 for(int i = 0 ; i < reportList.size() ; i++){
                     if(report.getTitle().equals(reportList.get(i).get("title"))){
-                        System.out.println(report.getTitle() + " " +reportList.get(i).get("title"));
                         reportList.remove(i);
                     }
                 }
@@ -304,6 +301,17 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
 
+            }
+            case "deleteReport"->{
+                Report report = (Report) object;
+                List<LinkedHashMap<String,String>> requestBan= dataBase.getRequestban();
+                for(int i = 0 ; i < requestBan.size() ; i++){
+                    if(report.getTitle().equals(requestBan.get(i).get("headData"))){
+                        requestBan.remove(i);
+                    }
+                }
+                dataBase.setRequestban(requestBan);
+                dataBase.saveToDatabase();
             }
         }
         return false;

@@ -26,7 +26,9 @@ public class DeleteUserReportController {
     private Label titleLabel;
 
     @FXML
-    private Button clickId;
+    private Button clickIdDelete;
+    @FXML
+    private Button clickIdPass;
 
     private BanAndUnBan banAndUnBan;
 
@@ -38,9 +40,15 @@ public class DeleteUserReportController {
     @FXML
     private void clickPost(ActionEvent actionEvent) throws IOException {
         processData.changeData(report,"deletePost");
-        clickId.setOnAction(null);
+        clickIdDelete.setOnAction(null);
         banAndUnBan.onClickBanOrUnban();
 
+    }
+    @FXML
+    private void clickDeleteReportPost(ActionEvent actionEvent) throws IOException {
+        processData.changeData(report,"deleteReport");
+        clickIdPass.setOnAction(null);
+        banAndUnBan.onClickBanOrUnban();
     }
 
 
