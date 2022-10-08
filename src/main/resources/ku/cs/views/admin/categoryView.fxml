@@ -219,7 +219,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3">
                      <children>
-                        <Label fx:id="titleReport" prefHeight="34.0" prefWidth="90.0" styleClass="textLabelColor" text="Category" textFill="WHITE">
+                        <Label fx:id="titleBigCategory" prefHeight="34.0" prefWidth="90.0" styleClass="textLabelColor" text="Category" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="21.0" />
                            </font>
@@ -307,7 +307,7 @@
                      <children>
                         <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="64.0" GridPane.columnIndex="1">
                            <children>
-                              <Label fx:id="titleAgency" styleClass="textLabelColor" text="Category" textFill="WHITE">
+                              <Label fx:id="titleCategory" styleClass="textLabelColor" text="Category" textFill="WHITE">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
