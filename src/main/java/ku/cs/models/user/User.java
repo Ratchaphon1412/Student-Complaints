@@ -14,8 +14,6 @@ public class User extends Account {
     private String dateBan;
 
     private String dateRequestBan;
-
-    private String category;
     private List<Report> reportList;
 
 
