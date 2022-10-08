@@ -87,4 +87,10 @@ class DataBaseTest {
 
 
     }
+
+    @Test
+    void requestBan() throws IOException {
+        ProcessData processData = new ProcessData<>();
+        processData.requestBan("poom1", "ขอโทษ", "1");
+    }
 }

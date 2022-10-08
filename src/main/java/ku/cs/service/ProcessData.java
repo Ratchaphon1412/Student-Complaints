@@ -545,6 +545,20 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         return dropDownAgency;
     }
 
+    public void requestBan(String userName,String testRequest, String countAccess) throws IOException {
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        List<LinkedHashMap<String, String>> requestUnban= dataBase.getUserBanList();
+        for (LinkedHashMap<String, String> dataLine : requestUnban) {
+            if(dataLine.get("userName").equals(userName)){
+                dataLine.put("details", testRequest);
+                dataLine.put("date",dateFormat.format(currentDate));
+                dataLine.put("count", countAccess);
+                dataBase.saveToDatabase();
+            }
+        }
+    }
+
 
     public DataBase getDataBase() {
         return dataBase;

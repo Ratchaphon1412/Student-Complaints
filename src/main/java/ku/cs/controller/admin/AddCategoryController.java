@@ -41,6 +41,8 @@ public class AddCategoryController {
 
     @FXML
     private Label text;
+
+
     private ArrayList<String> listExampleString;
     private ArrayList<String> textString;
     private  ArrayList<String> imageString;
@@ -148,6 +150,12 @@ public class AddCategoryController {
         textString.clear();
         imageString.clear();
         checkType.clear();
+    }
+
+    @FXML
+    public void closeWindows(){
+        Stage stage = (Stage)close.getScene().getWindow();
+        stage.close();
     }
 
 

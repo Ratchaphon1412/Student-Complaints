@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.user.requestUnbanController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -24,8 +24,8 @@
     <RowConstraints maxHeight="128.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <stylesheets>
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/style.css" />
+      <URL value="@../../style/darkMode.css" />
+      <URL value="@../../style/style.css" />
    </stylesheets>
    <styleClass>
       <String fx:value="background" />
@@ -42,7 +42,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField prefHeight="237.0" prefWidth="515.0" GridPane.columnIndex="1">
+            <TextField fx:id="requestField" prefHeight="237.0" prefWidth="515.0" GridPane.columnIndex="1">
                <styleClass>
                   <String fx:value="cardBackground" />
                   <String fx:value="roundedCorner" />
@@ -73,7 +73,7 @@
       </GridPane>
       <AnchorPane fx:id="anchorPane" prefHeight="49.0" prefWidth="166.0">
          <children>
-            <Button fx:id="close" contentDisplay="CENTER" layoutX="17.0" layoutY="15.0" mnemonicParsing="false" onAction="#closeWindows" prefHeight="15.0" prefWidth="17.0" textAlignment="CENTER">
+            <Button fx:id="close" contentDisplay="CENTER" layoutX="17.0" layoutY="15.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="17.0" textAlignment="CENTER">
                <font>
                   <Font size="5.0" />
                </font>
@@ -94,11 +94,13 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints />
+            <RowConstraints />
         </rowConstraints>
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button mnemonicParsing="false" text="Apply" />
+                  <Button mnemonicParsing="false" onAction="#applyButton" styleClass="circleGreen" text="Apply" />
                </children>
             </HBox>
          </children>
