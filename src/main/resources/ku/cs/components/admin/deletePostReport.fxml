@@ -70,7 +70,7 @@
       </HBox>
       <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="clickId" mnemonicParsing="false" onAction="#clickPost" prefHeight="40.0" prefWidth="70.0" text="delete">
+            <Button fx:id="clickIdDelete" mnemonicParsing="false" onAction="#clickPost" prefHeight="40.0" prefWidth="70.0" text="delete">
                <styleClass>
                   <String fx:value="circleRed" />
                   <String fx:value="roundedCorner" />
@@ -120,7 +120,7 @@
       </HBox>
       <HBox alignment="CENTER" GridPane.columnIndex="3">
          <children>
-            <Button fx:id="clickId2" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="pass">
+            <Button fx:id="clickIdPass" mnemonicParsing="false" onAction="#clickDeleteReportPost" prefHeight="40.0" prefWidth="70.0" text="pass">
                <styleClass>
                   <String fx:value="circleGreen" />
                   <String fx:value="roundedCorner" />
