@@ -3,6 +3,7 @@ package ku.cs.controller.admin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -17,10 +18,14 @@ import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
+import ku.cs.service.DataBase;
+import ku.cs.service.ProcessData;
 
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.prefs.Preferences;
 
 public class AdminCategoryController {
@@ -38,10 +43,10 @@ public class AdminCategoryController {
     private Label tableTitleUserName;
 
     @FXML
-    private Label titleAgency;
+    private Label titleCategory;
 
     @FXML
-    private Label titleReport;
+    private Label titleBigCategory;
 
     @FXML
     private Label titleReportAgency;
@@ -57,7 +62,18 @@ public class AdminCategoryController {
     private GridPane minisetting;
     @FXML
     private GridPane root;
+
+    @FXML
+    private GridPane gridPaneCategory;
+
     private FXMLLoader fxmlLoader;
+
+    private ProcessData processData;
+
+    private List<LinkedHashMap<String, String>> categoryList;
+    private DataBase dataBase;
+
+
     @FXML
     public void initialize() throws IOException{
         //initial style
@@ -72,10 +88,10 @@ public class AdminCategoryController {
         //set Font
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         titleStuffList.setFont(font);
-        titleReport.setFont(font);
+        titleBigCategory.setFont(font);
         tableTitleAgency.setFont(font);
         titleReportAgency.setFont(font);
-        titleAgency.setFont(font);
+        titleCategory.setFont(font);
         tableTitleAgency.setFont(font);
         tableTitleRole.setFont(font);
         tableTitleUserName.setFont(font);
@@ -117,6 +133,8 @@ public class AdminCategoryController {
         initializeAdminCategory();
     }
     private void initializeAdminCategory() throws IOException{
+        gridPaneCategory.getChildren().clear();
+        processData = new ProcessData<>();
         //set username
         displayName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
@@ -135,7 +153,32 @@ public class AdminCategoryController {
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
         root.add(navbar,0,0);
+
+        //addList
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+
+        int i=1;
+        dataBase = processData.getDataBase();
+        categoryList = dataBase.getPatternList();
+        for (LinkedHashMap<String, String> temp: categoryList){
+            Label label = new Label();
+            label.setText(String.valueOf(i) + "."+temp.get("category"));
+            label.getStyleClass().add("textLabelColor");
+            label.setFont(font);
+            gridPaneCategory.add(label, 0, i);
+            GridPane.setMargin(label, new Insets(0,0,10,0));
+            i++;
+        }
+
+
+
+
     }
+
+
+
+
     @FXML
     void goToAddCategoryButton(ActionEvent event) throws IOException {
         ApplicationController.goTo("addCategory");

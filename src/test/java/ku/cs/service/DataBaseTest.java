@@ -71,7 +71,7 @@ class DataBaseTest {
         ProcessData data = new ProcessData();
         data.addText("ไฟไหม้", "ไฟไหม้ตึก");
         data.addImage("ไฟไหม้", "รูปไฟไหม้");
-        data.selectAgency("ไฟไหม้", "");
+        data.selectAgency("ไฟไหม้", "ffff");
     }
 
     @Test
