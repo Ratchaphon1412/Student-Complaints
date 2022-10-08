@@ -62,7 +62,7 @@ class DataBaseTest {
     @Test
     void addNewCategory () throws IOException {
        ProcessData data = new ProcessData();
-       data.addCategory("น้ำท่วม");
+       data.addCategory("ไฟไหม้");
       // data.addTitle("fire","llll");
     }
 
@@ -71,6 +71,7 @@ class DataBaseTest {
         ProcessData data = new ProcessData();
         data.addText("ไฟไหม้", "ไฟไหม้ตึก");
         data.addImage("ไฟไหม้", "รูปไฟไหม้");
+        data.selectAgency("ไฟไหม้", "");
     }
 
     @Test
