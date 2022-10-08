@@ -57,8 +57,6 @@
             <HBox alignment="CENTER" prefWidth="150.0">
                <children>
                   <Label fx:id="dateLabel" styleClass="textLabelColor" text="XX:XX:XXXX" textFill="WHITE" />
-                  <Label text=" | " textFill="WHITE" />
-                  <Label fx:id="timeLabel" styleClass="textLabelColor" text="XX:XX:XX" textFill="WHITE" />
                </children>
                <styleClass>
                   <String fx:value="roundedCorner" />
@@ -92,23 +90,11 @@
       <HBox alignment="CENTER_LEFT" GridPane.columnSpan="3" GridPane.rowIndex="1">
          <children>
             <HBox prefWidth="10.0" />
-            <Label prefHeight="18.0" prefWidth="89.0" styleClass="textLabelColor" text="categoryReport" textFill="WHITE" />
             <HBox prefWidth="20.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="317.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="390.0">
                <HBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
-               <styleClass>
-                  <String fx:value="roundedCorner" />
-                  <String fx:value="cardBackground" />
-               </styleClass>
-               <children>
-                  <Label fx:id="categoryReportLabel" prefHeight="18.0" prefWidth="330.0" styleClass="textLabelColor" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
             </HBox>
             <HBox prefWidth="20.0" />
             <Button fx:id="detailsPost" mnemonicParsing="false" onAction="#viewPost" prefHeight="40.0" prefWidth="125.0" style="-fx-background-radius: 50;" text="  details" textFill="WHITE">
@@ -129,6 +115,22 @@
                   <String fx:value="cardBackground" />
                   <String fx:value="textLabelColor" />
                </styleClass>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" GridPane.columnIndex="3">
+         <children>
+            <Button fx:id="clickId2" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="pass">
+               <styleClass>
+                  <String fx:value="circleGreen" />
+                  <String fx:value="roundedCorner" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Button>
          </children>
       </HBox>

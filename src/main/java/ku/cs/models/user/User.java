@@ -14,12 +14,9 @@ public class User extends Account {
     private String dateBan;
 
     private String dateRequestBan;
-<<<<<<< HEAD
-
-=======
     private String category;
     private List<Report> reportList;
->>>>>>> 979c1fe085f4a63f2aaa22084baffe77422d637c
+
 
 
 
