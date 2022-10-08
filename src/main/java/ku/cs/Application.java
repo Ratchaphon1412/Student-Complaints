@@ -36,24 +36,10 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
         ApplicationController.when("AlertRequest",pathResource+"alertRequestUnbanView.fxml",600,400);
         ApplicationController.when("Request",pathResource+"requestUnbanView.fxml",600,400);
-        ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
-        ApplicationController.when("AdminAgency",pathResource+"agencyView.fxml",1000,580);
-        ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
-        ApplicationController.when("RegisterStuff",pathResource+"registerStuff.fxml",1000,580);
-        ApplicationController.when("AdminAgencyAdd",pathResource +"addNewAgency.fxml",600,400);
-        ApplicationController.when("AllProblem",pathResource+"allProblemReportView.fxml",1000,580);//
-        ApplicationController.when("Feed",pathResource+"problemFeedView.fxml",1000,580);
-        ApplicationController.when("Report",pathResource+"detailProblemView.fxml",1000,580);
-        ApplicationController.when("UserPostsProfile",pathResource+"userPostsView.fxml",1000,580);
-        ApplicationController.when("User",pathResource+"problemFeedView.fxml",1000,580);
-        ApplicationController.when("AdminCategory",pathResource+"categoryView.fxml",1000,580);
-        ApplicationController.when("AddCategory",pathResource+"addCategoryView.fxml",1000, 580);
         ApplicationController.when("Info",pathResource+"infoVIew.fxml",1000,580);
-        ApplicationController.when("UserSetting",pathResource+"userSettingView.fxml",1000, 580);
-        ApplicationController.when("DetailReport",pathResource+"detailProblemView.fxml",900,480);
-        ApplicationController.when("addCategory",pathResource+"addCategory.fxml",1000, 580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",300 , 200);
+
 
         //Admin zone
         ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);

@@ -2,19 +2,19 @@ package ku.cs.controller.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import ku.cs.ApplicationController;
+
 import ku.cs.models.admin.Admin;
+
+import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class AddCategoryController {
 
@@ -27,15 +27,29 @@ public class AddCategoryController {
     private TextField addText;
 
     @FXML
-    private ChoiceBox<String> dropDown;
+    private ChoiceBox<String> dropDownType;
+    @FXML
+    private ChoiceBox<String> dropDownAgency;
 
     @FXML
     private Label text;
     private ArrayList<String> listExampleString;
+    private ArrayList<String> textString;
+    private  ArrayList<String> imageString;
+    private ArrayList<String> checkType;
+    private ArrayList<String> dropDownAgencyList;
+    DataBase dataBase;
 
 
     public void initialize() throws IOException {
-        processData = new ProcessData<>();
+
+        dataBase = new DataBase();
+        listExampleString = new ArrayList<>();
+        processData = new ProcessData();
+        textString = new ArrayList<>();
+        imageString = new ArrayList<>();
+        checkType = new ArrayList<>();
+        dropDownAgencyList = new ArrayList<>();
         initializeCategory();
 
 
@@ -44,11 +58,27 @@ public class AddCategoryController {
         //initializeCategory();
 
     }
-    @FXML void initializeCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/categoryList.fxml"));
-        AnchorPane categoryComponant = fxmlLoader.load();
-        AddCategoryController addCategoryController = fxmlLoader.getController();
+
+
+    @FXML
+    void initializeCategory() throws IOException {
+//        fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/categoryList.fxml"));
+//        AnchorPane categoryComponant = (AnchorPane) fxmlLoader.load();
+//        AddCategoryController addCategoryController = fxmlLoader.getController();
+//
+//        GridPane.setMargin(categoryComponant, new Insets(0,0,5,0));
+
+        String[] pattern = {"text", "image"};
+        dropDownType.getItems().addAll(pattern);
+
+        dropDownAgencyList = processData.dropDownAgency();
+        dropDownAgency.getItems().addAll(dropDownAgencyList);
+
+
+
+
+
 
     }
 
@@ -62,22 +92,63 @@ public class AddCategoryController {
     }
 
 
-    void applyButton() throws IOException {
-        String category = addCatagoryField.getText();
-        processData.addCategory(category);
-        for (String dataLine : listExampleString) {
-            if(dropDown.getValue().equals("text")) {
-                processData = new ProcessData<>();
-                processData.addText(category, dataLine);
-            } else if(dropDown.getValue().equals("image")){
-                processData = new ProcessData<>();
-                processData.addImage(category, dataLine);
+
+    @FXML
+    private void handleExample() {
+        String type = dropDownType.getValue();
+        int count = 1;
+        listExampleString.add(addText.getText());
+        String label = "";
+        if(type.equals("text")){
+            textString.add(addText.getText());
+            checkType.add(" text");
+            for (String temp : listExampleString) {
+                label += count + "." + temp +  checkType.get(count-1) +"\n";
+                count++;
             }
+            text.setWrapText(true);
+            text.setText(label);
+            addText.clear();
+
+
+        } else if (type.equals("image")) {
+            imageString.add(addText.getText());
+            checkType.add(" image");
+            for (String temp : listExampleString) {
+                label += count + "." + temp + checkType.get(count-1) + "\n";
+                count++;
+            }
+            text.setWrapText(true);
+            text.setText(label);
+            addText.clear();
 
         }
+    }
+
+    public void handleSubmitButton() throws IOException {
+
+        String category = addCatagoryField.getText();
+        processData.addCategory(category);
+        processData.selectAgency(category, dropDownAgency.getValue());
+        for (String dataLine : textString) {
+            processData = new ProcessData<>();
+            processData.addText(category, dataLine);
+        }
+
+        for (String dataLine : imageString){
+            processData = new ProcessData<>();
+            processData.addImage(category,dataLine);
+        }
+        clear();
+
+    }
+    public void clear(){
         text.setText("");
-        addCatagoryField.clear();
+        //addCatagoryField.clear();
         listExampleString.clear();
+        textString.clear();
+        imageString.clear();
+        checkType.clear();
     }
 
 

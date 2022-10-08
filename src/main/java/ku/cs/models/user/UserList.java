@@ -76,6 +76,7 @@ public class UserList {
 
 
     public void setReportUser(ReportList reportList){
+            reportList.setReportSetterSort(reportList.getReportLists());
 
             for(User user:userList){
                 ReportList tempReport = reportList.sortReport(new Filterer<Report>() {

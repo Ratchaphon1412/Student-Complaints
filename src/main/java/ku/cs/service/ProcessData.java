@@ -387,8 +387,8 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     public void addCategory(String category) throws IOException{
         checkCategory = false;
-        List<LinkedHashMap<String, String>> newCategoryList = dataBase.getCategoryList();
-        for (LinkedHashMap<String, String> dataLine : newCategoryList){
+        List<LinkedHashMap<String, String>> newPatternList= dataBase.getPatternList();
+        for (LinkedHashMap<String, String> dataLine : newPatternList){
             if(dataLine.get("category").equals(category)){
                 checkCategory = true;
             }
@@ -456,6 +456,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         }
     }
 
+
     public void createPost(String title ,User reporter, String category, String agency,ArrayList<String>dataText,ArrayList<File>dataImage) throws IOException {
         List<LinkedHashMap<String,String>> reportlist = dataBase.getReportList();
         LinkedHashMap<String,String> temp = new LinkedHashMap<>();
@@ -513,6 +514,29 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         dataBase.saveToDatabase();
 
 
+    }
+
+
+    public void  selectAgency(String category, String agency) throws IOException {
+        List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
+        for (LinkedHashMap<String, String> dataLine : patternList) {
+            if (dataLine.get("category").equals(category)) {
+                if(dataLine.get("agency").equals("")){
+                    dataLine.put("agency", agency);
+                    dataBase.saveToDatabase();
+                }
+
+            }
+        }
+    }
+
+    public ArrayList<String> dropDownAgency() {
+        ArrayList<String> dropDownAgency = new ArrayList<>();
+        List<LinkedHashMap<String, String>> agencyList = dataBase.getAgencyList();
+        for (LinkedHashMap<String, String> dataLine : agencyList) {
+            dropDownAgency.add(dataLine.get("agency"));
+        }
+        return dropDownAgency;
     }
 
 

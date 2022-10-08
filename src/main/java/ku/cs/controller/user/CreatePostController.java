@@ -2,6 +2,7 @@ package ku.cs.controller.user;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -95,9 +96,23 @@ public class CreatePostController {
         }
 
         //load postuser
-        GridPane grirdScoll = new GridPane();
-        accountfeed.setContent(grirdScoll);
 
+        GridPane gridScoll = new GridPane();
+
+        accountfeed.setContent(gridScoll);
+        accountfeed.setFitToWidth(true);
+        int countRow = 0;
+        for (Report report: user.getReportList()) {
+            FXMLLoader fxmlLoaderPost = new FXMLLoader();
+            fxmlLoaderPost.setLocation(getClass().getResource("/ku/cs/components/user/userFeed.fxml"));
+            GridPane postComponant = fxmlLoaderPost.load();
+            ProblemFeedController problemFeedController = fxmlLoaderPost.getController();
+            problemFeedController.setReport(report, user);
+            GridPane.setMargin(postComponant, new Insets(0, 0, 15, 0));
+            gridScoll.add(postComponant, 0, countRow);
+            countRow++;
+            System.out.println("Check");
+        }
     }
     @FXML
     void addPostButton(ActionEvent event) throws IOException {
