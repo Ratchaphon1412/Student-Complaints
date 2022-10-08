@@ -33,6 +33,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     public ProcessData(){
         dataBase = new DataBase();
+        adminList = new AdminList(dataBase.getAccountList());
         userList = new UserList(dataBase.getAccountList(),dataBase.getUserBanList(),dataBase.getRequestban());
         staffList = new StaffList(dataBase.getAccountList(),dataBase.getAgencyList());
         reportList = new ReportList(dataBase.getReportList(),userList,dataBase.getPatternList(),dataBase.getLikePostList(),dataBase.getRequestban());
@@ -421,6 +422,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         }
     }
 
+
     public void createPost(String title ,User reporter, String category, String agency,ArrayList<String>dataText,ArrayList<File>dataImage) throws IOException {
         List<LinkedHashMap<String,String>> reportlist = dataBase.getReportList();
         LinkedHashMap<String,String> temp = new LinkedHashMap<>();
@@ -479,6 +481,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
 
     }
+
 
 
     public void  selectAgency(String category, String agency) throws IOException {
