@@ -26,8 +26,8 @@ public class alertRequestUnbanController {
 
     @FXML
     private void initialize() throws IOException {
-        String text = ApplicationController.getDataText();
-
+        user = (User) ApplicationController.getData();
+        String text = ApplicationController.getRequestText();
         String pathPicture = getClass().getResource("/ku/cs/assets/images/error-icon-4.png").toExternalForm();
         status.setImage(new Image(pathPicture));
         textStatus.setText(text);
@@ -39,7 +39,7 @@ public class alertRequestUnbanController {
     }
     @FXML
     public void requestButton(ActionEvent event) throws IOException {
-        ApplicationController.goTo("Request", user);
+        ApplicationController.goToNew("RequestUnban",user);
     }
 
 }

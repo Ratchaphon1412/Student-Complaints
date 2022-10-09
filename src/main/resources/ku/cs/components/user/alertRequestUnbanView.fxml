@@ -26,10 +26,10 @@
       <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <stylesheets>
-      <URL value="@../style/style.css" />
-      <URL value="@../style/darkMode.css" />
-      <URL value="@../style/icon.css" />
-      <URL value="@../style/picture.css" />
+      <URL value="@../../style/style.css" />
+      <URL value="@../../style/darkMode.css" />
+      <URL value="@../../style/icon.css" />
+      <URL value="@../../style/picture.css" />
    </stylesheets>
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">

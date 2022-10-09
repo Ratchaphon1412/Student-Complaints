@@ -111,59 +111,59 @@ public class LoginController {
 
         //check has account
         if(processData.checkAccount(userNameString)){
-            //check ban
-            if(!processData.checkBan(userNameString)){
-                //check role
-                switch(processData.checkRole(userNameString)){
-                    case "admin"->{
-                        DynamicDatabase<Admin> database = new ProcessData<>();
-                        Admin admin = database.login(userNameString,passWordString);
-                        if(admin != null){
-                            System.out.println("test");
-                            ApplicationController.goTo("Admin",admin);
-                        }else{
-                            ApplicationController.goToNew("Alert", "wrong password");
-                            System.out.println("wrong password");
-                        }
-                        break;
+            switch(processData.checkRole(userNameString)){
+                case "admin"->{
+                    DynamicDatabase<Admin> database = new ProcessData<>();
+                    Admin admin = database.login(userNameString,passWordString);
+                    if(admin != null){
+                        System.out.println("test");
+                        ApplicationController.goTo("Admin",admin);
+                    }else{
+                        ApplicationController.goToNew("Alert", "wrong password");
+                        System.out.println("wrong password");
                     }
-                    case "user"->{
-                        DynamicDatabase<User> database = new ProcessData<>();
-                        User user = database.login(userNameString,passWordString);
-
-                        if(user != null){
-                            if(user.isBan()){
-                                user.setCountAccess();
-                                userName.clear();
-                                passWord.clear();
-                            }
-                            else {
-                                ApplicationController.goTo("User", user);
-                            }
-                        }else{
-                            ApplicationController.goToNew("Alert", "wrong password");
-                            System.out.println("wrong password user");
-                        }
-                        break;
-                    }
-                    case "staff"->{
-                        DynamicDatabase<Staff> database = new ProcessData<>();
-                        Staff staff = database.login(userNameString,passWordString);
-                        if(staff != null){
-                            ApplicationController.goTo("Staff",staff);
-                        }else{
-                            ApplicationController.goToNew("Alert", "wrong password");
-                            System.out.println("wrong password staff");
-                        }
-                        break;
-                    }
+                    break;
                 }
+                case "user"->{
+                    DynamicDatabase<User> database = new ProcessData<>();
+                    User user = database.login(userNameString,passWordString);
 
-            }else{
-                //ทำหน้าขออันแบน
-                ApplicationController.goToNew("AlertRequest", "You are banned");
-                System.out.println("banned");
+                    if(user !=null){
+
+                        if(!processData.checkBan(userNameString)){
+
+                            ApplicationController.goTo("User", user);
+
+                        }else{
+
+                            //ทำหน้าขออันแบน
+                            user.setCountAccess();
+                            ApplicationController.goToNew("AlertRequest",user, "you are banned");
+                            System.out.println("banned");
+                        }
+
+                    }else{
+                        ApplicationController.goToNew("Alert", "wrong password");
+                        System.out.println("wrong password user");
+                    }
+
+
+                    break;
+                }
+                case "staff"->{
+                    DynamicDatabase<Staff> database = new ProcessData<>();
+                    Staff staff = database.login(userNameString,passWordString);
+                    if(staff != null){
+                        ApplicationController.goTo("Staff",staff);
+                    }else{
+                        ApplicationController.goToNew("Alert", "wrong password");
+                        System.out.println("wrong password staff");
+                    }
+                    break;
+                }
             }
+            //check ban
+
         }else{
             ApplicationController.goToNew("Alert", "You don't have account");
             System.out.println("no account in system");

@@ -80,7 +80,7 @@ public class AdminUserBanedListController {
     private SwitchTheme changeTheme;
 
     //    private UserList userReportToBan;
-    private List<Report> requestBanPost;
+
     private BanAndUnBan banAndUnBan;
     private FXMLLoader fxmlLoader;
 
@@ -167,7 +167,7 @@ public class AdminUserBanedListController {
 
         processData = new ProcessData<>();
         userList = processData.getUserList();
-        requestBanPost = processData.getReportList().getRequestDeleteReport();
+
 
         listPostReportGrid.getChildren().clear();
         gridPaneList.getChildren().clear();
@@ -178,7 +178,7 @@ public class AdminUserBanedListController {
             }
         };
         int count = 1;
-
+        System.out.println(userList.getUserBanList());
         for(User userUnban : userList.getUserBanList()){
             fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/listViewUserBanList.fxml"));

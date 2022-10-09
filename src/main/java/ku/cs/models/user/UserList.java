@@ -34,7 +34,7 @@ public class UserList {
         for(LinkedHashMap<String,String> account :accountList ){
             if(account.get("role").equals("user")){
                 for (LinkedHashMap<String,String>ban:banList){
-                    if(account.get("userName").equals(ban.get("userName"))){
+                    if(account.get("email").equals(ban.get("email"))){
                         User user = new User(account.get("email"),account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),true,ban.get("details"),ban.get("date"),ban.get("count"));
                         userBanList.add(user);
                     }
@@ -111,6 +111,7 @@ public class UserList {
     public User getUser(String name) {
         for(User check : this.userList){
             if (check.getEmail().equals(name)){
+
                 return check;
             }
         }
