@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.LocalDate;
@@ -21,16 +20,17 @@ public class DataBase {
     private List<LinkedHashMap<String,String>> userBanList;
     private List<LinkedHashMap<String,String>> requestban;
     private List<LinkedHashMap<String,String>> agencyList;
-    private List<LinkedHashMap<String,String>> categoryList;
     private List<LinkedHashMap<String,String>> patternList;
     private List<LinkedHashMap<String,String>> likePostList;
 
-
+    private LinkedHashMap<String,String[]> schemaPattern;
 
 
 
     public DataBase(){
+        setUpSchemaPattern();
         initializeData();
+
     }
 
 
@@ -41,38 +41,58 @@ public class DataBase {
         userBanList = new ArrayList<>();
         requestban = new ArrayList<>();
         agencyList = new ArrayList<>();
-        categoryList = new ArrayList<>();
         patternList = new ArrayList<>();
         likePostList = new ArrayList<>();
-        readFile("account.csv");
-        readFile("log.csv");
-        readFile("requestunban.csv");
-        readFile("requestban.csv");
-        readFile("staffAgencyList.csv");
-        readFile("reportcategory.csv");
-        readFile("pattern.csv");
-        readFile("report.csv");
-        readFile("likepost.csv");
+        readFile("account.csv",schemaPattern.get("account.csv"));
+        readFile("log.csv",schemaPattern.get("log.csv"));
+        readFile("requestunban.csv",schemaPattern.get("requestunban.csv"));
+        readFile("requestban.csv",schemaPattern.get("requestban.csv"));
+        readFile("staffAgencyList.csv",schemaPattern.get("staffAgencyList.csv"));
+        readFile("pattern.csv",schemaPattern.get("pattern.csv"));
+        readFile("report.csv",schemaPattern.get("report.csv"));
+        readFile("likepost.csv",schemaPattern.get("likepost.csv"));
 
+    }
+
+    private void setUpSchemaPattern()
+    {
+        schemaPattern = new LinkedHashMap<>();
+        String[] accountPattern = {"email","userName","passWord","role","pathPicture"} ;
+        String[] categoryReportPattern = {"category","pattern"};
+        String[] likepostPattern = {"title","like","email"};
+        String[] logPattern = {"userName","role","pathPicture","date","time"};
+        String[] patternPattern = {"category","text","image","agency"};
+        String[] reportPattern ={"title","email","category","reportStage","problemDate","time","text","image","agency","staffemail","process"};
+        String[] requestBanPattern = {"headData","dateTime","type","textReport"};
+        String[] requestUnbanPattern = {"email","date","details","count"};
+        String[] staffAgencyListPattern = {"agency","staffNameList"};
+        schemaPattern.put("account.csv",accountPattern);
+        schemaPattern.put("categoryReport.csv",categoryReportPattern);
+        schemaPattern.put("likepost.csv",likepostPattern);
+        schemaPattern.put("log.csv",logPattern);
+        schemaPattern.put("pattern.csv",patternPattern);
+        schemaPattern.put("report.csv",reportPattern);
+        schemaPattern.put("requestban.csv",requestBanPattern);
+        schemaPattern.put("requestunban.csv",requestUnbanPattern);
+        schemaPattern.put("staffAgencyList.csv",staffAgencyListPattern);
     }
 
     public void saveToDatabase() throws IOException {
 
-        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","reportcategory.csv","pattern.csv","likepost.csv"};
+        String[] database = {"account.csv","report.csv","log.csv","requestunban.csv","requestban.csv","staffAgencyList.csv","pattern.csv","likepost.csv"};
         for(String databaseName : database){
             String path = endpointPath + File.separator + databaseName;
             File file = new File(path);
             Writer writer = new OutputStreamWriter(new FileOutputStream(file),StandardCharsets.UTF_8);
             switch (databaseName) {
-                case "account.csv" -> this.writeFile(accountList, writer);
-                case "report.csv" -> this.writeFile(reportList, writer);
-                case "log.csv" -> this.writeFile(logList, writer);
-                case "requestunban.csv" -> this.writeFile(userBanList,writer);
-                case "requestban.csv" -> this.writeFile(requestban,writer);
-                case "staffAgencyList.csv" -> this.writeFile(agencyList,writer);
-                case "reportcategory.csv" -> this.writeFile(categoryList, writer);
-                case "pattern.csv"->this.writeFile(patternList,writer);
-                case "likepost.csv"->this.writeFile(likePostList,writer);
+                case "account.csv" -> this.writeFile(accountList, writer,schemaPattern.get("account.csv"));
+                case "report.csv" -> this.writeFile(reportList, writer,schemaPattern.get("report.csv"));
+                case "log.csv" -> this.writeFile(logList, writer,schemaPattern.get("log.csv"));
+                case "requestunban.csv" -> this.writeFile(userBanList,writer,schemaPattern.get("requestunban.csv"));
+                case "requestban.csv" -> this.writeFile(requestban,writer,schemaPattern.get("requestban.csv"));
+                case "staffAgencyList.csv" -> this.writeFile(agencyList,writer,schemaPattern.get("staffAgencyList.csv"));
+                case "pattern.csv"->this.writeFile(patternList,writer,schemaPattern.get("pattern.csv"));
+                case "likepost.csv"->this.writeFile(likePostList,writer,schemaPattern.get("likepost.csv"));
             }
         }
 
@@ -81,19 +101,20 @@ public class DataBase {
 
 
 
-    private void readFile(String fileTaget){
+    private void readFile(String fileTaget,String[] pattern){
         String path = endpointPath + File.separator + fileTaget;
         File file = new File(path);
-//        BufferedReader buffer = null;
-//        FileReader reader = null;
+
 
         try {
-//            reader = new FileReader(file);
-//            buffer = new BufferedReader(reader);
             CsvMapper mapper = new CsvMapper();
-            CsvSchema schema =CsvSchema.emptySchema().withHeader();
+            CsvSchema schema = null;
+            CsvSchema.Builder schemaBuilder = CsvSchema.builder();
+            for(String key:pattern){
+                schemaBuilder.addColumn(key);
+            }
+            schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
             MappingIterator<LinkedHashMap<String,String>> iterator = mapper.readerFor(LinkedHashMap.class).with(schema).readValues(new BufferedReader(new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8)));
-
 
             while(iterator.hasNext()){
                 LinkedHashMap<String,String> temp = iterator.next();
@@ -104,7 +125,6 @@ public class DataBase {
                     case "requestunban.csv" -> userBanList.add(temp);
                     case "requestban.csv" -> requestban.add(temp);
                     case "staffAgencyList.csv" -> agencyList.add(temp);
-                    case "reportcategory.csv" -> categoryList.add(temp);
                     case "pattern.csv"->patternList.add(temp);
                     case "likepost.csv"->likePostList.add(temp);
                 }
@@ -112,33 +132,25 @@ public class DataBase {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        finally {
-//            try {
-//                buffer.close();
-//                reader.close();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-
     }
 
 
 
 
-    private void writeFile(List<LinkedHashMap<String,String>> listOfMap, Writer writer) throws IOException {
+    private void writeFile(List<LinkedHashMap<String,String>> listOfMap, Writer writer,String[] pattern) throws IOException {
         CsvSchema schema = null;
         CsvSchema.Builder schemaBuilder = CsvSchema.builder();
         List<LinkedHashMap<String,String>> temp = new ArrayList<>();
+
+        for(String key:pattern){
+            schemaBuilder.addColumn(key);
+        }
+        schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
         if(listOfMap !=null && !listOfMap.isEmpty()){
             for (LinkedHashMap<String, String> stringStringLinkedHashMap : listOfMap) {
-                schemaBuilder.clearColumns();
                 temp.add(stringStringLinkedHashMap);
-                for (String key : listOfMap.get(0).keySet()) {
-                    schemaBuilder.addColumn(key);
-                }
             }
-            schema = schemaBuilder.build().withLineSeparator("\r").withHeader();
+
         }
         CsvMapper mapper = new CsvMapper();
         mapper.writer(schema).writeValues(writer).write(temp);
@@ -196,7 +208,7 @@ public class DataBase {
 
     public boolean changePasswordUser(String username, String oldPassword, String newPassword) throws IOException {
         for (LinkedHashMap<String, String> dataLine : accountList){
-            if(dataLine.get("userName").equals(username)){
+            if(dataLine.get("email").equals(username)){
                 if(dataLine.get("passWord").equals(oldPassword)){
                     dataLine.replace("passWord", newPassword);
                     saveToDatabase();
@@ -271,13 +283,6 @@ public class DataBase {
         this.agencyList = agencyList;
     }
 
-    public List<LinkedHashMap<String, String>> getCategoryList() {
-        return categoryList;
-    }
-
-    public void setCategoryList(List<LinkedHashMap<String, String>> categoryList) {
-        this.categoryList = categoryList;
-    }
 
     public List<LinkedHashMap<String, String>> getPatternList() {
         return patternList;

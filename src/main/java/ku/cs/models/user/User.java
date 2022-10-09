@@ -13,21 +13,20 @@ public class User extends Account {
     private String requestUnban;
     private String dateBan;
 
-    private String time;
     private String dateRequestBan;
-    private String category;
     private List<Report> reportList;
+    private String textReport;
 
 
 
 
-    public User(String userName, String passWord, String pathPicture, String role){
-        super(userName, passWord, pathPicture, role);
+    public User(String email,String userName, String passWord, String pathPicture, String role){
+        super(email,userName, passWord, pathPicture, role);
         this.ban = false;
     }
-    public User(String userName, String passWord, String pathPicture, String role, Boolean ban ,
+    public User(String email,String userName, String passWord, String pathPicture, String role, Boolean ban ,
                 String requestUnban , String dateBan , String countAccess) {
-        super(userName, passWord, pathPicture, role);
+        super(email,userName, passWord, pathPicture, role);
         this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
@@ -35,20 +34,15 @@ public class User extends Account {
         this.reportList = new ArrayList<>();
     }
 
-    public User(String userName, String passWord, String pathPicture, String role,String category,String time,String date){
 
-        super(userName, passWord, pathPicture, role);
-        this.category = category;
-        this.time = time;
+    public User(String email,String userName, String passWord, String pathPicture, String role,String date,String textReport){
+        super(email,userName, passWord, pathPicture, role);
+
         this.dateRequestBan = date;
         this.ban = false;
+        this.textReport = textReport;
     }
 
-    public void addRequestedBan(String category,String time,String date){
-        this.category = category;
-        this.time = time;
-        this.dateRequestBan = date;
-    }
     public void addUserBaned(Boolean ban , String requestUnban , String dateBan ,String countAccess){
         this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
@@ -73,16 +67,13 @@ public class User extends Account {
         return countAccess;
     }
 
-    public String getTime() {
-        return time;
-    }
 
     public String getDateRequestBan() {
         return dateRequestBan;
     }
 
-    public String getCategory() {
-        return category;
+    public String getTextReport() {
+        return textReport;
     }
 
     public List<Report> getReportList() {

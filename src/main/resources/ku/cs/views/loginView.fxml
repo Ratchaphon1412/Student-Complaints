@@ -193,17 +193,20 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#infoButton" prefHeight="26.0" prefWidth="30.0" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#infoButton" prefHeight="25.0" prefWidth="26.0" textFill="WHITE">
                            <styleClass>
                               <String fx:value="infoCircleSVG" />
                               <String fx:value="colorIcon" />
                            </styleClass>
+                           <font>
+                              <Font size="8.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="34.0" prefWidth="40.0" GridPane.columnIndex="1">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#infoButton" prefHeight="5.0" prefWidth="3.0">
+                        <Button mnemonicParsing="false" onAction="#infoButton" prefHeight="0.0" prefWidth="0.0">
                            <font>
                               <Font size="5.0" />
                            </font>

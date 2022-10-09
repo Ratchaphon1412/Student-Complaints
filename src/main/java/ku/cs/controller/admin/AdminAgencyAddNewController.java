@@ -48,7 +48,7 @@ public class AdminAgencyAddNewController {
             //create agency
             LinkedHashMap<String,String> temp = new LinkedHashMap<>();
             temp.put("agency",newAgencyText);
-            temp.put("stuffNameList","");
+            temp.put("staffNameList","");
             List<LinkedHashMap<String,String>> agencyList = processData.getDataBase().getAgencyList();
             System.out.println(agencyList);
             agencyList.add(temp);

@@ -2,12 +2,16 @@ package ku.cs.controller.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 
+
+import ku.cs.State;
 import ku.cs.models.admin.Admin;
 
 import ku.cs.service.DataBase;
@@ -33,7 +37,12 @@ public class AddCategoryController {
     private ChoiceBox<String> dropDownAgency;
 
     @FXML
+    private Button close;
+
+    @FXML
     private Label text;
+
+
     private ArrayList<String> listExampleString;
     private ArrayList<String> textString;
     private  ArrayList<String> imageString;
@@ -43,6 +52,7 @@ public class AddCategoryController {
 
 
     public void initialize() throws IOException {
+
         dataBase = new DataBase();
         listExampleString = new ArrayList<>();
         processData = new ProcessData();
@@ -73,16 +83,12 @@ public class AddCategoryController {
         dropDownType.getItems().addAll(pattern);
         dropDownAgencyList = processData.dropDownAgency();
         dropDownAgency.getItems().addAll(dropDownAgencyList);
-
     }
 
     @FXML
     void closeButton() {
-        try {
-            ApplicationController.goTo("AdminCategory");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Stage state = (Stage)close.getScene().getWindow();
+        state.close();
     }
 
 
@@ -144,6 +150,12 @@ public class AddCategoryController {
         textString.clear();
         imageString.clear();
         checkType.clear();
+    }
+
+    @FXML
+    public void closeWindows(){
+        Stage stage = (Stage)close.getScene().getWindow();
+        stage.close();
     }
 
 

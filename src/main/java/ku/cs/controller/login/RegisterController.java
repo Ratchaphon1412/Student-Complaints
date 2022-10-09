@@ -29,6 +29,8 @@ public class RegisterController {
     @FXML
     private TextField userName;
     @FXML
+    private TextField email;
+    @FXML
     private PasswordField passWord;
     @FXML
     private PasswordField confirmPassword;
@@ -60,13 +62,14 @@ public class RegisterController {
     @FXML
     public void signUpButton(ActionEvent actionEvent) throws IOException {
         String user = userName.getText();
+        String emails = email.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
         dataBase = new ProcessData();
         if(!dataBase.checkAccountDuplicate(user)){
             if(password.equals(confirmpassword)){
                 if(path != null){
-                    User newUser = new User(user,password,path,"user");
+                    User newUser = new User(emails,user,password,path,"user");
                     DynamicDatabase<User> database = new ProcessData<>();
                    boolean checkregister = database.registerAccount(newUser,file,"user");
                    if(checkregister){
@@ -77,14 +80,14 @@ public class RegisterController {
                 }else{//แก้ให้ใส่ภาพตั้งต้น
 
 
-                    file.getAbsolutePath()();
-                    User newUser = new User(user,password,firstpic,"user");
-                    DynamicDatabase<User> database = new ProcessData<>();
-                    boolean checkregister = database.registerAccount(newUser,file,"user");
-                    if(checkregister){
-                        ApplicationController.goTo("Login");
-                    }
-                    userImage.setImage(new Image(new File(firstpic).toURI().toString()));
+
+                    //User newUser = new User(user,password,file,"user");
+//                    DynamicDatabase<User> database = new ProcessData<>();
+//                    boolean checkregister = database.registerAccount(newUser,file,"user");
+//                    if(checkregister){
+//                        ApplicationController.goTo("Login");
+//                    }
+//                    userImage.setImage(new Image(new File(firstpic).toURI().toString()));
 
 
 

@@ -21,6 +21,8 @@ public class StuffRegisterController {
     @FXML
     private TextField userName;
     @FXML
+    private TextField email;
+    @FXML
     private PasswordField passWord;
     @FXML
     private PasswordField confirmPassword;
@@ -55,6 +57,7 @@ public class StuffRegisterController {
     @FXML
     private void  signUpButton() throws IOException {
         String user = userName.getText();
+        String emails = email.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
         dataBase = new ProcessData<>();
@@ -67,9 +70,9 @@ public class StuffRegisterController {
                     if(choiceAgency.getValue() !=null){
                         selectAgency = choiceAgency.getValue().toString();
                     }
-                    Staff newUser = new Staff(user,password,path,"stuff",selectAgency);
+                    Staff newUser = new Staff(emails,user,password,path,"staff",selectAgency);
                     DynamicDatabase<Staff> database = new ProcessData<>();
-                    boolean checkregister = database.registerAccount(newUser,file,"stuff");
+                    boolean checkregister = database.registerAccount(newUser,file,"staff");
                     if(checkregister){
 //                        ApplicationController.goTo("Login");
                         closeWindows();

@@ -26,13 +26,11 @@ public class DeleteUserReportController {
     private Label titleLabel;
 
     @FXML
-    private Label timeLabel;
-
+    private Button clickIdDelete;
     @FXML
-    private Label categoryReportLabel;
-
+    private Button clickIdPass;
     @FXML
-    private Button clickId;
+    private Label subjectLabel;
 
     private BanAndUnBan banAndUnBan;
 
@@ -44,9 +42,15 @@ public class DeleteUserReportController {
     @FXML
     private void clickPost(ActionEvent actionEvent) throws IOException {
         processData.changeData(report,"deletePost");
-        clickId.setOnAction(null);
+        clickIdDelete.setOnAction(null);
         banAndUnBan.onClickBanOrUnban();
 
+    }
+    @FXML
+    private void clickDeleteReportPost(ActionEvent actionEvent) throws IOException {
+        processData.changeData(report,"deleteReport");
+        clickIdPass.setOnAction(null);
+        banAndUnBan.onClickBanOrUnban();
     }
 
 
@@ -55,10 +59,9 @@ public class DeleteUserReportController {
         this.admin = admin;
         this.banAndUnBan = banAndUnBan;
         this.processData = new ProcessData<User>();
+        subjectLabel.setText(report.getTextReport());
         titleLabel.setText(report.getTitle());
-        timeLabel.setText(report.getTimeRequestDalete());
-        dateLabel.setText(report.getDateRequestDalete());
-        categoryReportLabel.setText(report.getCategoryReportPost());
+        dateLabel.setText(report.getDateTimeRequestDalete());
     }
     @FXML
     public void  viewPost(ActionEvent actionEvent) throws IOException {

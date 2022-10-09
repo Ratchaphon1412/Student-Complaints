@@ -22,7 +22,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("Login");
+        ApplicationController.goTo("LoadingScreen");
 
     }
 
@@ -34,25 +34,14 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("changePassword",pathResource+"changePasswordView.fxml", 600, 400);
         ApplicationController.when("Loading",pathResource+"loadSplashScreen.fxml",300,350);
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
-        ApplicationController.when("AlertRequest",pathResource+"alertRequestUnbanView.fxml",600,400);
-        ApplicationController.when("Request",pathResource+"requestUnbanView.fxml",600,400);
-        ApplicationController.when("banUser",pathResource+"banUserOrUnban.fxml",1000,580);
-        ApplicationController.when("AdminAgency",pathResource+"agencyView.fxml",1000,580);
-        ApplicationController.when("Setting",pathResource+"settingView.fxml",1000,580);
-        ApplicationController.when("RegisterStuff",pathResource+"registerStuff.fxml",1000,580);
-        ApplicationController.when("AdminAgencyAdd",pathResource +"addNewAgency.fxml",600,400);
-        ApplicationController.when("AllProblem",pathResource+"allProblemReportView.fxml",1000,580);//
-        ApplicationController.when("Feed",pathResource+"problemFeedView.fxml",1000,580);
-        ApplicationController.when("Report",pathResource+"detailProblemView.fxml",1000,580);
-        ApplicationController.when("UserPostsProfile",pathResource+"userPostsView.fxml",1000,580);
-        ApplicationController.when("User",pathResource+"problemFeedView.fxml",1000,580);
-        ApplicationController.when("AdminCategory",pathResource+"categoryView.fxml",1000,580);
-        ApplicationController.when("AddCategory",pathResource+"addCategoryView.fxml",1000, 580);
+        ApplicationController.when("AlertRequest","ku/cs/components/user/alertRequestUnbanView.fxml",600,400);
+        ApplicationController.when("RequestUnban","ku/cs/components/user/requestUnbanView.fxml",600,400);
         ApplicationController.when("Info",pathResource+"infoVIew.fxml",1000,580);
-        ApplicationController.when("UserSetting",pathResource+"userSettingView.fxml",1000, 580);
-        ApplicationController.when("DetailReport",pathResource+"detailProblemView.fxml",900,480);
-        ApplicationController.when("addCategory",pathResource+"addCategory.fxml",1000, 580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
+        ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",500 , 300);
+        ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
+
+
 
         //Admin zone
         ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);
@@ -62,8 +51,9 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("RegisterStuff",pathResource+"admin/registerStuff.fxml",1000,580);
         ApplicationController.when("banUser",pathResource+"admin/banUserOrUnban.fxml",1000,580);
         ApplicationController.when("AllProblem",pathResource+"admin/allProblemReportView.fxml",1000,580);
-        ApplicationController.when("AddCategory",pathResource+"admin/addCategoryView.fxml",1000, 580);
+        ApplicationController.when("addCategory","ku/cs/components/admin/addCategory.fxml",600,600);
         ApplicationController.when("AdminCategory",pathResource+"admin/categoryView.fxml",1000,580);
+        ApplicationController.when("addCategory","ku/cs/components/admin/addCategory.fxml",600,600);
 
         //User zone
         ApplicationController.when("User",pathResource+"user/userDashBoardView.fxml",1000,580);
