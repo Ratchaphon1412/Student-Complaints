@@ -20,6 +20,10 @@ public class requestUnbanController {
     @FXML
     private TextField requestField;
 
+    @FXML
+    private TextField userName;
+
+
     private User user;
 
     private ProcessData processData;
@@ -28,19 +32,21 @@ public class requestUnbanController {
 
     public void initialize() {
         user = (User) ApplicationController.getData();
-        String requestText = requestField.getText();
+
         processData = new ProcessData<>();
     }
 
     @FXML
     private void applyButton(ActionEvent actionEvent) throws IOException {
         String requestText = requestField.getText();
-       String countAccess = Integer.toString(user.getCountAccess());
-        processData.requestBan(user.getUserName(), requestText, countAccess );
+        String userNameText = userName.getText();
+        String countAccess = Integer.toString(user.getCountAccess());
+        processData.requestBan(userNameText, requestText, countAccess );
+        closeWindows();
     }
 
     @FXML
-    public void closeWindows(ActionEvent actionEvent){
+    public void closeWindows(){
         Stage stage = (Stage)close.getScene().getWindow();
         stage.close();
     }

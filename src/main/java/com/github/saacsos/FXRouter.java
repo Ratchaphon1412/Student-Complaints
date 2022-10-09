@@ -159,6 +159,7 @@ public class FXRouter {
     public static Reposthable getRefreshable(){ return currentRoute.reposthable;}
 
     public static AgencyLoad getAgencyLoad(){return currentRoute.agencyLoad;}
+    public static String getRequestText(){return currentRoute.requestText;}
 
     protected static class RouteScene {
         public Reposthable reposthable;
@@ -170,6 +171,7 @@ public class FXRouter {
         public String windowTitle;
         public double sceneWidth;
         public double sceneHeight;
+        public String requestText;
 
 
         private RouteScene(String scenePath) {

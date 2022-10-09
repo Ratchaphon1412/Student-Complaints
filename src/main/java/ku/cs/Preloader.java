@@ -27,6 +27,8 @@ public class Preloader implements Initializable {
     private GridPane rootGridPane;
 
     @FXML
+    private Label titleStudent;
+    @FXML
     private Circle circle1;
 
     @FXML
@@ -52,7 +54,7 @@ public class Preloader implements Initializable {
             try{
                 Preferences preferences = Preferences.userRoot().node(ku.cs.State.class.getName());
                 Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),12);
-//                titleStudentComplaints.setFont(font);
+                titleStudent.setFont(font);
                 loadingLable.setFont(font);
 //                new Shake(rootGridPane).setDelay(Duration.valueOf("1000ms")).play();
                 new Bounce(circle1).setCycleCount(14).setDelay(Duration.valueOf("500ms")).play();

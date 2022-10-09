@@ -97,7 +97,7 @@ public class ProblemFeedController {
             //delete like
 
               //connect models
-              report.deleteLike(user.getUserName());
+              report.deleteLike(user.getEmail());
               DynamicDatabase<Report> dynamicDatabase = new ProcessData<>();
               dynamicDatabase.changeData(report,"like");
               likeCheck = !likeCheck;
@@ -107,7 +107,7 @@ public class ProblemFeedController {
               //add
 
               //connect models
-              report.addLike(user.getUserName());
+              report.addLike(user.getEmail());
               DynamicDatabase<Report> dynamicDatabase = new ProcessData<>();
               dynamicDatabase.changeData(report,"like");
               likeCheck = !likeCheck;
@@ -145,7 +145,7 @@ public class ProblemFeedController {
             //set Like database
             System.out.println(report.getUserNameLike());
             for(String userName: report.getUserNameLike()){
-                if(userName.equals(user.getUserName())){
+                if(userName.equals(user.getEmail())){
                     likeCheck = true;
                 }else{
                     likeCheck = false;
