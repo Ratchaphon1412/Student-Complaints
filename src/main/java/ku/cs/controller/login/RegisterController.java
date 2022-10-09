@@ -47,7 +47,7 @@ public class RegisterController {
     private ProcessData dataBase;
     private String path;
     private File file;
-    private String firstpic = "/ku/cs/assets/images/download.png";
+
     List<String> listfile;
 
     @FXML
@@ -79,15 +79,12 @@ public class RegisterController {
                    }
                 }else{//แก้ให้ใส่ภาพตั้งต้น
 
-
-
-                    //User newUser = new User(user,password,file,"user");
-//                    DynamicDatabase<User> database = new ProcessData<>();
-//                    boolean checkregister = database.registerAccount(newUser,file,"user");
-//                    if(checkregister){
-//                        ApplicationController.goTo("Login");
-//                    }
-//                    userImage.setImage(new Image(new File(firstpic).toURI().toString()));
+                    User newUser = new User(emails,user,password,path,"user");
+                    DynamicDatabase<User> database = new ProcessData<>();
+                    boolean checkregister = database.registerAccount(newUser,file,"user");
+                    if(checkregister){
+                        ApplicationController.goTo("Login");
+                    }
 
 
 
@@ -115,13 +112,13 @@ public class RegisterController {
 
         file = choosefile.showOpenDialog(null);
 
+        userImage.setImage(new Image(new File(getClass().getResource("/ku/cs/assets/images/download.png").toExternalForm()).toURI().toString()));
+        System.out.println(path);
 
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());
             path = file.getAbsolutePath();
             userImage.setImage(new Image(new File(path).toURI().toString()));
-        }else {
-
         }
 
     }
