@@ -22,7 +22,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("Login");
+        ApplicationController.goTo("LoadingScreen");
 
     }
 
@@ -39,6 +39,8 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Info",pathResource+"infoVIew.fxml",1000,580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",500 , 300);
+        ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
+
 
 
         //Admin zone
@@ -49,8 +51,9 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("RegisterStuff",pathResource+"admin/registerStuff.fxml",1000,580);
         ApplicationController.when("banUser",pathResource+"admin/banUserOrUnban.fxml",1000,580);
         ApplicationController.when("AllProblem",pathResource+"admin/allProblemReportView.fxml",1000,580);
-        ApplicationController.when("AddCategory",pathResource+"admin/addCategoryView.fxml",1000, 580);
+        ApplicationController.when("addCategory","ku/cs/components/admin/addCategory.fxml",600,600);
         ApplicationController.when("AdminCategory",pathResource+"admin/categoryView.fxml",1000,580);
+        ApplicationController.when("addCategory","ku/cs/components/admin/addCategory.fxml",600,600);
 
         //User zone
         ApplicationController.when("User",pathResource+"user/userDashBoardView.fxml",1000,580);

@@ -2,15 +2,20 @@ package ku.cs.controller.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 
+
+import ku.cs.State;
 import ku.cs.models.admin.Admin;
 
 import ku.cs.service.DataBase;
+
 import ku.cs.service.ProcessData;
 
 import java.io.IOException;
@@ -32,7 +37,12 @@ public class AddCategoryController {
     private ChoiceBox<String> dropDownAgency;
 
     @FXML
+    private Button close;
+
+    @FXML
     private Label text;
+
+
     private ArrayList<String> listExampleString;
     private ArrayList<String> textString;
     private  ArrayList<String> imageString;
@@ -71,24 +81,14 @@ public class AddCategoryController {
 
         String[] pattern = {"text", "image"};
         dropDownType.getItems().addAll(pattern);
-
         dropDownAgencyList = processData.dropDownAgency();
         dropDownAgency.getItems().addAll(dropDownAgencyList);
-
-
-
-
-
-
     }
 
     @FXML
     void closeButton() {
-        try {
-            ApplicationController.goTo("AdminCategory");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Stage state = (Stage)close.getScene().getWindow();
+        state.close();
     }
 
 
@@ -129,7 +129,7 @@ public class AddCategoryController {
 
         String category = addCatagoryField.getText();
         processData.addCategory(category);
-        processData.selectAgency(category, dropDownAgency.getValue());
+
         for (String dataLine : textString) {
             processData = new ProcessData<>();
             processData.addText(category, dataLine);
@@ -139,6 +139,7 @@ public class AddCategoryController {
             processData = new ProcessData<>();
             processData.addImage(category,dataLine);
         }
+        processData.selectAgency(category, dropDownAgency.getValue());
         clear();
 
     }
@@ -149,6 +150,12 @@ public class AddCategoryController {
         textString.clear();
         imageString.clear();
         checkType.clear();
+    }
+
+    @FXML
+    public void closeWindows(){
+        Stage stage = (Stage)close.getScene().getWindow();
+        stage.close();
     }
 
 

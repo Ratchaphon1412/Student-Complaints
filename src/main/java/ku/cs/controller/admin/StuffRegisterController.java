@@ -67,9 +67,9 @@ public class StuffRegisterController {
                     if(choiceAgency.getValue() !=null){
                         selectAgency = choiceAgency.getValue().toString();
                     }
-                    Staff newUser = new Staff(user,password,path,"stuff",selectAgency);
+                    Staff newUser = new Staff(user,password,path,"staff",selectAgency);
                     DynamicDatabase<Staff> database = new ProcessData<>();
-                    boolean checkregister = database.registerAccount(newUser,file,"stuff");
+                    boolean checkregister = database.registerAccount(newUser,file,"staff");
                     if(checkregister){
 //                        ApplicationController.goTo("Login");
                         closeWindows();

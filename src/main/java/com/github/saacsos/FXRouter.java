@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ku.cs.controller.admin.AgencyLoad;
+import ku.cs.controller.user.Reposthable;
 
 import java.io.IOException;
 import java.util.AbstractMap;
@@ -155,10 +156,12 @@ public class FXRouter {
     public static String getDataText(){
         return currentRoute.text;
     }
+    public static Reposthable getRefreshable(){ return currentRoute.reposthable;}
 
     public static AgencyLoad getAgencyLoad(){return currentRoute.agencyLoad;}
 
     protected static class RouteScene {
+        public Reposthable reposthable;
         public Object data;
         public AgencyLoad agencyLoad;
 

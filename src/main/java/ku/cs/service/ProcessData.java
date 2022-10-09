@@ -67,6 +67,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 }
                 case "staff":{
                     Staff staff = (Staff) object;
+
                     staff.setPathPicture(dataBase.saveImage(staff.getPathPicture(), staff.getUserName(),file,"accounts"));
                     LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
                     createAccount.put("userName", staff.getUserName());
@@ -405,20 +406,15 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         }
         if(!checkCategory){
             //add category in reportcategory.csv and pattern.csv
-            List<LinkedHashMap<String,String>> categoryList = dataBase.getCategoryList();
             List<LinkedHashMap<String,String>> patternList = dataBase.getPatternList();
 
             //create hashMap
-            LinkedHashMap<String,String> newCategory = new LinkedHashMap<>();
             LinkedHashMap<String,String> newPattern = new LinkedHashMap<>();
 
-            newCategory.put("category",category);
             newPattern.put("category",category);
 
-            categoryList.add(newCategory);
             patternList.add(newPattern);
 
-            dataBase.setCategoryList(categoryList);
             dataBase.setPatternList(patternList);
 
             dataBase.saveToDatabase();
@@ -527,6 +523,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
 
+
     public void  selectAgency(String category, String agency) throws IOException {
         List<LinkedHashMap<String, String>> patternList = dataBase.getPatternList();
         for (LinkedHashMap<String, String> dataLine : patternList) {
@@ -547,6 +544,20 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             dropDownAgency.add(dataLine.get("agency"));
         }
         return dropDownAgency;
+    }
+
+    public void requestBan(String userName,String testRequest, String countAccess) throws IOException {
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        List<LinkedHashMap<String, String>> requestUnban= dataBase.getUserBanList();
+        for (LinkedHashMap<String, String> dataLine : requestUnban) {
+            if(dataLine.get("userName").equals(userName)){
+                dataLine.put("details", testRequest);
+                dataLine.put("date",dateFormat.format(currentDate));
+                dataLine.put("count", countAccess);
+                dataBase.saveToDatabase();
+            }
+        }
     }
 
 

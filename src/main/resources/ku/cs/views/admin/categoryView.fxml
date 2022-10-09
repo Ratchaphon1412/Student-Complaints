@@ -125,22 +125,22 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="62.0" prefWidth="125.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label fx:id="tableTitleUserName" styleClass="textLabelColor" text="Username" textFill="WHITE" />
+                                    <Label fx:id="tableTitleUserName" styleClass="textLabelColor" text="Title" textFill="WHITE" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="62.0" prefWidth="73.0" GridPane.columnIndex="2">
                                  <children>
-                                    <Label fx:id="tableTitleAgency" styleClass="textLabelColor" text="agency" textFill="WHITE" />
+                                    <Label fx:id="tableTitleAgency" styleClass="textLabelColor" text="date" textFill="WHITE" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
                                  <children>
-                                    <Label fx:id="tableTitleRole" styleClass="textLabelColor" text="Role" textFill="WHITE" />
+                                    <Label fx:id="tableTitleRole" styleClass="textLabelColor" text="Ban/Pass" textFill="WHITE" />
                                  </children>
                               </VBox>
                            </children>
                         </GridPane>
-                        <ScrollPane prefHeight="354.0" prefWidth="574.0" styleClass="background" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="5">
+                        <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="354.0" prefWidth="574.0" styleClass="background" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="5">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </GridPane.margin>
@@ -219,7 +219,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3">
                      <children>
-                        <Label fx:id="titleReport" prefHeight="34.0" prefWidth="90.0" styleClass="textLabelColor" text="Category" textFill="WHITE">
+                        <Label fx:id="titleBigCategory" prefHeight="34.0" prefWidth="90.0" styleClass="textLabelColor" text="Category" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="21.0" />
                            </font>
@@ -307,7 +307,7 @@
                      <children>
                         <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="64.0" GridPane.columnIndex="1">
                            <children>
-                              <Label fx:id="titleAgency" styleClass="textLabelColor" text="Category" textFill="WHITE">
+                              <Label fx:id="titleCategory" styleClass="textLabelColor" text="Category" textFill="WHITE">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
