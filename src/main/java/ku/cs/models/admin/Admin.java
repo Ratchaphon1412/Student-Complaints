@@ -7,8 +7,8 @@ import ku.cs.models.user.User;
 
 public class Admin extends Account {
 
-    public Admin(String userName, String passWord, String pathPicture, String role ) {
-        super(userName, passWord, pathPicture, role);
+    public Admin(String email,String userName, String passWord, String pathPicture, String role ) {
+        super(email,userName, passWord, pathPicture, role);
     }
 
     public void banUser(User user){
@@ -18,8 +18,8 @@ public class Admin extends Account {
         staff.setAgency(newAgency);
     }
 
-    public Staff addNewStuff (String userName, String passWord, String pathPicture, String role, String agency) {
-        Staff staff = new Staff(userName, passWord, pathPicture, role, agency);
+    public Staff addNewStuff (String email,String userName, String passWord, String pathPicture, String role, String agency) {
+        Staff staff = new Staff(email,userName, passWord, pathPicture, role, agency);
         return staff;
     }
 

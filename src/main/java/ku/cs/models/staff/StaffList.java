@@ -44,7 +44,7 @@ public class StaffList {
             for (int i = 0; i < agecyList.size(); i++) {
                 String[] staffInAgecy = agecyList.get(i).get("staffNameList").split("\\|");
                 for (String nameStaff : staffInAgecy) {
-                    if (nameStaff.equals(data.getUserName())){
+                    if (nameStaff.equals(data.getEmail())){
                         data.setAgency(agecyList.get(i).get("agency"));
                     }
                 }
@@ -58,7 +58,7 @@ public class StaffList {
 
         for(LinkedHashMap<String,String> account :accountList ){
             if(account.get("role").equals("staff")){
-                staff = new Staff(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),"");
+                staff = new Staff(account.get("email"),account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"),"");
                 staffList.add(staff);
             }
         }
@@ -71,7 +71,7 @@ public class StaffList {
 
     public Staff getStaff(String userName) {
         for(Staff user : this.staffList){
-            if(user.getUserName().equals(userName)){
+            if(user.getEmail().equals(userName)){
                 return user;
             }
 

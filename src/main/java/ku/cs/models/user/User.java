@@ -19,13 +19,13 @@ public class User extends Account {
 
 
 
-    public User(String userName, String passWord, String pathPicture, String role){
-        super(userName, passWord, pathPicture, role);
+    public User(String email,String userName, String passWord, String pathPicture, String role){
+        super(email,userName, passWord, pathPicture, role);
         this.ban = false;
     }
-    public User(String userName, String passWord, String pathPicture, String role, Boolean ban ,
+    public User(String email,String userName, String passWord, String pathPicture, String role, Boolean ban ,
                 String requestUnban , String dateBan , String countAccess) {
-        super(userName, passWord, pathPicture, role);
+        super(email,userName, passWord, pathPicture, role);
         this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
@@ -33,8 +33,8 @@ public class User extends Account {
         this.reportList = new ArrayList<>();
     }
 
-    public User(String userName, String passWord, String pathPicture, String role,String date){
-        super(userName, passWord, pathPicture, role);
+    public User(String email,String userName, String passWord, String pathPicture, String role,String date){
+        super(email,userName, passWord, pathPicture, role);
         this.dateRequestBan = date;
         this.ban = false;
     }

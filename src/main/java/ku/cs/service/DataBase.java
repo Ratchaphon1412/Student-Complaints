@@ -57,14 +57,14 @@ public class DataBase {
     private void setUpSchemaPattern()
     {
         schemaPattern = new LinkedHashMap<>();
-        String[] accountPattern = {"userName","passWord","role","pathPicture"} ;
+        String[] accountPattern = {"email","userName","passWord","role","pathPicture"} ;
         String[] categoryReportPattern = {"category","pattern"};
-        String[] likepostPattern = {"title","like","userName"};
+        String[] likepostPattern = {"title","like","email"};
         String[] logPattern = {"userName","role","pathPicture","date","time"};
         String[] patternPattern = {"category","text","image","agency"};
-        String[] reportPattern ={"title","user","category","reportStage","problemDate","time","text","image","agency","staff","process"};
+        String[] reportPattern ={"title","email","category","reportStage","problemDate","time","text","image","agency","staffemail","process"};
         String[] requestBanPattern = {"headData","dateTime","type"};
-        String[] requestUnbanPattern = {"userName","date","details","count"};
+        String[] requestUnbanPattern = {"email","date","details","count"};
         String[] staffAgencyListPattern = {"agency","staffNameList"};
         schemaPattern.put("account.csv",accountPattern);
         schemaPattern.put("categoryReport.csv",categoryReportPattern);
@@ -208,7 +208,7 @@ public class DataBase {
 
     public boolean changePasswordUser(String username, String oldPassword, String newPassword) throws IOException {
         for (LinkedHashMap<String, String> dataLine : accountList){
-            if(dataLine.get("userName").equals(username)){
+            if(dataLine.get("email").equals(username)){
                 if(dataLine.get("passWord").equals(oldPassword)){
                     dataLine.replace("passWord", newPassword);
                     saveToDatabase();
