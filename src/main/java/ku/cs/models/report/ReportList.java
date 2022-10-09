@@ -57,7 +57,7 @@ public class ReportList {
         for(Report temp : reportLists){
             for(LinkedHashMap<String ,String> tempRequest :requestDelete){
                 if(tempRequest.get("headData").equals(temp.getTitle()) && tempRequest.get("type").equals("post")){
-                    temp.setRequestDaleteReportPost(tempRequest.get("dateTime"));
+                    temp.setRequestDaleteReportPost(tempRequest.get("dateTime"),tempRequest.get("textReport"));
                     requestDeleteReport.add(temp);
                 }
             }

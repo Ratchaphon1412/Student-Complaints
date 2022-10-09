@@ -136,10 +136,9 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     if(requestBan.size() == 0){
                         temp = new LinkedHashMap<>();
                         temp.put("headData","");
-//                        temp.put("date","");
-//                        temp.put("time","");
                         temp.put("dateTime","");
                         temp.put("type","");
+                        temp.put("textReport","");
                         requestBan.add(temp);
                     }
                     if(requestBan.get(0).get("headData").equals("") && requestBan.size() == 2){
@@ -285,6 +284,7 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 temp.put("headData",report.getReporter().getEmail());
                 temp.put("dateTime",formattedDate);
                 temp.put("type","user");
+                temp.put("textReport",report.getReportPostText());
                 requestBan.add(temp);
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
@@ -301,6 +301,7 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 temp.put("headData",report.getTitle());
                 temp.put("dateTime",formattedDate);
                 temp.put("type","post");
+                temp.put("textReport",report.getReportPostText());
                 requestBan.add(temp);
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();

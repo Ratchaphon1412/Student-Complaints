@@ -66,7 +66,7 @@ public class UserList {
                     if(account.get("email").equals(banRequest.get("headData")) && banRequest.get("type").equals("user")){
                         User tem = new User(account.get("email"),account.get("userName"),account.get("passWord"),account.get("pathPicture"),
                                             account.get("role"),
-                                            banRequest.get("dateTime"));
+                                            banRequest.get("dateTime"),banRequest.get("textReport"));
                         userRequestBan.add(tem);
                     }
                 }
