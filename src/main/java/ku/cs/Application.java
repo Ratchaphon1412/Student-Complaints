@@ -22,7 +22,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("Login");
+        ApplicationController.goTo("LoadingScreen");
 
     }
 
@@ -39,6 +39,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Info",pathResource+"infoVIew.fxml",1000,580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",300 , 200);
+        ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
 
 
         //Admin zone
