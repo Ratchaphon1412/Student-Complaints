@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
+public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     private DataBase dataBase;
 
     private AdminList adminList;
@@ -51,6 +51,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     User newUser = (User) object;
                     newUser.setPathPicture(dataBase.saveImage(newUser.getPathPicture(), newUser.getUserName(),file,"accounts"));
                     LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
+                    createAccount.put("email",newUser.getEmail());
                     createAccount.put("userName",newUser.getUserName());
                     createAccount.put("passWord",newUser.getPassWord());
                     createAccount.put("role",newUser.getRole());
@@ -70,6 +71,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
                     staff.setPathPicture(dataBase.saveImage(staff.getPathPicture(), staff.getUserName(),file,"accounts"));
                     LinkedHashMap<String,String> createAccount = new LinkedHashMap<>();
+                    createAccount.put("email",staff.getEmail());
                     createAccount.put("userName", staff.getUserName());
                     createAccount.put("passWord", staff.getPassWord());
                     createAccount.put("role", staff.getRole());
@@ -87,9 +89,9 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         if(agency.get("agency").equals(staff.getAgency())){
                            String temp = agency.get("staffNameList");
                            if(temp.equals("")){
-                               temp += staff.getUserName();
+                               temp += staff.getEmail();
                            }else{
-                               temp += "|" + staff.getUserName();
+                               temp += "|" + staff.getEmail();
                            }
                            agency.put("staffNameList",temp);
                         }
@@ -120,28 +122,16 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     LinkedHashMap<String,String> temp = new LinkedHashMap<>();
                     Date currentDate = new Date();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    temp.put("userName",user.getUserName());
+                    temp.put("email",user.getEmail());
                     temp.put("date",dateFormat.format(currentDate));
                     temp.put("details","");
                     temp.put("count","0");
 
                     userBanList.add(temp);
                     for(int i = 0 ; i < requestBan.size() ; i++){
-                        if(requestBan.get(i).get("headData").equals(user.getUserName())){
+                        if(requestBan.get(i).get("headData").equals(user.getEmail())){
                             requestBan.remove(i);
                         }
-                    }
-                    if(requestBan.size() == 0){
-                        temp = new LinkedHashMap<>();
-                        temp.put("headData","");
-//                        temp.put("date","");
-//                        temp.put("time","");
-                        temp.put("dateTime","");
-                        temp.put("type","");
-                        requestBan.add(temp);
-                    }
-                    if(requestBan.get(0).get("headData").equals("") && requestBan.size() == 2){
-                        requestBan.remove(0);
                     }
                     dataBase.setRequestban(requestBan);
                     dataBase.setUserBanList(userBanList);
@@ -151,20 +141,9 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     // ลบ ban
 
                     for(int i = 0;i < userBanList.size();i++){
-                        if(userBanList.get(i).get("userName").equals(user.getUserName())){
+                        if(userBanList.get(i).get("email").equals(user.getEmail())){
                             userBanList.remove(i);
                         }
-                    }
-                    if(userBanList.size() == 0){
-                        LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-                        temp.put("userName","");
-                        temp.put("date","");
-                        temp.put("details","");
-                        temp.put("count","");
-                        userBanList.add(temp);
-                    }
-                    if(userBanList.get(0).get("userName").equals("") && requestBan.size() == 2){
-                        userBanList.remove(0);
                     }
                     dataBase.setUserBanList(userBanList);
                     dataBase.saveToDatabase();
@@ -178,10 +157,10 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
                     if(temp.get("agency").equals(staff.getAgency())){
                         if(temp.get("staffNameList").equals("")){
-                            temp.put("staffNameList", staff.getUserName());
+                            temp.put("staffNameList", staff.getEmail());
                         }else{
                             String namelist = temp.get("staffNameList");
-                            namelist += "|"+ staff.getUserName();
+                            namelist += "|"+ staff.getEmail();
                             temp.put("staffNameList",namelist);
                         }
                     }
@@ -193,7 +172,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         String[] nameList = temp.get("staffNameList").split("\\|");
                         String nameListTemp = "";
                        for(int i = 0 ; i< nameList.length ; i++){
-                           if(nameList[i].equals(staff.getUserName())){
+                           if(nameList[i].equals(staff.getEmail())){
 
                            }else{
                                if(i == 0){
@@ -230,7 +209,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                             }
                             count++;
                         }
-                        newLinkLine.put("userName", allUserLike);
+                        newLinkLine.put("email", allUserLike);
                         break;
                     }
                     countIndex++;
@@ -247,7 +226,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     if(temp.get("title").equals(report.getTitle())){
                         temp.put("process" ,report.getProcess());
                         temp.put("reportStage" , report.getReportStage());
-                        temp.put("staff", report.getStaff());
+                        temp.put("staffemail", report.getStaff());
                     }
                 }
                 dataBase.setReportList(reportList);
@@ -280,9 +259,10 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
                 String formattedDate = myDateObj.format(myFormatObj);
 
-                temp.put("headData",report.getReporter().getUserName());
+                temp.put("headData",report.getReporter().getEmail());
                 temp.put("dateTime",formattedDate);
                 temp.put("type","user");
+                temp.put("textReport",report.getReportPostText());
                 requestBan.add(temp);
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
@@ -299,6 +279,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 temp.put("headData",report.getTitle());
                 temp.put("dateTime",formattedDate);
                 temp.put("type","post");
+                temp.put("textReport",report.getReportPostText());
                 requestBan.add(temp);
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
@@ -364,7 +345,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
 
     public boolean checkAccount(String userName){
         for(LinkedHashMap<String,String>account :dataBase.getAccountList()){
-            if(account.get("userName").equals(userName)){
+            if(account.get("email").equals(userName)){
                 return true;
             }
         }
@@ -374,7 +355,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     public boolean checkBan(String userName){
         List<LinkedHashMap<String, String>> banList = dataBase.getUserBanList();
         for (LinkedHashMap<String, String> dataLine : banList){
-            if(dataLine.get("userName").equals(userName)){
+            if(dataLine.get("email").equals(userName)){
                 return true;
             }
         }
@@ -382,7 +363,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
     public String checkRole(String userName){
         for(LinkedHashMap<String,String>account :dataBase.getAccountList()){
-            if(account.get("userName").equals(userName)){
+            if(account.get("email").equals(userName)){
                 return account.get("role");
             }
         }
@@ -470,7 +451,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         temp.put("title",title);
-        temp.put("user",reporter.getUserName());
+        temp.put("email",reporter.getEmail());
         temp.put("category",category);
         temp.put("reportStage","in progress");
         temp.put("problemDate",dateFormat.format(currentDate));
@@ -501,7 +482,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         }
         temp.put("image",dataImageFormatted);
         temp.put("agency",agency);
-        temp.put("staff","");
+        temp.put("staffemail","");
         temp.put("process","");
 
         reportlist.add(temp);
@@ -511,7 +492,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         LinkedHashMap<String,String> tempLike = new LinkedHashMap<>();
         tempLike.put("title",title);
         tempLike.put("like","0");
-        tempLike.put("userName","");
+        tempLike.put("email","");
 
         likeList.add(tempLike);
         dataBase.setLikePostList(likeList);
@@ -550,7 +531,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         List<LinkedHashMap<String, String>> requestUnban= dataBase.getUserBanList();
         for (LinkedHashMap<String, String> dataLine : requestUnban) {
-            if(dataLine.get("userName").equals(userName)){
+            if(dataLine.get("email").equals(userName)){
                 dataLine.put("details", testRequest);
                 dataLine.put("date",dateFormat.format(currentDate));
                 dataLine.put("count", countAccess);
@@ -558,6 +539,19 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             }
         }
     }
+
+    public void refreshContAccess(String email, int count) throws IOException {
+        String countAccess = Integer.toString(count);
+        List<LinkedHashMap<String, String>> requestUnban= dataBase.getUserBanList();
+        for (LinkedHashMap<String, String> dataLine : requestUnban) {
+            if(dataLine.get("email").equals(email)){
+                dataLine.put("count", countAccess);
+                dataBase.saveToDatabase();
+            }
+        }
+    }
+
+
 
 
     public DataBase getDataBase() {

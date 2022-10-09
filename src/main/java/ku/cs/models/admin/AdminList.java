@@ -18,7 +18,7 @@ public class AdminList {
         for(LinkedHashMap<String,String> account :accountList ){
 //            System.out.println(account.keySet());
               if(account.get("role").equals("admin")){
-                  Admin admin = new Admin(account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"));
+                  Admin admin = new Admin(account.get("email"),account.get("userName"),account.get("passWord"),account.get("pathPicture"),account.get("role"));
                   adminList.add(admin);
               }
 
@@ -27,7 +27,7 @@ public class AdminList {
 
     public Admin getAdmin(String name) {
         for(Admin check : this.adminList){
-            if (check.getUserName().equals(name)){
+            if (check.getEmail().equals(name)){
                 return check;
             }
         }

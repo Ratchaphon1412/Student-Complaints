@@ -41,10 +41,10 @@ public class ReportList {
                 if(pattern.get("category").equals(reportKey.get("category"))){
                     for(LinkedHashMap<String,String> like: likePostList){
                         if(like.get("title").equals(reportKey.get("title"))){
-                            Report report = new Report(userList.getUser(reportKey.get("user")),reportKey.get("title"),new Category(reportKey.get("category"),reportKey.get("text"),reportKey.get("image")
+                            Report report = new Report(userList.getUser(reportKey.get("email")),reportKey.get("title"),new Category(reportKey.get("category"),reportKey.get("text"),reportKey.get("image")
                                     ,pattern.get("text"), pattern.get("image")),reportKey.get("reportStage"),
-                                    reportKey.get("problemDate"),reportKey.get("time"),like.get("like"),like.get("userName"),
-                                    reportKey.get("agency"),reportKey.get("staff"),reportKey.get("process"));
+                                    reportKey.get("problemDate"),reportKey.get("time"),like.get("like"),like.get("email"),
+                                    reportKey.get("agency"),reportKey.get("staffemail"),reportKey.get("process"));
                             reportLists.add(report);
                         }
                     }
@@ -57,7 +57,7 @@ public class ReportList {
         for(Report temp : reportLists){
             for(LinkedHashMap<String ,String> tempRequest :requestDelete){
                 if(tempRequest.get("headData").equals(temp.getTitle()) && tempRequest.get("type").equals("post")){
-                    temp.setRequestDaleteReportPost(tempRequest.get("dateTime"));
+                    temp.setRequestDaleteReportPost(tempRequest.get("dateTime"),tempRequest.get("textReport"));
                     requestDeleteReport.add(temp);
                 }
             }

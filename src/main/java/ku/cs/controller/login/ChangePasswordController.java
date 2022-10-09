@@ -20,6 +20,8 @@ public class ChangePasswordController {
     @FXML ImageView changePasswordPic;
     @FXML ImageView Logo;
     @FXML Button close;
+
+
     @FXML TextField UserChange;
     @FXML TextField OldPassword;
     @FXML TextField NewPassword;

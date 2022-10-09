@@ -29,6 +29,8 @@ public class DeleteUserReportController {
     private Button clickIdDelete;
     @FXML
     private Button clickIdPass;
+    @FXML
+    private Label subjectLabel;
 
     private BanAndUnBan banAndUnBan;
 
@@ -57,6 +59,7 @@ public class DeleteUserReportController {
         this.admin = admin;
         this.banAndUnBan = banAndUnBan;
         this.processData = new ProcessData<User>();
+        subjectLabel.setText(report.getTextReport());
         titleLabel.setText(report.getTitle());
         dateLabel.setText(report.getDateTimeRequestDalete());
     }
