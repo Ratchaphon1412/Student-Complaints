@@ -127,10 +127,9 @@ public class LoginController {
                 case "user"->{
                     DynamicDatabase<User> database = new ProcessData<>();
                     User user = database.login(userNameString,passWordString);
-
-                    if(!processData.checkBan(userNameString)){
+                    if(user != null){
+                        if(!processData.checkBan(userNameString)){
                         //check role
-                        if(user != null){
                             if(user.isBan()){
                                 user.setCountAccess();
                                 userName.clear();
@@ -140,18 +139,15 @@ public class LoginController {
                                 ApplicationController.goTo("User", user);
                             }
                         }else{
-                            ApplicationController.goToNew("Alert", "wrong password");
-                            System.out.println("wrong password user");
-                        }
-
-                    }else{
                         //ทำหน้าขออันแบน
                         user.setCountAccess();
                         ApplicationController.goToNew("AlertRequest",user, "you are banned");
                         System.out.println("banned");
+                        }
+                    }else{
+                        ApplicationController.goToNew("Alert", "wrong password");
+                        System.out.println("wrong password user");
                     }
-
-
                     break;
                 }
                 case "staff"->{
