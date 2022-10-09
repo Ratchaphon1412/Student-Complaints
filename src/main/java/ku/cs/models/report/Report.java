@@ -20,6 +20,7 @@ public class Report {
     private String staff;
     private String process;
     private String dateTimeRequestDalete;
+    private String reportPostText;
 
 
 
@@ -55,6 +56,14 @@ public class Report {
 
     public void setRequestDaleteReportPost(String dateTimeRequestDalete) {
         this.dateTimeRequestDalete = dateTimeRequestDalete;
+    }
+
+    public void setReportPostText(String reportPostText) {
+        this.reportPostText = reportPostText;
+    }
+
+    public String getReportPostText() {
+        return reportPostText;
     }
 
     public Category getCategory() {

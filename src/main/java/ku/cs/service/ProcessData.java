@@ -133,9 +133,9 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     if(requestBan.size() == 0){
                         temp = new LinkedHashMap<>();
                         temp.put("headData","");
-                        temp.put("date","");
-                        temp.put("time","");
+                        temp.put("dateTime","");
                         temp.put("type","");
+                        temp.put("textReport","");
                         requestBan.add(temp);
                     }
                     if(requestBan.get(0).get("headData").equals("") && requestBan.size() == 2){
@@ -149,19 +149,19 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     // ลบ ban
 
                     for(int i = 0;i < userBanList.size();i++){
-                        if(userBanList.get(i).get("headData").equals(user.getUserName())){
+                        if(userBanList.get(i).get("userName").equals(user.getUserName())){
                             userBanList.remove(i);
                         }
                     }
                     if(userBanList.size() == 0){
                         LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-                        temp.put("headData","");
+                        temp.put("userName","");
                         temp.put("date","");
                         temp.put("details","");
                         temp.put("count","");
                         userBanList.add(temp);
                     }
-                    if(userBanList.get(0).get("headData").equals("") && requestBan.size() == 2){
+                    if(userBanList.get(0).get("userName").equals("") && requestBan.size() == 2){
                         userBanList.remove(0);
                     }
                     dataBase.setUserBanList(userBanList);
@@ -281,6 +281,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 temp.put("headData",report.getReporter().getUserName());
                 temp.put("dateTime",formattedDate);
                 temp.put("type","user");
+                temp.put("textReport",report.getReportPostText());
                 requestBan.add(temp);
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();
@@ -297,6 +298,7 @@ public class ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 temp.put("headData",report.getTitle());
                 temp.put("dateTime",formattedDate);
                 temp.put("type","post");
+                temp.put("textReport",report.getReportPostText());
                 requestBan.add(temp);
                 dataBase.setRequestban(requestBan);
                 dataBase.saveToDatabase();

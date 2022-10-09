@@ -38,7 +38,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Request",pathResource+"requestUnbanView.fxml",600,400);
         ApplicationController.when("Info",pathResource+"infoVIew.fxml",1000,580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
-        ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",300 , 200);
+        ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",500 , 300);
 
 
         //Admin zone
