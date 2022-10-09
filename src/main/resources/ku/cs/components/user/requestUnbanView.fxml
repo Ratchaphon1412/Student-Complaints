@@ -59,7 +59,7 @@
                 <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefHeight="25.0" prefWidth="189.0" styleClass="roundedCornerCard" GridPane.rowIndex="1" />
+                  <TextField fx:id="userName" prefHeight="25.0" prefWidth="189.0" styleClass="roundedCornerCard" GridPane.rowIndex="1" />
                   <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="UserName" textFill="WHITE">
