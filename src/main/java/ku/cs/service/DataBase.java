@@ -63,7 +63,7 @@ public class DataBase {
         String[] logPattern = {"userName","role","pathPicture","date","time"};
         String[] patternPattern = {"category","text","image","agency"};
         String[] reportPattern ={"title","user","category","reportStage","problemDate","time","text","image","agency","staff","process"};
-        String[] requestBanPattern = {"headData","dateTime","type"};
+        String[] requestBanPattern = {"headData","dateTime","type","textReport"};
         String[] requestUnbanPattern = {"userName","date","details","count"};
         String[] staffAgencyListPattern = {"agency","staffNameList"};
         schemaPattern.put("account.csv",accountPattern);

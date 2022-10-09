@@ -15,6 +15,7 @@ public class User extends Account {
 
     private String dateRequestBan;
     private List<Report> reportList;
+    private String textReport;
 
 
 
@@ -33,10 +34,11 @@ public class User extends Account {
         this.reportList = new ArrayList<>();
     }
 
-    public User(String userName, String passWord, String pathPicture, String role,String date){
+    public User(String userName, String passWord, String pathPicture, String role,String date,String textReport){
         super(userName, passWord, pathPicture, role);
         this.dateRequestBan = date;
         this.ban = false;
+        this.textReport = textReport;
     }
 
     public void addUserBaned(Boolean ban , String requestUnban , String dateBan ,String countAccess){
@@ -68,6 +70,9 @@ public class User extends Account {
         return dateRequestBan;
     }
 
+    public String getTextReport() {
+        return textReport;
+    }
 
     public List<Report> getReportList() {
         return reportList;

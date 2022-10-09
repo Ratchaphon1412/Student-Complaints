@@ -21,6 +21,7 @@ public class Report {
     private String process;
     private String dateTimeRequestDalete;
     private String reportPostText;
+    private String textReport;
 
 
 
@@ -54,8 +55,9 @@ public class Report {
 
     }
 
-    public void setRequestDaleteReportPost(String dateTimeRequestDalete) {
+    public void setRequestDaleteReportPost(String dateTimeRequestDalete , String textReport) {
         this.dateTimeRequestDalete = dateTimeRequestDalete;
+        this.textReport =textReport;
     }
 
     public void setReportPostText(String reportPostText) {
@@ -122,6 +124,10 @@ public class Report {
 
     public String getDateTimeRequestDalete() {
         return dateTimeRequestDalete;
+    }
+
+    public String getTextReport() {
+        return textReport;
     }
 
     public void setProcessProblem(String process, String reportStage, String staff){
