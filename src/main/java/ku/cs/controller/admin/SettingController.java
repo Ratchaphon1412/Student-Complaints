@@ -227,7 +227,7 @@ public class SettingController<DataObject> {
         if(file != null){
             dataBase.changePicture(account.getUserName(),account.getPassWord(), path, file);
             DynamicDatabase<Admin> database = new ProcessData<>();
-            admin = database.login(account.getUserName(),account.getPassWord());
+            admin = database.login(account.getEmail(),account.getPassWord());
         }
 
         //change fonts
