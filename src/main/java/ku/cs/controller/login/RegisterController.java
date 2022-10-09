@@ -2,6 +2,7 @@ package ku.cs.controller.login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -15,6 +16,7 @@ import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.Preferences;
@@ -38,9 +40,12 @@ public class RegisterController {
     private Label sighUpTitle;
     @FXML
     private ImageView userImage;
+    @FXML
+    private Hyperlink picture;
     private ProcessData dataBase;
     private String path;
     private File file;
+    private String firstpic = "/ku/cs/assets/images/download.png";
     List<String> listfile;
 
     @FXML
@@ -70,8 +75,20 @@ public class RegisterController {
                         ApplicationController.goToNew("Alert","Failed to register");
                    }
                 }else{//แก้ให้ใส่ภาพตั้งต้น
-                    ApplicationController.goToNew("Alert", "no select picture");
-                    System.out.println("no select picture");
+
+
+                    file.getAbsolutePath()();
+                    User newUser = new User(user,password,firstpic,"user");
+                    DynamicDatabase<User> database = new ProcessData<>();
+                    boolean checkregister = database.registerAccount(newUser,file,"user");
+                    if(checkregister){
+                        ApplicationController.goTo("Login");
+                    }
+                    userImage.setImage(new Image(new File(firstpic).toURI().toString()));
+
+
+
+
                 }
             }else{
                 ApplicationController.goToNew("Alert", "password not correct");

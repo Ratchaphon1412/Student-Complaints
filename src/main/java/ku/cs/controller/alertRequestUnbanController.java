@@ -41,5 +41,4 @@ public class alertRequestUnbanController {
     public void requestButton(ActionEvent event) throws IOException {
         ApplicationController.goTo("Request", user);
     }
-
 }

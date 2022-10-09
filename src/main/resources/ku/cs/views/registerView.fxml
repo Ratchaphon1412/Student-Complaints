@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -183,19 +184,22 @@
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="595.0" GridPane.rowIndex="9">
                <children>
                   <Label fx:id="singleFile" text="Selected File:" textFill="#f8f8f8" />
-                  <Hyperlink onAction="#fileChooser" text="Choose your profile picture" textFill="WHITE" underline="true">
+                  <Hyperlink fx:id="picture" onAction="#fileChooser" text="Choose your profile picture" textFill="WHITE" underline="true">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Hyperlink>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="115.0" prefWidth="396.0" GridPane.rowIndex="7">
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="595.0" GridPane.rowIndex="7">
                <children>
-                  <ImageView fx:id="userImage" fitHeight="115.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userImage" fitHeight="63.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
+                     <image>
+                        <Image url="@../assets/images/download.png" />
+                     </image>
                   </ImageView>
                </children>
             </HBox>
