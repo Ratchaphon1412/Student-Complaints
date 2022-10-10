@@ -1,5 +1,5 @@
 
-![Logo](docs/image/Group 2.png)
+![Logo](https://github.com/CS211-651/project211-hardcodeexecutable/blob/featureUser/docs/image/Group%202.png)
 # Project Student Complaints
 A brief description of what this project does and who it's for
 
