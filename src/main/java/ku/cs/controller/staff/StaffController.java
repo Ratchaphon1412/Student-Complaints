@@ -140,7 +140,7 @@ public class StaffController {
 
 
         processData = new ProcessData<>();
-        StatusChoiceBox.getItems().addAll("in progress","finich");
+        StatusChoiceBox.getItems().addAll("in progress","finish");
 
         reportList = processData.getReportList().getReportListAgency(account.getAgency());
         ShowProcessProblem showProcessProblem = new ShowProcessProblem() {
