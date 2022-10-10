@@ -1,9 +1,6 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
-
+![Logo](docs/image/Group 2.png)
 # Project Student Complaints
-
 A brief description of what this project does and who it's for
 
 <h2 align="left">Languages and Tools:</h2>
