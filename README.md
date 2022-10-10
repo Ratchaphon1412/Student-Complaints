@@ -41,6 +41,62 @@ A brief description of what this project does and who it's for
 - Week 4 - Feature User,Feature Staff
 
 
+## Architecture project
+    .
+    ├── database 
+        ├── account.csv
+        ├── likepost.csv
+        ├── log.csv
+        ├── pattern.csv
+        ├── report.csv
+        ├── requestban.csv
+        ├── requestunban.csv
+        ├── staffAgencyList.csv
+    ├── docs
+        ├──  image
+    ├── image
+        ├── accounts
+        ├── reports
+    ├── src
+        ├── main
+            ├── java
+                ├── animatefx
+                ├── com.github.saacsos
+                ├── ku.cs
+                    ├── controller
+                        ├── admin
+                        ├── components
+                        ├── login
+                        ├── staff
+                        ├── user
+                    ├── models
+                        ├── admin
+                        ├── user
+                        ├── staff
+                        ├── report
+                    ├── service
+                    Application.java
+                    ApplicationController.java
+                    Preloader.java
+                    State.java
+                module-info.java
+            ├── resources
+                ├── ku.cs
+                    ├── assets
+                        ├── fonts
+                        ├── images
+                    ├── components
+                        ├── admin
+                        ├── staff
+                        ├── user
+                    ├── style
+                    ├── views
+                        ├── admin
+                        ├── staff
+                        ├── user
+                    AnimateFX-1.2.3.jar
+                    FXRouter.jar
+    config.properties
 ## Documentation
 
 Coming soon
@@ -128,5 +184,19 @@ What optimizations did you make in your code? E.g. refactors, performance improv
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/octokatherine)
+- [@Ratchaphon1412](https://github.com/Ratchaphon1412)
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=ratchaphon1412&show_icons=true&locale=en&layout=compact" alt="ratchaphon1412" /><br><br><br><br><br><br><br><br></p>
 
+- [@Poomffi](https://github.com/Poomffi)
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=Poomffi&show_icons=true&locale=en&layout=compact" alt="Poomffi" /><br><br><br><br><br></p>
+
+- [@J1kid1412](https://github.com/j1kid1412)
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=j1kid1412&show_icons=true&locale=en&layout=compact" alt="j1kid1412" /><br><br><br><br></p>
+
+- [@oOTEEOo](https://github.com/oOTEEOo)
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=j1kid1412&show_icons=true&locale=en&layout=compact" alt="j1kid1412" /><br><br><br><br></p>
+
+## Connect with me:
+<p align="left">
+<a href="https://discord.gg/https://discord.gg/qDNMWSnW" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="https://discord.gg/qDNMWSnW" height="30" width="40" /></a>
+</p>
