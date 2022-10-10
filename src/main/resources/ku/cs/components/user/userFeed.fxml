@@ -60,19 +60,7 @@
                      </styleClass></Button>
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#reportClick" text="Report">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="circleRed" />
-                        <String fx:value="roundedCornerButtonTheme" />
-                     </styleClass>
-                  </Button>
-               </children>
-            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <GridPane GridPane.rowIndex="1">
@@ -139,7 +127,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#reportClick" prefHeight="25.0" prefWidth="27.0" textFill="WHITE">
                      <styleClass>
                         <String fx:value="exclamationSVG" />
                         <String fx:value="circleRed" />
