@@ -174,8 +174,8 @@ public class StaffController {
         processTextArea.setText("");
         nameProblem.setText("");
         StatusChoiceBox.getItems().clear();
-        StatusChoiceBox.getItems().addAll("in progress","finich");
-        if(report.getReportStage().equals("finich")){
+        StatusChoiceBox.getItems().addAll("in progress","finish");
+        if(report.getReportStage().equals("finish")){
             processTextArea.setText(report.getProcess());
             processTextArea.setDisable(true);
             nameProblem.setText(report.getTitle());
@@ -202,7 +202,7 @@ public class StaffController {
                 process+=temp;
             }
         }
-        if(process != null && reportStage != null && reportProcess != null && !(reportProcess.getReportStage().equals("finich"))){
+        if(process != null && reportStage != null && reportProcess != null && !(reportProcess.getReportStage().equals("finish"))){
             reportProcess.setProcessProblem(process,reportStage,account.getUserName());
             processData.changeData(reportProcess,"addPrecessProblem");
             this.nameProblem.setText("");
