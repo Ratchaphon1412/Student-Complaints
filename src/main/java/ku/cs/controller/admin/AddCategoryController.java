@@ -16,6 +16,7 @@ import ku.cs.models.admin.Admin;
 
 import ku.cs.service.DataBase;
 
+import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
 
 import java.io.IOException;
@@ -51,6 +52,7 @@ public class AddCategoryController {
     DataBase dataBase;
 
 
+
     public void initialize() throws IOException {
 
         dataBase = new DataBase();
@@ -78,7 +80,6 @@ public class AddCategoryController {
 //        AddCategoryController addCategoryController = fxmlLoader.getController();
 //
 //        GridPane.setMargin(categoryComponant, new Insets(0,0,5,0));
-
         String[] pattern = {"text", "image"};
         dropDownType.getItems().addAll(pattern);
         dropDownAgencyList = processData.dropDownAgency();
@@ -87,6 +88,7 @@ public class AddCategoryController {
 
     @FXML
     void closeButton() {
+
         Stage state = (Stage)close.getScene().getWindow();
         state.close();
     }
@@ -141,7 +143,6 @@ public class AddCategoryController {
         }
         processData.selectAgency(category, dropDownAgency.getValue());
         clear();
-
     }
     public void clear(){
         text.setText("");
@@ -153,7 +154,8 @@ public class AddCategoryController {
     }
 
     @FXML
-    public void closeWindows(){
+    public void closeWindows() throws IOException {
+
         Stage stage = (Stage)close.getScene().getWindow();
         stage.close();
     }
