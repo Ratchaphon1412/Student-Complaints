@@ -1,4 +1,5 @@
 package ku.cs.controller.user;
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
+import ku.cs.controller.SwitchTheme;
+import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.navbar.NavbarUserController;
 import ku.cs.models.report.Filterer;
 import ku.cs.models.report.Report;
@@ -24,6 +27,7 @@ import ku.cs.service.ProcessData;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.prefs.Preferences;
 
 public class CreatePostController {
@@ -68,6 +72,8 @@ public class CreatePostController {
         roleDisplay.setFont(font);
         displayNameBig.setFont(font);
         roleDisplayBig.setFont(font);
+        //set Animation
+        new FadeIn(root).setSpeed(0.8).play();
 
         //getObject from router
         user = (User) ApplicationController.getData();
@@ -98,6 +104,34 @@ public class CreatePostController {
             imageAccountBigger.setFill(new ImagePattern(image));
             imageAccountBigger.setStroke(Color.TRANSPARENT);
         }
+        SwitchTheme changeTheme = new SwitchTheme() {
+            @Override
+            public void changeTheme(String theme) throws IOException {
+                //save theme
+                State state = new State();
+                state.setTempData();
+                state.saveThemeToConfig(theme);
+                //change state
+                Preferences preferences = Preferences.userRoot().node(State.class.getName());
+                preferences.put("theme", theme);
+                //change stylesheet in main page
+                root.getStylesheets().clear();
+                String styleTheme = "/ku/cs/style/" + preferences.get("theme", null) + ".css";
+                String icon = "/ku/cs/style/icon.css";
+                String style = "/ku/cs/style/style.css";
+                root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(styleTheme)).toExternalForm());
+                root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(icon)).toExternalForm());
+                root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(style)).toExternalForm());
+            }
+        };
+
+        //Switch Theme
+        FXMLLoader fxmlLoader1 = new FXMLLoader();
+        fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
+        GridPane switchTheme = fxmlLoader1.load();
+        ButtonThemeController buttonThemeController = fxmlLoader1.getController();
+        buttonThemeController.setSwitchTheme(changeTheme);
+        minisetting.add(switchTheme,1,1);
         refresh();
     }
     //load postuser
@@ -145,10 +179,13 @@ public class CreatePostController {
         ApplicationController.goToNew("CreatePost",user, refreshable);
     }
 
-
     @FXML
-    void handleAdminSettingButton(MouseEvent event) {
-
+    public void handleUserSettingButton() {
+        try {
+            ApplicationController.goTo("UserSetting",user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

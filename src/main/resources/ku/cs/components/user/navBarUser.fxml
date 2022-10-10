@@ -111,10 +111,14 @@
                         <Font size="1.0" />
                      </font>
                   </Button>
-                  <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#gotoCreatePost" prefHeight="13.0" prefWidth="13.0" styleClass="createPostinsideSVG">
+                  <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#gotoCreatePost" prefHeight="13.0" prefWidth="13.0">
                      <font>
                         <Font size="1.0" />
-                     </font></Button>
+                     </font>
+                     <styleClass>
+                        <String fx:value="createPostinsideSVG" />
+                        <String fx:value="colorIcon" />
+                     </styleClass></Button>
                </children></Pane>
          </children>
       </HBox>

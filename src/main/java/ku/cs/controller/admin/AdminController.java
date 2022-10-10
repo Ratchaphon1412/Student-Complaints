@@ -78,9 +78,6 @@ public class AdminController {
     @FXML
     private GridPane minisetting;
 
-
-
-
     private SwitchTheme changeTheme;
 
     private Admin account;
