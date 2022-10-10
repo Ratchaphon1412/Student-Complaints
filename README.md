@@ -1,7 +1,7 @@
 
 ![Logo](https://github.com/CS211-651/project211-hardcodeexecutable/blob/featureUser/docs/image/Group%202.png)
-# Project Student Complaints
-A brief description of what this project does and who it's for
+# Project Student Complaints 
+This project is part of 01418211 Software Construction course.
 
 <h2 align="left">Languages and Tools:</h2>
 <p align="left"> 
