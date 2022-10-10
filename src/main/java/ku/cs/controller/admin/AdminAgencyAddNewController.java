@@ -1,12 +1,17 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.ZoomIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
+import ku.cs.State;
 import ku.cs.models.staff.StaffList;
 import ku.cs.service.DataBase;
 import ku.cs.service.ProcessData;
@@ -14,6 +19,7 @@ import ku.cs.service.ProcessData;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 public class AdminAgencyAddNewController {
     @FXML
@@ -24,7 +30,14 @@ public class AdminAgencyAddNewController {
 
     @FXML
     private ChoiceBox<String> choiceBoxAgency;
-
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private Label changeNameLabel;
+    @FXML
+    private Label toLabel;
+    @FXML
+    private GridPane gridPaneAddAgency;
     @FXML
     private TextField changeNameAgencyTextField;
 
@@ -38,6 +51,14 @@ public class AdminAgencyAddNewController {
         agencyLoad = (AgencyLoad) ApplicationController.getAgencyLoad();
         StaffList staffList = new StaffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
         choiceBoxAgency.getItems().addAll(staffList.getAgency());
+        //set Font
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        titleLabel.setFont(font);
+        toLabel.setFont(font);
+        changeNameLabel.setFont(font);
+        //set Animation
+        new ZoomIn(gridPaneAddAgency).play();
 
     }
     @FXML

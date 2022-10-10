@@ -1,5 +1,7 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.ZoomIn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
@@ -51,8 +54,10 @@ public class AdminUserBanedListController {
 
     @FXML
     private GridPane listPostReportGrid;
-
-
+    @FXML
+    private Label countUserUnbanLabel;
+    @FXML
+    private Label countUserBanLabel;
     @FXML
     private Label userName;
     @FXML
@@ -64,13 +69,13 @@ public class AdminUserBanedListController {
     @FXML
     private Label lordUserUnban2;
 
-
-
     @FXML
     private Circle imageAccountCircle;
 
     @FXML
     private  GridPane minisetting;
+    @FXML
+    private Label ListofUserReportLabel;
 
     private ProcessData processData;
     private UserList userList;
@@ -85,7 +90,6 @@ public class AdminUserBanedListController {
     private FXMLLoader fxmlLoader;
 
 
-
     @FXML
     public void initialize() throws IOException {
         //initial style
@@ -97,7 +101,15 @@ public class AdminUserBanedListController {
         adminpage.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
         adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
-
+        //set font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        ListofUserReportLabel.setFont(font);
+        roleDisplay.setFont(font);
+        userName.setFont(font);
+        countUserBanLabel.setFont(font);
+        countUserUnbanLabel.setFont(font);
+        //set Animation
+        new FadeIn(adminpage).setSpeed(0.8).play();
         //get object Admin
         account = (Admin) ApplicationController.getData();
         // connect to database
@@ -108,10 +120,11 @@ public class AdminUserBanedListController {
         initialUserBanpage();
 
 
+
     }
     private void initialUserBanpage() throws IOException {
-//        userName.setText(account.getUserName());
-//        roleDisplay.setText(account.getRole());
+        userName.setText(account.getUserName());
+        roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
         Image imageAccount = new Image(desDir.toURI().toString());

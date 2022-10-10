@@ -1,5 +1,6 @@
 package ku.cs.controller.login;
 
+import animatefx.animation.SlideInRight;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -8,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
@@ -43,7 +45,7 @@ public class RegisterController {
     @FXML
     private ImageView userImage;
     @FXML
-    private Hyperlink picture;
+    private GridPane rootGridpane;
     private ProcessData dataBase;
     private String path;
     private File file;
@@ -58,6 +60,9 @@ public class RegisterController {
         uploadPicture.setFont(font);
         sighUpTitle.setFont(font);
         singleFile.setFont(font);
+
+        //set Animation
+        new SlideInRight(rootGridpane).play();
     }
     @FXML
     public void signUpButton(ActionEvent actionEvent) throws IOException {

@@ -1,4 +1,8 @@
 package ku.cs.controller.admin;
+import animatefx.animation.FadeIn;
+import animatefx.animation.SlideInRight;
+import animatefx.animation.ZoomIn;
+import animatefx.animation.ZoomOut;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +80,7 @@ public class AdminController {
 
 
 
+
     private SwitchTheme changeTheme;
 
     private Admin account;
@@ -107,6 +112,10 @@ public class AdminController {
         tableUsername.setFont(font);
         tableTime.setFont(font);
         tableDate.setFont(font);
+
+        //set Animation
+        new FadeIn(adminpage).setSpeed(0.8).play();
+
 
         //getObject Admin from login
         account = (Admin) ApplicationController.getData();

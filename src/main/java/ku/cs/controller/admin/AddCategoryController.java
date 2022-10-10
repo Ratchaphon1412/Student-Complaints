@@ -1,5 +1,7 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.ZoomIn;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -7,6 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 
@@ -21,6 +24,7 @@ import ku.cs.service.ProcessData;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
 public class AddCategoryController {
 
@@ -42,6 +46,16 @@ public class AddCategoryController {
 
     @FXML
     private Label text;
+    @FXML
+    private Label categoryLabel;
+    @FXML
+    private Label addCategoryLabel;
+    @FXML
+    private Label agencyLabel;
+    @FXML
+    private Label typeLabel;
+    @FXML
+    private GridPane gridPaneAddCategory;
 
 
     private ArrayList<String> listExampleString;
@@ -62,12 +76,26 @@ public class AddCategoryController {
         imageString = new ArrayList<>();
         checkType = new ArrayList<>();
         dropDownAgencyList = new ArrayList<>();
+        //initial style
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        String styleTheme = "/ku/cs/style/" + preferences.get("theme", null) + ".css";
+        String icon = "/ku/cs/style/icon.css";
+        String style = "/ku/cs/style/style.css";
+        gridPaneAddCategory.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+        gridPaneAddCategory.getStylesheets().add(getClass().getResource(icon).toExternalForm());
+        gridPaneAddCategory.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
+        //set Font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        categoryLabel.setFont(font);
+        addCategoryLabel.setFont(font);
+        agencyLabel.setFont(font);
+        typeLabel.setFont(font);
+        //set Animation
+        new FadeIn(gridPaneAddCategory).play();
+
         initializeCategory();
 
 
-
-
-        //initializeCategory();
 
     }
 

@@ -6,12 +6,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import ku.cs.State;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
+import java.util.prefs.Preferences;
 
 public class LogAccontController {
 
@@ -30,6 +33,17 @@ public class LogAccontController {
     private Label dateLabel;
 
     private LinkedHashMap<String,String> account;
+
+    @FXML
+    public void initialize() throws IOException {
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        //set font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        nameLabel.setFont(font);
+        roleLabel.setFont(font);
+        timeLabel.setFont(font);
+        dateLabel.setFont(font);
+    }
 
     public void setData(LinkedHashMap<String,String> account){
 
