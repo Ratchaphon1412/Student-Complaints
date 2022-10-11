@@ -99,50 +99,65 @@ public class AddCategoryController {
     private void handleExample() {
         String type = dropDownType.getValue();
         int count = 1;
-        listExampleString.add(addText.getText());
-        String label = "";
-        if(type.equals("text")){
-            textString.add(addText.getText());
-            checkType.add(" text");
-            for (String temp : listExampleString) {
-                label += count + "." + temp +  checkType.get(count-1) +"\n";
-                count++;
+        if(addCatagoryField.getText() != "") {
+            if (addText.getText() != "") {
+                if (type != null) {
+                    if (dropDownAgency.getValue() != null)
+                    listExampleString.add(addText.getText());
+
+                    String label = "";
+
+                    if (type.equals("text")) {
+                        textString.add(addText.getText());
+                        checkType.add(" text");
+                        for (String temp : listExampleString) {
+                            label += count + "." + temp + checkType.get(count - 1) + "\n";
+                            count++;
+                        }
+                        text.setWrapText(true);
+                        text.setText(label);
+                        addText.clear();
+
+
+                    } else if (type.equals("image")) {
+                        imageString.add(addText.getText());
+                        checkType.add(" image");
+                        for (String temp : listExampleString) {
+                            label += count + "." + temp + checkType.get(count - 1) + "\n";
+                            count++;
+                        }
+                        text.setWrapText(true);
+                        text.setText(label);
+                        addText.clear();
+
+                    }
+                }
             }
-            text.setWrapText(true);
-            text.setText(label);
-            addText.clear();
-
-
-        } else if (type.equals("image")) {
-            imageString.add(addText.getText());
-            checkType.add(" image");
-            for (String temp : listExampleString) {
-                label += count + "." + temp + checkType.get(count-1) + "\n";
-                count++;
-            }
-            text.setWrapText(true);
-            text.setText(label);
-            addText.clear();
-
         }
+
     }
 
     public void handleSubmitButton() throws IOException {
+        if(addCatagoryField.getText() != "") {
+            if(!listExampleString.isEmpty()) {
+                String category = addCatagoryField.getText();
+                processData.addCategory(category);
 
-        String category = addCatagoryField.getText();
-        processData.addCategory(category);
+                for (String dataLine : textString) {
+                    processData = new ProcessData<>();
+                    processData.addText(category, dataLine);
+                }
 
-        for (String dataLine : textString) {
-            processData = new ProcessData<>();
-            processData.addText(category, dataLine);
+                for (String dataLine : imageString) {
+                    processData = new ProcessData<>();
+                    processData.addImage(category, dataLine);
+                }
+                processData.selectAgency(category, dropDownAgency.getValue());
+                clear();
+            }
         }
 
-        for (String dataLine : imageString){
-            processData = new ProcessData<>();
-            processData.addImage(category,dataLine);
-        }
-        processData.selectAgency(category, dropDownAgency.getValue());
-        clear();
+
     }
     public void clear(){
         text.setText("");
