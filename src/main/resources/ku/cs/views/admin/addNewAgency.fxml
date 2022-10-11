@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -145,11 +144,6 @@
          </children>
       </HBox>
    </children>
-   <stylesheets>
-      <URL value="@../../style/darkMode.css" />
-      <URL value="@../../style/icon.css" />
-      <URL value="@../../style/style.css" />
-   </stylesheets>
    <styleClass>
       <String fx:value="roundedCornerCard" />
       <String fx:value="cardBackground" />
