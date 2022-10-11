@@ -12,6 +12,7 @@ import ku.cs.ApplicationController;
 
 
 import ku.cs.State;
+import ku.cs.controller.Reposthable;
 import ku.cs.models.admin.Admin;
 
 import ku.cs.service.DataBase;
@@ -43,6 +44,9 @@ public class AddCategoryController {
     @FXML
     private Label text;
 
+    @FXML
+    private Label error;
+
 
     private ArrayList<String> listExampleString;
     private ArrayList<String> textString;
@@ -50,6 +54,7 @@ public class AddCategoryController {
     private ArrayList<String> checkType;
     private ArrayList<String> dropDownAgencyList;
     DataBase dataBase;
+    private Reposthable reposthable;
 
 
 
@@ -80,6 +85,7 @@ public class AddCategoryController {
 //        AddCategoryController addCategoryController = fxmlLoader.getController();
 //
 //        GridPane.setMargin(categoryComponant, new Insets(0,0,5,0));
+       reposthable =(Reposthable) ApplicationController.getData();
         String[] pattern = {"text", "image"};
         dropDownType.getItems().addAll(pattern);
         dropDownAgencyList = processData.dropDownAgency();
@@ -97,43 +103,46 @@ public class AddCategoryController {
 
     @FXML
     private void handleExample() {
+        error.setText("");
         String type = dropDownType.getValue();
         int count = 1;
         if(addCatagoryField.getText() != "") {
-            if (addText.getText() != "") {
-                if (type != null) {
-                    if (dropDownAgency.getValue() != null)
-                    listExampleString.add(addText.getText());
+            if(dropDownAgency.getValue() != null) {
+                if (addText.getText() != "") {
+                    if (type != null) {
+                        if (dropDownAgency.getValue() != null)
+                            listExampleString.add(addText.getText());
 
-                    String label = "";
+                        String label = "";
 
-                    if (type.equals("text")) {
-                        textString.add(addText.getText());
-                        checkType.add(" text");
-                        for (String temp : listExampleString) {
-                            label += count + "." + temp + checkType.get(count - 1) + "\n";
-                            count++;
+                        if (type.equals("text")) {
+                            textString.add(addText.getText());
+                            checkType.add(" text");
+                            for (String temp : listExampleString) {
+                                label += count + "." + temp + checkType.get(count - 1) + "\n";
+                                count++;
+                            }
+                            text.setWrapText(true);
+                            text.setText(label);
+                            addText.clear();
+
+
+                        } else if (type.equals("image")) {
+                            imageString.add(addText.getText());
+                            checkType.add(" image");
+                            for (String temp : listExampleString) {
+                                label += count + "." + temp + checkType.get(count - 1) + "\n";
+                                count++;
+                            }
+                            text.setWrapText(true);
+                            text.setText(label);
+                            addText.clear();
+
                         }
-                        text.setWrapText(true);
-                        text.setText(label);
-                        addText.clear();
-
-
-                    } else if (type.equals("image")) {
-                        imageString.add(addText.getText());
-                        checkType.add(" image");
-                        for (String temp : listExampleString) {
-                            label += count + "." + temp + checkType.get(count - 1) + "\n";
-                            count++;
-                        }
-                        text.setWrapText(true);
-                        text.setText(label);
-                        addText.clear();
-
-                    }
-                }
-            }
-        }
+                    } else {error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
+                }else {error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
+            }else {error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
+        }else{error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
 
     }
 
@@ -153,7 +162,9 @@ public class AddCategoryController {
                     processData.addImage(category, dataLine);
                 }
                 processData.selectAgency(category, dropDownAgency.getValue());
+                reposthable.refreshPost();
                 clear();
+                closeWindows();
             }
         }
 
@@ -161,7 +172,6 @@ public class AddCategoryController {
     }
     public void clear(){
         text.setText("");
-        //addCatagoryField.clear();
         listExampleString.clear();
         textString.clear();
         imageString.clear();

@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ku.cs.controller.admin.AgencyLoad;
-import ku.cs.controller.user.Reposthable;
+import ku.cs.controller.Reposthable;
 
 import java.io.IOException;
 import java.util.AbstractMap;
