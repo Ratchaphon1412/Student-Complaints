@@ -246,4 +246,15 @@ public class UserSettingController {
             }
         }
 
+    @FXML
+    public void  handleChangePasswordButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goToNew("changePassword");
+        } catch (IOException e) {
+            System.err.println(e);
+
+        }
+
+    }
+
 }

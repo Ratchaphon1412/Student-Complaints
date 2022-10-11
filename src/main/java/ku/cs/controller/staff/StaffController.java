@@ -1,5 +1,6 @@
 package ku.cs.controller.staff;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,16 @@ public class StaffController {
 
     @FXML
     private Label nameStaffLabel;
+    @FXML
+    private Label staffTitle;
+    @FXML
+    private Label processWorkLabel;
+    @FXML
+    private Label nameProblemLabel;
+    @FXML
+    private Label processLabel;
+    @FXML
+    private Label statusLabel;
 
     @FXML
     private TextArea processTextArea;
@@ -82,6 +93,13 @@ public class StaffController {
         roleLabel.setFont(font);
         nameStaffLabel.setFont(font);
         nameProblem.setFont(font);
+        staffTitle.setFont(font);
+        statusLabel.setFont(font);
+        processLabel.setFont(font);
+        processWorkLabel.setFont(font);
+        nameProblemLabel.setFont(font);
+        //set Animation
+        new FadeIn(root).setSpeed(0.8).play();
 
 
         account = (Staff)ApplicationController.getData();
@@ -112,8 +130,6 @@ public class StaffController {
                 root.getStylesheets().add(getClass().getResource(style).toExternalForm());
             }
         };
-
-
         //Switch Theme
         FXMLLoader fxmlLoader1 = new FXMLLoader();
         fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
@@ -129,7 +145,6 @@ public class StaffController {
         NavbarStaffController navbarStaffController = fxmlLoader.getController();
         navbarStaffController.setStaff(account);
         root.add(navbar,0,0);
-
 
         //refetch components
         refetch();
@@ -224,5 +239,7 @@ public class StaffController {
             System.err.println(e);
         }
     }
+
+
 
 }

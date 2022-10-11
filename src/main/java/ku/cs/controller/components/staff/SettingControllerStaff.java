@@ -1,5 +1,6 @@
 package ku.cs.controller.components.staff;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,6 +130,9 @@ public class SettingControllerStaff {
         role.setText(account.getRole());
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
+
+        //set Animation
+        new FadeIn(gridPane).setSpeed(0.8).play();
 
         //set image account
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
