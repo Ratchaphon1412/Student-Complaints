@@ -1,5 +1,6 @@
 package ku.cs.controller.login;
 
+import animatefx.animation.FadeInUp;
 import animatefx.animation.SlideInRight;
 import animatefx.animation.ZoomIn;
 import animatefx.animation.ZoomOut;
@@ -66,6 +67,9 @@ public class ChangePasswordController {
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         changPasswordTitle.setFont(font);
+
+        //set Animation
+        new FadeInUp(rootGridpane).play();
 
 
     }

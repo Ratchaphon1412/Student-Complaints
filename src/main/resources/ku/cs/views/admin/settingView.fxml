@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -217,6 +218,19 @@
                         <RowConstraints maxHeight="25.0" minHeight="5.0" prefHeight="11.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleChangePasswordButton" prefHeight="30.0" prefWidth="150.0" text="changePassWord">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="roundedCornerButtonTheme" />
+                              <String fx:value="circleYellow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="1" GridPane.rowSpan="2">

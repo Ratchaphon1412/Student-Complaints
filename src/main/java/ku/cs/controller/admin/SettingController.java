@@ -245,6 +245,14 @@ public class SettingController<DataObject> {
         
     }
 
+    @FXML
+    void handleChangePasswordButton(ActionEvent event) {
+        try {
+            ApplicationController.goToNew("changePassword");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
 
 
     @FXML
