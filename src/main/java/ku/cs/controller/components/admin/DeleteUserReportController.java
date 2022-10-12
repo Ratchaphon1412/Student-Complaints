@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
+import ku.cs.State;
 import ku.cs.controller.admin.BanAndUnBan;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.report.Report;
@@ -16,6 +18,7 @@ import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 public class DeleteUserReportController {
 
@@ -31,14 +34,30 @@ public class DeleteUserReportController {
     private Button clickIdPass;
     @FXML
     private Label subjectLabel;
-
+    @FXML
+    private Label textSubjectLabel;
+    @FXML
+    private Label textDateLabel;
+    @FXML
+    private Label headData;
     private BanAndUnBan banAndUnBan;
 
     private Report report;
     private Admin admin;
     private ProcessData processData;
 
-
+    @FXML
+    public void initialize() throws IOException{
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        //set Font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        subjectLabel.setFont(font);
+        dateLabel.setFont(font);
+        headData.setFont(font);
+        textDateLabel.setFont(font);
+        titleLabel.setFont(font);
+        textSubjectLabel.setFont(font);
+    }
     @FXML
     private void clickPost(ActionEvent actionEvent) throws IOException {
         processData.changeData(report,"deletePost");

@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.user.ProblemFeedController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.user.ProblemFeedController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -85,21 +80,21 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label styleClass="textLabelColor" text="Title" textFill="WHITE">
+                        <Label fx:id="titleLabel" styleClass="textLabelColor" text="Title" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font size="13.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
-                        <Label styleClass="textLabelColor" text="Content" textFill="WHITE" />
+                        <Label fx:id="contentLabel" styleClass="textLabelColor" text="Content" textFill="WHITE" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                      <children>
-                        <Label styleClass="textLabelColor" text="Status" textFill="WHITE" />
+                        <Label fx:id="statusLabel" styleClass="textLabelColor" text="Status" textFill="WHITE" />
                      </children>
                   </VBox>
                   <Label fx:id="title" styleClass="textLabelColor" textFill="WHITE" GridPane.columnIndex="1" />
@@ -107,7 +102,7 @@
                   <Label fx:id="status" styleClass="textLabelColor" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
-                        <Label styleClass="textLabelColor" text="Category" textFill="WHITE" />
+                        <Label fx:id="categoryLabel" styleClass="textLabelColor" text="Category" textFill="WHITE" />
                      </children>
                   </VBox>
                   <Label fx:id="category" styleClass="textLabelColor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -157,7 +152,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label styleClass="textLabelColor" text="like" />
+                              <Label fx:id="likeLabel" styleClass="textLabelColor" text="like" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="196.0" GridPane.columnIndex="2">

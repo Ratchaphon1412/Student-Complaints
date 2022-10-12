@@ -5,6 +5,7 @@ module cs.ku {
     requires com.fasterxml.jackson.databind;
     requires java.prefs;
 
+
     opens ku.cs to javafx.fxml;
     exports ku.cs;
     opens ku.cs.controller to javafx.fxml;

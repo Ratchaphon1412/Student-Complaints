@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import ku.cs.State;
 import ku.cs.controller.admin.BanAndUnBan;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.user.User;
@@ -13,6 +15,7 @@ import ku.cs.service.ProcessData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 
 public class AdminUserBanListController {
@@ -34,6 +37,16 @@ public class AdminUserBanListController {
     private BanAndUnBan banAndUnBan;
     private Admin admin;
     private ProcessData processData;
+    @FXML
+    public void initialize() throws IOException {
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        //set font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        nameLabel.setFont(font);
+        dateLabel.setFont(font);
+        textLabel.setFont(font);
+        countBanLabel.setFont(font);
+    }
 
     @FXML
     private void click(ActionEvent actionEvent) throws IOException {

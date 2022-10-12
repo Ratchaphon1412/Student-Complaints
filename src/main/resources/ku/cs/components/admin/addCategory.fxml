@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.AddCategoryController">
+<GridPane fx:id="gridPaneAddCategory" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.AddCategoryController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -83,9 +76,9 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label prefHeight="32.0" prefWidth="129.0" text="Category" textFill="WHITE">
+                              <Label fx:id="categoryLabel" prefHeight="32.0" prefWidth="129.0" styleClass="textFieldSearch" text="Category" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="16.0" />
+                                    <Font size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -97,7 +90,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                            <children>
-                              <Label text="Agency" textFill="WHITE">
+                              <Label fx:id="agencyLabel" styleClass="textFieldSearch" text="Agency" textFill="WHITE">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -134,7 +127,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleExample" styleClass="circleYellow" text="add" />
+                              <Button mnemonicParsing="false" onAction="#handleExample" styleClass="circleYellow" text="Add" />
                            </children>
                         </VBox>
                      </children>
@@ -152,7 +145,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Type" textFill="WHITE">
+                        <Label fx:id="typeLabel" styleClass="textFieldSearch" text="Type" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -206,7 +199,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Add Category" textFill="WHITE">
+                  <Label fx:id="addCategoryLabel" styleClass="textFieldSearch" text="Add Category" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

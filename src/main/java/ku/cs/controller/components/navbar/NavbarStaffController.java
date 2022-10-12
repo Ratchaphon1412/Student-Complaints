@@ -1,5 +1,6 @@
 package ku.cs.controller.components.navbar;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -39,7 +40,14 @@ public class NavbarStaffController {
     private void goDashBoardStaff() throws IOException {
         ApplicationController.goTo("Staff",staff);
     }
-
+    @FXML
+    void gotoSetting(ActionEvent event) {
+        try {
+            ApplicationController.goTo("SettingStaff",staff);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
 
 
 

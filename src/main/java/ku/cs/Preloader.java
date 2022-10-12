@@ -1,8 +1,7 @@
 package ku.cs;
 
 
-import animatefx.animation.Shake;
-import animatefx.animation.ZoomOut;
+import animatefx.animation.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import animatefx.animation.Bounce;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,12 +43,15 @@ public class Preloader implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         new SplashScreen().start();
+        new ZoomIn(rootGridPane).play();
+
+
 
     }
 
     class SplashScreen extends Thread{
         @Override
-        public  void run(){
+        public void run(){
             try{
                 Preferences preferences = Preferences.userRoot().node(ku.cs.State.class.getName());
                 Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),12);
@@ -61,7 +62,7 @@ public class Preloader implements Initializable {
                 new Bounce(circle2).setCycleCount(14).setDelay(Duration.valueOf("1000ms")).play();
                 new Bounce(circle3).setCycleCount(14).setDelay(Duration.valueOf("1100ms")).play();
 
-                Thread.sleep(10000);
+                Thread.sleep(2000);
                 new ZoomOut(rootGridPane).setDelay(Duration.valueOf("1100ms")).play();
                 Thread.sleep(2000);
                 Platform.runLater(new Runnable() {

@@ -1,11 +1,8 @@
 package ku.cs.models.user;
 
-import ku.cs.controller.ListViewUserBanList;
-import ku.cs.models.admin.Admin;
 import ku.cs.models.report.Filterer;
 import ku.cs.models.report.Report;
 import ku.cs.models.report.ReportList;
-import ku.cs.service.DataBase;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

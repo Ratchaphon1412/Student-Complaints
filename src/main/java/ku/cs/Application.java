@@ -1,6 +1,7 @@
 package ku.cs;
 
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -10,10 +11,12 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);//hidding titlebar
         stage.initStyle(StageStyle.TRANSPARENT);
+
         stage.setFullScreen(false);
         stage.setResizable(true);
         stage.setMinHeight(580);
         stage.setMinWidth(1000);
+
         ApplicationController.bind(this, stage);
         //use state
         State state = new State();
@@ -42,7 +45,6 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
 
 
-
         //Admin zone
         ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);
         ApplicationController.when("Setting",pathResource+"admin/settingView.fxml",1000,580);
@@ -50,7 +52,6 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("AdminAgencyAdd",pathResource +"admin/addNewAgency.fxml",600,400);
         ApplicationController.when("RegisterStuff",pathResource+"admin/registerStuff.fxml",1000,580);
         ApplicationController.when("banUser",pathResource+"admin/banUserOrUnban.fxml",1000,580);
-        ApplicationController.when("AllProblem",pathResource+"admin/allProblemReportView.fxml",1000,580);
         ApplicationController.when("addCategory","ku/cs/components/admin/addCategory.fxml",600,600);
         ApplicationController.when("AdminCategory",pathResource+"admin/categoryView.fxml",1000,580);
         ApplicationController.when("addCategory","ku/cs/components/admin/addCategory.fxml",600,600);

@@ -39,10 +39,9 @@ public class alertRequestUnbanController {
         closeWindows();
     }
     @FXML
-    public void closeWindows(){
-        Stage stage = (Stage)close.getScene().getWindow();
+    public void closeWindows() {
+        Stage stage = (Stage) close.getScene().getWindow();
         stage.close();
+
     }
-
-
 }

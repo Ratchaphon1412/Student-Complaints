@@ -1,5 +1,6 @@
 package ku.cs.controller.user;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -104,6 +105,8 @@ public class UserSettingController {
         miniuser.setFont(font);
         miniuser.setWrapText(true);
         minirole.setFont(font);
+        //set Animation
+        new FadeIn(gridPane).setSpeed(0.8).play();
 
         //get object User
         account = (User) ApplicationController.getData();
@@ -242,5 +245,16 @@ public class UserSettingController {
                 System.err.println(e);
             }
         }
+
+    @FXML
+    public void  handleChangePasswordButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goToNew("changePassword");
+        } catch (IOException e) {
+            System.err.println(e);
+
+        }
+
+    }
 
 }

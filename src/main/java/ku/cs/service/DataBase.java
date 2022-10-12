@@ -4,11 +4,14 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.text.SimpleDateFormat;
+
 
 
 public class DataBase {
@@ -199,6 +202,17 @@ public class DataBase {
                  Files.copy(file.toPath(),target, StandardCopyOption.REPLACE_EXISTING );
                 return filename;
 
+             }
+             else {
+                 URL inputUrl = getClass().getResource("/ku/cs/assets/images/defaultpicture.jpg");
+                 String filename = name+"_"+ LocalDate.now()+"_"+System.currentTimeMillis()+".png";
+                 Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+filename);
+                 try {
+                     Files.copy(Paths.get(inputUrl.toURI()).toFile().toPath(),target, StandardCopyOption.REPLACE_EXISTING );
+                 } catch (URISyntaxException e) {
+                     throw new RuntimeException(e);
+                 }
+                 return filename;
              }
          }catch (IOException e){
              e.printStackTrace();

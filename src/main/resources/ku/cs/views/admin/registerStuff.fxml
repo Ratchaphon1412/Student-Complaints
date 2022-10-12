@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1025.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.StuffRegisterController">
+<GridPane fx:id="girdPaneSighup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1025.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.StuffRegisterController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -57,7 +57,7 @@
          <children>
             <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
                <children>
-                  <Label alignment="CENTER" text="Sigh up" textFill="WHITE">
+                  <Label fx:id="sighUpLabel" alignment="CENTER" text="Sigh up" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -134,7 +134,7 @@
                <children>
                   <VBox prefHeight="46.0" prefWidth="296.0">
                      <children>
-                        <Label text="Upload your profile picture" textFill="WHITE">
+                        <Label fx:id="uploadPictureLabel" text="Upload your profile picture" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>

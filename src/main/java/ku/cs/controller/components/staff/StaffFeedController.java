@@ -29,7 +29,16 @@ public class StaffFeedController {
 
     @FXML
     private Label title;
-
+    @FXML
+    private Label textAgency;
+    @FXML
+    private Label textTitle;
+    @FXML
+    private Label textContent;
+    @FXML
+    private Label textStatus;
+    @FXML
+    private Label textStaff;
     private Report report;
     private ShowProcessProblem showProcessProblem;
 
@@ -39,10 +48,25 @@ public class StaffFeedController {
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         nameAgency.setFont(font);
+        nameAgency.setWrapText(true);
         nameStaff.setFont(font);
+        nameStaff.setWrapText(true);
         content.setFont(font);
+        content.setWrapText(true);
         title.setFont(font);
+        title.setWrapText(true);
         status.setFont(font);
+        status.setWrapText(true);
+        textAgency.setFont(font);
+        textAgency.setWrapText(true);
+        textStatus.setFont(font);
+        textStatus.setWrapText(true);
+        textContent.setFont(font);
+        textContent.setWrapText(true);
+        textTitle.setFont(font);
+        textTitle.setWrapText(true);
+        textStaff.setFont(font);
+        textStaff.setWrapText(true);
         this.report =report;
         nameAgency.setText(report.getAgency());
         nameStaff.setText(report.getStaff());

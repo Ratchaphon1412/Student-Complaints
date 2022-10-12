@@ -1,13 +1,17 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.ZoomIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
+import ku.cs.State;
 import ku.cs.models.staff.Staff;
 import ku.cs.models.staff.StaffList;
 import ku.cs.service.DynamicDatabase;
@@ -16,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 public class StuffRegisterController {
     @FXML
@@ -29,11 +34,16 @@ public class StuffRegisterController {
     @FXML
     private Label singleFile;
     @FXML
+    private Label uploadPictureLabel;
+    @FXML
+    private Label sighUpLabel;
+    @FXML
     private ImageView userImage;
 
     @FXML
     private ChoiceBox choiceAgency;
-
+    @FXML
+    private GridPane girdPaneSighup;
     @FXML
     private Button close;
 
@@ -51,6 +61,14 @@ public class StuffRegisterController {
 
         staffList = new StaffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
         choiceAgency.getItems().addAll(staffList.getAgency());
+        //set Font
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        sighUpLabel.setFont(font);
+        singleFile.setFont(font);
+        uploadPictureLabel.setFont(font);
+        //set Animation
+//        new ZoomIn(girdPaneSighup).play();
     }
 
 
