@@ -97,15 +97,24 @@ public class CreatePost {
 
     @FXML
     private void submit() throws IOException, RefreshFailedException {
+        if(titleText.getText().equals("") || category.getValue() == null){
+            return;
+        }
         String title = titleText.getText();
         String categoryText = category.getValue();
         ArrayList<String> dataTextList = new ArrayList<>();
         ArrayList<File> dataImage = new ArrayList<>();
         for(CreateTextContent createTextContent :controllerCreateTextContentList ){
+            if(createTextContent.getTextInput().equals("")){
+                return;
+            }
             dataTextList.add(createTextContent.getTextInput());
         }
 
         for(CreateImageContent createImageContent : controllerCreateImageContentList){
+            if(createImageContent.getFile() == null){
+                return;
+            }
             dataImage.add(createImageContent.getFile());
         }
 
