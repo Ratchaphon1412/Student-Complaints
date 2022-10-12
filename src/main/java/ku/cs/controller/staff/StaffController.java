@@ -98,8 +98,7 @@ public class StaffController {
         processLabel.setFont(font);
         processWorkLabel.setFont(font);
         nameProblemLabel.setFont(font);
-        //set Animation
-        new FadeIn(root).setSpeed(0.8).play();
+
 
 
         account = (Staff)ApplicationController.getData();

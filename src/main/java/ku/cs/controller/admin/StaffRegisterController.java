@@ -1,6 +1,6 @@
 package ku.cs.controller.admin;
 
-import animatefx.animation.ZoomIn;
+import animatefx.animation.FadeInUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.Preferences;
 
-public class StuffRegisterController {
+public class StaffRegisterController {
     @FXML
     private TextField userName;
     @FXML
@@ -68,7 +68,7 @@ public class StuffRegisterController {
         singleFile.setFont(font);
         uploadPictureLabel.setFont(font);
         //set Animation
-//        new ZoomIn(girdPaneSighup).play();
+        new FadeInUp(girdPaneSighup).play();
     }
 
 

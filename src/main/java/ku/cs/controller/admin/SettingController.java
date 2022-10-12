@@ -110,8 +110,6 @@ public class SettingController<DataObject> {
         miniuser.setWrapText(true);
         minirole.setFont(font);
 
-        //set Animation
-//        new FadeIn(gridPane).setSpeed(0.8).play();
 
         //get object Admin
         System.out.println(ApplicationController.getData().getClass().getName());

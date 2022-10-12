@@ -76,8 +76,6 @@ public class LoginController {
         sighUpLogin.setFont(font);
 
 
-        //set animation
-//        new SlideInLeft(mainLoginPage).setSpeed(1).play();
 
     }
 

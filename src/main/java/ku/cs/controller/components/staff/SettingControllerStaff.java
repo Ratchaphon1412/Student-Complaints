@@ -131,8 +131,6 @@ public class SettingControllerStaff {
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
 
-        //set Animation
-        new FadeIn(gridPane).setSpeed(0.8).play();
 
         //set image account
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
@@ -169,7 +167,7 @@ public class SettingControllerStaff {
             }
         };
 
-//        theme
+//      theme
         FXMLLoader fxmlLoader1 = new FXMLLoader();
         fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
         GridPane switchTheme = (GridPane)fxmlLoader1.load();

@@ -108,7 +108,7 @@ public class AdminController {
         tableTime.setFont(font);
         tableDate.setFont(font);
 
-        //.setSpeed(0.8).play()
+
 
         //getObject Admin from login
         account = (Admin) ApplicationController.getData();

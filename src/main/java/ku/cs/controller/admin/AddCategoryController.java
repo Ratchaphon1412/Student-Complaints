@@ -1,6 +1,7 @@
 package ku.cs.controller.admin;
 
 import animatefx.animation.FadeIn;
+import animatefx.animation.FadeInUp;
 import animatefx.animation.ZoomIn;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,7 +92,7 @@ public class AddCategoryController {
         agencyLabel.setFont(font);
         typeLabel.setFont(font);
         //set Animation
-//        new FadeIn(gridPaneAddCategory).play();
+        new FadeInUp(gridPaneAddCategory).play();
 
         initializeCategory();
 

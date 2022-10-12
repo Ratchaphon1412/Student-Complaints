@@ -127,8 +127,7 @@ public class UserDashboardController {
         titleFeed.setFont(font);
         titleSort.setFont(font);
         titleRangeVote.setFont(font);
-        //set Animation
-        new FadeIn(root).setSpeed(0.8).play();
+
 
 
         //navbar

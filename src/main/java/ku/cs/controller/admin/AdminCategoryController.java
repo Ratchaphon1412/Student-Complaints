@@ -108,8 +108,7 @@ public class AdminCategoryController {
         tableTitleUserName.setFont(font);
         displayName.setFont(font);
         roleDisplay.setFont(font);
-        //set animation
-//        new FadeIn(root).setSpeed(0.8).play();
+
 
         account = (Admin)ApplicationController.getData();
         displayName.setText(account.getUserName());

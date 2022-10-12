@@ -105,8 +105,7 @@ public class UserSettingController {
         miniuser.setFont(font);
         miniuser.setWrapText(true);
         minirole.setFont(font);
-        //set Animation
-        new FadeIn(gridPane).setSpeed(0.8).play();
+
 
         //get object User
         account = (User) ApplicationController.getData();
