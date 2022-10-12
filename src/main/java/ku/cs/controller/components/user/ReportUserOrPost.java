@@ -50,13 +50,13 @@ public class ReportUserOrPost {
 
 
     public void clickSubmit(ActionEvent actionEvent) throws IOException {
-        if(choiceBox.getValue().equals("User")){
+        if(choiceBox.getValue() != null && choiceBox.getValue().equals("User")){
             String reportText = textArea.getText();
             report.setReportPostText(reportText.replace('\n', ' '));
             processDataReport.changeData(report,"reportUser");
             closeButton();
         }
-        else if (choiceBox.getValue().equals("Post")) {
+        else if(choiceBox.getValue() != null && choiceBox.getValue().equals("Post")) {
             String reportText = textArea.getText();
             report.setReportPostText(reportText.replace('\n', ' '));
             processDataReport.changeData(report,"reportPost");
