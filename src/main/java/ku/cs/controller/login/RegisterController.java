@@ -61,8 +61,6 @@ public class RegisterController {
         sighUpTitle.setFont(font);
         singleFile.setFont(font);
 
-        //set Animation
-        new SlideInRight(rootGridpane).play();
     }
     @FXML
     public void signUpButton(ActionEvent actionEvent) throws IOException {

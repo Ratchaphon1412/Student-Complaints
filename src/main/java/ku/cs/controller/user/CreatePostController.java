@@ -1,5 +1,6 @@
 package ku.cs.controller.user;
 import animatefx.animation.FadeIn;
+import animatefx.animation.FadeInUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,8 +73,6 @@ public class CreatePostController {
         roleDisplay.setFont(font);
         displayNameBig.setFont(font);
         roleDisplayBig.setFont(font);
-        //set Animation
-        new FadeIn(root).setSpeed(0.8).play();
 
         //getObject from router
         user = (User) ApplicationController.getData();

@@ -1,5 +1,7 @@
 package ku.cs.controller.user;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeInUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,9 +45,12 @@ public class detailProblemController {
 
     @FXML
     private ScrollPane scroll;
-
+    @FXML
+    private Label agency;
     @FXML
     private Button close;
+    @FXML
+    private GridPane root;
 
 
     private Report report;
@@ -54,19 +59,25 @@ public class detailProblemController {
     @FXML
     private void initialize() throws IOException {
 
-       report = (Report) ApplicationController.getData();
+        report = (Report) ApplicationController.getData();
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         titleReport.setText(report.getTitle());
-       status.setText(report.getReportStage());
+        agency.setText(report.getAgency());
+        date.setText(report.getDate().toString());
+        status.setText(report.getReportStage());
 
+        agency.setFont(font);
         titleReport.setFont(font);
+        titleReport.setWrapText(true);
         status.setFont(font);
         date.setFont(font);
         titleDetailProblem.setFont(font);
         titleStatus.setFont(font);
         titleAgency.setFont(font);
         titleDate.setFont(font);
+
+        new FadeInUp(root).play();
 
         GridPane tempGrid = new GridPane();
 

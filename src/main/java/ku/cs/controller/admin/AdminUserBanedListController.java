@@ -108,8 +108,6 @@ public class AdminUserBanedListController {
         userName.setFont(font);
         countUserBanLabel.setFont(font);
         countUserUnbanLabel.setFont(font);
-        //set Animation
-//        new FadeIn(adminpage).setSpeed(0.8).play();
         //get object Admin
         account = (Admin) ApplicationController.getData();
         // connect to database

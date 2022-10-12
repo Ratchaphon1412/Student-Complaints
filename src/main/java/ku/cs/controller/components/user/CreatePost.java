@@ -1,5 +1,6 @@
 package ku.cs.controller.components.user;
 
+import animatefx.animation.FadeInUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -80,7 +81,8 @@ public class CreatePost {
         title.setFont(font);
         titleCategory.setFont(font);
         titleContent.setFont(font);
-
+        //set Animation
+        new FadeInUp(root).play();
         //connect database
         processData = new ProcessData<>();
         pattern = processData.getDataBase().getPatternList();

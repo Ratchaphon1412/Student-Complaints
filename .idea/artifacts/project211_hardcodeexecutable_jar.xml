@@ -4,6 +4,9 @@
     <root id="root">
       <element id="archive" name="project211-hardcodeexecutable.jar">
         <element id="module-output" name="project211-hardcodeexecutable" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+        </element>
       </element>
       <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:17.0.1" />
       <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:mac:17.0.1" />

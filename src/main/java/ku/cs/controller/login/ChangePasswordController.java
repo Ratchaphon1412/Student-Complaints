@@ -67,8 +67,6 @@ public class ChangePasswordController {
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         changPasswordTitle.setFont(font);
 
-        //set Animation
-        new ZoomIn(rootGridpane).play();
 
     }
     @FXML

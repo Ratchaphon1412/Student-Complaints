@@ -1,5 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: 
 Class-Path: javafx-controls-17.0.1.jar jackson-annotations-2.13.0.jar jq
  uery-3.6.0.jar javafx-fxml-17.0.1.jar jackson-databind-2.13.0.jar fonta
  wesomefx-8.9.jar javafx-graphics-17.0.1.jar jsr305-3.0.2.jar javafx-con

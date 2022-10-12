@@ -60,7 +60,7 @@ public class AdminAgencyAddNewController {
         changeNameLabel.setFont(font);
         //set Animation
         new FadeInUp(gridPaneAddAgency).play();
-//        new ZoomIn(gridPaneAddAgency).play();
+
 
     }
     @FXML

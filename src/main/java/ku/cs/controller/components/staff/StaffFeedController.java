@@ -84,6 +84,7 @@ public class StaffFeedController {
     }
     @FXML
     public void  viewPost(ActionEvent actionEvent) throws IOException {
+        System.out.println("check");
         ApplicationController.goToNew("DetailReport",report);
     }
 
