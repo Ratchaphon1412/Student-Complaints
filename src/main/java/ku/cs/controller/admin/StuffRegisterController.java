@@ -68,7 +68,7 @@ public class StuffRegisterController {
         singleFile.setFont(font);
         uploadPictureLabel.setFont(font);
         //set Animation
-        new ZoomIn(girdPaneSighup).play();
+//        new ZoomIn(girdPaneSighup).play();
     }
 
 

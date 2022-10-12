@@ -108,7 +108,7 @@ public class AdminAgencyController {
         tableTitleAgency.setFont(font);
         tableTitleRole.setFont(font);
         //set animation
-        new FadeIn(root).setSpeed(0.8).play();
+//        new FadeIn(root).setSpeed(0.8).play();
 
 
 

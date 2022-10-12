@@ -91,7 +91,7 @@ public class AddCategoryController {
         agencyLabel.setFont(font);
         typeLabel.setFont(font);
         //set Animation
-        new FadeIn(gridPaneAddCategory).play();
+//        new FadeIn(gridPaneAddCategory).play();
 
         initializeCategory();
 

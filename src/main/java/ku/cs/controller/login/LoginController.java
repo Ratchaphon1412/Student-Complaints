@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import ku.cs.ApplicationController;
 
@@ -73,8 +75,9 @@ public class LoginController {
         welcomeLogin.setFont(font);
         sighUpLogin.setFont(font);
 
+
         //set animation
-        new SlideInLeft(mainLoginPage).setSpeed(1).play();
+//        new SlideInLeft(mainLoginPage).setSpeed(1).play();
 
     }
 

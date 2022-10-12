@@ -111,7 +111,7 @@ public class SettingController<DataObject> {
         minirole.setFont(font);
 
         //set Animation
-        new FadeIn(gridPane).setSpeed(0.8).play();
+//        new FadeIn(gridPane).setSpeed(0.8).play();
 
         //get object Admin
         System.out.println(ApplicationController.getData().getClass().getName());

@@ -2,6 +2,7 @@ package ku.cs;
 
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -11,6 +12,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);//hidding titlebar
         stage.initStyle(StageStyle.TRANSPARENT);
+
         stage.setFullScreen(false);
         stage.setResizable(true);
         stage.setMinHeight(580);
@@ -43,7 +45,6 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",500 , 300);
         ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
-
 
 
         //Admin zone

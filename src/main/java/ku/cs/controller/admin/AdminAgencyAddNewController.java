@@ -1,5 +1,6 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.FadeInUp;
 import animatefx.animation.ZoomIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,7 +59,8 @@ public class AdminAgencyAddNewController {
         toLabel.setFont(font);
         changeNameLabel.setFont(font);
         //set Animation
-        new ZoomIn(gridPaneAddAgency).play();
+        new FadeInUp(gridPaneAddAgency).play();
+//        new ZoomIn(gridPaneAddAgency).play();
 
     }
     @FXML
