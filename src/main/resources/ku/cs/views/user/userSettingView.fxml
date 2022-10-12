@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -138,7 +139,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label fx:id="titlePassWord" styleClass="textLabelColor" text="Password" textFill="WHITE">
                            <font>
@@ -150,7 +151,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
                         <Label fx:id="password" styleClass="textLabelColor" text="TextPassword" textFill="WHITE">
                            <font>
@@ -182,7 +183,7 @@
                   </VBox>
                   <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                      <children>
-                        <Label fx:id="titleFont" prefHeight="20.0" prefWidth="48.0" styleClass="textLabelColor" text="Font" textFill="WHITE">
+                        <Label fx:id="titleFont" prefHeight="20.0" prefWidth="44.0" styleClass="textLabelColor" text="Font" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -203,6 +204,19 @@
                         </Label>
                      </children>
                   </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleChangePasswordButton" prefHeight="30.0" prefWidth="150.0" text="changePassWord">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="roundedCornerButtonTheme" />
+                              <String fx:value="circleYellow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
                   <GridPane fx:id="miniGridePane" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="37.0" />

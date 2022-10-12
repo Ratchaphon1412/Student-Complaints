@@ -82,6 +82,22 @@
             <Insets bottom="23.0" left="10.0" right="10.0" top="1.0" />
          </GridPane.margin>
       </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+         <children>
+            <Button mnemonicParsing="false" onAction="#gotoSetting" prefHeight="15.0" prefWidth="15.0">
+               <font>
+                  <Font size="5.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="9.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="gearSVG" />
+                  <String fx:value="colorIcon" />
+               </styleClass>
+            </Button>
+         </children>
+      </HBox>
    </children>
    <styleClass>
       <String fx:value="backgroundNavbar" />

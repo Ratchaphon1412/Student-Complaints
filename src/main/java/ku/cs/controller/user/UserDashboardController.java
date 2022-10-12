@@ -1,5 +1,6 @@
 package ku.cs.controller.user;
 
+import animatefx.animation.FadeIn;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -27,7 +28,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.prefs.Preferences;
 
-public class             UserDashboardController {
+public class UserDashboardController {
 
 
     @FXML
@@ -126,6 +127,8 @@ public class             UserDashboardController {
         titleFeed.setFont(font);
         titleSort.setFont(font);
         titleRangeVote.setFont(font);
+        //set Animation
+        new FadeIn(root).setSpeed(0.8).play();
 
 
         //navbar

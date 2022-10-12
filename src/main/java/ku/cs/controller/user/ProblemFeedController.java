@@ -26,32 +26,33 @@ public class ProblemFeedController {
 
     @FXML
     private Label userName;
-
     @FXML
     private Label title;
-
     @FXML
     private Label content;
-
     @FXML
     private Label status;
-
     @FXML
     private Label showDate;
-
     @FXML
     private Circle imageUser;
-
-
-
     @FXML
     private Label category;
-
     @FXML
     private Label coutlikeLabel;
-
     @FXML
     private Button likeButton;
+    @FXML
+    private Label categoryLabel;
+    @FXML
+    private Label contentLabel;
+    @FXML
+    private Label likeLabel;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private Label titleLabel;
+
 
     private boolean likeCheck;
     private User user;
@@ -73,6 +74,11 @@ public class ProblemFeedController {
         showDate.setFont( Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),10));
         coutlikeLabel.setFont(font);
         category.setFont(font);
+        contentLabel.setFont(font);
+        categoryLabel.setFont(font);
+        likeLabel.setFont(font);
+        statusLabel.setFont(font);
+        titleLabel.setFont(font);
         //get Object
         this.report =report;
         this.user = user;

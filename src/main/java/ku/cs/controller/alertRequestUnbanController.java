@@ -32,13 +32,16 @@ public class alertRequestUnbanController {
         status.setImage(new Image(pathPicture));
         textStatus.setText(text);
     }
-    @FXML
-    public void closeWindows(){
-        Stage stage = (Stage)close.getScene().getWindow();
-        stage.close();
-    }
+
     @FXML
     public void requestButton(ActionEvent event) throws IOException {
         ApplicationController.goToNew("RequestUnban",user);
+        closeWindows();
+    }
+    @FXML
+    public void closeWindows() {
+        Stage stage = (Stage) close.getScene().getWindow();
+        stage.close();
+
     }
 }

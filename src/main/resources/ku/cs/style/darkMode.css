@@ -1,7 +1,12 @@
 .colorIcon{
-    -fx-background-color: #FFFFFF;
+    -fx-background-color:#ffffff;
 }
-
+.iconHover .colorIcon{
+    -fx-background-color:#ffffff;
+}
+.iconHover .colorIcon:hover{
+    -fx-background-color:#ffffff;
+}
 .background{
     -fx-background-color:#1A202C;
 }
@@ -132,4 +137,8 @@
     -fx-faint-focus-color: transparent;
     -fx-background-radius:3px 3px 3px 3px;
     -fx-text-box-border:transparent;
+}
+.iconHover :hover{
+    -fx-background-color: #1A202C;
+    -fx-background-radius: 5px 5px 5px 5px;
 }
