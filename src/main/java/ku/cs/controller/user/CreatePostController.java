@@ -18,6 +18,7 @@ import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
+import ku.cs.controller.Reposthable;
 import ku.cs.controller.components.navbar.NavbarUserController;
 import ku.cs.models.report.Filterer;
 import ku.cs.models.report.Report;
