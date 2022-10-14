@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="navBar" alignment="CENTER" stylesheets="@../../style/icon.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.navbar.NavbarUserController">
+<GridPane fx:id="navBar" alignment="CENTER" prefHeight="397.0" prefWidth="53.0" stylesheets="@../../style/icon.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.navbar.NavbarUserController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
@@ -35,7 +35,7 @@
          <children>
             <Pane prefHeight="36.0" prefWidth="45.0">
                <children>
-                  <Button alignment="CENTER" layoutX="15.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" prefHeight="8.0" prefWidth="8.0">
+                  <Button alignment="CENTER" layoutX="15.0" layoutY="18.0" mnemonicParsing="false" onAction="#logOut" prefHeight="8.0" prefWidth="8.0">
                      <font>
                         <Font size="7.0" />
                      </font>
@@ -61,7 +61,7 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="16.0" layoutY="20.0" mnemonicParsing="false" onAction="#gotoSetting" prefHeight="15.0" prefWidth="15.0">
+                  <Button layoutX="13.0" layoutY="20.0" mnemonicParsing="false" onAction="#gotoSetting" prefHeight="21.0" prefWidth="22.0">
                      <font>
                         <Font size="5.0" />
                      </font>
@@ -103,7 +103,7 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="11.0" layoutY="20.0" mnemonicParsing="false" onAction="#goDashBoard" prefHeight="14.0" prefWidth="12.0">
+                  <Button layoutX="13.0" layoutY="20.0" mnemonicParsing="false" onAction="#goDashBoard" prefHeight="14.0" prefWidth="12.0">
                      <font>
                         <Font size="5.0" />
                      </font>
@@ -112,7 +112,7 @@
                         <String fx:value="colorIcon" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="24.0" layoutY="20.0" mnemonicParsing="false" onAction="#goDashBoard" prefHeight="14.0" prefWidth="12.0">
+                  <Button layoutX="26.0" layoutY="20.0" mnemonicParsing="false" onAction="#goDashBoard" prefHeight="14.0" prefWidth="12.0">
                      <font>
                         <Font size="5.0" />
                      </font>

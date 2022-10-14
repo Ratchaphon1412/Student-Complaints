@@ -1,8 +1,6 @@
 package ku.cs;
 
 import javafx.scene.image.Image;
-import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -70,7 +68,7 @@ public class Application extends javafx.application.Application {
 
         //Staff zone
         ApplicationController.when("Staff",pathResource+"staff/staffProcessProblem.fxml",1000,580);
-        ApplicationController.when("SettingStaff","ku/cs/components/staff/settingStaff.fxml",1000,580);
+        ApplicationController.when("SettingStaff", "ku/cs/views/staff/settingStaff.fxml",1000,580);
     }
 
 
