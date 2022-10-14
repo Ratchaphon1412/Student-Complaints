@@ -19,7 +19,7 @@ import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.LogAccontController;
+import ku.cs.controller.components.admin.LogAccontController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.service.ProcessData;
@@ -131,7 +131,7 @@ public class AdminController {
        }
         //load NavBar
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
@@ -185,7 +185,7 @@ public class AdminController {
             //load components
             if(logList.get(row) != null){
                 FXMLLoader fxmlLoader2 = new FXMLLoader();
-                fxmlLoader2.setLocation(getClass().getResource("/ku/cs/components/logAccount.fxml"));
+                fxmlLoader2.setLocation(getClass().getResource("/ku/cs/components/admin/logAccount.fxml"));
                 //get AnchorPane form component and send data to another controller
                 AnchorPane anchorPane = (AnchorPane) fxmlLoader2.load();
                 LogAccontController logAccontController = fxmlLoader2.getController();

@@ -4,6 +4,8 @@ module cs.ku {
     requires com.fasterxml.jackson.dataformat.csv;
     requires com.fasterxml.jackson.databind;
     requires java.prefs;
+
+
     opens ku.cs to javafx.fxml;
     exports ku.cs;
     opens ku.cs.controller to javafx.fxml;
@@ -22,5 +24,10 @@ module cs.ku {
     opens ku.cs.controller.components.navbar to javafx.fxml;
     exports ku.cs.controller.components.staff;
     opens ku.cs.controller.components.staff to javafx.fxml;
+    exports ku.cs.controller.components.admin;
+    opens ku.cs.controller.components.admin to javafx.fxml;
+    exports ku.cs.controller.components.user;
+    opens ku.cs.controller.components.user to javafx.fxml;
+
 
 }

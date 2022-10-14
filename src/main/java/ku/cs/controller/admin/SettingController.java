@@ -22,7 +22,6 @@ import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.navbar.NavbarAdminController;
 
 import ku.cs.models.admin.Admin;
-import ku.cs.models.staff.Staff;
 import ku.cs.service.DynamicDatabase;
 
 import ku.cs.service.ProcessData;
@@ -66,7 +65,7 @@ public class SettingController<DataObject> {
     @FXML
     private GridPane gridPane;
     @FXML private Circle imageaccountCircle;
-    @FXML private ChoiceBox dropDown;
+    @FXML private ChoiceBox<String> dropDown;
     @FXML private GridPane miniGridePane;
 
     private File file;
@@ -121,7 +120,7 @@ public class SettingController<DataObject> {
     private void initializeSetting() throws IOException {
         //load nav
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);

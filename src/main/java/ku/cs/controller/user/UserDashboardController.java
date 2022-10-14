@@ -1,6 +1,5 @@
 package ku.cs.controller.user;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -28,7 +27,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.prefs.Preferences;
 
-public class UserDashboardController {
+public class             UserDashboardController {
 
 
     @FXML
@@ -131,7 +130,7 @@ public class UserDashboardController {
 
         //navbar
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarUserController navbarUserController = fxmlLoader.getController();
         navbarUserController.setUser(user);
@@ -195,7 +194,7 @@ public class UserDashboardController {
         int i = 0;
         for(Report report : reportSorted) {
             FXMLLoader fxmlLoaderFeed = new FXMLLoader();
-            fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/userFeed.fxml"));
+            fxmlLoaderFeed.setLocation(getClass().getResource("/ku/cs/components/user/userFeed.fxml"));
             GridPane feedComponant = fxmlLoaderFeed.load();
             ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
             problemFeedController.setReport(report,user);

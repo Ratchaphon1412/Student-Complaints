@@ -109,6 +109,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="105.0" prefWidth="300.0">
                      <children>
+                        <TextField fx:id="email" promptText="Email">
+                           <styleClass>
+                              <String fx:value="primaryColor" />
+                              <String fx:value="roundedCorner" />
+                           </styleClass>
+                        </TextField>
                         <TextField fx:id="userName" alignment="TOP_LEFT" promptText="Username">
                            <VBox.margin>
                               <Insets bottom="10.0" top="10.0" />
@@ -183,16 +189,16 @@
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="595.0" GridPane.rowIndex="9">
                <children>
                   <Label fx:id="singleFile" text="Selected File:" textFill="#f8f8f8" />
-                  <Hyperlink onAction="#fileChooser" text="Choose your profile picture" textFill="WHITE" underline="true">
+                  <Hyperlink fx:id="picture" onAction="#fileChooser" text="Choose your profile picture" textFill="WHITE" underline="true">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Hyperlink>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="115.0" prefWidth="396.0" GridPane.rowIndex="7">
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="595.0" GridPane.rowIndex="7">
                <children>
-                  <ImageView fx:id="userImage" fitHeight="115.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userImage" fitHeight="102.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>

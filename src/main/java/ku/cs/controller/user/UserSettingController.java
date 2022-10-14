@@ -115,7 +115,7 @@ public class UserSettingController {
     private void initializeSetting() throws IOException {
         //load nav
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarUserController navbarUserController = fxmlLoader.getController();
         navbarUserController.setUser(account);

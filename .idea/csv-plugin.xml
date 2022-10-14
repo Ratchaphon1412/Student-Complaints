@@ -38,13 +38,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\database\reportcategory.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\database\requestban.csv">
           <value>
             <Attribute>

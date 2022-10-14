@@ -62,7 +62,16 @@ class DataBaseTest {
     @Test
     void addNewCategory () throws IOException {
        ProcessData data = new ProcessData();
-       data.addTitle("water", "xxx");
+       data.addCategory("ไฟไหม้");
+      // data.addTitle("fire","llll");
+    }
+
+    @Test
+    void addNewPattern() throws IOException {
+        ProcessData data = new ProcessData();
+        data.addText("ไฟไหม้", "ไฟไหม้ตึก");
+        data.addImage("ไฟไหม้", "รูปไฟไหม้");
+        data.selectAgency("ไฟไหม้", "ffff");
     }
 
     @Test
@@ -77,5 +86,11 @@ class DataBaseTest {
         assertEquals(test,"น้ำท่วมคณะวิทยาศาสตร์");
 
 
+    }
+
+    @Test
+    void requestBan() throws IOException {
+        ProcessData processData = new ProcessData<>();
+        processData.requestBan("poom1", "ขอโทษ", "1");
     }
 }

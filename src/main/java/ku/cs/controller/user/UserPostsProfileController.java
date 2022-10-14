@@ -52,7 +52,7 @@ public class UserPostsProfileController {
         account = null;
 
         fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         navbarGridPane.add(navbar,0,0);
 
@@ -96,7 +96,7 @@ public class UserPostsProfileController {
 
         for (int i = 0 ; i < 10 ; i++){
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/namePostsUserSmallWindow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/namePostsUserSmallWindow.fxml"));
             GridPane namePostsLoad = (GridPane) fxmlLoader.load();
             NamePostsUserController namePosts = fxmlLoader.getController();
             namePosts.setData(String.valueOf(i+". User"),clickNamePostsUser);

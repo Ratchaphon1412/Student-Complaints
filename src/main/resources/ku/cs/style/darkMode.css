@@ -126,3 +126,10 @@
     -fx-text-fill: #FFFFFF;
     -fx-background-radius:3px 3px 3px 3px;
 }
+.textAreaTheme-createPost{
+    -fx-control-inner-background: #2D3440;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius:3px 3px 3px 3px;
+    -fx-text-box-border:transparent;
+}

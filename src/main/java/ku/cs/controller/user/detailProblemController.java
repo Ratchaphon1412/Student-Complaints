@@ -11,9 +11,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 import ku.cs.State;
-import ku.cs.controller.components.ReportImage;
-import ku.cs.controller.components.ReportText;
-import ku.cs.models.admin.Admin;
+import ku.cs.controller.components.user.ReportImage;
+import ku.cs.controller.components.user.ReportText;
 import ku.cs.models.report.Report;
 
 import java.io.IOException;
@@ -75,7 +74,7 @@ public class detailProblemController {
         int i = 0;
         for(String key:dataReportMap.get("text").keySet()){
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/reportText.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/reportText.fxml"));
             GridPane temp = (GridPane) fxmlLoader.load();
             ReportText reportText = fxmlLoader.getController();
             reportText.setDataText(key,dataReportMap.get("text").get(key));
@@ -85,7 +84,7 @@ public class detailProblemController {
 
         for(String key:dataReportMap.get("image").keySet()){
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/reportImage.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/reportImage.fxml"));
             GridPane temp = (GridPane) fxmlLoader.load();ReportImage reportImage = fxmlLoader.getController();
             reportImage.setDataImage(key,dataReportMap.get("image").get(key));
             tempGrid.add(temp,0,i);
