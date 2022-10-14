@@ -44,5 +44,4 @@ public class alertRequestUnbanController {
         stage.close();
     }
 
-
 }

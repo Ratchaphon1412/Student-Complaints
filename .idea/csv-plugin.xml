@@ -10,13 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\database\categoryReport.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\database\likepost.csv">
           <value>
             <Attribute>
@@ -39,13 +32,6 @@
           </value>
         </entry>
         <entry key="\database\report.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\database\reportcategory.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

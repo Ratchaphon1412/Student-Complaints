@@ -42,7 +42,6 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
 
 
-
         //Admin zone
         ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);
         ApplicationController.when("Setting",pathResource+"admin/settingView.fxml",1000,580);
