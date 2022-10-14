@@ -2,6 +2,13 @@
     -fx-background-color:#000000;
 }
 
+.iconHover .colorIcon{
+    -fx-background-color:#000000;
+}
+.iconHover .colorIcon:hover{
+    -fx-background-color:#000000;
+}
+
 .background{
     -fx-background-color:#D9D9D9;
 }
@@ -126,4 +133,8 @@
     -fx-faint-focus-color: transparent;
     -fx-background-radius:3px 3px 3px 3px;
     -fx-text-box-border:transparent;
+}
+.iconHover :hover{
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 5px 5px 5px 5px;
 }

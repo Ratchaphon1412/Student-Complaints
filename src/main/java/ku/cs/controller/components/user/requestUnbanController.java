@@ -40,8 +40,7 @@ public class requestUnbanController {
     private void applyButton(ActionEvent actionEvent) throws IOException {
         String requestText = requestField.getText();
         String userNameText = userName.getText();
-        String countAccess = Integer.toString(user.getCountAccess());
-        processData.requestBan(userNameText, requestText, countAccess );
+        processData.requestBan(userNameText, requestText);
         closeWindows();
     }
 

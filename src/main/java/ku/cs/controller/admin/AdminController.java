@@ -1,4 +1,6 @@
 package ku.cs.controller.admin;
+import animatefx.animation.*;
+import animatefx.util.ParallelAnimationFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,8 +76,6 @@ public class AdminController {
     @FXML
     private GridPane minisetting;
 
-
-
     private SwitchTheme changeTheme;
 
     private Admin account;
@@ -107,6 +107,8 @@ public class AdminController {
         tableUsername.setFont(font);
         tableTime.setFont(font);
         tableDate.setFont(font);
+
+
 
         //getObject Admin from login
         account = (Admin) ApplicationController.getData();
