@@ -205,7 +205,7 @@ public class AdminAgencyController {
     }
     @FXML
     public void addStuffButton() throws IOException {
-        ApplicationController.goToNew("RegisterStuff");
+        ApplicationController.goToNew("RegisterStuff",agencyLoad);
     }
     @FXML
     public void handleAdminSettingButton(MouseEvent mouseEvent) {
