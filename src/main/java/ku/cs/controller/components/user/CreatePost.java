@@ -45,6 +45,9 @@ public class CreatePost {
     private Label titleContent;
 
     @FXML
+    private Label labelPlease;
+
+    @FXML
     private Button closeButton;
 
     private ProcessData<User> processData;
@@ -79,6 +82,7 @@ public class CreatePost {
         title.setFont(font);
         titleCategory.setFont(font);
         titleContent.setFont(font);
+        labelPlease.setFont(font);
         //set Animation
         new FadeInUp(root).play();
         //connect database
@@ -127,58 +131,61 @@ public class CreatePost {
 
     @FXML
     private void selectCategory() throws IOException {
-        selectedCategory = category.getValue();
-        LinkedHashMap<String,String> patternCategory = new LinkedHashMap<>();
-        //loop find category
-        for (LinkedHashMap<String,String> temp :pattern){
-            if(temp.get("category").equals(selectedCategory)){
-                patternCategory = temp;
-                agency = temp.get("agency");
-            }
-        }
-        String[] patternText = patternCategory.get("text").split("\\|");
-        String[] patternImage = patternCategory.get("image").split("\\|");
 
-        controllerCreateTextContentList = new ArrayList<>();
-        controllerCreateImageContentList = new ArrayList<>();
+      if(category.getValue() != null){
+          selectedCategory = category.getValue();
+          LinkedHashMap<String,String> patternCategory = new LinkedHashMap<>();
+          //loop find category
+          for (LinkedHashMap<String,String> temp :pattern){
+              if(temp.get("category").equals(selectedCategory)){
+                  patternCategory = temp;
+                  agency = temp.get("agency");
+              }
+          }
+          String[] patternText = patternCategory.get("text").split("\\|");
+          String[] patternImage = patternCategory.get("image").split("\\|");
 
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(100);
-        scrollContent.setFitToWidth(true);
-        scrollContent.setContent(gridPane);
+          controllerCreateTextContentList = new ArrayList<>();
+          controllerCreateImageContentList = new ArrayList<>();
 
-        int row = 0;
-        for(String temp : patternText){
-           if(!temp.equals("")){
-               FXMLLoader fxmlLoader = new FXMLLoader();
-               fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/createTextContent.fxml"));
-               GridPane gridPanetemp = fxmlLoader.load();
+          GridPane gridPane = new GridPane();
+          gridPane.setHgap(100);
+          scrollContent.setFitToWidth(true);
+          scrollContent.setContent(gridPane);
 
-               CreateTextContent createTextContent = fxmlLoader.getController();
-               createTextContent.setData(temp);
-               // store controller
-               controllerCreateTextContentList.add(createTextContent);
-               gridPane.setMargin(gridPanetemp,new Insets(0,0,0,0));
-               gridPane.add(gridPanetemp,0,row);
-               row++;
-           }
-        }
+          int row = 0;
+          for(String temp : patternText){
+              if(!temp.equals("")){
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/createTextContent.fxml"));
+                  GridPane gridPanetemp = fxmlLoader.load();
 
-        for(String temp : patternImage){
-            if(!temp.equals("")){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/createImageContent.fxml"));
-                GridPane gridPanetemp = fxmlLoader.load();
+                  CreateTextContent createTextContent = fxmlLoader.getController();
+                  createTextContent.setData(temp);
+                  // store controller
+                  controllerCreateTextContentList.add(createTextContent);
+                  gridPane.setMargin(gridPanetemp,new Insets(0,0,0,0));
+                  gridPane.add(gridPanetemp,0,row);
+                  row++;
+              }
+          }
 
-                CreateImageContent createImageContent =fxmlLoader.getController();
-                createImageContent.setData(temp);
+          for(String temp : patternImage){
+              if(!temp.equals("")){
+                  FXMLLoader fxmlLoader = new FXMLLoader();
+                  fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/createImageContent.fxml"));
+                  GridPane gridPanetemp = fxmlLoader.load();
 
-                controllerCreateImageContentList.add(createImageContent);
-                gridPane.setMargin(gridPanetemp,new Insets(0,0,0,0));
-                gridPane.add(gridPanetemp,0,row);
-                row++;
-            }
-        }
+                  CreateImageContent createImageContent =fxmlLoader.getController();
+                  createImageContent.setData(temp);
+
+                  controllerCreateImageContentList.add(createImageContent);
+                  gridPane.setMargin(gridPanetemp,new Insets(0,0,0,0));
+                  gridPane.add(gridPanetemp,0,row);
+                  row++;
+              }
+          }
+      }
 
     }
 
