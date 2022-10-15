@@ -42,47 +42,43 @@ public class Preloader implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        new SplashScreen().start();
-        new ZoomIn(rootGridPane).play();
-
-
-
+        Preferences preferences = Preferences.userRoot().node(ku.cs.State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),12);
+        titleStudent.setFont(font);
+        loadingLable.setFont(font);
+            new ZoomIn(rootGridPane).play();
+            new SplashScreen().start();
     }
 
     class SplashScreen extends Thread{
+
         @Override
         public void run(){
-            try{
-                Preferences preferences = Preferences.userRoot().node(ku.cs.State.class.getName());
-                Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),12);
-                titleStudent.setFont(font);
-                loadingLable.setFont(font);
 //                new Shake(rootGridPane).setDelay(Duration.valueOf("1000ms")).play();
+
+            try {
                 new Bounce(circle1).setCycleCount(14).setDelay(Duration.valueOf("500ms")).play();
                 new Bounce(circle2).setCycleCount(14).setDelay(Duration.valueOf("1000ms")).play();
                 new Bounce(circle3).setCycleCount(14).setDelay(Duration.valueOf("1100ms")).play();
-
-                Thread.sleep(2000);
+                Thread.sleep(3000);
                 new ZoomOut(rootGridPane).setDelay(Duration.valueOf("1100ms")).play();
                 Thread.sleep(2000);
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-
-                            ApplicationController.goTo("Login");
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-
+                           try {
+                               ApplicationController.goTo("Login");
+//                            rootGridPane.getScene().getWindow().hide();
+                           } catch (IOException e) {
+                               throw new RuntimeException(e);
+                           }
                     }
                 });
-
 
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+
         }
 
 

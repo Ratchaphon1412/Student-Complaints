@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -33,8 +34,8 @@ public class UserDashboardController {
 
     @FXML
     private GridPane root;
-    @FXML
-    private GridPane feed;
+//    @FXML
+//    private GridPane feed;
 
 
     @FXML
@@ -69,6 +70,8 @@ public class UserDashboardController {
 
     @FXML
     private TextField mostNum;
+    @FXML
+    private ScrollPane  scrollFeed;
 
 
     private ReportList reportLists;
@@ -191,6 +194,14 @@ public class UserDashboardController {
     }
 
     private void refetch() throws IOException {
+        GridPane feed = new GridPane();
+        feed.setHgap(10);
+//        feed.setVgap(10);
+//        feed.setMaxHeight(340);
+//        feed.setMaxWidth(550);
+
+        scrollFeed.setFitToWidth(true);
+        scrollFeed.setContent(feed);
         feed.getChildren().clear();
         //show report
         int i = 0;
@@ -200,8 +211,8 @@ public class UserDashboardController {
             GridPane feedComponant = fxmlLoaderFeed.load();
             ProblemFeedController problemFeedController = fxmlLoaderFeed.getController();
             problemFeedController.setReport(report,user);
-            GridPane.setMargin(feedComponant, new Insets(0, 0, 15, 0));
             feed.add(feedComponant, 0, i+1);
+            feed.setMargin(feedComponant, new Insets(0, 3, 5, 0));
             i++;
         }
 
