@@ -223,23 +223,20 @@ public class SettingControllerStaff {
 
     @FXML
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
-        Staff staff = null;
+
         //เดี๋ยวแก้
         if(file != null){
-            dataBase.changePicture(account.getUserName(),account.getPassWord(), path, file);
-            DynamicDatabase<Staff> database = new ProcessData<>();
-            staff = database.login(account.getUserName(),account.getPassWord());
+            dataBase.changePicture(account.getEmail(),account.getPassWord(), path, file);
+           ProcessData<Staff> database = new ProcessData<>();
+            account = database.getStaffList().getStaff(account.getEmail());
         }
 
         //change fonts
-        if(dropDown.getValue() !=null){
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        if(!dropDown.getValue().equals(preferences.get("font",null))){
             changeFonts.changeFonts(dropDown.getValue().toString());
         }
-        if(staff!=null){
-            ApplicationController.goTo("Staff",staff);
-        }else{
-            ApplicationController.goTo("Staff",account);
-        }
+        ApplicationController.goTo("Staff",account);
 
     }
 

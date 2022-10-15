@@ -551,7 +551,9 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
 
-
+    public AdminList getAdminList() {
+        return adminList;
+    }
 
     public DataBase getDataBase() {
         return dataBase;
