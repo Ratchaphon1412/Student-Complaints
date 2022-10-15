@@ -75,7 +75,7 @@
             <Button mnemonicParsing="false" onAction="#applyButton" styleClass="circleGreen" text="Apply" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="error" text="Label" textFill="#f24040" />
+                  <Label fx:id="error" textFill="#f24040" />
                </children>
             </VBox>
          </children>
