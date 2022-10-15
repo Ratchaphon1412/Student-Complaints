@@ -13,8 +13,9 @@ public class Application extends javafx.application.Application {
 
         stage.setFullScreen(false);
         stage.setResizable(true);
-        stage.setMinHeight(580);
-        stage.setMinWidth(1000);
+        //bug
+//        stage.setMinHeight(580);
+//        stage.setMinWidth(1000);
         //set icon
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/ku/cs/assets/images/LogoIcon.png")));
         ApplicationController.bind(this, stage);
@@ -43,7 +44,6 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",500 , 300);
         ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
-
 
         //Admin zone
         ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);
