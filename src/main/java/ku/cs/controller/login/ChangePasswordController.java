@@ -47,8 +47,14 @@ public class ChangePasswordController {
 //        System.out.println("Username or Password Incorrect");
 //        }
         if(dataBase.changePasswordUser(userChange, oldPassword, newPassword)){
-            System.out.printf("Changepassword");
-            closeWindows();
+            if (userChange == "" || oldPassword == "" || newPassword == ""){
+                ApplicationController.goToNew("Alert", "Can't Change password");
+                System.out.println("can't change");
+            }
+            else {
+                System.out.println("can");
+                closeWindows();
+            }
         }else {
             ApplicationController.goToNew("Alert", "Can't Change password");
             System.out.println("can't Change");

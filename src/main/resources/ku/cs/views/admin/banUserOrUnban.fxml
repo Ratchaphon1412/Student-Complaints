@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+
 
 <GridPane fx:id="adminpage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.AdminUserBanedListController">
   <columnConstraints>
@@ -67,8 +74,8 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="720.0" minWidth="8.0" prefWidth="13.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="95.0" minHeight="5.600007057189941" prefHeight="5.600007057189941" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="235.99999294281005" minHeight="10.0" prefHeight="235.99999294281005" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="95.0" minHeight="5.600007057189941" prefHeight="32.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="235.99999294281005" minHeight="10.0" prefHeight="210.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <styleClass>
                   <String fx:value="cardBackground" />
@@ -94,6 +101,11 @@
                         </GridPane>
                      </content>
                   </ScrollPane>
+                  <Label fx:id="titleBan" text="User Ban" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
             <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.rowSpan="4">
@@ -103,8 +115,8 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="716.0" minWidth="10.0" prefWidth="16.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="109.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="222.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="109.0" minHeight="6.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="222.0" minHeight="10.0" prefHeight="195.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <styleClass>
                   <String fx:value="cardBackground" />
@@ -130,6 +142,11 @@
                         </GridPane>
                      </content>
                   </ScrollPane>
+                  <Label text="User Unban" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
             <GridPane alignment="CENTER_RIGHT" GridPane.columnIndex="7" GridPane.columnSpan="2">
