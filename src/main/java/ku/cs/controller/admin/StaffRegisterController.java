@@ -50,6 +50,7 @@ public class StaffRegisterController {
     private StaffList staffList;
 
     private ProcessData dataBase;
+    private AgencyLoad agencyLoad;
     private String path;
     private File file;
 
@@ -58,7 +59,7 @@ public class StaffRegisterController {
     @FXML
     private void initialize(){
         ProcessData processData = new ProcessData<>();
-
+        agencyLoad = (AgencyLoad) ApplicationController.getAgencyLoad();
         staffList = new StaffList(processData.getDataBase().getAccountList(),processData.getDataBase().getAgencyList());
         choiceAgency.getItems().addAll(staffList.getAgency());
         //set Font
@@ -84,23 +85,21 @@ public class StaffRegisterController {
         String selectAgency = "";
         if(!dataBase.checkAccountDuplicate(user)){
             if(password.equals(confirmpassword)){
-                if(path != null){
-                    if(choiceAgency.getValue() !=null){
-                        selectAgency = choiceAgency.getValue().toString();
-                    }
-                    Staff newUser = new Staff(emails,user,password,path,"staff",selectAgency);
-                    DynamicDatabase<Staff> database = new ProcessData<>();
-                    boolean checkregister = database.registerAccount(newUser,file,"staff");
-                    if(checkregister){
-//                        ApplicationController.goTo("Login");
-                        closeWindows();
-                    }else{
-                        ApplicationController.goToNew("Alert","Failed to register");
-                    }
-                }else{
-                    ApplicationController.goToNew("Alert", "no select picture");
-                    System.out.println("no select picture");
+
+                if(choiceAgency.getValue() !=null){
+                    selectAgency = choiceAgency.getValue().toString();
                 }
+                Staff newUser = new Staff(emails,user,password,path,"staff",selectAgency);
+                DynamicDatabase<Staff> database = new ProcessData<>();
+                boolean checkregister = database.registerAccount(newUser,file,"staff");
+                if(checkregister){
+//                        ApplicationController.goTo("Login");
+                    agencyLoad.reloadAgency();
+                    closeWindows();
+                }else{
+                    ApplicationController.goToNew("Alert","Failed to register");
+                }
+
             }else{
                 ApplicationController.goToNew("Alert", "password not correct");
                 System.out.println("passWord not correct");

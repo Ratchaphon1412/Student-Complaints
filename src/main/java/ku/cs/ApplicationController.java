@@ -33,6 +33,11 @@ public class ApplicationController extends FXRouter {
         loadNewRoute(route);
     }
 
+    public static void goToCenter(String routeLabel) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        loadNewRouteCenter(route);
+    }
+
     public static void goTo(String routeLabel, Object data) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.data = data;
@@ -49,6 +54,24 @@ public class ApplicationController extends FXRouter {
         scene.setFill(Color.TRANSPARENT);
         window.setScene(scene);
         window.show();
+        routeAnimation(resource);
+        dragWindow(resource,window);
+    }
+
+    public static void loadNewRouteCenter(RouteScene route) throws IOException {
+        currentRoute = route;
+        String scenePath = "/" + route.scenePath;
+        Parent resource = (Parent) FXMLLoader.load((new Object() {
+        }).getClass().getResource(scenePath));
+        window.setTitle(route.windowTitle);
+        Scene scene = new Scene(resource,route.sceneWidth, route.sceneHeight);
+        scene.setFill(Color.TRANSPARENT);
+        window.setScene(scene);
+        window.show();
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((primScreenBounds.getWidth() - window.getWidth())/2);
+        window.setY((primScreenBounds.getHeight() - window.getHeight())/2);
+
         routeAnimation(resource);
         dragWindow(resource,window);
     }

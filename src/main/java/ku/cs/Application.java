@@ -1,8 +1,7 @@
 package ku.cs;
 
+import javafx.application.Platform;
 import javafx.scene.image.Image;
-import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -15,10 +14,12 @@ public class Application extends javafx.application.Application {
 
         stage.setFullScreen(false);
         stage.setResizable(true);
-        stage.setMinHeight(580);
-        stage.setMinWidth(1000);
+        //bug
+//        stage.setMinHeight(580);
+//        stage.setMinWidth(1000);
         //set icon
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/ku/cs/assets/images/LogoIcon.png")));
+        stage.setOnHidden(e -> Platform.exit());
         ApplicationController.bind(this, stage);
         //use state
         State state = new State();
@@ -28,7 +29,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("LoadingScreen");
+        ApplicationController.goToCenter("LoadingScreen");
     }
 
 
@@ -46,7 +47,6 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",500 , 300);
         ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);
 
-
         //Admin zone
         ApplicationController.when("Admin",pathResource+"admin/adminDashBoardView.fxml",1000,580);
         ApplicationController.when("Setting",pathResource+"admin/settingView.fxml",1000,580);
@@ -60,7 +60,7 @@ public class Application extends javafx.application.Application {
 
         //User zone
         ApplicationController.when("User",pathResource+"user/userDashBoardView.fxml",1000,580);
-        ApplicationController.when("DetailReport",pathResource+"user/detailProblemView.fxml",900,480);
+        ApplicationController.when("DetailReport",pathResource+"user/detailProblemView.fxml",900,760);
         ApplicationController.when("Report",pathResource+"user/detailProblemView.fxml",1000,580);
         ApplicationController.when("UserPostsProfile",pathResource+"user/userPostsView.fxml",1000,580);
         ApplicationController.when("UserSetting",pathResource+"user/userSettingView.fxml",1000, 580);
@@ -70,7 +70,7 @@ public class Application extends javafx.application.Application {
 
         //Staff zone
         ApplicationController.when("Staff",pathResource+"staff/staffProcessProblem.fxml",1000,580);
-        ApplicationController.when("SettingStaff","ku/cs/components/staff/settingStaff.fxml",1000,580);
+        ApplicationController.when("SettingStaff", "ku/cs/views/staff/settingStaff.fxml",1000,580);
     }
 
 

@@ -145,8 +145,10 @@ public class SettingController<DataObject> {
         bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
         //font choice
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
         String[] font ={"Cloud-Bold", "FC-Sound","pixelletMedium"};
         dropDown.getItems().addAll(font);
+        dropDown.setValue(preferences.get("font", null));
 
 
         changeTheme = new SwitchTheme() {

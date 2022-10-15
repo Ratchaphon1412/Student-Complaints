@@ -83,6 +83,16 @@ public class ProblemFeedController {
         this.report =report;
         this.user = user;
 
+        //set Like database
+        System.out.println(report.getUserNameLike());
+        for(String userName: report.getUserNameLike()){
+            if(userName.equals(user.getEmail())){
+                likeCheck = true;
+            }else{
+                likeCheck = false;
+            }
+        }
+
         refetch();
 
     }
@@ -104,20 +114,24 @@ public class ProblemFeedController {
 
               //connect models
               report.deleteLike(user.getEmail());
+
               DynamicDatabase<Report> dynamicDatabase = new ProcessData<>();
               dynamicDatabase.changeData(report,"like");
               likeCheck = !likeCheck;
               refetch();
+
 
           }else{
               //add
 
               //connect models
               report.addLike(user.getEmail());
+
               DynamicDatabase<Report> dynamicDatabase = new ProcessData<>();
               dynamicDatabase.changeData(report,"like");
               likeCheck = !likeCheck;
               refetch();
+
 
           }
 
@@ -148,23 +162,17 @@ public class ProblemFeedController {
                 imageUser.setStroke(Color.TRANSPARENT);
             }
 
-            //set Like database
-            System.out.println(report.getUserNameLike());
-            for(String userName: report.getUserNameLike()){
-                if(userName.equals(user.getEmail())){
-                    likeCheck = true;
-                }else{
-                    likeCheck = false;
-                }
-            }
             if(likeCheck == true){
-                likeButton.getStyleClass().removeAll();
+                likeButton.getStyleClass().remove("likeSVG");
+                likeButton.getStyleClass().remove("colorIcon");
                 likeButton.getStyleClass().add("likedSVG");
                 likeButton.getStyleClass().add("colorIcon");
             }else{
                 likeButton.getStyleClass().remove("likedSVG");
+                likeButton.getStyleClass().remove("colorIcon");
                 likeButton.getStyleClass().add("likeSVG");
                 likeButton.getStyleClass().add("colorIcon");
             }
+
         }
 }
