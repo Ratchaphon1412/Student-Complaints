@@ -1,5 +1,6 @@
 package ku.cs;
 
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -18,6 +19,7 @@ public class Application extends javafx.application.Application {
 //        stage.setMinWidth(1000);
         //set icon
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/ku/cs/assets/images/LogoIcon.png")));
+        stage.setOnHidden(e -> Platform.exit());
         ApplicationController.bind(this, stage);
         //use state
         State state = new State();
@@ -27,7 +29,7 @@ public class Application extends javafx.application.Application {
         configRoute();
 
 
-        ApplicationController.goTo("LoadingScreen");
+        ApplicationController.goToCenter("LoadingScreen");
     }
 
 
