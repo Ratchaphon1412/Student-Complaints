@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane fx:id="navBar" alignment="CENTER" prefHeight="397.0" prefWidth="53.0" stylesheets="@../../style/icon.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.navbar.NavbarUserController">
+<GridPane fx:id="navBar" alignment="CENTER" prefHeight="397.0" prefWidth="53.0" stylesheets="@../../style/icon.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.navbar.NavbarUserController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
@@ -44,7 +40,7 @@
                         <String fx:value="colorIcon" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="10.0" layoutY="24.0" mnemonicParsing="false" onAction="#logOut" prefHeight="0.0" prefWidth="4.0">
+                  <Button layoutX="10.0" layoutY="19.0" mnemonicParsing="false" onAction="#logOut" prefHeight="0.0" prefWidth="4.0">
                      <font>
                         <Font size="6.0" />
                      </font>
