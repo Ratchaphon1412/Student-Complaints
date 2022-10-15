@@ -1,11 +1,13 @@
 package ku.cs.controller;
 
+import animatefx.animation.FadeInUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
 import ku.cs.models.user.User;
@@ -21,6 +23,8 @@ public class alertRequestUnbanController {
 
     @FXML
     private Button close;
+    @FXML
+    private GridPane root;
     private User user;
 
 
@@ -31,6 +35,9 @@ public class alertRequestUnbanController {
         String pathPicture = getClass().getResource("/ku/cs/assets/images/error-icon-4.png").toExternalForm();
         status.setImage(new Image(pathPicture));
         textStatus.setText(text);
+
+        //set animation
+        new FadeInUp(root).play();
     }
 
     @FXML
@@ -39,9 +46,11 @@ public class alertRequestUnbanController {
         closeWindows();
     }
     @FXML
-    public void closeWindows(){
-        Stage stage = (Stage)close.getScene().getWindow();
+    public void closeWindows() {
+        Stage stage = (Stage) close.getScene().getWindow();
         stage.close();
+
     }
+
 
 }

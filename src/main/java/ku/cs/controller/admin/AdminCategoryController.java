@@ -1,5 +1,7 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.ZoomIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -109,6 +111,7 @@ public class AdminCategoryController {
         tableTitleUserName.setFont(font);
         displayName.setFont(font);
         roleDisplay.setFont(font);
+
 
         account = (Admin)ApplicationController.getData();
         displayName.setText(account.getUserName());

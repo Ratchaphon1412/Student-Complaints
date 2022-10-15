@@ -1,8 +1,10 @@
 package ku.cs.controller.login;
 
 
+import animatefx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -11,6 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import ku.cs.ApplicationController;
 
 import ku.cs.State;
@@ -50,13 +55,15 @@ public class LoginController {
     private Label welcomeLogin;
     @FXML
     private Label sighUpLogin;
+    @FXML
+    private GridPane mainLoginPage;
 
 
 
 
 
     @FXML
-    private void initialize() throws IOException {
+    private void initialize() throws IOException, InterruptedException {
         String logoKUPic = getClass().getResource("/ku/cs/assets/images/LogoKU.png").toExternalForm();
         logoKU.setImage(new Image(logoKUPic));
         HBox buttonWindows = (HBox) FXMLLoader.load(getClass().getResource("/ku/cs/components/buttonWindows.fxml"));
@@ -67,6 +74,9 @@ public class LoginController {
         forgetLogin.setFont(font);
         welcomeLogin.setFont(font);
         sighUpLogin.setFont(font);
+
+
+
     }
 
 
@@ -87,11 +97,11 @@ public class LoginController {
 
     @FXML
     public void handleRegisterButton(ActionEvent actionEvent) {
+
         try {
             ApplicationController.goTo("Register");
         } catch (IOException e) {
             System.err.println(e);
-
 
         }
     }

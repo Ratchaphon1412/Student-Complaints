@@ -1,5 +1,6 @@
 package ku.cs.controller.components.user;
 
+import animatefx.animation.FadeInUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -78,7 +79,8 @@ public class CreatePost {
         title.setFont(font);
         titleCategory.setFont(font);
         titleContent.setFont(font);
-
+        //set Animation
+        new FadeInUp(root).play();
         //connect database
         processData = new ProcessData<>();
         pattern = processData.getDataBase().getPatternList();
@@ -95,15 +97,24 @@ public class CreatePost {
 
     @FXML
     private void submit() throws IOException, RefreshFailedException {
+        if(titleText.getText().equals("") || category.getValue() == null){
+            return;
+        }
         String title = titleText.getText();
         String categoryText = category.getValue();
         ArrayList<String> dataTextList = new ArrayList<>();
         ArrayList<File> dataImage = new ArrayList<>();
         for(CreateTextContent createTextContent :controllerCreateTextContentList ){
+            if(createTextContent.getTextInput().equals("")){
+                return;
+            }
             dataTextList.add(createTextContent.getTextInput());
         }
 
         for(CreateImageContent createImageContent : controllerCreateImageContentList){
+            if(createImageContent.getFile() == null){
+                return;
+            }
             dataImage.add(createImageContent.getFile());
         }
 

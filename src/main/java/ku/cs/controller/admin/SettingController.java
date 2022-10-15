@@ -1,10 +1,12 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -107,6 +109,7 @@ public class SettingController<DataObject> {
         miniuser.setFont(font);
         miniuser.setWrapText(true);
         minirole.setFont(font);
+
 
         //get object Admin
         System.out.println(ApplicationController.getData().getClass().getName());
@@ -242,6 +245,14 @@ public class SettingController<DataObject> {
         
     }
 
+    @FXML
+    void handleChangePasswordButton(ActionEvent event) {
+        try {
+            ApplicationController.goToNew("changePassword");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
 
 
     @FXML

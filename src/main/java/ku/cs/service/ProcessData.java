@@ -453,7 +453,7 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         temp.put("title",title);
         temp.put("email",reporter.getEmail());
         temp.put("category",category);
-        temp.put("reportStage","in progress");
+        temp.put("reportStage","in queue");
         temp.put("problemDate",dateFormat.format(currentDate));
         temp.put("time",timeFormat.format(currentDate));
         int countText = 0;

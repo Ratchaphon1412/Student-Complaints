@@ -1,5 +1,9 @@
 package ku.cs.controller.login;
 
+import animatefx.animation.FadeInUp;
+import animatefx.animation.SlideInRight;
+import animatefx.animation.ZoomIn;
+import animatefx.animation.ZoomOut;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,8 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.service.DataBase;
@@ -20,8 +26,7 @@ public class ChangePasswordController {
     @FXML ImageView changePasswordPic;
     @FXML ImageView Logo;
     @FXML Button close;
-
-
+    @FXML GridPane rootGridpane;
     @FXML TextField UserChange;
     @FXML TextField OldPassword;
     @FXML TextField NewPassword;
@@ -51,7 +56,7 @@ public class ChangePasswordController {
 
     }
 
-    @FXML public void initialize(){
+    @FXML public void initialize() throws InterruptedException {
         String changePasswordPicture = getClass().getResource("/ku/cs/assets/images/ChangePasswordPic.png").toExternalForm();
         changePasswordPic.setImage(new Image(changePasswordPicture));
 
@@ -62,6 +67,11 @@ public class ChangePasswordController {
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         changPasswordTitle.setFont(font);
+
+        //set Animation
+        new FadeInUp(rootGridpane).play();
+
+
     }
     @FXML
     public void closeWindows(){

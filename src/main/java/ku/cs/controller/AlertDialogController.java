@@ -34,8 +34,6 @@ public class AlertDialogController {
     @FXML
     private Button close;
 
-    @FXML
-    private AnchorPane anchorPane;
 
 
     @FXML

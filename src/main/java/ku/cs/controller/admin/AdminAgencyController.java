@@ -1,5 +1,7 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.ZoomIn;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -108,7 +110,6 @@ public class AdminAgencyController {
 
 
 
-
        account = (Admin)ApplicationController.getData();
         displayName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
@@ -128,6 +129,22 @@ public class AdminAgencyController {
             }
         };
 
+        initialAdminAgency();
+    }
+
+    private void initialAdminAgency() throws IOException {
+        gridPaneAgency.getChildren().clear();
+        staffListGridPane.getChildren().clear();
+
+        processData = new ProcessData<>();
+        staffListData = processData.getStaffList();
+        fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
+        GridPane navbar = (GridPane) fxmlLoader.load();
+        NavbarAdminController navbarAdminController = fxmlLoader.getController();
+        navbarAdminController.setAdmin(account);
+        root.add(navbar,0,0);
+        int i = 1;
         changeTheme = new SwitchTheme() {
             @Override
             public void changeTheme(String theme) throws IOException {
@@ -155,25 +172,7 @@ public class AdminAgencyController {
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
-        initialAdminAgency();
 
-
-
-    }
-
-    private void initialAdminAgency() throws IOException {
-        gridPaneAgency.getChildren().clear();
-        staffListGridPane.getChildren().clear();
-
-        processData = new ProcessData<>();
-        staffListData = processData.getStaffList();
-        fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
-        GridPane navbar = (GridPane) fxmlLoader.load();
-        NavbarAdminController navbarAdminController = fxmlLoader.getController();
-        navbarAdminController.setAdmin(account);
-        root.add(navbar,0,0);
-        int i = 1;
 
         for(Staff data: staffListData.getStaffList()) {
             fxmlLoader = new FXMLLoader();
@@ -198,7 +197,6 @@ public class AdminAgencyController {
             GridPane.setMargin(label, new Insets(0,0,10,0));
             i++;
         }
-
     }
 
     @FXML

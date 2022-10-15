@@ -1,9 +1,12 @@
 package ku.cs.controller.components.navbar;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import ku.cs.ApplicationController;
@@ -13,6 +16,7 @@ import java.io.IOException;
 
 public class NavbarAdminController {
     private Admin admin;
+
 
     @FXML
     private GridPane navBar;
@@ -34,6 +38,8 @@ public class NavbarAdminController {
     }
    @FXML
     private void gotoAgency() throws IOException {
+
+
        ApplicationController.goTo("AdminAgency",admin);
    }
 
@@ -58,4 +64,10 @@ public class NavbarAdminController {
    public void setAdmin(Admin admin){
         this.admin = admin;
    }
+
+
+
+
+
+
 }

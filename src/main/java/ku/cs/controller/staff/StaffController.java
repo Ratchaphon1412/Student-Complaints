@@ -1,5 +1,6 @@
 package ku.cs.controller.staff;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,16 @@ public class StaffController {
 
     @FXML
     private Label nameStaffLabel;
+    @FXML
+    private Label staffTitle;
+    @FXML
+    private Label processWorkLabel;
+    @FXML
+    private Label nameProblemLabel;
+    @FXML
+    private Label processLabel;
+    @FXML
+    private Label statusLabel;
 
     @FXML
     private TextArea processTextArea;
@@ -82,6 +93,12 @@ public class StaffController {
         roleLabel.setFont(font);
         nameStaffLabel.setFont(font);
         nameProblem.setFont(font);
+        staffTitle.setFont(font);
+        statusLabel.setFont(font);
+        processLabel.setFont(font);
+        processWorkLabel.setFont(font);
+        nameProblemLabel.setFont(font);
+
 
 
         account = (Staff)ApplicationController.getData();
@@ -112,8 +129,6 @@ public class StaffController {
                 root.getStylesheets().add(getClass().getResource(style).toExternalForm());
             }
         };
-
-
         //Switch Theme
         FXMLLoader fxmlLoader1 = new FXMLLoader();
         fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
@@ -130,7 +145,6 @@ public class StaffController {
         navbarStaffController.setStaff(account);
         root.add(navbar,0,0);
 
-
         //refetch components
         refetch();
 
@@ -140,7 +154,7 @@ public class StaffController {
 
 
         processData = new ProcessData<>();
-        StatusChoiceBox.getItems().addAll("in progress","finich");
+        StatusChoiceBox.getItems().addAll("in progress","finish");
 
         reportList = processData.getReportList().getReportListAgency(account.getAgency());
         ShowProcessProblem showProcessProblem = new ShowProcessProblem() {
@@ -174,8 +188,8 @@ public class StaffController {
         processTextArea.setText("");
         nameProblem.setText("");
         StatusChoiceBox.getItems().clear();
-        StatusChoiceBox.getItems().addAll("in progress","finich");
-        if(report.getReportStage().equals("finich")){
+        StatusChoiceBox.getItems().addAll("in progress","finish");
+        if(report.getReportStage().equals("finish")){
             processTextArea.setText(report.getProcess());
             processTextArea.setDisable(true);
             nameProblem.setText(report.getTitle());
@@ -202,7 +216,7 @@ public class StaffController {
                 process+=temp;
             }
         }
-        if(process != null && reportStage != null && reportProcess != null && !(reportProcess.getReportStage().equals("finich"))){
+        if(process != null && reportStage != null && reportProcess != null && !(reportProcess.getReportStage().equals("finish"))){
             reportProcess.setProcessProblem(process,reportStage,account.getUserName());
             processData.changeData(reportProcess,"addPrecessProblem");
             this.nameProblem.setText("");
@@ -224,5 +238,7 @@ public class StaffController {
             System.err.println(e);
         }
     }
+
+
 
 }

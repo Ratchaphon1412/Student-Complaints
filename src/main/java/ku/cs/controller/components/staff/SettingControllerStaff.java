@@ -1,5 +1,6 @@
 package ku.cs.controller.components.staff;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -130,6 +131,7 @@ public class SettingControllerStaff {
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
 
+
         //set image account
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
         Image imageAccount = new Image(desDir.toURI().toString());
@@ -165,7 +167,7 @@ public class SettingControllerStaff {
             }
         };
 
-//        theme
+//      theme
         FXMLLoader fxmlLoader1 = new FXMLLoader();
         fxmlLoader1.setLocation(getClass().getResource("/ku/cs/components/buttonTheme.fxml"));
         GridPane switchTheme = (GridPane)fxmlLoader1.load();
