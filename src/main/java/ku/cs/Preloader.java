@@ -67,7 +67,7 @@ public class Preloader implements Initializable {
                     @Override
                     public void run() {
                            try {
-                               ApplicationController.goTo("Login");
+                               ApplicationController.goToCenter("Login");
 //                            rootGridPane.getScene().getWindow().hide();
                            } catch (IOException e) {
                                throw new RuntimeException(e);
