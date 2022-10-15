@@ -135,10 +135,8 @@ public class AddCategoryController {
         error.setText("");
         String type = dropDownType.getValue();
         int count = 1;
-        if(addCatagoryField.getText() != "") {
-            if(dropDownAgency.getValue() != null) {
-                if (addText.getText() != "") {
-                    if (type != null) {
+        if(addCatagoryField.getText() != "" && dropDownAgency.getValue() != null && addText.getText() != "" && type != null) {
+
                         if (dropDownAgency.getValue() != null)
                             listExampleString.add(addText.getText());
 
@@ -168,9 +166,7 @@ public class AddCategoryController {
                             addText.clear();
 
                         }
-                    } else {error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
-                }else {error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
-            }else {error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
+
         }else{error.setText("โปรดใส่ข้อมูลให้ครบถ้วน");}
 
     }
