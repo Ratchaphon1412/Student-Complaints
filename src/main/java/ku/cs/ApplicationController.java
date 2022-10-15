@@ -11,7 +11,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ku.cs.controller.admin.AgencyLoad;
-import ku.cs.controller.user.Reposthable;
+import ku.cs.controller.Reposthable;
 
 import java.io.IOException;
 

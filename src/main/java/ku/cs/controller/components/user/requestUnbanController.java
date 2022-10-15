@@ -3,6 +3,8 @@ package ku.cs.controller.components.user;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ku.cs.ApplicationController;
@@ -18,10 +20,12 @@ public class requestUnbanController {
     private Button close;
 
     @FXML
-    private TextField requestField;
+    private TextArea requestField;
 
     @FXML
     private TextField userName;
+
+    @FXML private Label error;
 
 
     private User user;
@@ -38,10 +42,15 @@ public class requestUnbanController {
 
     @FXML
     private void applyButton(ActionEvent actionEvent) throws IOException {
-        String requestText = requestField.getText();
-        String userNameText = userName.getText();
-        processData.requestBan(userNameText, requestText);
-        closeWindows();
+        if (userName.getText() != "") {
+            if(requestField.getText() != "") {
+                String requestText = requestField.getText();
+                String userNameText = userName.getText();
+                processData.requestBan(userNameText, requestText);
+                closeWindows();
+            }else {error.setText("โปรดใส่ข้อความ");}
+        }else {error.setText("โปรดใส่ email");}
+
     }
 
     @FXML

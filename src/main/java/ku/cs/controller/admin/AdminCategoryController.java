@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
+import ku.cs.controller.Reposthable;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 import ku.cs.controller.components.admin.DeleteUserReportController;
@@ -84,6 +85,8 @@ public class AdminCategoryController {
     private List<Report> requestBanPost;
 
     private BanAndUnBan banAndUnBan;
+
+    private Reposthable reposthable;
 
     @FXML
     public void initialize() throws IOException{
@@ -177,21 +180,16 @@ public class AdminCategoryController {
         root.add(navbar,0,0);
 
         //addList
-        Preferences preferences = Preferences.userRoot().node(State.class.getName());
-        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
 
-        int i=1;
-        dataBase = processData.getDataBase();
-        categoryList = dataBase.getPatternList();
-        for (LinkedHashMap<String, String> temp: categoryList){
-            Label label = new Label();
-            label.setText(String.valueOf(i) + "."+temp.get("category"));
-            label.getStyleClass().add("textLabelColor");
-            label.setFont(font);
-            gridPaneCategory.add(label, 0, i);
-            GridPane.setMargin(label, new Insets(0,0,10,0));
-            i++;
-        }
+
+        reposthable = new Reposthable() {
+            @Override
+            public void refreshPost() throws IOException {
+                refresh();
+            }
+        };
+        refresh();
+
 
         requestBanPost = processData.getReportList().getRequestDeleteReport();
         GridPane gridPane = new GridPane();
@@ -221,7 +219,7 @@ public class AdminCategoryController {
 
     @FXML
     void goToAddCategoryButton(ActionEvent event) throws IOException {
-        ApplicationController.goToNew("addCategory");
+        ApplicationController.goToNew("addCategory",reposthable);
     }
 
     @FXML
@@ -230,6 +228,26 @@ public class AdminCategoryController {
             ApplicationController.goTo("Setting",account);
         } catch (IOException e) {
             System.err.println(e);
+        }
+    }
+
+    public void refresh(){
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+
+        int i=1;
+
+        processData = new ProcessData<>();
+        dataBase = processData.getDataBase();
+        categoryList = dataBase.getPatternList();
+        for (LinkedHashMap<String, String> temp: categoryList){
+            Label label = new Label();
+            label.setText(String.valueOf(i) + "."+temp.get("category"));
+            label.getStyleClass().add("textLabelColor");
+            label.setFont(font);
+            gridPaneCategory.add(label, 0, i);
+            GridPane.setMargin(label, new Insets(0,0,10,0));
+            i++;
         }
     }
 

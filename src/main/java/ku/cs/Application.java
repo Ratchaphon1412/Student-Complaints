@@ -58,7 +58,7 @@ public class Application extends javafx.application.Application {
 
         //User zone
         ApplicationController.when("User",pathResource+"user/userDashBoardView.fxml",1000,580);
-        ApplicationController.when("DetailReport",pathResource+"user/detailProblemView.fxml",900,480);
+        ApplicationController.when("DetailReport",pathResource+"user/detailProblemView.fxml",900,760);
         ApplicationController.when("Report",pathResource+"user/detailProblemView.fxml",1000,580);
         ApplicationController.when("UserPostsProfile",pathResource+"user/userPostsView.fxml",1000,580);
         ApplicationController.when("UserSetting",pathResource+"user/userSettingView.fxml",1000, 580);

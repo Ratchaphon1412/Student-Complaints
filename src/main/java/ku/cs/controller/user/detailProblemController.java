@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -51,6 +52,10 @@ public class detailProblemController {
     private Button close;
     @FXML
     private GridPane root;
+    @FXML
+    private TextArea detailStaffProcesss;
+    @FXML
+    private Label datailStaffTextLabel;
 
 
     private Report report;
@@ -66,6 +71,7 @@ public class detailProblemController {
         agency.setText(report.getAgency());
         date.setText(report.getDate().toString());
         status.setText(report.getReportStage());
+        detailStaffProcesss.setText(report.getProcess());
 
         agency.setFont(font);
         titleReport.setFont(font);
@@ -76,6 +82,8 @@ public class detailProblemController {
         titleStatus.setFont(font);
         titleAgency.setFont(font);
         titleDate.setFont(font);
+        detailStaffProcesss.setFont(font);
+        datailStaffTextLabel.setFont(font);
 
         new FadeInUp(root).play();
 

@@ -42,7 +42,7 @@ public class Preloader implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Preferences preferences = Preferences.userRoot().node(ku.cs.State.class.getName());
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),12);
         titleStudent.setFont(font);
         loadingLable.setFont(font);
