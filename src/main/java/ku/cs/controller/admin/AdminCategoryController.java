@@ -242,6 +242,7 @@ public class AdminCategoryController {
         categoryList = dataBase.getPatternList();
         for (LinkedHashMap<String, String> temp: categoryList){
             Label label = new Label();
+           // label.setWrapText(true);
             label.setText(String.valueOf(i) + "."+temp.get("category")+ " - " + temp.get("agency"));
             label.getStyleClass().add("textLabelColor");
             label.setFont(font);
