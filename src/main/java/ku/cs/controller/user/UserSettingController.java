@@ -35,8 +35,6 @@ public class UserSettingController {
     @FXML
     private Label username;
     @FXML
-    private Label password;
-    @FXML
     private Label role;
 
     @FXML
@@ -93,7 +91,6 @@ public class UserSettingController {
         //set Font
         Font font = Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/" + preferences.get("font", null)).toExternalForm(), 18);
         username.setFont(font);
-        password.setFont(font);
         role.setFont(font);
         titleSetting.setFont(font);
         titleSetting.setWrapText(true);
@@ -126,7 +123,6 @@ public class UserSettingController {
 
         //set label
         username.setText(account.getUserName());
-        password.setText(account.getPassWord());
         role.setText(account.getRole());
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());

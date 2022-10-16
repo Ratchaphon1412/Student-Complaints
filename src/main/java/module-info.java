@@ -4,6 +4,7 @@ module cs.ku {
     requires com.fasterxml.jackson.dataformat.csv;
     requires com.fasterxml.jackson.databind;
     requires java.prefs;
+    requires java.desktop;
 
 
     opens ku.cs to javafx.fxml;

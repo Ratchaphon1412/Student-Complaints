@@ -80,35 +80,37 @@ public class StaffRegisterController {
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
         dataBase = new ProcessData<>();
+        if(user != "" && emails != "" && password != "" && confirmpassword != "") {
 
+            String selectAgency = "";
+            if (!dataBase.checkAccount(emails)) {
+                if (password.equals(confirmpassword)) {
 
-        String selectAgency = "";
-        if(!dataBase.checkAccountDuplicate(user)){
-            if(password.equals(confirmpassword)){
-
-                if(choiceAgency.getValue() !=null){
-                    selectAgency = choiceAgency.getValue().toString();
-                }
-                Staff newUser = new Staff(emails,user,password,path,"staff",selectAgency);
-                DynamicDatabase<Staff> database = new ProcessData<>();
-                boolean checkregister = database.registerAccount(newUser,file,"staff");
-                if(checkregister){
+                    if (choiceAgency.getValue() != null) {
+                        selectAgency = choiceAgency.getValue().toString();
+                    }
+                    Staff newUser = new Staff(emails, user, password, path, "staff", selectAgency);
+                    DynamicDatabase<Staff> database = new ProcessData<>();
+                    boolean checkregister = database.registerAccount(newUser, file, "staff");
+                    if (checkregister) {
 //                        ApplicationController.goTo("Login");
-                    agencyLoad.reloadAgency();
-                    closeWindows();
-                }else{
-                    ApplicationController.goToNew("Alert","Failed to register");
-                }
+                        agencyLoad.reloadAgency();
+                        closeWindows();
+                    } else {
+                        ApplicationController.goToNew("Alert", "Failed to register");
+                    }
 
-            }else{
-                ApplicationController.goToNew("Alert", "password not correct");
-                System.out.println("passWord not correct");
+                } else {
+                    ApplicationController.goToNew("Alert", "password not correct");
+                    System.out.println("passWord not correct");
+                }
+            } else {
+                ApplicationController.goToNew("Alert", "Have Account in ADatabase");
+                System.out.println("Have Account in Database");
             }
         }else{
-            ApplicationController.goToNew("Alert", "Have Account in Database");
-            System.out.println("Have Account in Database");
+            ApplicationController.goToNew("Alert", "Please complete the text.");
         }
-
 
 
     }

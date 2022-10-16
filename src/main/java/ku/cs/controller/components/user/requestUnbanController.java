@@ -42,14 +42,14 @@ public class requestUnbanController {
 
     @FXML
     private void applyButton(ActionEvent actionEvent) throws IOException {
-        if (userName.getText() != "") {
+        if (userName.getText() != "" && userName.getText().equals(user.getEmail())) {
             if(requestField.getText() != "") {
                 String requestText = requestField.getText();
                 String userNameText = userName.getText();
                 processData.requestBan(userNameText, requestText);
                 closeWindows();
             }else {error.setText("โปรดใส่ข้อความ");}
-        }else {error.setText("โปรดใส่ email");}
+        }else {error.setText("โปรดใส่ email ให้ถูกต้อง");}
 
     }
 
