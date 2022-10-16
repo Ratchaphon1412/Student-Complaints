@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -69,11 +70,14 @@ public class AdminCategoryController {
     @FXML
     private GridPane root;
 
-    @FXML
+//    @FXML
     private GridPane gridPaneCategory;
 
     @FXML
     private ScrollPane scroll;
+
+    @FXML
+    private ScrollPane scrollCategory;
 
     private FXMLLoader fxmlLoader;
 
@@ -112,6 +116,11 @@ public class AdminCategoryController {
         displayName.setFont(font);
         roleDisplay.setFont(font);
 
+
+        //scroll category
+
+        gridPaneCategory = new GridPane();
+        scrollCategory.setContent(gridPaneCategory);
 
         account = (Admin)ApplicationController.getData();
         displayName.setText(account.getUserName());
@@ -242,10 +251,11 @@ public class AdminCategoryController {
         categoryList = dataBase.getPatternList();
         for (LinkedHashMap<String, String> temp: categoryList){
             Label label = new Label();
-           // label.setWrapText(true);
+//            label.setWrapText(true);
             label.setText(String.valueOf(i) + "."+temp.get("category")+ " - " + temp.get("agency"));
             label.getStyleClass().add("textLabelColor");
             label.setFont(font);
+//            label.setMinWidth(Region.USE_COMPUTED_SIZE);
             gridPaneCategory.add(label, 0, i);
             GridPane.setMargin(label, new Insets(0,0,10,0));
             i++;

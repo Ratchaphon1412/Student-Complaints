@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -35,7 +36,7 @@ public class AdminAgencyController {
 
     @FXML
     private GridPane staffListGridPane;
-    @FXML
+//    @FXML
     private GridPane gridPaneAgency;
 
     @FXML
@@ -70,6 +71,9 @@ public class AdminAgencyController {
 
     @FXML
     private  Label tableTitleRole;
+
+    @FXML
+    private ScrollPane scrollAgency;
 
 
 
@@ -108,6 +112,10 @@ public class AdminAgencyController {
         tableTitleAgency.setFont(font);
         tableTitleRole.setFont(font);
 
+
+        //scroll agency
+        gridPaneAgency = new GridPane();
+        scrollAgency.setContent(gridPaneAgency);
 
 
        account = (Admin)ApplicationController.getData();
