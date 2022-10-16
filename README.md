@@ -176,13 +176,7 @@ Coming soon
 
 ## Usage/Examples
 
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-```
+This is User Manual [Guide](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/pdf/fileProjectJavaPDF.pdf)
 
 
 ## Account Tests
