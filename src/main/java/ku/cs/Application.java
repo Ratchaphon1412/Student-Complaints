@@ -42,7 +42,7 @@ public class Application extends javafx.application.Application {
         ApplicationController.when("Alert",pathResource+"alertProgress.fxml", 600,400);
         ApplicationController.when("AlertRequest","ku/cs/components/user/alertRequestUnbanView.fxml",600,400);
         ApplicationController.when("RequestUnban","ku/cs/components/user/requestUnbanView.fxml",600,400);
-        ApplicationController.when("Info",pathResource+"infoVIew.fxml",1000,580);
+        ApplicationController.when("Info",pathResource+"infoView.fxml",1000,580);
         ApplicationController.when("Register",pathResource+"registerView.fxml", 1000, 580);
         ApplicationController.when("reportUserOrPost","ku/cs/components/user/reportPostAndUser.fxml",500 , 300);
         ApplicationController.when("LoadingScreen",pathResource+"loadSplashScreen.fxml",300,350);

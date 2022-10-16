@@ -23,7 +23,7 @@ public class AboutController {
 
     @FXML
     private void initialize(){
-        Image image = new Image(getClass().getResourceAsStream("/ku/cs/assets/images/About.png"));
+        Image image = new Image(getClass().getResource("/ku/cs/assets/images/About.png").toExternalForm());
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(900);
         imageView.setFitHeight(450);
