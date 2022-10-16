@@ -118,8 +118,9 @@ public class LoginController {
     }
     @FXML
     public void pdfButtin(ActionEvent actionEvent){
+        String fs = File.separator;
         try{
-            File file = new File("C:\\CSV\\fileProjectJavacsv.pdf");
+            File file = new File("docs" + fs + "pdf" + fs + "fileProjectJavaPDF.pdf");
             if(file.exists()){
                 if(Desktop.isDesktopSupported()){
                     Desktop.getDesktop().open(file);
