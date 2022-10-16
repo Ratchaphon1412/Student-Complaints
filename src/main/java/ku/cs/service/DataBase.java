@@ -236,7 +236,7 @@ public class DataBase {
 
     public boolean changePicture(String username, String password, String newPath) throws IOException {
         for (LinkedHashMap<String, String> dataLine : accountList){
-            if(dataLine.get("userName").equals(username)){
+            if(dataLine.get("email").equals(username)){
                 if(dataLine.get("passWord").equals(password)){
                     dataLine.replace("pathPicture", newPath);
                     saveToDatabase();
@@ -244,7 +244,6 @@ public class DataBase {
                 }
             }
         }
-        System.out.println("pp");
         return false;
 
     }

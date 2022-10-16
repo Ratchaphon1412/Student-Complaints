@@ -39,8 +39,6 @@ import java.util.prefs.Preferences;
 public class SettingController<DataObject> {
     @FXML
     private Label username;
-    @FXML
-    private Label password;
     @FXML private Label role;
 
     @FXML
@@ -96,7 +94,6 @@ public class SettingController<DataObject> {
         //set Font
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),18);
         username.setFont(font);
-        password.setFont(font);
         role.setFont(font);
         titleSetting.setFont(font);
         titleSetting.setWrapText(true);
@@ -131,7 +128,6 @@ public class SettingController<DataObject> {
 
         //set label
         username.setText(account.getUserName());
-        password.setText(account.getPassWord());
         role.setText(account.getRole());
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
@@ -227,24 +223,19 @@ public class SettingController<DataObject> {
 
     @FXML
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
-        Admin admin = null;
         //เดี๋ยวแก้
         if(file != null){
-            dataBase.changePicture(account.getUserName(),account.getPassWord(), path, file);
-            DynamicDatabase<Admin> database = new ProcessData<>();
-            admin = database.login(account.getEmail(),account.getPassWord());
+            dataBase.changePicture(account.getEmail(),account.getPassWord(), path, file);
+            ProcessData<Admin> database = new ProcessData<>();
+            account = database.getAdminList().getAdmin(account.getEmail());
         }
-
         //change fonts
-        if(dropDown.getValue() !=null){
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        if(!dropDown.getValue().equals(preferences.get("font",null))){
             changeFonts.changeFonts(dropDown.getValue().toString());
         }
-        if(admin!=null){
-            ApplicationController.goTo("Admin",admin);
-        }else{
-            ApplicationController.goTo("Admin",account);
-        }
-        
+        ApplicationController.goTo("Admin",account);
+
     }
 
     @FXML

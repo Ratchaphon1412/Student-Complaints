@@ -35,8 +35,6 @@ import java.util.prefs.Preferences;
 public class SettingControllerStaff {
     @FXML
     private Label username;
-    @FXML
-    private Label password;
     @FXML private Label role;
 
     @FXML
@@ -92,7 +90,6 @@ public class SettingControllerStaff {
         //set Font
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),18);
         username.setFont(font);
-        password.setFont(font);
         role.setFont(font);
         titleSetting.setFont(font);
         titleSetting.setWrapText(true);
@@ -126,7 +123,6 @@ public class SettingControllerStaff {
 
         //set label
         username.setText(account.getUserName());
-        password.setText(account.getPassWord());
         role.setText(account.getRole());
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
@@ -223,23 +219,20 @@ public class SettingControllerStaff {
 
     @FXML
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
-        Staff staff = null;
+
         //เดี๋ยวแก้
         if(file != null){
-            dataBase.changePicture(account.getUserName(),account.getPassWord(), path, file);
-            DynamicDatabase<Staff> database = new ProcessData<>();
-            staff = database.login(account.getUserName(),account.getPassWord());
+            dataBase.changePicture(account.getEmail(),account.getPassWord(), path, file);
+           ProcessData<Staff> database = new ProcessData<>();
+            account = database.getStaffList().getStaff(account.getEmail());
         }
 
         //change fonts
-        if(dropDown.getValue() !=null){
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        if(!dropDown.getValue().equals(preferences.get("font",null))){
             changeFonts.changeFonts(dropDown.getValue().toString());
         }
-        if(staff!=null){
-            ApplicationController.goTo("Staff",staff);
-        }else{
-            ApplicationController.goTo("Staff",account);
-        }
+        ApplicationController.goTo("Staff",account);
 
     }
 

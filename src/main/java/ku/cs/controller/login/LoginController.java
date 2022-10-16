@@ -23,12 +23,15 @@ import ku.cs.models.admin.Admin;
 import ku.cs.models.staff.Staff;
 import ku.cs.models.user.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.prefs.Preferences;
 
 import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
 
+import javax.swing.*;
+import java.awt.Desktop;
 
 public class LoginController {
 
@@ -113,6 +116,30 @@ public class LoginController {
             System.err.println(e);
         }
     }
+    @FXML
+    public void pdfButtin(ActionEvent actionEvent){
+        String fs = File.separator;
+        try{
+            File file = new File("docs" + fs + "pdf" + fs + "fileProjectJavaPDF.pdf");
+            if(file.exists()){
+                if(Desktop.isDesktopSupported()){
+                    Desktop.getDesktop().open(file);
+                }
+                else {
+                    System.out.println("Not Supported");
+                }
+            }
+            else {
+                System.out.println("File Not Exist");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
     @FXML
     public void handleLoginAuthentication() throws IOException {
         String userNameString = userName.getText();

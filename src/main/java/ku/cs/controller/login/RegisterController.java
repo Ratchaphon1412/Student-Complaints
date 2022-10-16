@@ -70,28 +70,31 @@ public class RegisterController {
         String confirmpassword = confirmPassword.getText();
         dataBase = new ProcessData();
         if(!dataBase.checkAccountDuplicate(user)){
+            System.out.println("1");
             if(password.equals(confirmpassword)){
-                if(path != null){
-                    User newUser = new User(emails,user,password,path,"user");
-                    DynamicDatabase<User> database = new ProcessData<>();
-                   boolean checkregister = database.registerAccount(newUser,file,"user");
-                   if(checkregister){
-                        ApplicationController.goTo("Login");
-                   }else{
-                        ApplicationController.goToNew("Alert","Failed to register");
-                   }
-                }else{//แก้ให้ใส่ภาพตั้งต้น
-
-                    User newUser = new User(emails,user,password,path,"user");
-                    DynamicDatabase<User> database = new ProcessData<>();
-                    boolean checkregister = database.registerAccount(newUser,file,"user");
-                    if(checkregister){
-                        ApplicationController.goTo("Login");
+                System.out.println("2");
+                if (user == "" || emails == "" || password == "" || confirmpassword == ""){
+                    ApplicationController.goToNew("Alert", "Please fill out the information completely");
+                } else {
+                    if(path != null){
+                        System.out.println("3");
+                        User newUser = new User(emails,user,password,path,"user");
+                        DynamicDatabase<User> database = new ProcessData<>();
+                        boolean checkregister = database.registerAccount(newUser,file,"user");
+                        if(checkregister){
+                            ApplicationController.goTo("Login");
+                        }else{
+                            ApplicationController.goToNew("Alert","Failed to register");
+                        }
+                    }else{//แก้ให้ใส่ภาพตั้งต้น
+                        System.out.println("4");
+                        User newUser = new User(emails,user,password,path,"user");
+                        DynamicDatabase<User> database = new ProcessData<>();
+                        boolean checkregister = database.registerAccount(newUser,file,"user");
+                        if(checkregister){
+                            ApplicationController.goTo("Login");
+                        }
                     }
-
-
-
-
                 }
             }else{
                 ApplicationController.goToNew("Alert", "password not correct");
