@@ -1,9 +1,13 @@
 package ku.cs.controller.admin;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.ZoomIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -13,14 +17,21 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
+import ku.cs.controller.Reposthable;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarAdminController;
+import ku.cs.controller.components.admin.DeleteUserReportController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
+import ku.cs.models.report.Report;
+import ku.cs.service.DataBase;
+import ku.cs.service.ProcessData;
 
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.prefs.Preferences;
 
 public class AdminCategoryController {
@@ -38,10 +49,10 @@ public class AdminCategoryController {
     private Label tableTitleUserName;
 
     @FXML
-    private Label titleAgency;
+    private Label titleCategory;
 
     @FXML
-    private Label titleReport;
+    private Label titleBigCategory;
 
     @FXML
     private Label titleReportAgency;
@@ -57,7 +68,26 @@ public class AdminCategoryController {
     private GridPane minisetting;
     @FXML
     private GridPane root;
+
+    @FXML
+    private GridPane gridPaneCategory;
+
+    @FXML
+    private ScrollPane scroll;
+
     private FXMLLoader fxmlLoader;
+
+    private ProcessData processData;
+
+    private List<LinkedHashMap<String, String>> categoryList;
+    private DataBase dataBase;
+
+    private List<Report> requestBanPost;
+
+    private BanAndUnBan banAndUnBan;
+
+    private Reposthable reposthable;
+
     @FXML
     public void initialize() throws IOException{
         //initial style
@@ -72,15 +102,16 @@ public class AdminCategoryController {
         //set Font
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
         titleStuffList.setFont(font);
-        titleReport.setFont(font);
+        titleBigCategory.setFont(font);
         tableTitleAgency.setFont(font);
         titleReportAgency.setFont(font);
-        titleAgency.setFont(font);
+        titleCategory.setFont(font);
         tableTitleAgency.setFont(font);
         tableTitleRole.setFont(font);
         tableTitleUserName.setFont(font);
         displayName.setFont(font);
         roleDisplay.setFont(font);
+
 
         account = (Admin)ApplicationController.getData();
         displayName.setText(account.getUserName());
@@ -114,9 +145,21 @@ public class AdminCategoryController {
         ButtonThemeController buttonThemeController = fxmlLoader1.getController();
         buttonThemeController.setSwitchTheme(changeTheme);
         minisetting.add(switchTheme,1,1);
+
+        banAndUnBan = new BanAndUnBan() {
+            @Override
+            public void onClickBanOrUnban() throws IOException {
+                initializeAdminCategory();
+            }
+        };
+
+
         initializeAdminCategory();
+
     }
     private void initializeAdminCategory() throws IOException{
+        gridPaneCategory.getChildren().clear();
+        processData = new ProcessData<>();
         //set username
         displayName.setText(account.getUserName());
         roleDisplay.setText(account.getRole());
@@ -130,15 +173,53 @@ public class AdminCategoryController {
         }
 
         fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
         root.add(navbar,0,0);
+
+        //addList
+
+
+        reposthable = new Reposthable() {
+            @Override
+            public void refreshPost() throws IOException {
+                refresh();
+            }
+        };
+        refresh();
+
+
+        requestBanPost = processData.getReportList().getRequestDeleteReport();
+        GridPane gridPane = new GridPane();
+        gridPane.setPrefWidth(200);
+        scroll.setFitToWidth(true);
+        scroll.setContent(gridPane);
+
+        int num = 0;
+        for(Report report : requestBanPost){
+            fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/deletePostReport.fxml"));
+            GridPane banPostUser = (GridPane) fxmlLoader.load();
+            DeleteUserReportController deleteUserReportController = fxmlLoader.getController();
+            deleteUserReportController.setData(report,account,banAndUnBan);
+
+            gridPane.add(banPostUser,0,num++);
+            GridPane.setMargin(banPostUser, new Insets(0,0,5,0));
+        }
+
+
+
+
     }
+
+
+
+
     @FXML
     void goToAddCategoryButton(ActionEvent event) throws IOException {
-        ApplicationController.goTo("addCategory");
+        ApplicationController.goToNew("addCategory",reposthable);
     }
 
     @FXML
@@ -147,6 +228,27 @@ public class AdminCategoryController {
             ApplicationController.goTo("Setting",account);
         } catch (IOException e) {
             System.err.println(e);
+        }
+    }
+
+    public void refresh(){
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+
+        int i=1;
+
+        processData = new ProcessData<>();
+        dataBase = processData.getDataBase();
+        categoryList = dataBase.getPatternList();
+        for (LinkedHashMap<String, String> temp: categoryList){
+            Label label = new Label();
+           // label.setWrapText(true);
+            label.setText(String.valueOf(i) + "."+temp.get("category")+ " - " + temp.get("agency"));
+            label.getStyleClass().add("textLabelColor");
+            label.setFont(font);
+            gridPaneCategory.add(label, 0, i);
+            GridPane.setMargin(label, new Insets(0,0,10,0));
+            i++;
         }
     }
 

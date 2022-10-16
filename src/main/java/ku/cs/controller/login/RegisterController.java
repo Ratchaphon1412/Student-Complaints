@@ -1,12 +1,15 @@
 package ku.cs.controller.login;
 
+import animatefx.animation.SlideInRight;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import ku.cs.ApplicationController;
@@ -15,6 +18,7 @@ import ku.cs.service.DataBase;
 import ku.cs.service.DynamicDatabase;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.Preferences;
@@ -27,6 +31,8 @@ public class RegisterController {
     @FXML
     private TextField userName;
     @FXML
+    private TextField email;
+    @FXML
     private PasswordField passWord;
     @FXML
     private PasswordField confirmPassword;
@@ -38,9 +44,12 @@ public class RegisterController {
     private Label sighUpTitle;
     @FXML
     private ImageView userImage;
+    @FXML
+    private GridPane rootGridpane;
     private ProcessData dataBase;
     private String path;
     private File file;
+
     List<String> listfile;
 
     @FXML
@@ -51,27 +60,41 @@ public class RegisterController {
         uploadPicture.setFont(font);
         sighUpTitle.setFont(font);
         singleFile.setFont(font);
+
     }
     @FXML
     public void signUpButton(ActionEvent actionEvent) throws IOException {
         String user = userName.getText();
+        String emails = email.getText();
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
         dataBase = new ProcessData();
         if(!dataBase.checkAccountDuplicate(user)){
+            System.out.println("1");
             if(password.equals(confirmpassword)){
-                if(path != null){
-                    User newUser = new User(user,password,path,"user");
-                    DynamicDatabase<User> database = new ProcessData<>();
-                   boolean checkregister = database.registerAccount(newUser,file,"user");
-                   if(checkregister){
-                        ApplicationController.goTo("Login");
-                   }else{
-                        ApplicationController.goToNew("Alert","Failed to register");
-                   }
-                }else{
-                    ApplicationController.goToNew("Alert", "no select picture");
-                    System.out.println("no select picture");
+                System.out.println("2");
+                if (user == "" || emails == "" || password == "" || confirmpassword == ""){
+                    ApplicationController.goToNew("Alert", "Please fill out the information completely");
+                } else {
+                    if(path != null){
+                        System.out.println("3");
+                        User newUser = new User(emails,user,password,path,"user");
+                        DynamicDatabase<User> database = new ProcessData<>();
+                        boolean checkregister = database.registerAccount(newUser,file,"user");
+                        if(checkregister){
+                            ApplicationController.goTo("Login");
+                        }else{
+                            ApplicationController.goToNew("Alert","Failed to register");
+                        }
+                    }else{//แก้ให้ใส่ภาพตั้งต้น
+                        System.out.println("4");
+                        User newUser = new User(emails,user,password,path,"user");
+                        DynamicDatabase<User> database = new ProcessData<>();
+                        boolean checkregister = database.registerAccount(newUser,file,"user");
+                        if(checkregister){
+                            ApplicationController.goTo("Login");
+                        }
+                    }
                 }
             }else{
                 ApplicationController.goToNew("Alert", "password not correct");
@@ -95,6 +118,8 @@ public class RegisterController {
 
         file = choosefile.showOpenDialog(null);
 
+        userImage.setImage(new Image(new File(getClass().getResource("/ku/cs/assets/images/download.png").toExternalForm()).toURI().toString()));
+        System.out.println(path);
 
         if (file != null) {
             singleFile.setText("Selected File: " + file.getAbsolutePath());

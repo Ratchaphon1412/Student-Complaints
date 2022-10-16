@@ -93,7 +93,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="0.0" promptText="Username">
+                        <TextField fx:id="userName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="0.0" promptText="Email">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
@@ -154,7 +154,7 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Label>
-                        <Hyperlink onAction="#handleRegisterButton" text="Sigh Up!" textFill="WHITE" underline="true">
+                        <Hyperlink onAction="#handleRegisterButton" text="Sign Up!" textFill="WHITE" underline="true">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -181,6 +181,58 @@
          </rowConstraints>
          <children>
             <VBox fx:id="pictureLoginBackground" alignment="CENTER" />
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="532.0" minWidth="10.0" prefWidth="407.59990234375005" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="552.0" minHeight="10.0" prefHeight="525.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#infoButton" prefHeight="25.0" prefWidth="26.0" textFill="WHITE">
+                           <styleClass>
+                              <String fx:value="infoCircleSVG" />
+                              <String fx:value="colorIcon" />
+                           </styleClass>
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="40.0" GridPane.columnIndex="2">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#infoButton" prefHeight="0.0" prefWidth="0.0">
+                           <font>
+                              <Font size="5.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="infoInsideSVG" />
+                              <String fx:value="colorIcon" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="40.0" GridPane.columnIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#pdfButtin" prefHeight="30.0" prefWidth="25.0">
+                           <font>
+                              <Font size="5.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="colorIcon" />
+                              <String fx:value="iconFileSVG" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
          </children>
          <styleClass>
             <String fx:value="background" />

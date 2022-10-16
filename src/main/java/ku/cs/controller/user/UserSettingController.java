@@ -1,5 +1,6 @@
 package ku.cs.controller.user;
 
+import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +18,8 @@ import ku.cs.State;
 import ku.cs.controller.SwitchFonts;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarAdminController;
-import ku.cs.controller.components.NavbarUser;
-import ku.cs.models.admin.Admin;
+import ku.cs.controller.components.navbar.NavbarUserController;
+import ku.cs.models.staff.Staff;
 import ku.cs.models.user.User;
 import ku.cs.service.DynamicDatabase;
 import ku.cs.service.ProcessData;
@@ -34,8 +34,6 @@ import java.util.prefs.Preferences;
 public class UserSettingController {
     @FXML
     private Label username;
-    @FXML
-    private Label password;
     @FXML
     private Label role;
 
@@ -93,7 +91,6 @@ public class UserSettingController {
         //set Font
         Font font = Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/" + preferences.get("font", null)).toExternalForm(), 18);
         username.setFont(font);
-        password.setFont(font);
         role.setFont(font);
         titleSetting.setFont(font);
         titleSetting.setWrapText(true);
@@ -107,6 +104,7 @@ public class UserSettingController {
         miniuser.setWrapText(true);
         minirole.setFont(font);
 
+
         //get object User
         account = (User) ApplicationController.getData();
         initializeSetting();
@@ -117,15 +115,14 @@ public class UserSettingController {
     private void initializeSetting() throws IOException {
         //load nav
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarUser.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/user/navBarUser.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
-        NavbarUser navbarUser = fxmlLoader.getController();
-        navbarUser.setUser(account);
+        NavbarUserController navbarUserController = fxmlLoader.getController();
+        navbarUserController.setUser(account);
         gridPane.add(navbar, 0, 0);
 
         //set label
         username.setText(account.getUserName());
-        password.setText(account.getPassWord());
         role.setText(account.getRole());
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
@@ -139,8 +136,13 @@ public class UserSettingController {
         bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
         //font choice
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
         String[] font = {"Cloud-Bold", "FC-Sound", "pixelletMedium"};
         dropDown.getItems().addAll(font);
+        dropDown.setValue(preferences.get("font", null));
+
+
+
 
 
         changeTheme = new SwitchTheme() {
@@ -215,24 +217,19 @@ public class UserSettingController {
 
         @FXML
         public void handleSaveSettingButton (ActionEvent actionEvent) throws IOException {
-            User user = null;
+
             //เดี๋ยวแก้
-            if (file != null) {
-                dataBase.changePicture(account.getUserName(), account.getPassWord(), path, file);
-                DynamicDatabase<User> database = new ProcessData<>();
-                user = database.login(account.getUserName(), account.getPassWord());
+            if(file != null){
+                dataBase.changePicture(account.getEmail(),account.getPassWord(), path, file);
+                ProcessData<User> database = new ProcessData<>();
+                account = database.getUserList().getUser(account.getEmail());
             }
 
-            //change fonts
-            if (dropDown.getValue() != null) {
+            Preferences preferences = Preferences.userRoot().node(State.class.getName());
+            if(!dropDown.getValue().equals(preferences.get("font",null))){
                 changeFonts.changeFonts(dropDown.getValue().toString());
             }
-            if (user != null) {
-                ApplicationController.goTo("User", user);
-            } else {
-                ApplicationController.goTo("User", account);
-            }
-
+            ApplicationController.goTo("User", account);
         }
 
 
@@ -244,5 +241,16 @@ public class UserSettingController {
                 System.err.println(e);
             }
         }
+
+    @FXML
+    public void  handleChangePasswordButton(ActionEvent actionEvent) {
+        try {
+            ApplicationController.goToNew("changePassword");
+        } catch (IOException e) {
+            System.err.println(e);
+
+        }
+
+    }
 
 }

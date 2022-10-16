@@ -1,6 +1,7 @@
 package ku.cs.controller.admin;
 
-import com.github.saacsos.FXRouter;
+import animatefx.animation.FadeIn;
+import animatefx.animation.ZoomIn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,13 +16,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import ku.cs.ApplicationController;
 import ku.cs.State;
 import ku.cs.controller.SwitchTheme;
-import ku.cs.controller.components.AdminUserBanListController;
-import ku.cs.controller.components.BanUserReportController;
+import ku.cs.controller.components.admin.AdminUserBanListController;
+import ku.cs.controller.components.admin.BanUserReportController;
 import ku.cs.controller.components.ButtonThemeController;
-import ku.cs.controller.components.NavbarAdminController;
+import ku.cs.controller.components.admin.DeleteUserReportController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
 import ku.cs.models.admin.Admin;
 import ku.cs.models.report.Report;
 import ku.cs.models.user.User;
@@ -31,7 +34,7 @@ import ku.cs.service.ProcessData;
 import java.io.File;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.prefs.Preferences;
 
 
@@ -51,8 +54,10 @@ public class AdminUserBanedListController {
 
     @FXML
     private GridPane listPostReportGrid;
-
-
+    @FXML
+    private Label countUserUnbanLabel;
+    @FXML
+    private Label countUserBanLabel;
     @FXML
     private Label userName;
     @FXML
@@ -64,13 +69,13 @@ public class AdminUserBanedListController {
     @FXML
     private Label lordUserUnban2;
 
-
-
     @FXML
     private Circle imageAccountCircle;
 
     @FXML
     private  GridPane minisetting;
+    @FXML
+    private Label ListofUserReportLabel;
 
     private ProcessData processData;
     private UserList userList;
@@ -80,9 +85,9 @@ public class AdminUserBanedListController {
     private SwitchTheme changeTheme;
 
     //    private UserList userReportToBan;
+
     private BanAndUnBan banAndUnBan;
     private FXMLLoader fxmlLoader;
-
 
 
     @FXML
@@ -96,7 +101,13 @@ public class AdminUserBanedListController {
         adminpage.getStylesheets().add(getClass().getResource(styleTheme).toExternalForm());
         adminpage.getStylesheets().add(getClass().getResource(icon).toExternalForm());
         adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
-
+        //set font
+        Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        ListofUserReportLabel.setFont(font);
+        roleDisplay.setFont(font);
+        userName.setFont(font);
+        countUserBanLabel.setFont(font);
+        countUserUnbanLabel.setFont(font);
         //get object Admin
         account = (Admin) ApplicationController.getData();
         // connect to database
@@ -107,10 +118,11 @@ public class AdminUserBanedListController {
         initialUserBanpage();
 
 
+
     }
     private void initialUserBanpage() throws IOException {
-//        userName.setText(account.getUserName());
-//        roleDisplay.setText(account.getRole());
+        userName.setText(account.getUserName());
+        roleDisplay.setText(account.getRole());
         //get picture from objectAdmin
         File desDir = new File("image"+System.getProperty("file.separator")+"accounts"+System.getProperty("file.separator")+account.getPathPicture());
         Image imageAccount = new Image(desDir.toURI().toString());
@@ -120,7 +132,7 @@ public class AdminUserBanedListController {
 
         //load NavBar
         fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
@@ -167,6 +179,7 @@ public class AdminUserBanedListController {
         processData = new ProcessData<>();
         userList = processData.getUserList();
 
+
         listPostReportGrid.getChildren().clear();
         gridPaneList.getChildren().clear();
         banAndUnBan = new BanAndUnBan() {
@@ -176,13 +189,13 @@ public class AdminUserBanedListController {
             }
         };
         int count = 1;
-
-        for(User userBan : userList.getUserBanList()){
+        System.out.println(userList.getUserBanList());
+        for(User userUnban : userList.getUserBanList()){
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/listViewUserBanList.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/listViewUserBanList.fxml"));
             AnchorPane listUser = (AnchorPane) fxmlLoader.load();
             AdminUserBanListController adminUserBanListController = fxmlLoader.getController();
-            adminUserBanListController.setData(userBan,account,banAndUnBan);
+            adminUserBanListController.setData(userUnban,account,banAndUnBan);
 
             gridPaneList.add(listUser,0,count++);
             GridPane.setMargin(listUser, new Insets(0,0,5,0));
@@ -190,7 +203,7 @@ public class AdminUserBanedListController {
         int num = 1;
         for(User userBan : userList.getUserRequestBan()){
             fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/banUserReport.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/banUserReport.fxml"));
             GridPane banPostUser = (GridPane) fxmlLoader.load();
             BanUserReportController banUserReportController = fxmlLoader.getController();
             banUserReportController.setData(userBan,account,banAndUnBan);

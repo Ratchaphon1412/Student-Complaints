@@ -10,14 +10,32 @@
             </Attribute>
           </value>
         </entry>
+
         <entry key="/database/log.csv">
+            <value>
+                <Attribute>
+                    <option name="separator" value="," />
+                </Attribute>
+            </value>
+        </entry>
+        <entry key="/database/likepost.csv">
+
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
+
         <entry key="/database/pattern.csv">
+            <value>
+                <Attribute>
+                    <option name="separator" value="," />
+                </Attribute>
+            </value>
+        </entry>
+        <entry key="/database/log.csv">
+
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -31,6 +49,15 @@
             </Attribute>
           </value>
         </entry>
+
+        <entry key="/database/requestban.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+
         <entry key="/database/requestunban.csv">
           <value>
             <Attribute>
@@ -39,6 +66,13 @@
           </value>
         </entry>
         <entry key="\database\account.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\database\likepost.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -66,13 +100,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\database\reportcategory.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\database\requestban.csv">
           <value>
             <Attribute>
@@ -81,6 +108,13 @@
           </value>
         </entry>
         <entry key="\database\requestunban.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\database\staffAgencyList.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

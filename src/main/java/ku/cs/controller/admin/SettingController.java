@@ -1,13 +1,13 @@
 package ku.cs.controller.admin;
 
-import com.github.saacsos.FXRouter;
+import animatefx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -21,7 +21,7 @@ import ku.cs.controller.SwitchFonts;
 import ku.cs.controller.SwitchTheme;
 import ku.cs.controller.components.ButtonThemeController;
 
-import ku.cs.controller.components.NavbarAdminController;
+import ku.cs.controller.components.navbar.NavbarAdminController;
 
 import ku.cs.models.admin.Admin;
 import ku.cs.service.DynamicDatabase;
@@ -36,11 +36,9 @@ import java.util.List;
 import java.util.prefs.Preferences;
 
 
-public class SettingController {
+public class SettingController<DataObject> {
     @FXML
     private Label username;
-    @FXML
-    private Label password;
     @FXML private Label role;
 
     @FXML
@@ -96,7 +94,6 @@ public class SettingController {
         //set Font
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),18);
         username.setFont(font);
-        password.setFont(font);
         role.setFont(font);
         titleSetting.setFont(font);
         titleSetting.setWrapText(true);
@@ -110,8 +107,11 @@ public class SettingController {
         miniuser.setWrapText(true);
         minirole.setFont(font);
 
+
         //get object Admin
+        System.out.println(ApplicationController.getData().getClass().getName());
         account = (Admin) ApplicationController.getData();
+
         initializeSetting();
 
     }
@@ -120,7 +120,7 @@ public class SettingController {
     private void initializeSetting() throws IOException {
         //load nav
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/navBarAdmin.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/admin/navBarAdmin.fxml"));
         GridPane navbar = (GridPane) fxmlLoader.load();
         NavbarAdminController navbarAdminController = fxmlLoader.getController();
         navbarAdminController.setAdmin(account);
@@ -128,7 +128,6 @@ public class SettingController {
 
         //set label
         username.setText(account.getUserName());
-        password.setText(account.getPassWord());
         role.setText(account.getRole());
         miniuser.setText(account.getUserName());
         minirole.setText(account.getRole());
@@ -142,8 +141,10 @@ public class SettingController {
         bigImageaccountCircle.setStroke(Color.TRANSPARENT);
 
         //font choice
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
         String[] font ={"Cloud-Bold", "FC-Sound","pixelletMedium"};
         dropDown.getItems().addAll(font);
+        dropDown.setValue(preferences.get("font", null));
 
 
         changeTheme = new SwitchTheme() {
@@ -222,26 +223,29 @@ public class SettingController {
 
     @FXML
     public void handleSaveSettingButton(ActionEvent actionEvent) throws IOException {
-        Admin admin = null;
         //เดี๋ยวแก้
         if(file != null){
-            dataBase.changePicture(account.getUserName(),account.getPassWord(), path, file);
-            DynamicDatabase<Admin> database = new ProcessData<>();
-            admin = database.login(account.getUserName(),account.getPassWord());
+            dataBase.changePicture(account.getEmail(),account.getPassWord(), path, file);
+            ProcessData<Admin> database = new ProcessData<>();
+            account = database.getAdminList().getAdmin(account.getEmail());
         }
-
         //change fonts
-        if(dropDown.getValue() !=null){
+        Preferences preferences = Preferences.userRoot().node(State.class.getName());
+        if(!dropDown.getValue().equals(preferences.get("font",null))){
             changeFonts.changeFonts(dropDown.getValue().toString());
         }
-        if(admin!=null){
-            ApplicationController.goTo("Admin",admin);
-        }else{
-            ApplicationController.goTo("Admin",account);
-        }
-        
+        ApplicationController.goTo("Admin",account);
+
     }
 
+    @FXML
+    void handleChangePasswordButton(ActionEvent event) {
+        try {
+            ApplicationController.goToNew("changePassword");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
 
 
     @FXML

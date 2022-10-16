@@ -2,6 +2,10 @@ package ku.cs.models.user;
 
 import ku.cs.models.Account;
 import ku.cs.models.report.Report;
+import ku.cs.models.report.ReportList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends Account {
     private boolean ban;
@@ -9,48 +13,43 @@ public class User extends Account {
     private String requestUnban;
     private String dateBan;
 
-    private Report post;
-    private String time;
     private String dateRequestBan;
-    private String category;
+    private List<Report> reportList;
+    private String textReport;
 
 
 
 
-
-    public User(String userName, String passWord, String pathPicture, String role){
-        super(userName, passWord, pathPicture, role);
+    public User(String email,String userName, String passWord, String pathPicture, String role){
+        super(email,userName, passWord, pathPicture, role);
         this.ban = false;
     }
-    public User(String userName, String passWord, String pathPicture, String role, Boolean ban ,
-                String requestUnban , String dateBan ,String countAccess) {
-        super(userName, passWord, pathPicture, role);
+    public User(String email,String userName, String passWord, String pathPicture, String role, Boolean ban ,
+                String requestUnban , String dateBan , String countAccess) {
+        super(email,userName, passWord, pathPicture, role);
         this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
-    }
-    public User(String userName, String passWord, String pathPicture, String role,String category,String time,String date,Report post){
-        super(userName, passWord, pathPicture, role);
-        this.category = category;
-        this.time = time;
-        this.dateRequestBan = date;
-        this.post = post;
-        this.ban = false;
+        this.reportList = new ArrayList<>();
     }
 
-    public void addRequestedBan(String category,String time,String date,Report post){
-        this.category = category;
-        this.time = time;
+
+    public User(String email,String userName, String passWord, String pathPicture, String role,String date,String textReport){
+        super(email,userName, passWord, pathPicture, role);
+
         this.dateRequestBan = date;
-        this.post = post;
+        this.ban = false;
+        this.textReport = textReport;
     }
+
     public void addUserBaned(Boolean ban , String requestUnban , String dateBan ,String countAccess){
         this.ban = ban;
         this.countAccess = Integer.parseInt(countAccess);
         this.requestUnban = requestUnban;
         this.dateBan = dateBan;
     }
+
 
     public String getRequestUnban() {
         return requestUnban;
@@ -68,20 +67,21 @@ public class User extends Account {
         return countAccess;
     }
 
-    public Report getPost() {
-        return post;
-    }
-
-    public String getTime() {
-        return time;
-    }
 
     public String getDateRequestBan() {
         return dateRequestBan;
     }
 
-    public String getCategory() {
-        return category;
+    public String getTextReport() {
+        return textReport;
+    }
+
+    public List<Report> getReportList() {
+        return reportList;
+    }
+
+    public void setReportList(List<Report> reportList) {
+        this.reportList = reportList;
     }
 
     public void setBan() {

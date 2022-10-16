@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="gridPaneAddAgency" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.AdminAgencyAddNewController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.20001220703125" minWidth="10.0" prefWidth="93.0000244140625" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.0" minWidth="10.0" prefWidth="421.5999755859375" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.199951171875" minWidth="10.0" prefWidth="68.39999999999998" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="138.60001220703126" minHeight="10.0" prefHeight="86.40000610351562" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.59999389648436" minHeight="10.0" prefHeight="106.19997558593751" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="104.79998168945309" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="86.20000915527342" minHeight="10.0" prefHeight="74.39999999999998" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="59.39999999999998" minHeight="10.0" prefHeight="56.20004882812498" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane alignment="CENTER" GridPane.columnIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <HBox alignment="CENTER" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="titleLabel" text="Add Agency" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <GridPane alignment="CENTER" prefHeight="50.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.60003662109375" minWidth="10.0" prefWidth="297.60003662109375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.19995117187503" minWidth="7.199975585937523" prefWidth="42.60000000000002" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.19995117187503" minWidth="10.0" prefWidth="85.80000000000001" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="newAgency" />
+                  <Button mnemonicParsing="false" onAction="#submitButtonAddNewAgency" prefHeight="25.0" prefWidth="60.0" text="add" GridPane.columnIndex="2">
+                     <styleClass>
+                        <String fx:value="roundedCornerCard" />
+                        <String fx:value="circleGreen" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </GridPane>
+            <Label fx:id="ErrAgency" textFill="#ff1500">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="closeButton" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="25.0" text="X">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="roundedCorner" />
+                        <String fx:value="circleRed" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Label fx:id="changeNameLabel" text="Change Name Agency" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
+         <children>
+            <ChoiceBox fx:id="choiceBoxAgency" prefWidth="160.0">
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </ChoiceBox>
+            <HBox prefWidth="30.0" />
+            <Label fx:id="toLabel" text="to" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <HBox prefWidth="30.0" />
+            <TextField fx:id="changeNameAgencyTextField" prefWidth="160.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="4">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="270.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="216.0" textFill="#ff1500">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="160.0" />
+               </HBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#changeNameAgency" prefWidth="60.0" text="change">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="circleGreen" />
+                  <String fx:value="roundedCornerCard" />
+               </styleClass>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+   <styleClass>
+      <String fx:value="roundedCornerCard" />
+      <String fx:value="cardBackground" />
+   </styleClass>
+   <stylesheets>
+      <URL value="@../../style/darkMode.css" />
+      <URL value="@../../style/style.css" />
+   </stylesheets>
+</GridPane>

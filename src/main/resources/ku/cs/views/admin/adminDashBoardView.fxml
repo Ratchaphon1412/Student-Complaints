@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="adminpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1000.0" styleClass="roundedCorner" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.admin.AdminController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane GridPane.columnIndex="1" GridPane.columnSpan="20">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <GridPane GridPane.columnIndex="7" GridPane.columnSpan="4">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="96.0" prefWidth="342.0" styleClass="roundedCorner" GridPane.rowIndex="3" GridPane.rowSpan="4">
+                     <GridPane.margin>
+                        <Insets bottom="9.0" right="6.0" />
+                     </GridPane.margin>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="317.0" prefWidth="343.0">
+                           <children>
+                              <BarChart fx:id="chart" prefHeight="270.0" prefWidth="342.0">
+                                <xAxis>
+                                  <CategoryAxis fx:id="xMonth" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="yLogin" side="LEFT" />
+                                </yAxis>
+                                 <styleClass>
+                                    <String fx:value="chart-plot-background" />
+                                    <String fx:value="chart-bar" />
+                                 </styleClass>
+                              </BarChart>
+                           </children>
+                           <styleClass>
+                              <String fx:value="cardBackground" />
+                              <String fx:value="roundedCorner" />
+                           </styleClass>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <GridPane prefHeight="42.0" prefWidth="337.0" GridPane.rowSpan="3">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="110.95933532714844" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="79.11583709716797" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="208.67508697509766" minHeight="10.0" prefHeight="104.38416290283203" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="208.67508697509766" minHeight="10.0" prefHeight="72.37328338623047" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane GridPane.columnSpan="3" GridPane.rowSpan="2">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="147.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="108.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="90.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <GridPane GridPane.columnIndex="2">
+                                <columnConstraints>
+                                  <ColumnConstraints />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <Circle fx:id="imageAccountCircle" fill="#1f93ff00" onMouseClicked="#handleAdminSettingButton" radius="26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label fx:id="displayName" text="UserName" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="textLabelColor" />
+                                          <String fx:value="Pixel" />
+                                       </styleClass></Label>
+                                    <Label fx:id="roleDisplay" text="Admin" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="textLabelColor" />
+                                          <String fx:value="Pixel" />
+                                       </styleClass></Label>
+                                 </children>
+                              </VBox>
+                              <GridPane fx:id="minisetting">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="37.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="101.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="69.0" minWidth="10.0" prefWidth="35.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="23.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="122.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/images/LogoKU.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+            <GridPane styleClass="rightPageRoundedCorner" GridPane.columnSpan="7">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="titleDashBoard" layoutX="16.0" layoutY="27.0" text="Dashboard" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="22.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="textLabelColor" />
+                              <String fx:value="Pixel" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <GridPane GridPane.rowIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <HBox>
+                           <GridPane.margin>
+                              <Insets left="2.0" right="2.0" />
+                           </GridPane.margin>
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="200.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <children>
+                                    <Button layoutX="11.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAdminUserBanListButton" prefHeight="30.0" prefWidth="32.0">
+                                       <font>
+                                          <Font size="8.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="roundedCorner" />
+                                          <String fx:value="circleRed" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="20.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleAdminUserBanListButton" prefHeight="11.0" prefWidth="12.0">
+                                       <font>
+                                          <Font size="1.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="clipboardOutsideSVG" />
+                                          <String fx:value="colorIcon" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="22.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleAdminUserBanListButton" prefHeight="8.0" prefWidth="8.0">
+                                       <font>
+                                          <Font size="1.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="clipboardInsideSVG" />
+                                          <String fx:value="colorIcon" />
+                                       </styleClass>
+                                    </Button>
+                                    <Label fx:id="titleReport" layoutX="10.0" layoutY="39.0" text="Report" textFill="#ff605c" />
+                                    <Circle fill="DODGERBLUE" layoutX="147.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
+                                    <Circle fill="#1f93ff00" layoutX="147.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
+                                    <Label layoutX="137.0" layoutY="29.0" styleClass="textLabelColor" text="20" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="cardBackground" />
+                                    <String fx:value="roundedCorner" />
+                                 </styleClass>
+                              </Pane>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="2.0" right="2.0" />
+                           </GridPane.margin>
+                           <children>
+                              <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleAdminAgencyListButton" prefHeight="30.0" prefWidth="32.0">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="circleYellow" />
+                                    <String fx:value="roundedCorner" />
+                                 </styleClass>
+                              </Button>
+                              <Label fx:id="titleAgency" layoutX="8.0" layoutY="39.0" text="Agency" textFill="#ffbd44" />
+                              <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleAdminAgencyListButton" prefHeight="15.0" prefWidth="17.0">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="agencySVG" />
+                                    <String fx:value="colorIcon" />
+                                 </styleClass>
+                              </Button>
+                              <Circle fill="DODGERBLUE" layoutX="151.0" layoutY="42.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
+                              <Circle fill="#1f93ff00" layoutX="151.0" layoutY="42.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
+                              <Label layoutX="141.0" layoutY="28.0" styleClass="textLabelColor" text="20" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="cardBackground" />
+                              <String fx:value="roundedCorner" />
+                           </styleClass>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="2.0" right="2.0" />
+                           </GridPane.margin>
+                           <children>
+                              <Button layoutX="11.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="roundedCorner" />
+                                    <String fx:value="circleGreen" />
+                                 </styleClass>
+                              </Button>
+                              <Label fx:id="titleUser" layoutX="6.0" layoutY="39.0" text="User Total" textFill="#00ca4e" />
+                              <Button layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="22.0">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                                 <styleClass>
+                                    <String fx:value="userSVG" />
+                                    <String fx:value="colorIcon" />
+                                 </styleClass>
+                              </Button>
+                              <Circle fill="DODGERBLUE" layoutX="154.0" layoutY="40.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />
+                              <Circle fill="#1f93ff00" layoutX="154.0" layoutY="40.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedInside" />
+                              <Label layoutX="144.0" layoutY="27.0" styleClass="textLabelColor" text="20" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="cardBackground" />
+                              <String fx:value="roundedCorner" />
+                           </styleClass>
+                        </Pane>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="2.0" right="2.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </GridPane>
+                  <GridPane prefHeight="0.0" prefWidth="592.0" GridPane.rowIndex="3" GridPane.rowSpan="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="3.0" top="5.0" />
+                     </GridPane.margin>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.0" minWidth="10.0" prefWidth="15.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="10.0" prefWidth="568.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="10.0" prefWidth="14.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="266.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="24.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="235.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="89.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="163.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                 <children>
+                                    <Label fx:id="tableDate" styleClass="textLabelColor" text="Date" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="tablePicture" styleClass="textLabelColor" text="picture" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label fx:id="tableUsername" styleClass="textLabelColor" text="Username" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label fx:id="tableTime" styleClass="textLabelColor" text="Time" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="265.0" prefWidth="566.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <styleClass>
+                              <String fx:value="roundedCorner" />
+                              <String fx:value="cardBackground" />
+                           </styleClass>
+                        </ScrollPane>
+                     </children>
+                     <styleClass>
+                        <String fx:value="cardBackground" />
+                        <String fx:value="roundedCorner" />
+                     </styleClass>
+                  </GridPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label fx:id="titleRecent" layoutX="16.0" layoutY="26.0" styleClass="textLabelColor" text="Recent Users" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="rightPageRoundedCorner" />
+         </styleClass>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </GridPane>
+   </children>
+</GridPane>

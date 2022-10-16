@@ -1,7 +1,6 @@
 package ku.cs;
 
 import com.github.saacsos.FXRouter;
-import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -12,6 +11,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ku.cs.controller.admin.AgencyLoad;
+import ku.cs.controller.Reposthable;
 
 import java.io.IOException;
 
@@ -33,6 +33,11 @@ public class ApplicationController extends FXRouter {
         loadNewRoute(route);
     }
 
+    public static void goToCenter(String routeLabel) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        loadNewRouteCenter(route);
+    }
+
     public static void goTo(String routeLabel, Object data) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.data = data;
@@ -49,6 +54,24 @@ public class ApplicationController extends FXRouter {
         scene.setFill(Color.TRANSPARENT);
         window.setScene(scene);
         window.show();
+        routeAnimation(resource);
+        dragWindow(resource,window);
+    }
+
+    public static void loadNewRouteCenter(RouteScene route) throws IOException {
+        currentRoute = route;
+        String scenePath = "/" + route.scenePath;
+        Parent resource = (Parent) FXMLLoader.load((new Object() {
+        }).getClass().getResource(scenePath));
+        window.setTitle(route.windowTitle);
+        Scene scene = new Scene(resource,route.sceneWidth, route.sceneHeight);
+        scene.setFill(Color.TRANSPARENT);
+        window.setScene(scene);
+        window.show();
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((primScreenBounds.getWidth() - window.getWidth())/2);
+        window.setY((primScreenBounds.getHeight() - window.getHeight())/2);
+
         routeAnimation(resource);
         dragWindow(resource,window);
     }
@@ -94,6 +117,19 @@ public class ApplicationController extends FXRouter {
     public static  void goToNew(String routeLabel , AgencyLoad agencyLoad) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.agencyLoad = agencyLoad ;
+        createDialog(route);
+    }
+    public static void goToNew(String routeLabel, Object object, Reposthable reposthable) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.data = object;
+        route.reposthable = reposthable;
+        createDialog(route);
+    }
+
+    public static void goToNew(String routeLabel,Object object,String text) throws IOException {
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.data = object;
+        route.requestText = text;
         createDialog(route);
     }
 
