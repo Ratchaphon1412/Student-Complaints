@@ -6,8 +6,8 @@
 
     <groupId>cs.ku</groupId>
     <artifactId>CS211-Project</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>CS211-Project</name>
+    <version>1.0.0</version>
+    <name>Student Complaints</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

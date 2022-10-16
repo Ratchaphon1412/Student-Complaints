@@ -204,12 +204,13 @@ public class DataBase {
 
              }
              else {
-                 URL inputUrl = getClass().getResource("/ku/cs/assets/images/defaultpicture.jpg");
+//                 URL inputUrl = getClass().getResource("/ku/cs/assets/images/defaultpicture.jpg");
+                 File defaultFile = new File("image"+System.getProperty("file.separator")+"default"+System.getProperty("file.separator")+"defaultpicture.jpg");
                  String filename = name+"_"+ LocalDate.now()+"_"+System.currentTimeMillis()+".png";
                  Path target = FileSystems.getDefault().getPath(desDir.getAbsolutePath()+System.getProperty("file.separator")+filename);
                  try {
-                     Files.copy(Paths.get(inputUrl.toURI()).toFile().toPath(),target, StandardCopyOption.REPLACE_EXISTING );
-                 } catch (URISyntaxException e) {
+                     Files.copy(defaultFile.toPath(),target, StandardCopyOption.REPLACE_EXISTING );
+                 } catch (IOException e) {
                      throw new RuntimeException(e);
                  }
                  return filename;
