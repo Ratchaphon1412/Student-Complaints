@@ -33,6 +33,7 @@ public class Application extends javafx.application.Application {
     }
 
 
+
     private static void configRoute() {
         String pathResource = "ku/cs/views/";
         //login zone
