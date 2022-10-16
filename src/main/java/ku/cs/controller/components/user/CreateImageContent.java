@@ -43,7 +43,7 @@ public class CreateImageContent {
         file = choosefile.showOpenDialog(null);
         if(file != null){
             pathLabel.setText(file.getAbsolutePath());
-            imagePicture.setImage(new Image(file.getAbsolutePath()));
+            imagePicture.setImage(new Image(String.valueOf(file.toURI())));
         }
     }
 
