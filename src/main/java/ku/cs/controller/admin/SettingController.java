@@ -142,7 +142,7 @@ public class SettingController<DataObject> {
 
         //font choice
         Preferences preferences = Preferences.userRoot().node(State.class.getName());
-        String[] font ={"Cloud-Bold", "FC-Sound","pixelletMedium"};
+        String[] font ={"Cloud-Bold", "FC-Sound","pixelletMedium","Kanit","Lamoon"};
         dropDown.getItems().addAll(font);
         dropDown.setValue(preferences.get("font", null));
 
@@ -186,6 +186,8 @@ public class SettingController<DataObject> {
                 listFonts.put("Cloud-Bold","Cloud-Bold.otf");
                 listFonts.put("FC-Sound","FC-Sound.otf");
                 listFonts.put("pixelletMedium","pixelletMedium.ttf");
+                listFonts.put("Kanit","Kanit-Regular.ttf");
+                listFonts.put("Lamoon","FC_Lamoon_Regular.otf");
                 //save theme
                 State state = new State();
                 state.setTempData();

@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/database/staffAgencyList.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="|" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\database\account.csv">
           <value>
             <Attribute>

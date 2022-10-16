@@ -83,6 +83,7 @@ public class CreatePost {
         titleCategory.setFont(font);
         titleContent.setFont(font);
         labelPlease.setFont(font);
+        labelPlease.setWrapText(true);
         //set Animation
         new FadeInUp(root).play();
         //connect database

@@ -76,6 +76,10 @@ public class AdminUserBanedListController {
     private  GridPane minisetting;
     @FXML
     private Label ListofUserReportLabel;
+    @FXML
+    private Label titleBan;
+    @FXML
+    private Label titleUnban;
 
     private ProcessData processData;
     private UserList userList;
@@ -103,6 +107,8 @@ public class AdminUserBanedListController {
         adminpage.getStylesheets().add(getClass().getResource(style).toExternalForm());
         //set font
         Font font =  Font.loadFont(getClass().getResource("/ku/cs/assets/fonts/"+preferences.get("font",null)).toExternalForm(),15);
+        titleBan.setFont(font);
+        titleUnban.setFont(font);
         ListofUserReportLabel.setFont(font);
         roleDisplay.setFont(font);
         userName.setFont(font);
@@ -113,7 +119,6 @@ public class AdminUserBanedListController {
         // connect to database
         processData = new ProcessData<>();
         userList = processData.getUserList();
-//        userReportToBan = processData.getReportList().getReportToBanUser();
         //call initialUserpage
         initialUserBanpage();
 
