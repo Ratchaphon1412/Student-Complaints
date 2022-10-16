@@ -40,7 +40,6 @@ public class BanUserReportController {
     private Label textDateLabel;
     @FXML
     private Label textSubjectLabel;
-
     private BanAndUnBan banAndUnBan;
 
     private User user;
@@ -55,8 +54,11 @@ public class BanUserReportController {
         subjectLabel.setFont(font);
         dateLabel.setFont(font);
         nameLabel.setFont(font);
+        nameLabel.setWrapText(true);
         textDateLabel.setFont(font);
+        textDateLabel.setWrapText(true);
         textNameLabel.setFont(font);
+        textNameLabel.setWrapText(true);
         textSubjectLabel.setFont(font);
     }
 
