@@ -84,7 +84,6 @@ public class ProblemFeedController {
         this.user = user;
 
         //set Like database
-        System.out.println(report.getUserNameLike());
         for(String userName: report.getUserNameLike()){
             if(userName.equals(user.getEmail())){
                 likeCheck = true;
