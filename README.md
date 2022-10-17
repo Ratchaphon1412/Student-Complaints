@@ -40,18 +40,20 @@ This project is part of 01418211 Software Construction course.
 - [JavaFX Framework](https://openjfx.io/)
 - [MVC Architecture](https://www.javatpoint.com/mvc-architecture-in-java)
 - [Unit test with JUnit](https://www.vogella.com/tutorials/JUnit/article.html)
+- [Atomic design](https://atomicdesign.bradfrost.com/chapter-2/)
 - [Basic CSS](https://www.w3schools.com/css/)
 - [Maven](https://maven.apache.org/)
 - [Git](https://git-scm.com/docs)
 ## Roadmap
 
-- Week 1 - WireFrame,Prototype,Research Time
-
-- Week 2 - UML Class Diagram
-
-- Week 3 - Feature Admin
-
-- Week 4 - Feature User,Feature Staff
+* Week 1 - WireFrame,Prototype,Research Time
+    * WireFrame  [(Click)](https://www.figma.com/file/FBnZ0LUVRLlzaK6GxCX3n9/ProjectHardCodeExcutable?node-id=50%3A234) - [6410450753 Jirapat Surungsi](https://github.com/j1kid1412)
+    * Prototype [(Click)](https://www.figma.com/file/FBnZ0LUVRLlzaK6GxCX3n9/ProjectHardCodeExcutable?node-id=50%3A234) - [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
+    * Research [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi)
+* Week 2 - UML Class Diagram
+  * UML diagram [(Click)]()
+* Week 3 - Feature Admin
+* Week 4 - Feature User,Feature Staff
 
 
 ## Architecture project
@@ -164,15 +166,27 @@ Coming soon
 
 ## Installation Program
 
-#### use terminal
-- important don't forget directory  database and image 
-```bash
-  git clone https://github.com/CS211-651/project211-hardcodeexecutable.git
-  cd project211-hardcodeexecutable
-  java -jar CS211-Project-1.0-SNAPSHOT-shaded.jar
-```
-#### download from snapshot
-- see it in release
+#### macOS dmg
+- download Student Complaints.dmg from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.Installer.dmg)
+  * open dmg and drag Student Complaints to Application folder
+  * allow open application in System Preferences --> Security & Privacy --> click open anyway
+  * click icon Student Complaints in launchpad
+  * launch the Application
+#### windows OS exe
+- download Student Complaints.dmg from Release or click the link [download]() 
+  * open Student Complaints.exe and click next 
+  * waiting to done
+  * see icon Student Complaint in desktop or search in windows "Student Complaint"
+  * launch the Application
+#### jar file
+- download Student Complaints.jar from Release or click the link [download]()
+  * extract file zip and open the folder name "Student Complaints"
+  * see Student Complaints.jar and click it.
+  * launch the Application
+#### sh file
+- download Student Complaints.sh from Release or click the link [download]()
+  * click Student Complaints.sh 
+  * launch the Application
 
 ## Usage/Examples
 
@@ -215,5 +229,5 @@ To run tests, run the following command
 
 ## Connect with me:
 <p align="left">
-<a href="https://discord.gg/https://discord.gg/qDNMWSnW" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="https://discord.gg/qDNMWSnW" height="30" width="40" /></a>
+<a href="https://discord.gg/Ry3ek3YX7K" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="https://discord.gg/qDNMWSnW" height="30" width="40" /></a>
 </p>
