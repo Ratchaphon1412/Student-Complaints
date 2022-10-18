@@ -200,10 +200,10 @@ public class AdminController {
 
         //bar Chart
         XYChart.Series<String,Double> series = new XYChart.Series<>();
-        series.setName("Past work 3 months");
-        series.getData().add(new XYChart.Data<>("Jan",10.0));
-        series.getData().add(new XYChart.Data<>("Feb",20.0));
-        series.getData().add(new XYChart.Data<>("Mar",10.0));
+        series.setName("total User");
+        series.getData().add(new XYChart.Data<>("Admin",(double) processData.getAdminList().getAdminList().size()));
+        series.getData().add(new XYChart.Data<>("Staff",(double)processData.getStaffList().getStaffList().size()));
+        series.getData().add(new XYChart.Data<>("User",(double)processData.getUserList().getUserList().size()));
         chart.getData().add(series);
     }
 
