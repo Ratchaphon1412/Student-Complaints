@@ -169,18 +169,22 @@ Coming soon
 #### macOS dmg
 - download Student Complaints.dmg from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.Installer.dmg)
   * open dmg and drag Student Complaints to Application folder
-![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step2.png)![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step3.png)
+
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step2.png)
+
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step3.png)
   * allow open application in System Preferences --> Security & Privacy --> click open anyway
+
 ![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step6.png)![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step7.png)
   * click open or icon Student Complaints in launchpad
+
 ![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step8.png)
   * launch the Application 
 ![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/final.png)
 #### windows OS exe
 - download Student Complaints.dmg from Release or click the link [download]() 
   * open Student Complaints.exe and click next 
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe2.png)
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe3.PNG)
+![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe2.PNG)![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe3.PNG)
   * click install and waiting to done
 ![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe4.PNG)
   * see icon Student Complaint in desktop or search in windows "Student Complaint"
