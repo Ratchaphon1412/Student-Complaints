@@ -152,6 +152,26 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             case "changeAgency"->{
                 Staff staff = (Staff) object;
                 List<LinkedHashMap<String,String>> agencyList = dataBase.getAgencyList();
+                //remove
+                for(LinkedHashMap<String,String> temp : agencyList){
+                    if(!temp.get("agency").equals(staff.getAgency())){
+                        String[] nameList = temp.get("staffNameList").split("\\|");
+                        String nameListTemp = "";
+                        for(int i = 0 ; i< nameList.length ; i++){
+                            if(nameList[i].equals(staff.getEmail())){
+
+                            }else{
+                                if(i == 0){
+                                    nameListTemp += nameList[i];
+                                }else{
+                                    nameListTemp += "|"+nameList[i];
+                                }
+                            }
+                        }
+                        temp.put("staffNameList",nameListTemp);
+                    }
+                }
+
                 //add
                 for(LinkedHashMap<String,String> temp : agencyList){
 
@@ -166,25 +186,7 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                     }
                 }
 
-                //remove
-                for(LinkedHashMap<String,String> temp : agencyList){
-                    if(!temp.get("agency").equals(staff.getAgency())){
-                        String[] nameList = temp.get("staffNameList").split("\\|");
-                        String nameListTemp = "";
-                       for(int i = 0 ; i< nameList.length ; i++){
-                           if(nameList[i].equals(staff.getEmail())){
 
-                           }else{
-                               if(i == 0){
-                                   nameListTemp += nameList[i];
-                               }else{
-                                   nameListTemp += "|"+nameList[i];
-                               }
-                           }
-                       }
-                       temp.put("staffNameList",nameListTemp);
-                    }
-                }
                 dataBase.setAgencyList(agencyList);
                 dataBase.saveToDatabase();
 
