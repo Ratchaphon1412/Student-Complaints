@@ -120,10 +120,11 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                 if(user.isBan()){
                     //true แสดงว่าพึ่งโดน แบน
                     LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-                    Date currentDate = new Date();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                    LocalDateTime localDateTime = LocalDateTime.now();
+                    DateTimeFormatter dateTimeFormatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     temp.put("email",user.getEmail());
-                    temp.put("date",dateFormat.format(currentDate));
+                    temp.put("date",dateTimeFormatterDate.format(localDateTime));
                     temp.put("details","");
                     temp.put("count","0");
 
@@ -448,16 +449,17 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     public void createPost(String title ,User reporter, String category, String agency,ArrayList<String>dataText,ArrayList<File>dataImage) throws IOException {
         List<LinkedHashMap<String,String>> reportlist = dataBase.getReportList();
         LinkedHashMap<String,String> temp = new LinkedHashMap<>();
-        Date currentDate = new Date();
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatterTime =DateTimeFormatter.ofPattern("hh:mm:ss");
+        DateTimeFormatter dateTimeFormatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
         temp.put("title",title);
         temp.put("email",reporter.getEmail());
         temp.put("category",category);
         temp.put("reportStage","in queue");
-        temp.put("problemDate",dateFormat.format(currentDate));
-        temp.put("time",timeFormat.format(currentDate));
+        temp.put("problemDate",dateTimeFormatterDate.format(localDateTime));
+        temp.put("time",dateTimeFormatterTime.format(localDateTime));
         int countText = 0;
         String dataTextFormatted = "";
         //text
@@ -529,13 +531,15 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
     }
 
     public void requestBan(String userName,String testRequest) throws IOException {
-        Date currentDate = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         List<LinkedHashMap<String, String>> requestUnban= dataBase.getUserBanList();
         for (LinkedHashMap<String, String> dataLine : requestUnban) {
             if(dataLine.get("email").equals(userName)){
                 dataLine.put("details", testRequest);
-                dataLine.put("date",dateFormat.format(currentDate));
+                dataLine.put("date",dateTimeFormatterDate.format(localDateTime));
                 dataBase.saveToDatabase();
             }
         }

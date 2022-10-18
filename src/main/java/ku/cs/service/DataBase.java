@@ -9,6 +9,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
@@ -165,15 +167,15 @@ public class DataBase {
 
 
     public void log(String userName, String role, String path) throws IOException {
-        Date currentDate = new Date();
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatterTime =DateTimeFormatter.ofPattern("hh:mm:ss");
+        DateTimeFormatter dateTimeFormatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LinkedHashMap<String,String> logTemp = new LinkedHashMap<>();
         logTemp.put("userName",userName);
         logTemp.put("role" ,role);
         logTemp.put("pathPicture",path);
-        logTemp.put("date",dateFormat.format(currentDate));
-        logTemp.put("time",timeFormat.format(currentDate));
+        logTemp.put("date",dateTimeFormatterDate.format(localDateTime));
+        logTemp.put("time",dateTimeFormatterTime.format(localDateTime));
         if(role.equals("admin")){
             return ;
         }
