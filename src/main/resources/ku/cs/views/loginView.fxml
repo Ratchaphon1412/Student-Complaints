@@ -220,7 +220,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="40.0" GridPane.columnIndex="1">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#pdfButtin" prefHeight="30.0" prefWidth="25.0">
+                        <Button mnemonicParsing="false" onAction="#pdfButton" prefHeight="30.0" prefWidth="25.0">
                            <font>
                               <Font size="5.0" />
                            </font>

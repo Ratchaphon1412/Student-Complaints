@@ -159,10 +159,8 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
                         String[] nameList = temp.get("staffNameList").split("\\|");
                         String nameListTemp = "";
                         for(int i = 0 ; i< nameList.length ; i++){
-                            if(nameList[i].equals(staff.getEmail())){
-
-                            }else{
-                                if(i == 0){
+                            if(!nameList[i].equals(staff.getEmail())){
+                                if(nameListTemp.equals("")){
                                     nameListTemp += nameList[i];
                                 }else{
                                     nameListTemp += "|"+nameList[i];

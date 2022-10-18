@@ -319,7 +319,7 @@
                               <Insets left="2.0" right="2.0" />
                            </GridPane.margin>
                            <children>
-                              <Button layoutX="11.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0">
+                              <Button layoutX="11.0" layoutY="7.0" mnemonicParsing="false" onAction="#gotoCategory" prefHeight="30.0" prefWidth="32.0">
                                  <font>
                                     <Font size="1.0" />
                                  </font>
@@ -329,7 +329,7 @@
                                  </styleClass>
                               </Button>
                               <Label fx:id="titleUser" layoutX="6.0" layoutY="39.0" text="User Total" textFill="#00ca4e" />
-                              <Button layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="22.0">
+                              <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoCategory" prefHeight="16.0" prefWidth="22.0">
                                  <font>
                                     <Font size="1.0" />
                                  </font>
@@ -337,8 +337,8 @@
                                     <Insets top="10.0" />
                                  </padding>
                                  <styleClass>
-                                    <String fx:value="userSVG" />
                                     <String fx:value="colorIcon" />
+                                    <String fx:value="categorySVG" />
                                  </styleClass>
                               </Button>
                               <Circle fill="DODGERBLUE" layoutX="154.0" layoutY="40.0" radius="34.0" stroke="TRANSPARENT" strokeType="INSIDE" styleClass="circleRotatedOutside" />

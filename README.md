@@ -169,8 +169,11 @@ Coming soon
 #### macOS dmg
 - download Student Complaints.dmg from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.Installer.dmg)
   * open dmg and drag Student Complaints to Application folder
+  ![alt text](https://github.com/CS211-651/project211-hardcodeexecutable/docs/image/step2.png)
   * allow open application in System Preferences --> Security & Privacy --> click open anyway
+  ![alt text](https://github.com/CS211-651/project211-hardcodeexecutable/docs/image/step6.png)
   * click icon Student Complaints in launchpad
+  ![alt text](https://github.com/CS211-651/project211-hardcodeexecutable/docs/image/step8.png)
   * launch the Application
 #### windows OS exe
 - download Student Complaints.dmg from Release or click the link [download]() 

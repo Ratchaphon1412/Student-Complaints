@@ -187,7 +187,7 @@ public class AdminAgencyController {
             fxmlLoader.setLocation(getClass().getResource("/ku/cs/components/staff/staffList.fxml"));
             AnchorPane staffComponant = (AnchorPane) fxmlLoader.load();
             StaffListAgencyController staffListAgencyController = fxmlLoader.getController();
-            staffListAgencyController.setData(data);
+            staffListAgencyController.setData(data,agencyLoad);
             GridPane.setMargin(staffComponant, new Insets(0,0,5,0));
             staffListGridPane.add(staffComponant,0,i);
             i++;
@@ -212,8 +212,8 @@ public class AdminAgencyController {
         ApplicationController.goToNew("AdminAgencyAdd",agencyLoad);
     }
     @FXML
-    public void addStuffButton() throws IOException {
-        ApplicationController.goToNew("RegisterStuff",agencyLoad);
+    public void addStaffButton() throws IOException {
+        ApplicationController.goToNew("RegisterStaff",agencyLoad);
     }
     @FXML
     public void handleAdminSettingButton(MouseEvent mouseEvent) {

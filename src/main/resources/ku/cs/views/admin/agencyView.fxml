@@ -92,7 +92,7 @@
                         </VBox>
                         <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#addStuffButton" prefHeight="25.0" prefWidth="27.0" text="+">
+                              <Button mnemonicParsing="false" onAction="#addStaffButton" prefHeight="25.0" prefWidth="27.0" text="+">
                                  <styleClass>
                                     <String fx:value="circleGreen" />
                                     <String fx:value="roundedCorner" />
