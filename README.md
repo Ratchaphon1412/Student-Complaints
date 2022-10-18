@@ -179,7 +179,7 @@ Coming soon
 #### windows OS exe
 - download Student Complaints.dmg from Release or click the link [download]() 
   * open Student Complaints.exe and click next 
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe2.PNG)
+![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe2.png)
 ![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe3.PNG)
   * click install and waiting to done
 ![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/windowexe4.PNG)
