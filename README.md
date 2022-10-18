@@ -200,8 +200,18 @@ Coming soon
 #### jar file
 - download Student Complaints.jar from Release or click the link [download]()
   * extract file zip and open the folder name "Student Complaints"
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar1.PNG)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar2.PNG)
   * see Student Complaints.jar and click it.
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar3.PNG)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar4.PNG)
   * launch the Application
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar5.PNG)
 #### sh file
 - download Student Complaints.sh from Release or click the link [download]()
   * click Student Complaints.sh 
