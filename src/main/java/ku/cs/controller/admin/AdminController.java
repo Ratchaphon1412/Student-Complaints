@@ -239,6 +239,10 @@ public class AdminController {
             System.err.println(e);
         }
     }
+    @FXML
+    private void gotoCategory() throws IOException{
+        ApplicationController.goTo("AdminCategory", account);
+    }
 
 
 
