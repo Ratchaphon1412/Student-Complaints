@@ -85,6 +85,9 @@ public class UserDashboardController {
     private String choiceSortCategory;
     private String choiceSortProcess;
 
+    private String less;
+    private String most;
+
 
     private User user;
 
@@ -99,6 +102,8 @@ public class UserDashboardController {
         this.choiceSortCategory = "All";
         this.choiceSort = "Old Post";
         this.choiceSortProcess = "All";
+        this.less = "";
+        this.most = "";
 
         //set reportsort
         SortReport.setReportSort(reportSorted);
@@ -314,11 +319,12 @@ public class UserDashboardController {
 
     @FXML
     private void sortVote() throws IOException {
-        String less = lessNum.getText();
-        String most = mostNum.getText();
+         less = lessNum.getText();
+         most = mostNum.getText();
         reportSorted = reportLists.getReportLists();
         SortReport.setReportSort(reportSorted);
         SortReport.sortProcess(choiceSortProcess);
+        SortReport.sortCategory(choiceSortCategory);
         SortReport.sortCollection(choiceSort);
         SortReport.sortVote(less,most);
         reportSorted = SortReport.getReportSort();
