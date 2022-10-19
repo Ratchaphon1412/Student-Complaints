@@ -69,7 +69,7 @@ public class RegisterController {
         String password = passWord.getText();
         String confirmpassword = confirmPassword.getText();
         dataBase = new ProcessData();
-        if(!dataBase.checkAccountDuplicate(user)){
+        if(!dataBase.checkAccount(emails)){
 
             if(password.equals(confirmpassword)){
 

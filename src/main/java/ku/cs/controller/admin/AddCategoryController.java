@@ -175,21 +175,24 @@ public class AddCategoryController {
         if(addCatagoryField.getText() != "") {
             if(!listExampleString.isEmpty()) {
                 String category = addCatagoryField.getText();
-                processData.addCategory(category);
+               boolean checkCategory =  processData.addCategory(category);
+                if(checkCategory) {
+                    for (String dataLine : textString) {
+                        processData = new ProcessData<>();
+                        processData.addText(category, dataLine);
+                    }
 
-                for (String dataLine : textString) {
-                    processData = new ProcessData<>();
-                    processData.addText(category, dataLine);
-                }
+                    for (String dataLine : imageString) {
+                        processData = new ProcessData<>();
+                        processData.addImage(category, dataLine);
+                    }
+                    processData.selectAgency(category, dropDownAgency.getValue());
 
-                for (String dataLine : imageString) {
-                    processData = new ProcessData<>();
-                    processData.addImage(category, dataLine);
+                    reposthable.refreshPost();
+
+                    clear();
+                    closeWindows();
                 }
-                processData.selectAgency(category, dropDownAgency.getValue());
-                reposthable.refreshPost();
-                clear();
-                closeWindows();
             }
         }
 

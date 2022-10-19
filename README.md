@@ -169,20 +169,50 @@ Coming soon
 #### macOS dmg
 - download Student Complaints.dmg from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.Installer.dmg)
   * open dmg and drag Student Complaints to Application folder
+
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step2.png)
+
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step3.png)
   * allow open application in System Preferences --> Security & Privacy --> click open anyway
-  * click icon Student Complaints in launchpad
-  * launch the Application
+
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step6.png)![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step7.png)
+  * click open or icon Student Complaints in launchpad
+
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step8.png)
+  * launch the Application 
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/final.png)
 #### windows OS exe
-- download Student Complaints.dmg from Release or click the link [download]() 
-  * open Student Complaints.exe and click next 
+- download Student Complaints.exe from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.exe) 
+  * open Student Complaints.exe and click Install
+
+![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window1.png)
   * waiting to done
-  * see icon Student Complaint in desktop or search in windows "Student Complaint"
+
+![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window2.png)
+  * Click finish
+
+![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window3.png)
+  * see icon Student Complaint in desktop or search in windows "Student Complaints"
+
+![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window4.png)
   * launch the Application
+
+![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window5.png)
 #### jar file
 - download Student Complaints.jar from Release or click the link [download]()
   * extract file zip and open the folder name "Student Complaints"
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar1.PNG)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar2.PNG)
   * see Student Complaints.jar and click it.
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar3.PNG)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar4.PNG)
   * launch the Application
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar5.PNG)
 #### sh file
 - download Student Complaints.sh from Release or click the link [download]()
   * click Student Complaints.sh 
