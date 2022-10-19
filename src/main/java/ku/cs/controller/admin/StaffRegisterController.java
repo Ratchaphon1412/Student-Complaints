@@ -105,7 +105,7 @@ public class StaffRegisterController {
                     System.out.println("passWord not correct");
                 }
             } else {
-                ApplicationController.goToNew("Alert", "Have Account in ADatabase");
+                ApplicationController.goToNew("Alert", "Have Account in Database");
                 System.out.println("Have Account in Database");
             }
         }else{
