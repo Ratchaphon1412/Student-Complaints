@@ -35,10 +35,10 @@ public class UserDashboardController {
 
     @FXML
     private GridPane root;
-//    @FXML
-//    private GridPane feed;
-
-
+    @FXML
+    private Label sortProcess;
+    @FXML
+    private Label sortNewOld;
     @FXML
     private Label userName;
 
@@ -156,6 +156,8 @@ public class UserDashboardController {
         titleFeed.setFont(font);
         titleSort.setFont(font);
         titleRangeVote.setFont(font);
+        sortNewOld.setFont(font);
+        sortProcess.setFont(font);
 
 
         //navbar
