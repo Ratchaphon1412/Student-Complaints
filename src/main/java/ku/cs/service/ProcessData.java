@@ -377,7 +377,7 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
         return true;
     }
 
-    public void addCategory(String category) throws IOException{
+    public boolean addCategory(String category) throws IOException{
         checkCategory = false;
         List<LinkedHashMap<String, String>> newPatternList= dataBase.getPatternList();
         for (LinkedHashMap<String, String> dataLine : newPatternList){
@@ -399,7 +399,9 @@ public class   ProcessData<DataObject> implements DynamicDatabase<DataObject>{
             dataBase.setPatternList(patternList);
 
             dataBase.saveToDatabase();
+            return true;
         }
+        return false;
     }
 
 

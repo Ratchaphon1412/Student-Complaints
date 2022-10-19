@@ -175,7 +175,7 @@ public class AddCategoryController {
         if(addCatagoryField.getText() != "") {
             if(!listExampleString.isEmpty()) {
                 String category = addCatagoryField.getText();
-                processData.addCategory(category);
+               boolean checkCategory =  processData.addCategory(category);
 
                 for (String dataLine : textString) {
                     processData = new ProcessData<>();
@@ -187,7 +187,9 @@ public class AddCategoryController {
                     processData.addImage(category, dataLine);
                 }
                 processData.selectAgency(category, dropDownAgency.getValue());
-                reposthable.refreshPost();
+                if(checkCategory) {
+                    reposthable.refreshPost();
+                }
                 clear();
                 closeWindows();
             }
