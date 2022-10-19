@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.admin.BanUserReportController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controller.components.admin.BanUserReportController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.4000244140625" minWidth="10.0" prefWidth="163.7999755859375" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.399951171875" minWidth="10.0" prefWidth="168.00002441406247" />
@@ -104,7 +104,7 @@
             <HBox prefWidth="20.0" />
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="480.0">
                <HBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
+                  <Insets bottom="1.0" top="5.0" />
                </HBox.margin>
                <children>
                   <ScrollPane prefHeight="41.0" prefWidth="480.0" vbarPolicy="NEVER">

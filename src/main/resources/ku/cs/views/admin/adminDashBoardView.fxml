@@ -328,7 +328,7 @@
                                     <String fx:value="circleGreen" />
                                  </styleClass>
                               </Button>
-                              <Label fx:id="titleUser" layoutX="6.0" layoutY="39.0" text="User Total" textFill="#00ca4e" />
+                              <Label fx:id="titleUser" layoutX="6.0" layoutY="39.0" text="Category" textFill="#00ca4e" />
                               <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoCategory" prefHeight="16.0" prefWidth="22.0">
                                  <font>
                                     <Font size="1.0" />
