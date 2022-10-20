@@ -47,8 +47,8 @@ This project is part of 01418211 Software Construction course.
 ## Roadmap
 
 * Week 1 - WireFrame,Prototype,Research Time
-    * WireFrame  [(Click)](https://www.figma.com/file/FBnZ0LUVRLlzaK6GxCX3n9/ProjectHardCodeExcutable?node-id=50%3A234) - [6410450753 Jirapat Surungsi](https://github.com/j1kid1412)
-    * Prototype [(Click)](https://www.figma.com/file/FBnZ0LUVRLlzaK6GxCX3n9/ProjectHardCodeExcutable?node-id=50%3A234) - [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
+    * WireFrame  [(Click)](https://www.figma.com/file/FBnZ0LUVRLlzaK6GxCX3n9/ProjectHardCodeExcutable?node-id=0%3A1) - [6410450753 Jirapat Surungsi](https://github.com/j1kid1412)
+    * Prototype [(Click)](https://www.figma.com/file/FBnZ0LUVRLlzaK6GxCX3n9/ProjectHardCodeExcutable?node-id=0%3A1) - [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
     * Research [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi)
 * Week 2 - UML Class Diagram
   * UML diagram [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi)
