@@ -52,9 +52,9 @@ This project is part of 01418211 Software Construction course.
     * Research [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi)
 * Week 2 - UML Class Diagram
   * UML diagram [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi)
-    * controller [(Click)](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/uml/controller.png)
-    * models [(Click)](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/uml/models.png)
-    * services [(Click)](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/uml/service.png)
+    * controller [(Click)](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/uml/controller.png)
+    * models [(Click)](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/uml/models.png)
+    * services [(Click)](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/uml/service.png)
 * Week 3 - Feature Admin [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi) , [6410450753 Jirapat Surungsi](https://github.com/j1kid1412) , [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
 * Week 4 - Feature User,Feature Staff [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi) , [6410450753 Jirapat Surungsi](https://github.com/j1kid1412) , [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
 
@@ -172,79 +172,81 @@ Coming soon
 ## Installation Program
 
 #### macOS dmg bundle jre
-- download Student Complaints.dmg from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.Installer.dmg)
+- download Student Complaints.dmg from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.dmg)
   * open dmg and drag Student Complaints to Application folder
 
-![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step2.png)
+![macOS Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/step2.png)
 
-![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step3.png)
+![macOS Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/step3.png)
   * allow open application in System Preferences --> Security & Privacy --> click open anyway
 
-![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step6.png)![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step7.png)
+![macOS Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/step6.png)
+
+![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step7.png)
   * click open or icon Student Complaints in launchpad
 
-![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step8.png)
+![macOS Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/step8.png)
   * launch the Application 
-![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/final.png)
+![macOS Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/final.png)
 #### windows OS exe bundle jre
-- download Student Complaints.exe from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.exe) 
+- download Student Complaints.exe from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.exe) 
   * open Student Complaints.exe and click Install
 
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window1.png)
+![windows Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/window1.png)
   * waiting to done
 
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window2.png)
+![windows Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/window2.png)
   * Click finish
 
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window3.png)
+![windows Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/window3.png)
   * see icon Student Complaint in desktop or search in windows "Student Complaints"
 
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window4.png)
+![windows Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/window4.png)
   * launch the Application
 
-![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window5.png)
+![windows Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/window5.png)
 #### Windows jar file
-- download Student Complaints.jar from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.Windows.zip)
+- download Student Complaints.jar from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.Windows.zip)
   * extract file zip and open the folder name "Student Complaints"
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar1.PNG)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jar1.PNG)
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar2.PNG)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jar2.PNG)
   * see Student Complaints.jar and click it.
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar3.PNG)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jar3.PNG)
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar4.PNG)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jar4.PNG)
   * launch the Application
 #### MacOS jar file
-- download Student Complaints.jar from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.MacOS.zip)
+- download Student Complaints.jar from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.MacOS.zip)
   * extract file zip and open the folder name "Student Complaints"
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-1.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-1.jpg)
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-2.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-2.jpg)
   * see Student Complaints.jar and click it.
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-3.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-3.jpg)
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-4.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-4.jpg)
   * when it's show "can't be opened because it's from unidentified developer." click ok and go to setting 
     for allow open application in System Preferences --> Security & Privacy --> click open anyway
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-5.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-5.jpg)
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-6.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-6.jpg)
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-7.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-7.jpg)
   * launch the Application
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-8.jpg)
+![jar Install](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/image/jarMacOS-8.jpg)
 
 
 
 ## Usage/Examples
 
-This is User Manual [Guide](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/pdf/fileProjectJavaPDF.pdf)
+This is User Manual [Guide](https://github.com/Ratchaphon1412/Student-Complaints/tree/main/docs/pdf/fileProjectJavaPDF.pdf)
 
 
 ## Account Tests
