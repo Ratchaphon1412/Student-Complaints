@@ -171,7 +171,7 @@ Coming soon
 
 ## Installation Program
 
-#### macOS dmg
+#### macOS dmg bundle jre
 - download Student Complaints.dmg from Release or click the link [download](https://github.com/Ratchaphon1412/Student-Complaints/releases/download/v1.0.0-lastest/Student.Complaints.Installer.dmg)
   * open dmg and drag Student Complaints to Application folder
 
@@ -186,7 +186,7 @@ Coming soon
 ![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/step8.png)
   * launch the Application 
 ![macOS Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/final.png)
-#### windows OS exe
+#### windows OS exe bundle jre
 - download Student Complaints.exe from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.exe) 
   * open Student Complaints.exe and click Install
 
