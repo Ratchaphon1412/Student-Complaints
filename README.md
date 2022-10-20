@@ -198,8 +198,8 @@ Coming soon
   * launch the Application
 
 ![windows Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/window5.png)
-#### jar file
-- download Student Complaints.jar from Release or click the link [download]()
+#### Windows jar file
+- download Student Complaints.jar from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.Windows.zip)
   * extract file zip and open the folder name "Student Complaints"
 
 ![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar1.PNG)
@@ -211,12 +211,11 @@ Coming soon
 
 ![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar4.PNG)
   * launch the Application
+#### MacOS jar file
+- download Student Complaints.jar from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.MacOS.zip)
+  * extract file zip and open the folder name "Student Complaints"
 
 ![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar5.PNG)
-#### sh file
-- download Student Complaints.sh from Release or click the link [download]()
-  * click Student Complaints.sh 
-  * launch the Application
 
 ## Usage/Examples
 
