@@ -51,9 +51,12 @@ This project is part of 01418211 Software Construction course.
     * Prototype [(Click)](https://www.figma.com/file/FBnZ0LUVRLlzaK6GxCX3n9/ProjectHardCodeExcutable?node-id=50%3A234) - [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
     * Research [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi)
 * Week 2 - UML Class Diagram
-  * UML diagram [(Click)]()
-* Week 3 - Feature Admin
-* Week 4 - Feature User,Feature Staff
+  * UML diagram [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi)
+    * controller [(Click)](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/uml/controller.png)
+    * models [(Click)](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/uml/models.png)
+    * services [(Click)](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/uml/service.png)
+* Week 3 - Feature Admin [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi) , [6410450753 Jirapat Surungsi](https://github.com/j1kid1412) , [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
+* Week 4 - Feature User,Feature Staff [6410450257 Ratchaphon Hinsui](https://github.com/Ratchaphon1412) , [Witthawat Praphanwong3](https://github.com/Poomffi) , [6410450753 Jirapat Surungsi](https://github.com/j1kid1412) , [6410450974 Thanadon Kritveeranant](https://github.com/oOTEEOo)
 
 
 ## Architecture project
@@ -67,8 +70,10 @@ This project is part of 01418211 Software Construction course.
         ├── requestban.csv
         ├── requestunban.csv
         ├── staffAgencyList.csv
-    ├── docs 
+    ├── docs
         ├──  image
+        ├── pdf
+        ├── uml
     ├── image (program will save image here)
         ├── accounts
         ├── reports
@@ -215,7 +220,27 @@ Coming soon
 - download Student Complaints.jar from Release or click the link [download](https://github.com/CS211-651/project211-hardcodeexecutable/releases/download/v1.0.0-lastest/Student.Complaints.MacOS.zip)
   * extract file zip and open the folder name "Student Complaints"
 
-![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jar5.PNG)
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-1.jpg)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-2.jpg)
+  * see Student Complaints.jar and click it.
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-3.jpg)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-4.jpg)
+  * when it's show "can't be opened because it's from unidentified developer." click ok and go to setting 
+    for allow open application in System Preferences --> Security & Privacy --> click open anyway
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-5.jpg)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-6.jpg)
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-7.jpg)
+  * launch the Application
+
+![jar Install](https://github.com/CS211-651/project211-hardcodeexecutable/blob/main/docs/image/jarMacOS-8.jpg)
+
+
 
 ## Usage/Examples
 
